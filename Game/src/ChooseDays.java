@@ -4,7 +4,10 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JSlider;
 import javax.swing.JButton;
-
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 
 public class ChooseDays 
@@ -18,7 +21,11 @@ public class ChooseDays
 	*/
 	private void initialize() 
 	{
+		
+		
 		Settings set = new Settings();
+		JSlider sliderDays = new JSlider();
+		JLabel lblSliderDays = new JLabel("Number of Spaceship parts: ");
 		
 		frame = new JFrame();
 		frame.setBounds(set.x, set.y, set.width, set.height);
@@ -30,34 +37,47 @@ public class ChooseDays
 		lblWelcomeToThe.setBounds(351, 41, 310, 111);
 		frame.getContentPane().add(lblWelcomeToThe);
 		
-		JSlider slider = new JSlider();
-		slider.setFont(new Font("Dialog", Font.BOLD, 17));
-		slider.setMinimum(3);
-		slider.setMaximum(10);
-		slider.setBounds(276, 282, 406, 135);
-		frame.getContentPane().add(slider);
 		
-		JLabel lblHowManyDays = new JLabel("How many Days?");
-		lblHowManyDays.setFont(new Font("Dialog", Font.BOLD, 24));
-		lblHowManyDays.setBounds(351, 131, 310, 111);
-		frame.getContentPane().add(lblHowManyDays);
+		sliderDays.setMajorTickSpacing(1);
+		sliderDays.setFont(new Font("Dialog", Font.BOLD, 17));
+		sliderDays.setMinimum(3);
+		sliderDays.setMaximum(10);
+		sliderDays.setBounds(255, 329, 406, 51);
+		
+		frame.getContentPane().add(sliderDays);
+		
+		
+	
+		sliderDays.addChangeListener(new ChangeListener() {
+			
+            public void stateChanged(ChangeEvent e) {
+            	int pieces = (int)(sliderDays.getValue()*(0.666));
+            	lblSliderDays.setText("Number of Spaceship parts: " + (pieces));
+            }
+        });
+		
+	
+		
 		
 		JButton btnAccept = new JButton("Accept");
+		btnAccept.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnAccept.setBounds(779, 494, 151, 103);
 		frame.getContentPane().add(btnAccept);
 		
-		JLabel lblPieces = new JLabel("Pieces: ...");
-		lblPieces.setFont(new Font("Dialog", Font.BOLD, 24));
-		lblPieces.setBounds(171, 486, 197, 111);
-		frame.getContentPane().add(lblPieces);
 		
-		JLabel lblSelection = new JLabel("Selection");
-		lblSelection.setBounds(432, 315, 208, 57);
-		frame.getContentPane().add(lblSelection);
+		lblSliderDays.setBounds(189, 533, 266, 25);
+		frame.getContentPane().add(lblSliderDays);
 		
-		JLabel lblSelection_1 = new JLabel("Selection(From slide bar) ..");
-		lblSelection_1.setBounds(384, 424, 266, 25);
-		frame.getContentPane().add(lblSelection_1);
+		JLabel label = new JLabel("3");
+		label.setBounds(255, 282, 66, 15);
+		frame.getContentPane().add(label);
+		
+		JLabel label_1 = new JLabel("10");
+		label_1.setBounds(670, 292, 66, 15);
+		frame.getContentPane().add(label_1);
 	}
 	
 	
