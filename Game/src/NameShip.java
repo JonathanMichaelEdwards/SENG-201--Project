@@ -21,7 +21,7 @@ public class NameShip {
 	private void initialize() 
 	{
 		frame = new JFrame();
-		frame.setBounds(100, 100, 851, 523);
+		frame.setBounds(100, 100, 864, 525);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -34,20 +34,6 @@ public class NameShip {
 		lblNameYourShip.setFont(new Font("Dialog", Font.BOLD, 25));
 		lblNameYourShip.setBounds(298, 12, 253, 107);
 		frame.getContentPane().add(lblNameYourShip);
-		
-		JList list = new JList();
-		list.setToolTipText("1");
-		list.setModel(new AbstractListModel() {
-			String[] values = new String[] {"member 1", "member 2", "..."};
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
-		list.setBounds(39, 191, 98, 194);
-		frame.getContentPane().add(list);
 		
 		textField = new JTextField();
 		textField.setBounds(560, 244, 186, 68);
