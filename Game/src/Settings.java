@@ -1,10 +1,9 @@
-import java.util.ArrayList;
+public class Settings 
+{
+	
+	int x = 300; 
+	int y = 300;
+	int width = 980; 
+	int height = 672;
 
-
-
-public class Settings {
-	int x = 0; 
-	int y = 0;
-	int width = 0; 
-	int height = 0;
 }
