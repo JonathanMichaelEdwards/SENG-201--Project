@@ -4,10 +4,14 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JSlider;
 import javax.swing.JButton;
+<<<<<<< HEAD
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
+=======
+import java.util.Hashtable;
+>>>>>>> 1077cbcd75bb397d2bc39762b1b4a54b89c48716
 
 
 public class ChooseDays 
@@ -37,6 +41,32 @@ public class ChooseDays
 		lblWelcomeToThe.setBounds(351, 41, 310, 111);
 		frame.getContentPane().add(lblWelcomeToThe);
 		
+<<<<<<< HEAD
+=======
+		JSlider slider = new JSlider();
+		slider.setFont(new Font("Dialog", Font.BOLD, 17));
+		slider.setMinimum(3);
+		slider.setMaximum(10);
+		slider.setBounds(276, 282, 406, 135);
+		slider.setMajorTickSpacing(1);
+		slider.setPaintTicks(true);
+		// Set the labels to be painted on the slider
+		slider.setPaintLabels(true);
+		         
+		// Add positions label in the slider
+		Hashtable<Integer, JLabel> position = new Hashtable<Integer, JLabel>();
+		position.put(3, new JLabel("3"));
+		position.put(4, new JLabel("4"));
+		position.put(5, new JLabel("5"));
+		position.put(6, new JLabel("6"));
+		position.put(7, new JLabel("7"));
+		position.put(8, new JLabel("8"));
+		position.put(9, new JLabel("9"));
+		position.put(10, new JLabel("10"));
+		// Set the label to be drawn
+		slider.setLabelTable(position); 
+		frame.getContentPane().add(slider);
+>>>>>>> 1077cbcd75bb397d2bc39762b1b4a54b89c48716
 		
 		sliderDays.setMajorTickSpacing(1);
 		sliderDays.setFont(new Font("Dialog", Font.BOLD, 17));
