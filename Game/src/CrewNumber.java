@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JCheckBox;
 
 
 public class CrewNumber 
@@ -31,15 +32,6 @@ public class CrewNumber
 		lblNewLabel.setBounds(141, 44, 595, 109);
 		frame.getContentPane().add(lblNewLabel);
 		
-		JSlider slider = new JSlider();
-		slider.setBounds(247, 209, 356, 68);
-		frame.getContentPane().add(slider);
-		
-		JLabel lblCrewNumber = new JLabel("Crew number ...");
-		lblCrewNumber.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblCrewNumber.setBounds(351, 289, 166, 16);
-		frame.getContentPane().add(lblCrewNumber);
-		
 		JButton btnBack = new JButton("Back");
 		btnBack.setBounds(454, 380, 136, 75);
 		frame.getContentPane().add(btnBack);
@@ -51,6 +43,22 @@ public class CrewNumber
 		});
 		btnNewButton.setBounds(663, 380, 136, 75);
 		frame.getContentPane().add(btnNewButton);
+		
+		JCheckBox chckbxNewCheckBox = new JCheckBox("New check box");
+		chckbxNewCheckBox.setBounds(78, 235, 126, 23);
+		frame.getContentPane().add(chckbxNewCheckBox);
+		
+		JCheckBox checkBox = new JCheckBox("New check box");
+		checkBox.setBounds(267, 235, 126, 23);
+		frame.getContentPane().add(checkBox);
+		
+		JCheckBox checkBox_1 = new JCheckBox("New check box");
+		checkBox_1.setBounds(435, 235, 126, 23);
+		frame.getContentPane().add(checkBox_1);
+		
+		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("New check box");
+		chckbxNewCheckBox_1.setBounds(610, 235, 126, 23);
+		frame.getContentPane().add(chckbxNewCheckBox_1);
 	}
 	
 	
