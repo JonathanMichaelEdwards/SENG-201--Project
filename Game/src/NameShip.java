@@ -35,20 +35,6 @@ public class NameShip {
 		lblNameYourShip.setBounds(298, 12, 253, 107);
 		frame.getContentPane().add(lblNameYourShip);
 		
-		JList list = new JList();
-		list.setToolTipText("1");
-		list.setModel(new AbstractListModel() {
-			String[] values = new String[] {"member 1", "member 2", "..."};
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
-		list.setBounds(39, 191, 98, 194);
-		frame.getContentPane().add(list);
-		
 		textField = new JTextField();
 		textField.setBounds(560, 244, 186, 68);
 		frame.getContentPane().add(textField);
