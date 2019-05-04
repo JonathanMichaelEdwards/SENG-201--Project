@@ -2,8 +2,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 
 
-
-public class CrewNumber {
+public class CrewNumber 
+{
 
 	private JFrame frame;
 
@@ -11,9 +11,11 @@ public class CrewNumber {
 	/*
 	 * Initialize the contents of the frame.
 	*/
-	private void initialize() {
+	private void initialize() 
+	{
+		Settings set = new Settings();
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(set.x, set.y, set.width, set.height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
@@ -21,19 +23,22 @@ public class CrewNumber {
 	/*
 	 * Create the application.
 	*/
-	public CrewNumber() {
-		Settings setting = new Settings();
+	public CrewNumber() 
+	{
+		
 		initialize();
-		System.out.println(setting.distance());
 	}
 	
 	
 	/*
 	 * Launch the application.
 	*/
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
+	public static void main(String[] args) 
+	{
+		EventQueue.invokeLater(new Runnable() 
+		{
+			public void run() 
+			{
 				try {
 					CrewNumber window = new CrewNumber();
 					window.frame.setVisible(true);

@@ -7,7 +7,8 @@ import javax.swing.JButton;
 
 
 
-public class ChooseDays {
+public class ChooseDays 
+{
 
 	private JFrame frame;
 
@@ -15,11 +16,12 @@ public class ChooseDays {
 	/*
 	 * Initialize the contents of the frame.
 	*/
-	private void initialize() {
-		Settings setting = new Settings();
+	private void initialize() 
+	{
+		Settings set = new Settings();
 		
 		frame = new JFrame();
-		frame.setBounds(100, 100, 1075, 697);
+		frame.setBounds(set.x, set.y, set.width, set.height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -62,7 +64,8 @@ public class ChooseDays {
 	/*
 	 * Create the application.
 	*/
-	public ChooseDays() {
+	public ChooseDays() 
+	{
 		initialize();
 	}
 	
@@ -70,9 +73,12 @@ public class ChooseDays {
 	/*
 	 * Launch the application.
 	*/
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
+	public static void main(String[] args) 
+	{
+		EventQueue.invokeLater(new Runnable() 
+		{
+			public void run() 
+			{
 				try {	
 					ChooseDays window = new ChooseDays();
 					window.frame.setVisible(true);
