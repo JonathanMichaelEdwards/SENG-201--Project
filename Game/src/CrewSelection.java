@@ -1,11 +1,20 @@
+import java.awt.Color;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.MouseMotionAdapter;
+import java.util.ArrayList;
+import javax.swing.JCheckBox;
+
+
 
 public class CrewSelection {
 
@@ -13,7 +22,145 @@ public class CrewSelection {
 	private JTextField txtCharacterSelectionYou;
 	private JTextField txtClickOnEach;
 	private JTextField textField;
+	
+	private static int count = 0;
+	private ArrayList<String> crew = new ArrayList<String>();
+	
+	
+	private void checkSoldier() 
+	{
+		JCheckBox selectSoldier = new JCheckBox("select");
+		selectSoldier.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (selectSoldier.isSelected()) {
+					crew.add("Soldier");
+					count++;
+				} else {
+					crew.remove("Soldier");
+					count--;
+				}
+			}
+		});
+		selectSoldier.setBounds(25, 259, 126, 23);
+		frame.getContentPane().add(selectSoldier);
+	}
+	
+	
+	private void checkMedic() 
+	{
+		JCheckBox selectMedic = new JCheckBox("select");
+		selectMedic.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (selectMedic.isSelected()) {
+					crew.add("Medic");
+					count++;
+				} else {
+					crew.remove("Medic");
+					count--;
+				}
+			}
+		});
+		selectMedic.setBounds(157, 259, 126, 23);
+		frame.getContentPane().add(selectMedic);
+	}
+	
+	
+	private void checkLeader() 
+	{
+		JCheckBox selectLeader = new JCheckBox("select");
+		selectLeader.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (selectLeader.isSelected()) {
+					crew.add("Leader");
+					count++;
+				} else {
+					crew.remove("Leader");
+					count--;
+				}
+			}
+		});
+		selectLeader.setBounds(300, 259, 126, 23);
+		frame.getContentPane().add(selectLeader);
+	}
+	
+	
+	private void checkMechanic() 
+	{
+		JCheckBox selectMechanic = new JCheckBox("select");
+		selectMechanic.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (selectMechanic.isSelected()) {
+					crew.add("Mechanic");
+					count++;
+				} else {
+					crew.remove("Mechanic");
+					count--;
+				}
+			}
+		});
+		selectMechanic.setBounds(448, 259, 126, 23);
+		frame.getContentPane().add(selectMechanic);
+	}
+	
+	
+	private void checkPilot() 
+	{
+		JCheckBox selectPilot = new JCheckBox("select");
+		selectPilot.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (selectPilot.isSelected()) {
+					crew.add("Pilot");
+					count++;
+				} else {
+					crew.remove("Pilot");
+					count--;
+				}
+			}
+		});
+		selectPilot.setBounds(583, 259, 126, 23);
+		frame.getContentPane().add(selectPilot);
+	}
+	
+	
+	private void checkThief() 
+	{
+		JCheckBox selectThief = new JCheckBox("select");
+		selectThief.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (selectThief.isSelected()) {
+					crew.add("Thief");
+					count++;
+				} else {
+					crew.remove("Thief");
+					count--;
+				}
+			}
+		});
+		selectThief.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 
+			}
+		});
+		selectThief.setBounds(730, 259, 126, 23);
+		frame.getContentPane().add(selectThief);
+	}
+	
+	
+	private void selectedPlayers()
+	{
+		checkSoldier();
+		checkMedic();
+		checkLeader();
+		checkMechanic();
+		checkPilot();
+		checkThief();
+	}
+	
+	
+	
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -30,6 +177,7 @@ public class CrewSelection {
 		});
 	}
 
+	
 	/**
 	 * Create the application.
 	 */
@@ -52,34 +200,6 @@ public class CrewSelection {
 		frame.getContentPane().add(txtCharacterSelectionYou);
 		txtCharacterSelectionYou.setColumns(10);
 		
-		JButton btnSoldier = new JButton("Soldier");
-		btnSoldier.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnSoldier.setBounds(25, 90, 123, 161);
-		frame.getContentPane().add(btnSoldier);
-		
-		JButton btnMedic = new JButton("medic");
-		btnMedic.setBounds(160, 90, 123, 161);
-		frame.getContentPane().add(btnMedic);
-		
-		JButton btnLeader = new JButton("Leader");
-		btnLeader.setBounds(303, 90, 123, 161);
-		frame.getContentPane().add(btnLeader);
-		
-		JButton btnMechanic = new JButton("Mechanic");
-		btnMechanic.setBounds(448, 90, 123, 161);
-		frame.getContentPane().add(btnMechanic);
-		
-		JButton btnPilot = new JButton("Pilot");
-		btnPilot.setBounds(583, 90, 123, 161);
-		frame.getContentPane().add(btnPilot);
-		
-		JButton btnThief = new JButton("Thief");
-		btnThief.setBounds(730, 90, 123, 161);
-		frame.getContentPane().add(btnThief);
-		
 		txtClickOnEach = new JTextField();
 		txtClickOnEach.setText("Click on each to select or view extra information");
 		txtClickOnEach.setBounds(217, 59, 308, 19);
@@ -87,40 +207,58 @@ public class CrewSelection {
 		txtClickOnEach.setColumns(10);
 		
 		JLabel lblCurrentTeam = new JLabel("Current Team");
-		lblCurrentTeam.setBounds(25, 333, 109, 15);
+		lblCurrentTeam.setBounds(25, 342, 109, 15);
 		frame.getContentPane().add(lblCurrentTeam);
 		
 		textField = new JTextField();
-		textField.setBounds(259, 282, 227, 19);
+		textField.setBounds(261, 340, 227, 19);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblEntername = new JLabel("Enter Name:");
-		lblEntername.setBounds(148, 284, 97, 15);
+		lblEntername.setBounds(146, 342, 97, 15);
 		frame.getContentPane().add(lblEntername);
 		
 		JLabel lblClassType = new JLabel("1. class type (VARIABLE) : name (VARIABLE)");
-		lblClassType.setBounds(153, 372, 513, 15);
+		lblClassType.setBounds(86, 372, 513, 15);
 		frame.getContentPane().add(lblClassType);
 		
 		JLabel lblClassType_1 = new JLabel("2. class type (VARIABLE) : name (VARIABLE)");
-		lblClassType_1.setBounds(153, 399, 513, 15);
+		lblClassType_1.setBounds(86, 399, 513, 15);
 		frame.getContentPane().add(lblClassType_1);
 		
 		JLabel lblClassType_2 = new JLabel("3. class type (VARIABLE) : name (VARIABLE)");
-		lblClassType_2.setBounds(153, 426, 513, 15);
+		lblClassType_2.setBounds(86, 426, 513, 15);
 		frame.getContentPane().add(lblClassType_2);
 		
 		JLabel lblClassType_3 = new JLabel("4. class type (VARIABLE) : name (VARIABLE)");
-		lblClassType_3.setBounds(153, 453, 513, 15);
+		lblClassType_3.setBounds(86, 453, 513, 15);
 		frame.getContentPane().add(lblClassType_3);
 		
+		
+		
+		selectedPlayers();
+		
 		JButton btnAccept = new JButton("Accept");
-		btnAccept.setBounds(514, 279, 114, 25);
+		btnAccept.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println(crew);
+			}
+		});
+		btnAccept.setBounds(515, 337, 114, 25);
 		frame.getContentPane().add(btnAccept);
 		
+		
+
+		
+		
+		
 		JButton btnCancel = new JButton("Cancel");
-		btnCancel.setBounds(655, 279, 114, 25);
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnCancel.setBounds(672, 332, 114, 25);
 		frame.getContentPane().add(btnCancel);
 		
 		JButton btnNext = new JButton("Next");
@@ -130,5 +268,34 @@ public class CrewSelection {
 		JButton btnBack = new JButton("Back");
 		btnBack.setBounds(588, 448, 114, 25);
 		frame.getContentPane().add(btnBack);
+		
+		
+		
+		
+		
+		
+		JLabel lblSoldier = new JLabel("Soldier");
+		lblSoldier.setBounds(25, 90, 117, 161);
+		frame.getContentPane().add(lblSoldier);
+		
+		JLabel lblMedic = new JLabel("Medic");
+		lblMedic.setBounds(146, 90, 117, 161);
+		frame.getContentPane().add(lblMedic);
+		
+		JLabel lblLeader = new JLabel("Leader");
+		lblLeader.setBounds(300, 90, 117, 161);
+		frame.getContentPane().add(lblLeader);
+		
+		JLabel lblMechanic = new JLabel("Mechanic");
+		lblMechanic.setBounds(448, 90, 117, 161);
+		frame.getContentPane().add(lblMechanic);
+		
+		JLabel lblPilot = new JLabel("Pilot");
+		lblPilot.setBounds(574, 90, 117, 161);
+		frame.getContentPane().add(lblPilot);
+		
+		JLabel lblThief = new JLabel("Thief");
+		lblThief.setBounds(706, 90, 117, 161);
+		frame.getContentPane().add(lblThief);
 	}
 }
