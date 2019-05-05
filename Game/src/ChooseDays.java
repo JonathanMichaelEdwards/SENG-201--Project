@@ -26,7 +26,12 @@ public class ChooseDays
 		
 		
 		Settings set = new Settings();
+<<<<<<< HEAD
 		JLabel lblSliderDays = new JLabel("Number of Spaceship parts: 1");
+=======
+		JSlider sliderDays = new JSlider();
+		JLabel lblSliderDays = new JLabel("Number of Spaceship parts: ");
+>>>>>>> master
 		
 		frame = new JFrame();
 		frame.setBounds(set.x, set.y, set.width, set.height);
