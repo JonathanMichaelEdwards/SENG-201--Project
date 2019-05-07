@@ -1,4 +1,3 @@
-import java.awt.Color;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
@@ -29,7 +28,7 @@ public class CrewSelection {
 	
 	private void checkSoldier() 
 	{
-		JCheckBox selectSoldier = new JCheckBox("select");
+		final JCheckBox selectSoldier = new JCheckBox("select");
 		selectSoldier.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (selectSoldier.isSelected()) {
@@ -48,7 +47,7 @@ public class CrewSelection {
 	
 	private void checkMedic() 
 	{
-		JCheckBox selectMedic = new JCheckBox("select");
+		final JCheckBox selectMedic = new JCheckBox("select");
 		selectMedic.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (selectMedic.isSelected()) {
@@ -67,7 +66,7 @@ public class CrewSelection {
 	
 	private void checkLeader() 
 	{
-		JCheckBox selectLeader = new JCheckBox("select");
+		final JCheckBox selectLeader = new JCheckBox("select");
 		selectLeader.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (selectLeader.isSelected()) {
@@ -86,7 +85,7 @@ public class CrewSelection {
 	
 	private void checkMechanic() 
 	{
-		JCheckBox selectMechanic = new JCheckBox("select");
+		final JCheckBox selectMechanic = new JCheckBox("select");
 		selectMechanic.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (selectMechanic.isSelected()) {
@@ -105,7 +104,7 @@ public class CrewSelection {
 	
 	private void checkPilot() 
 	{
-		JCheckBox selectPilot = new JCheckBox("select");
+		final JCheckBox selectPilot = new JCheckBox("select");
 		selectPilot.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (selectPilot.isSelected()) {
@@ -124,7 +123,7 @@ public class CrewSelection {
 	
 	private void checkThief() 
 	{
-		JCheckBox selectThief = new JCheckBox("select");
+		final JCheckBox selectThief = new JCheckBox("select");
 		selectThief.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

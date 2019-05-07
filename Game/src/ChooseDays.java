@@ -1,14 +1,16 @@
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.Font;
+import java.awt.BorderLayout;
 import javax.swing.JSlider;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.JButton;
+import java.awt.Font;
+import java.awt.event.ActionListener;
 import java.util.Hashtable;
+import java.awt.event.ActionEvent;
+import javax.swing.JCheckBox;
 
 
 
@@ -26,12 +28,7 @@ public class ChooseDays
 		
 		
 		Settings set = new Settings();
-<<<<<<< HEAD
-		JLabel lblSliderDays = new JLabel("Number of Spaceship parts: 1");
-=======
-		JSlider sliderDays = new JSlider();
-		JLabel lblSliderDays = new JLabel("Number of Spaceship parts: ");
->>>>>>> master
+		final JLabel lblSliderDays = new JLabel("Number of Spaceship parts: 1");
 		
 		frame = new JFrame();
 		frame.setBounds(set.x, set.y, set.width, set.height);
@@ -44,7 +41,7 @@ public class ChooseDays
 		frame.getContentPane().add(lblWelcomeToThe);
 		
 
-		JSlider slider = new JSlider();
+		final JSlider slider = new JSlider();
 		slider.setValue(3);
 		slider.setFont(new Font("Dialog", Font.BOLD, 17));
 		slider.setMinimum(3);
