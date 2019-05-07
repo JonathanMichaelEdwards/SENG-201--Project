@@ -22,7 +22,6 @@ public class CrewSelection {
 	private JTextField txtClickOnEach;
 	private JTextField textField;
 	
-	private static int count = 0;
 	private ArrayList<String> crew = new ArrayList<String>();
 	
 	
@@ -33,10 +32,8 @@ public class CrewSelection {
 			public void actionPerformed(ActionEvent arg0) {
 				if (selectSoldier.isSelected()) {
 					crew.add("Soldier");
-					count++;
 				} else {
 					crew.remove("Soldier");
-					count--;
 				}
 			}
 		});
@@ -52,10 +49,8 @@ public class CrewSelection {
 			public void actionPerformed(ActionEvent arg0) {
 				if (selectMedic.isSelected()) {
 					crew.add("Medic");
-					count++;
 				} else {
 					crew.remove("Medic");
-					count--;
 				}
 			}
 		});
@@ -71,10 +66,8 @@ public class CrewSelection {
 			public void actionPerformed(ActionEvent arg0) {
 				if (selectLeader.isSelected()) {
 					crew.add("Leader");
-					count++;
 				} else {
 					crew.remove("Leader");
-					count--;
 				}
 			}
 		});
@@ -90,10 +83,8 @@ public class CrewSelection {
 			public void actionPerformed(ActionEvent arg0) {
 				if (selectMechanic.isSelected()) {
 					crew.add("Mechanic");
-					count++;
 				} else {
 					crew.remove("Mechanic");
-					count--;
 				}
 			}
 		});
@@ -109,10 +100,8 @@ public class CrewSelection {
 			public void actionPerformed(ActionEvent arg0) {
 				if (selectPilot.isSelected()) {
 					crew.add("Pilot");
-					count++;
 				} else {
 					crew.remove("Pilot");
-					count--;
 				}
 			}
 		});
@@ -124,21 +113,13 @@ public class CrewSelection {
 	private void checkThief() 
 	{
 		final JCheckBox selectThief = new JCheckBox("select");
-		selectThief.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (selectThief.isSelected()) {
-					crew.add("Thief");
-					count++;
-				} else {
-					crew.remove("Thief");
-					count--;
-				}
-			}
-		});
 		selectThief.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
+				if (selectThief.isSelected()) {
+					crew.add("Thief");
+				} else {
+					crew.remove("Thief");
+				}
 			}
 		});
 		selectThief.setBounds(730, 259, 126, 23);

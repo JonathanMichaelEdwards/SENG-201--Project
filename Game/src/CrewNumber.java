@@ -11,7 +11,7 @@ import javax.swing.JCheckBox;
 public class CrewNumber 
 {
 
-	private JFrame frame;
+	public JFrame frame;
 
 	
 	/*
@@ -34,13 +34,13 @@ public class CrewNumber
 		btnBack.setBounds(454, 380, 136, 75);
 		frame.getContentPane().add(btnBack);
 		
-		JButton btnNewButton = new JButton("Next");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnNext = new JButton("Next");
+		btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnNewButton.setBounds(663, 380, 136, 75);
-		frame.getContentPane().add(btnNewButton);
+		btnNext.setBounds(663, 380, 136, 75);
+		frame.getContentPane().add(btnNext);
 		
 		JCheckBox chckbxNewCheckBox = new JCheckBox("New check box");
 		chckbxNewCheckBox.setBounds(78, 235, 126, 23);

@@ -82,6 +82,11 @@ public class ChooseDays
 		JButton btnAccept = new JButton("Next");
 		btnAccept.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				// Setting a new frame
+				CrewNumber crew = new CrewNumber();
+				crew.frame.setVisible(true);  // turn on screen
+				frame.setVisible(false);   // turn off screen
 			}
 		});
 		btnAccept.setBounds(779, 494, 151, 103);
