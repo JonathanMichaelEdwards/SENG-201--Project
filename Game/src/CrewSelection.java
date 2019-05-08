@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 
 
@@ -39,6 +40,8 @@ public class CrewSelection {
 			public void actionPerformed(ActionEvent arg0) {
 				if (selectSoldier.isSelected()) {
 					crew.add("Soldier");
+					
+					System.out.println(comboBoxSoldier.getSelectedItem());
 				} else {
 					crew.remove("Soldier");
 				}
@@ -318,12 +321,15 @@ public class CrewSelection {
 		lblThief.setBounds(706, 90, 117, 161);
 		frame.getContentPane().add(lblThief);
 		
+		
+		
 		comboBoxSoldier = new JComboBox();
 		comboBoxSoldier.setToolTipText("");
 		comboBoxSoldier.setModel(new DefaultComboBoxModel(new String[] {"x0", "x1", "x2", "x3", "x4"}));
 		comboBoxSoldier.setMaximumRowCount(4);
 		comboBoxSoldier.setBounds(35, 282, 72, 36);
 		frame.getContentPane().add(comboBoxSoldier);
+		
 		
 		JComboBox comboBoxMedic = new JComboBox();
 		comboBoxMedic.setToolTipText("");
