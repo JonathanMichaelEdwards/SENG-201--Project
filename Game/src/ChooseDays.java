@@ -1,7 +1,6 @@
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.BorderLayout;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -10,7 +9,6 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.util.Hashtable;
 import java.awt.event.ActionEvent;
-import javax.swing.JCheckBox;
 
 
 
@@ -71,7 +69,7 @@ public class ChooseDays
 		slider.addChangeListener(new ChangeListener() {
 			
             public void stateChanged(ChangeEvent e) {
-            	int pieces = (int)(slider.getValue()*(0.666));
+            	int pieces = (int)(slider.getValue()*(0.667));   // Formula days 2/3 (now correct)
             	lblSliderDays.setText("Number of Spaceship parts: " + (pieces));
             }
         });

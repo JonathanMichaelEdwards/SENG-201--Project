@@ -3,15 +3,14 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+
 
 
 
@@ -21,6 +20,14 @@ public class CrewSelection {
 	private JTextField txtCharacterSelectionYou;
 	private JTextField txtClickOnEach;
 	private JTextField textField;
+	
+	JLabel lblMember1;
+	JLabel lblMember2;
+	JLabel lblMember3;
+	JLabel lblMember4;
+	
+	@SuppressWarnings("rawtypes")
+	JComboBox comboBoxSoldier;
 	
 	private ArrayList<String> crew = new ArrayList<String>();
 	
@@ -168,6 +175,7 @@ public class CrewSelection {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 908, 537);
@@ -199,32 +207,64 @@ public class CrewSelection {
 		lblEntername.setBounds(146, 342, 97, 15);
 		frame.getContentPane().add(lblEntername);
 		
-		JLabel lblClassType = new JLabel("1. class type (VARIABLE) : name (VARIABLE)");
-		lblClassType.setBounds(86, 372, 513, 15);
-		frame.getContentPane().add(lblClassType);
 		
-		JLabel lblClassType_1 = new JLabel("2. class type (VARIABLE) : name (VARIABLE)");
-		lblClassType_1.setBounds(86, 399, 513, 15);
-		frame.getContentPane().add(lblClassType_1);
 		
-		JLabel lblClassType_2 = new JLabel("3. class type (VARIABLE) : name (VARIABLE)");
-		lblClassType_2.setBounds(86, 426, 513, 15);
-		frame.getContentPane().add(lblClassType_2);
 		
-		JLabel lblClassType_3 = new JLabel("4. class type (VARIABLE) : name (VARIABLE)");
-		lblClassType_3.setBounds(86, 453, 513, 15);
-		frame.getContentPane().add(lblClassType_3);
+		lblMember1 = new JLabel("1. class type (VARIABLE) : name (VARIABLE)");
+
+		lblMember1.setBounds(86, 372, 513, 15);
+		frame.getContentPane().add(lblMember1);
+		
+		lblMember2 = new JLabel("2. class type (VARIABLE) : name (VARIABLE)");
+		lblMember2.setBounds(86, 399, 513, 15);
+		frame.getContentPane().add(lblMember2);
+		
+		lblMember3 = new JLabel("3. class type (VARIABLE) : name (VARIABLE)");
+		lblMember3.setBounds(86, 426, 513, 15);
+		frame.getContentPane().add(lblMember3);
+		
+		lblMember4 = new JLabel("4. class type (VARIABLE) : name (VARIABLE)");
+		lblMember4.setBounds(86, 453, 513, 15);
+		frame.getContentPane().add(lblMember4);
 		
 		
 		
 		selectedPlayers();
 		
+		
+		
+		
 		JButton btnAccept = new JButton("Accept");
+		
 		btnAccept.addActionListener(new ActionListener() {
+
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println(crew);
+				
+				if ((crew.size() > 4) || (crew.size() < 2)) {
+					JOptionPane.showMessageDialog(null, "Please select 2 to 4 crew members only");
+				} else {
+					for (int i = 0; i < crew.size(); i++) {
+						// Refresh labels
+						lblMember1.setText("");
+						lblMember2.setText("");
+						lblMember3.setText("");
+						lblMember4.setText("");
+						
+						try { 
+							// Add Members that are chosen
+							lblMember1.setText(crew.get(0).toString());
+							lblMember2.setText(crew.get(1).toString());
+							lblMember3.setText(crew.get(2).toString());
+							lblMember4.setText(crew.get(3).toString());
+						} catch (Exception e) {
+							continue; // continue if list is greater
+						}
+					}
+					
+				}
 			}
 		});
+		
 		btnAccept.setBounds(515, 337, 114, 25);
 		frame.getContentPane().add(btnAccept);
 		
@@ -277,5 +317,52 @@ public class CrewSelection {
 		JLabel lblThief = new JLabel("Thief");
 		lblThief.setBounds(706, 90, 117, 161);
 		frame.getContentPane().add(lblThief);
+		
+		comboBoxSoldier = new JComboBox();
+		comboBoxSoldier.setToolTipText("");
+		comboBoxSoldier.setModel(new DefaultComboBoxModel(new String[] {"x0", "x1", "x2", "x3", "x4"}));
+		comboBoxSoldier.setMaximumRowCount(4);
+		comboBoxSoldier.setBounds(35, 282, 72, 36);
+		frame.getContentPane().add(comboBoxSoldier);
+		
+		JComboBox comboBoxMedic = new JComboBox();
+		comboBoxMedic.setToolTipText("");
+		comboBoxMedic.setModel(new DefaultComboBoxModel(new String[] {"x0", "x1", "x2", "x3", "x4"}));
+		comboBoxMedic.setSelectedIndex(0);
+		comboBoxMedic.setMaximumRowCount(4);
+		comboBoxMedic.setBounds(171, 282, 72, 36);
+		frame.getContentPane().add(comboBoxMedic);
+		
+		JComboBox comboBoxLeader = new JComboBox();
+		comboBoxLeader.setToolTipText("");
+		comboBoxLeader.setModel(new DefaultComboBoxModel(new String[] {"0x", "x1", "x2", "x3", "x4"}));
+		comboBoxLeader.setSelectedIndex(0);
+		comboBoxLeader.setMaximumRowCount(4);
+		comboBoxLeader.setBounds(310, 282, 72, 36);
+		frame.getContentPane().add(comboBoxLeader);
+		
+		JComboBox<Object> comboBoxMechanic = new JComboBox<Object>();
+		comboBoxMechanic.setToolTipText("");
+		comboBoxMechanic.setModel(new DefaultComboBoxModel(new String[] {"0x", "x1", "x2", "x3", "x4"}));
+		comboBoxMechanic.setSelectedIndex(0);
+		comboBoxMechanic.setMaximumRowCount(4);
+		comboBoxMechanic.setBounds(448, 282, 72, 36);
+		frame.getContentPane().add(comboBoxMechanic);
+		
+		JComboBox comboBoxPilot = new JComboBox();
+		comboBoxPilot.setToolTipText("");
+		comboBoxPilot.setModel(new DefaultComboBoxModel(new String[] {"x0", "x1", "x2", "x3", "x4"}));
+		comboBoxPilot.setSelectedIndex(0);
+		comboBoxPilot.setMaximumRowCount(4);
+		comboBoxPilot.setBounds(577, 282, 72, 36);
+		frame.getContentPane().add(comboBoxPilot);
+		
+		JComboBox comboBoxThief = new JComboBox();
+		comboBoxThief.setToolTipText("");
+		comboBoxThief.setModel(new DefaultComboBoxModel(new String[] {"0x", "x1", "x2", "x3", "x4"}));
+		comboBoxThief.setSelectedIndex(0);
+		comboBoxThief.setMaximumRowCount(4);
+		comboBoxThief.setBounds(722, 282, 72, 41);
+		frame.getContentPane().add(comboBoxThief);
 	}
 }
