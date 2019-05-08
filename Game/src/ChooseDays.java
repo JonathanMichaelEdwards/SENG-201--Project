@@ -15,7 +15,7 @@ import java.awt.event.ActionEvent;
 public class ChooseDays 
 {
 
-	private JFrame frame;
+	public JFrame frame;
 
 	
 	/*
@@ -26,7 +26,7 @@ public class ChooseDays
 		
 		
 		Settings set = new Settings();
-		final JLabel lblSliderDays = new JLabel("Number of Spaceship parts: 1");
+		final JLabel lblSliderDays = new JLabel("Number of Spaceship parts: 2");
 		
 		frame = new JFrame();
 		frame.setBounds(set.x, set.y, set.width, set.height);
@@ -82,8 +82,8 @@ public class ChooseDays
 			public void actionPerformed(ActionEvent arg0) {
 				
 				// Setting a new frame
-				CrewNumber crew = new CrewNumber();
-				crew.frame.setVisible(true);  // turn on screen
+				CrewNumber crewNum = new CrewNumber();
+				crewNum.frame.setVisible(true);  // turn on screen
 				frame.setVisible(false);   // turn off screen
 			}
 		});

@@ -36,11 +36,13 @@ public class CrewSelection {
 	
 	JComboBox<Object> comBoxCharChosen;
 	
-	int countSoldier, countMedic, countLeader, countMechanic, countPilot, countThief = 0;  // initial value
+	int countSoldier, countMedic, countLeader, countMechanic, countPilot, countThief = 0, countNames = 0;;  // initial value
 	
 	
 
-	private ArrayList<String> crew = new ArrayList<String>();
+	public ArrayList<String> crew = new ArrayList<String>();
+	public ArrayList<String> crewNames = new ArrayList<String>();
+	
 	private JLabel name1;
 	private JLabel name2;
 	private JLabel name3;
@@ -191,6 +193,20 @@ public class CrewSelection {
 	
 	
 	
+	// Adding names to list
+	void addNames(JLabel name)
+	{
+		for (int index = 0; index < crew.size(); index++) {
+			if (name.getText().equals("...")) {
+				name.setText(txtFdName.getText());
+				crewNames.add(name.getText());
+			} else {
+				crewNames.remove(name.getText());  // remove previous name
+				name.setText(txtFdName.getText());
+				crewNames.add(name.getText());     // add new name
+			}
+		}
+	}
 	
 	
 	/**
@@ -278,16 +294,12 @@ public class CrewSelection {
 		
 		
 		
-		
+		// Buttons
 		JButton btnAcceptChars = new JButton("Accept Characters");
 		
 		btnAcceptChars.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
-				
-				
-				
-
 				if ((crew.size() > 4) || (crew.size() < 2)) {
 					JOptionPane.showMessageDialog(null, "Please select 2 to 4 crew members only");
 				} else {
@@ -300,6 +312,9 @@ public class CrewSelection {
 						name4.setText("...");
 						
 						comBoxCharChosen.removeAllItems();
+						
+						for (int index = 0; index < crewNames.size(); index++)
+							crewNames.remove(index);
 						
 						lblMember1.setText("...");
 						lblMember2.setText("...");
@@ -326,11 +341,34 @@ public class CrewSelection {
 		btnAcceptChars.setBounds(692, 333, 157, 54);
 		frame.getContentPane().add(btnAcceptChars);
 		
+		
 		JButton btnNext = new JButton("Next");
+		btnNext.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// Only can move forward if names have been allocated to a player
+				//Error messages
+				if ((crewNames.size() == 0) || (crew.size() == 0)) JOptionPane.showMessageDialog(null, "Please complete the fields");  
+				else if (crewNames.size() == crew.size()) {
+					// Setting a new frame
+					NameShip nameShip = new NameShip();
+					nameShip.frame.setVisible(true);  // turn on screen
+					frame.setVisible(false);   // turn off screen
+				} else JOptionPane.showMessageDialog(null, "Please complete the fields");  // Error message
+			}
+		});
 		btnNext.setBounds(742, 438, 136, 47);
 		frame.getContentPane().add(btnNext);
 		
+		
 		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// Setting a new frame
+				CrewNumber crewNum = new CrewNumber();
+				crewNum.frame.setVisible(true);  // turn on screen
+				frame.setVisible(false);         // turn off screen
+			}
+		});
 		btnBack.setBounds(583, 438, 126, 47);
 		frame.getContentPane().add(btnBack);
 		
@@ -536,18 +574,72 @@ public class CrewSelection {
 		
 		
 		
+
+		
+		
 		JButton btnAcceptName = new JButton("Accept Name");
 		btnAcceptName.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				if (comBoxCharChosen.getSelectedIndex() == 0) name1.setText(txtFdName.getText());
-				else if (comBoxCharChosen.getSelectedIndex() == 1) name2.setText(txtFdName.getText());
-				else if (comBoxCharChosen.getSelectedIndex() == 2) name3.setText(txtFdName.getText());
-				else if (comBoxCharChosen.getSelectedIndex() == 3) name4.setText(txtFdName.getText());
+				// display error message
+				if (crew.size() == 0) JOptionPane.showMessageDialog(null, "Enter a crew member first");
+				// checking how many names we have to input & output
+				else if (txtFdName.getText().equals("")) JOptionPane.showMessageDialog(null, "Please enter a name");  
+				
+				else {	
+					if (comBoxCharChosen.getSelectedIndex() == 0) addNames(name1);
+					if (comBoxCharChosen.getSelectedIndex() == 1) addNames(name2);
+					if (comBoxCharChosen.getSelectedIndex() == 2) addNames(name3);
+					if (comBoxCharChosen.getSelectedIndex() == 3) addNames(name4);
+					
+					
+//					// if combo box is selected and thendoesn't have a name (add), else (remove and then add new name)
+//					if (comBoxCharChosen.getSelectedIndex() == 0) {
+//						if (name1.getText().equals("...")) {
+//							name1.setText(txtFdName.getText());
+//							crewNames.add(name1.getText());
+//						} else {
+//							crewNames.remove(name1.getText());  // remove previous name
+//							name1.setText(txtFdName.getText());
+//							crewNames.add(name1.getText());     // add new name
+//						}
+//					} 
+//					else if (comBoxCharChosen.getSelectedIndex() == 1) 
+//						if (name1.getText().equals("...")) {
+//							name1.setText(txtFdName.getText());
+//							crewNames.add(name1.getText());
+//						} else {
+//							crewNames.remove(name1.getText());  // remove previous name
+//							name1.setText(txtFdName.getText());
+//							crewNames.add(name1.getText());     // add new name
+//						}
+//					else if (comBoxCharChosen.getSelectedIndex() == 2) 
+//						if (name1.getText().equals("...")) {
+//							name1.setText(txtFdName.getText());
+//							crewNames.add(name1.getText());
+//						} else {
+//							crewNames.remove(name1.getText());  // remove previous name
+//							name1.setText(txtFdName.getText());
+//							crewNames.add(name1.getText());     // add new name
+//						}
+//					else if (comBoxCharChosen.getSelectedIndex() == 3) 
+//						if (name1.getText().equals("...")) {
+//							name1.setText(txtFdName.getText());
+//							crewNames.add(name1.getText());
+//						} else {
+//							crewNames.remove(name1.getText());  // remove previous name
+//							name1.setText(txtFdName.getText());
+//							crewNames.add(name1.getText());     // add new name
+//						}
+				}
+				
+				System.out.println(crewNames);
+				// clear & reset
+				txtFdName.setText("");
 		
 			}
 		});
-		btnAcceptName.setBounds(314, 409, 157, 59);
+		btnAcceptName.setBounds(300, 405, 157, 59);
 		frame.getContentPane().add(btnAcceptName);
 		
 		name1 = new JLabel("...");

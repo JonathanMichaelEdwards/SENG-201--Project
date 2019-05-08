@@ -39,13 +39,31 @@ public class CrewNumber
 	
 		final JLabel lblCrewListener = new JLabel("Number of Astronauts in your adventure: 2");
 		
+		
+		
+		
+		// Buttons
 		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// Setting a new frame
+				ChooseDays days = new ChooseDays();
+				days.frame.setVisible(true);  // turn on screen
+				frame.setVisible(false);   // turn off screen
+			}
+		});
 		btnBack.setBounds(454, 380, 136, 75);
 		frame.getContentPane().add(btnBack);
+		
+		
 		
 		JButton btnNext = new JButton("Next");
 		btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				// Setting a new frame
+				CrewSelection selectCrew = new CrewSelection();
+				selectCrew.frame.setVisible(true);  // turn on screen
+				frame.setVisible(false);   // turn off screen
 			}
 		});
 

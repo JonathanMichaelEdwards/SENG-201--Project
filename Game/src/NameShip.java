@@ -28,7 +28,7 @@ import javax.swing.ButtonGroup;
 
 public class NameShip {
 
-	private JFrame frame;
+	public JFrame frame;
 	private JTextField textField;
 
 	/*
