@@ -591,49 +591,8 @@ public class CrewSelection {
 					if (comBoxCharChosen.getSelectedIndex() == 1) addNames(name2);
 					if (comBoxCharChosen.getSelectedIndex() == 2) addNames(name3);
 					if (comBoxCharChosen.getSelectedIndex() == 3) addNames(name4);
-					
-					
-//					// if combo box is selected and thendoesn't have a name (add), else (remove and then add new name)
-//					if (comBoxCharChosen.getSelectedIndex() == 0) {
-//						if (name1.getText().equals("...")) {
-//							name1.setText(txtFdName.getText());
-//							crewNames.add(name1.getText());
-//						} else {
-//							crewNames.remove(name1.getText());  // remove previous name
-//							name1.setText(txtFdName.getText());
-//							crewNames.add(name1.getText());     // add new name
-//						}
-//					} 
-//					else if (comBoxCharChosen.getSelectedIndex() == 1) 
-//						if (name1.getText().equals("...")) {
-//							name1.setText(txtFdName.getText());
-//							crewNames.add(name1.getText());
-//						} else {
-//							crewNames.remove(name1.getText());  // remove previous name
-//							name1.setText(txtFdName.getText());
-//							crewNames.add(name1.getText());     // add new name
-//						}
-//					else if (comBoxCharChosen.getSelectedIndex() == 2) 
-//						if (name1.getText().equals("...")) {
-//							name1.setText(txtFdName.getText());
-//							crewNames.add(name1.getText());
-//						} else {
-//							crewNames.remove(name1.getText());  // remove previous name
-//							name1.setText(txtFdName.getText());
-//							crewNames.add(name1.getText());     // add new name
-//						}
-//					else if (comBoxCharChosen.getSelectedIndex() == 3) 
-//						if (name1.getText().equals("...")) {
-//							name1.setText(txtFdName.getText());
-//							crewNames.add(name1.getText());
-//						} else {
-//							crewNames.remove(name1.getText());  // remove previous name
-//							name1.setText(txtFdName.getText());
-//							crewNames.add(name1.getText());     // add new name
-//						}
 				}
-				
-				System.out.println(crewNames);
+		
 				// clear & reset
 				txtFdName.setText("");
 		
