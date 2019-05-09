@@ -9,6 +9,7 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.util.Hashtable;
 import java.awt.event.ActionEvent;
+import javax.swing.JProgressBar;
 
 
 
@@ -16,7 +17,9 @@ public class ChooseDays
 {
 
 	public JFrame frame;
+	public JSlider slider;
 
+	int piecesToCollect = 2;  // Pieces player selected
 	
 	/*
 	 * Initialize the contents of the frame.
@@ -39,16 +42,15 @@ public class ChooseDays
 		frame.getContentPane().add(lblWelcomeToThe);
 		
 
-		final JSlider slider = new JSlider();
+		slider = new JSlider();
+		slider.setPaintTicks(true);
+		slider.setPaintLabels(true);
 		slider.setValue(3);
 		slider.setFont(new Font("Dialog", Font.BOLD, 17));
 		slider.setMinimum(3);
 		slider.setMaximum(10);
 		slider.setBounds(278, 246, 406, 135);
 		slider.setMajorTickSpacing(1);
-		slider.setPaintTicks(true);
-		// Set the labels to be painted on the slider
-		slider.setPaintLabels(true);
 		         
 		// Add positions label in the slider
 		Hashtable<Integer, JLabel> position = new Hashtable<Integer, JLabel>();
@@ -69,8 +71,8 @@ public class ChooseDays
 		slider.addChangeListener(new ChangeListener() {
 			
             public void stateChanged(ChangeEvent e) {
-            	int pieces = (int)(slider.getValue()*(0.667));   // Formula days 2/3 (now correct)
-            	lblSliderDays.setText("Number of Spaceship parts: " + (pieces));
+            	piecesToCollect = (int)(slider.getValue()*(0.667));   // Formula days 2/3 (now correct)
+            	lblSliderDays.setText("Number of Spaceship parts: " + (piecesToCollect));
             }
         });
 		
@@ -82,8 +84,8 @@ public class ChooseDays
 			public void actionPerformed(ActionEvent arg0) {
 				
 				// Setting a new frame
-				CrewNumber crewNum = new CrewNumber();
-				crewNum.frame.setVisible(true);  // turn on screen
+				CrewSelection crewSelect = new CrewSelection();
+				crewSelect.frame.setVisible(true);  // turn on screen
 				frame.setVisible(false);   // turn off screen
 			}
 		});
@@ -93,6 +95,16 @@ public class ChooseDays
 		
 		lblSliderDays.setBounds(156, 494, 266, 25);
 		frame.getContentPane().add(lblSliderDays);
+		
+		JProgressBar progressBar = new JProgressBar();
+		progressBar.setMaximum(3);
+		progressBar.setStringPainted(true);
+		progressBar.setBounds(40, 53, 148, 25);
+		frame.getContentPane().add(progressBar);
+		
+		JLabel lblSetupProgress = new JLabel("Setup progress");
+		lblSetupProgress.setBounds(52, 23, 116, 18);
+		frame.getContentPane().add(lblSetupProgress);
 	}
 	
 	

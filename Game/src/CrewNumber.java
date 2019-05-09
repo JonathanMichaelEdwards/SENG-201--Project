@@ -11,6 +11,7 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.util.Hashtable;
 import java.awt.event.ActionEvent;
+import javax.swing.JProgressBar;
 public class CrewNumber 
 
 {
@@ -21,11 +22,7 @@ public class CrewNumber
 	 * Initialize the contents of the frame.
 	*/
 	private void initialize() 
-	{
-
-
-
-			
+	{	
 		Settings set = new Settings();
 		frame = new JFrame();
 		frame.setBounds(set.x, set.y, 828, 522);
@@ -119,42 +116,17 @@ public class CrewNumber
 		
 		lblCrewListener.setBounds(25, 334, 408, 25);
 		frame.getContentPane().add(lblCrewListener);
-
 		
-//		JRadioButton twoCrew = new JRadioButton("2 Crew Members");
-//		twoCrew.setBounds(105, 205, 144, 23);
-//		frame.getContentPane().add(twoCrew);
-//		
-//		JRadioButton threeCrew = new JRadioButton("3 Crew Members");
-//		threeCrew.setBounds(302, 205, 144, 23);
-//		frame.getContentPane().add(threeCrew);
-//		
-//		JRadioButton fourCrew = new JRadioButton("4 Crew Members");
-//		fourCrew.setBounds(535, 205, 144, 23);
-//		frame.getContentPane().add(fourCrew);
-//		
-//		ButtonGroup bg1 = new ButtonGroup();
-//		bg1.add(twoCrew);
-//		bg1.add(threeCrew);
-//		bg1.add(fourCrew);
+		JProgressBar progressBar = new JProgressBar();
+		progressBar.setValue(1);
+		progressBar.setStringPainted(true);
+		progressBar.setMaximum(4);
+		progressBar.setBounds(12, 38, 148, 25);
+		frame.getContentPane().add(progressBar);
 		
-//		twoCrew.addActionListener(l);
-//		threeCrew.addActionListener(l);
-//		fourCrew.addActionListener(l);
-		
-//		JLabel crewListener = new JLabel("There are \"\" on your team");
-//		crewListener.setBounds(318, 313, 176, 15);
-//		frame.getContentPane().add(crewListener);
-
-//		ActionListener l = new ActionListener() {
-//		      public void actionPerformed(ActionEvent actionEvent) {
-//		       System.out.println("Selected: " + aButton.getText());
-//		      }
-		
-		
-		
-
-
+		JLabel label = new JLabel("Setup progress");
+		label.setBounds(25, 12, 116, 18);
+		frame.getContentPane().add(label);
 	}
 	
 	
@@ -163,7 +135,6 @@ public class CrewNumber
 	*/
 	public CrewNumber() 
 	{
-		
 		initialize();
 	}
 	

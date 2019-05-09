@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
+import javax.swing.JProgressBar;
 
 
 
@@ -24,8 +25,49 @@ public class NameShip {
 	
 	JLabel lblShipChosen;
 	JLabel lblNameOfShip;
+	JLabel lblPieces;
+	
+	JLabel lblMember1;
+	JLabel lblMember2;
+	JLabel lblMember3;
+	JLabel lblMember4;
+	
+	JLabel lblName1;
+	JLabel lblName2;
+	JLabel lblName3;
+	JLabel lblName4;
 	
 	
+	void SetInfo()
+	{
+		ChooseDays chooseDays = new ChooseDays();
+		CrewSelection crewSelect = new CrewSelection();
+		
+		// Display Pieces
+		lblPieces.setText("" + chooseDays.piecesToCollect);
+		
+		// Go through how many players were selected
+		for (int index = 0; index < crewSelect.crewType.size(); index++) {
+			// Display crew members and names
+			if (index == 0) {
+				lblMember1.setText(crewSelect.crewType.get(index));
+				lblName1.setText(crewSelect.crewNames.get(index));
+			} else if (index == 1) {
+				lblMember2.setText(crewSelect.crewType.get(index));
+				lblName2.setText(crewSelect.crewNames.get(index));
+			} else if (index == 2) {
+				lblMember3.setText(crewSelect.crewType.get(index));
+				lblName3.setText(crewSelect.crewNames.get(index));
+			} else if (index == 3) {
+				lblMember4.setText(crewSelect.crewType.get(index));
+				lblName4.setText(crewSelect.crewNames.get(index));
+			}
+		}
+		
+		
+		
+		
+	}
 	
 	void rdbtnClear()
 	{
@@ -42,15 +84,13 @@ public class NameShip {
 	*/
 	private void initialize() 
 	{
+//		SetInfo();   // Fix Function
+		
+		
 		frame = new JFrame();
-		frame.setBounds(100, 100, 864, 525);
+		frame.setBounds(100, 100, 869, 530);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("Crew:");
-		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 19));
-		lblNewLabel.setBounds(40, 126, 81, 53);
-		frame.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNameYourShip = new JLabel("Choose & Name Your ship");
 		lblNameYourShip.setFont(new Font("Dialog", Font.BOLD, 25));
@@ -58,7 +98,7 @@ public class NameShip {
 		frame.getContentPane().add(lblNameYourShip);
 		
 		txtShipsName = new JTextField();
-		txtShipsName.setBounds(560, 262, 186, 31);
+		txtShipsName.setBounds(504, 246, 186, 31);
 		frame.getContentPane().add(txtShipsName);
 		txtShipsName.setColumns(10);
 		
@@ -89,10 +129,19 @@ public class NameShip {
 		
 		
 		// Buttons
-		JButton btnStart = new JButton("Start");
+		JButton btnStart = new JButton("Start game");
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// move to main screen
+				// if fields arn't completed, display error
+				if (lblShipChosen.getText().equals("...") || lblNameOfShip.getText().equals("...")) 
+					JOptionPane.showMessageDialog(null, "Please fill in the required fields");
+				else {
+					// move to the main screen
+					// Setting a new frame
+//					MainScreen mainScreen = new MainScreen();
+//					mainScreen.frame.setVisible(true);  // turn on screen
+//					frame.setVisible(false);            // turn off screen
+				}
 			}
 		});
 		btnStart.setBounds(672, 374, 125, 77);
@@ -103,18 +152,8 @@ public class NameShip {
 		
 		
 		final JLabel lblName = new JLabel("Please enter the name of your ship:");
-		lblName.setBounds(402, 235, 237, 15);
+		lblName.setBounds(464, 216, 257, 15);
 		frame.getContentPane().add(lblName);
-		
-//		JButton btnConfirm = new JButton("Click here to set name");
-//		btnConfirm.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent arg0) 
-//			{
-//				confirmShip.setText("The current name of your ship is: " + textField.getText());
-//			}
-//		});
-//		btnConfirm.setBounds(560, 305, 201, 25);
-//		frame.getContentPane().add(btnConfirm);
 		
 		
 		
@@ -211,7 +250,7 @@ public class NameShip {
 	    		txtShipsName.setText("");
 	    	}
 	    });
-	    btnSetYourShips.setBounds(560, 305, 174, 45);
+	    btnSetYourShips.setBounds(560, 305, 218, 45);
 	    frame.getContentPane().add(btnSetYourShips);
 	    
 	    
@@ -234,24 +273,78 @@ public class NameShip {
 	    
 	    JLabel lblShipStatus = new JLabel("Ship Status");
 	    lblShipStatus.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-	    lblShipStatus.setBounds(50, 344, 112, 23);
+	    lblShipStatus.setBounds(28, 343, 112, 23);
 	    frame.getContentPane().add(lblShipStatus);
 	    
+	    JLabel label = new JLabel("Setup progress");
+	    label.setBounds(28, 12, 116, 18);
+	    frame.getContentPane().add(label);
 	    
+	    JProgressBar progressBar = new JProgressBar();
+	    progressBar.setValue(2);
+	    progressBar.setStringPainted(true);
+	    progressBar.setMaximum(3);
+	    progressBar.setBounds(9, 42, 148, 25);
+	    frame.getContentPane().add(progressBar);
+	   
 	    
+	    lblMember1 = new JLabel("1. ...");
+	    lblMember1.setBounds(12, 198, 109, 15);
+	    frame.getContentPane().add(lblMember1);
 	    
-//	     String choice = group.getSelection().getActionCommand();
-	     
-//		   confirmShip.setText("The current name of your " + choice + " ship is: ");		
-//		
-//		   
-//		   JButton btnConfirm = new JButton("Click here to set name");
-//		   btnConfirm.addActionListener(new ActionListener() {
-//
-//			confirmShip.setText("The current name of your " + choice +" ship is: " + textField.getText());
-	}
-			
+	    lblMember2 = new JLabel("2. ...");
+	    lblMember2.setBounds(12, 225, 117, 15);
+	    frame.getContentPane().add(lblMember2);
+	    
+	    lblMember3 = new JLabel("3. ...");
+	    lblMember3.setBounds(12, 252, 117, 15);
+	    frame.getContentPane().add(lblMember3);
+	    
+	    lblMember4 = new JLabel("4. ...");
+	    lblMember4.setBounds(12, 279, 117, 15);
+	    frame.getContentPane().add(lblMember4);
+	    
 
+	    
+	    lblName1 = new JLabel("...");
+	    lblName1.setBounds(134, 197, 109, 15);
+	    frame.getContentPane().add(lblName1);
+	    
+	    lblName2 = new JLabel("...");
+	    lblName2.setBounds(134, 225, 109, 15);
+	    frame.getContentPane().add(lblName2);
+	    
+	    lblName3 = new JLabel("...");
+	    lblName3.setBounds(134, 251, 109, 15);
+	    frame.getContentPane().add(lblName3);
+	    
+	    lblName4 = new JLabel("...");
+	    lblName4.setBounds(134, 278, 109, 15);
+	    frame.getContentPane().add(lblName4);
+	    
+	    
+	    JLabel lblCrewStatus = new JLabel("Crew");
+	    lblCrewStatus.setFont(new Font("Dialog", Font.PLAIN, 16));
+	    lblCrewStatus.setBounds(66, 142, 74, 23);
+	    frame.getContentPane().add(lblCrewStatus);
+	    
+	    JLabel lblPiecesToCollect = new JLabel("Pieces to Collect");
+	    lblPiecesToCollect.setFont(new Font("Dialog", Font.PLAIN, 16));
+	    lblPiecesToCollect.setBounds(28, 79, 144, 23);
+	    frame.getContentPane().add(lblPiecesToCollect);
+	    
+	    lblPieces = new JLabel("...");
+	    lblPieces.setBounds(67, 105, 54, 15);
+	    frame.getContentPane().add(lblPieces);
+	    
+	    JLabel label_9 = new JLabel("Current Team");
+	    label_9.setBounds(12, 171, 109, 15);
+	    frame.getContentPane().add(label_9);
+	    
+	    JLabel label_10 = new JLabel("Names");
+	    label_10.setBounds(144, 171, 66, 15);
+	    frame.getContentPane().add(label_10);
+	}
 	
 	
 	/*

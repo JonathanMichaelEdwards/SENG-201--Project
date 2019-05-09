@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JProgressBar;
 
 
 
@@ -40,13 +41,18 @@ public class CrewSelection {
 	
 	
 
-	public ArrayList<String> crew = new ArrayList<String>();
+	// Stored list of crewType members and there names
+	public ArrayList<String> crewType = new ArrayList<String>();
 	public ArrayList<String> crewNames = new ArrayList<String>();
+	
+	
 	
 	private JLabel name1;
 	private JLabel name2;
 	private JLabel name3;
 	private JLabel name4;
+	private JProgressBar progressBar;
+	private JLabel label;
 	
 	
 	private void checkSoldier() 
@@ -59,7 +65,7 @@ public class CrewSelection {
 				} else {
 					// removing Soldier from list if deselected
 					for (int i = 0; i < countSoldier; i++)
-						crew.remove("Soldier");
+						crewType.remove("Soldier");
 					
 					comboBoxSoldier.setVisible(false);
 					comboBoxSoldier.setSelectedIndex(0);
@@ -77,12 +83,12 @@ public class CrewSelection {
 		selectMedic.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (selectMedic.isSelected()) {
-//					crew.add("Medic");
+//					crewType.add("Medic");
 					comboBoxMedic.setVisible(true);
 				} else {
 					// removing Soldier from list if deselected
 					for (int i = 0; i < countMedic; i++)
-						crew.remove("Medic");
+						crewType.remove("Medic");
 					comboBoxMedic.setVisible(false);
 					comboBoxMedic.setSelectedIndex(0);
 				}
@@ -99,12 +105,12 @@ public class CrewSelection {
 		selectLeader.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (selectLeader.isSelected()) {
-//					crew.add("Leader");
+//					crewType.add("Leader");
 					comboBoxLeader.setVisible(true);
 				} else {
 					// removing Soldier from list if deselected
 					for (int i = 0; i < countLeader; i++)
-						crew.remove("Leader");
+						crewType.remove("Leader");
 					comboBoxLeader.setVisible(false);
 					comboBoxLeader.setSelectedIndex(0);
 				}
@@ -122,11 +128,11 @@ public class CrewSelection {
 			public void actionPerformed(ActionEvent arg0) {
 				if (selectMechanic.isSelected()) {
 					// removing Soldier from list if deselected
-//					crew.add("Mechanic");
+//					crewType.add("Mechanic");
 					comboBoxMechanic.setVisible(true);
 				} else {
 					for (int i = 0; i < countMechanic; i++)
-						crew.remove("Mechanic");
+						crewType.remove("Mechanic");
 					comboBoxMechanic.setVisible(false);
 					comboBoxMechanic.setSelectedIndex(0);
 				}
@@ -143,12 +149,12 @@ public class CrewSelection {
 		selectPilot.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (selectPilot.isSelected()) {
-//					crew.add("Pilot");
+//					crewType.add("Pilot");
 					comboBoxPilot.setVisible(true);
 				} else {
 					// removing Soldier from list if deselected
 					for (int i = 0; i < countPilot; i++)
-						crew.remove("Pilot");
+						crewType.remove("Pilot");
 					comboBoxPilot.setVisible(false);
 					comboBoxPilot.setSelectedIndex(0);
 				}
@@ -165,12 +171,12 @@ public class CrewSelection {
 		selectThief.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (selectThief.isSelected()) {
-//					crew.add("Thief");
+//					crewType.add("Thief");
 					comboBoxThief.setVisible(true);
 				} else {
 					// removing Soldier from list if deselected
 					for (int i = 0; i < countThief; i++)
-						crew.remove("Thief");
+						crewType.remove("Thief");
 					comboBoxThief.setVisible(false);
 					comboBoxThief.setSelectedIndex(0);
 				}
@@ -196,7 +202,7 @@ public class CrewSelection {
 	// Adding names to list
 	void addNames(JLabel name)
 	{
-		for (int index = 0; index < crew.size(); index++) {
+		for (int index = 0; index < crewType.size(); index++) {
 			if (name.getText().equals("...")) {
 				name.setText(txtFdName.getText());
 				crewNames.add(name.getText());
@@ -245,7 +251,7 @@ public class CrewSelection {
 		
 		txtCharacterSelectionYou = new JTextField();
 		txtCharacterSelectionYou.setText("Character selection, you can choose VARIABLE characters in any combination to form your astronaut team");
-		txtCharacterSelectionYou.setBounds(48, 12, 654, 36);
+		txtCharacterSelectionYou.setBounds(202, 12, 654, 36);
 		frame.getContentPane().add(txtCharacterSelectionYou);
 		txtCharacterSelectionYou.setColumns(10);
 		
@@ -265,26 +271,26 @@ public class CrewSelection {
 		txtFdName.setColumns(10);
 		
 		JLabel lblEntername = new JLabel("Names");
-		lblEntername.setBounds(186, 342, 66, 15);
+		lblEntername.setBounds(157, 342, 66, 15);
 		frame.getContentPane().add(lblEntername);
 		
 		
 		
 		
-		lblMember1 = new JLabel("1.");
+		lblMember1 = new JLabel("1. ...");
 
 		lblMember1.setBounds(12, 372, 109, 15);
 		frame.getContentPane().add(lblMember1);
 		
-		lblMember2 = new JLabel("2.");
+		lblMember2 = new JLabel("2. ...");
 		lblMember2.setBounds(12, 399, 117, 15);
 		frame.getContentPane().add(lblMember2);
 		
-		lblMember3 = new JLabel("3.");
+		lblMember3 = new JLabel("3. ...");
 		lblMember3.setBounds(12, 426, 117, 15);
 		frame.getContentPane().add(lblMember3);
 		
-		lblMember4 = new JLabel("4.");
+		lblMember4 = new JLabel("4. ...");
 		lblMember4.setBounds(12, 453, 117, 15);
 		frame.getContentPane().add(lblMember4);
 		
@@ -300,10 +306,10 @@ public class CrewSelection {
 		btnAcceptChars.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
-				if ((crew.size() > 4) || (crew.size() < 2)) {
-					JOptionPane.showMessageDialog(null, "Please select 2 to 4 crew members only");
+				if ((crewType.size() > 4) || (crewType.size() < 2)) {
+					JOptionPane.showMessageDialog(null, "Please select 2 to 4 crewType members only");
 				} else {
-					for (int i = 0; i < crew.size(); i++) {
+					for (int i = 0; i < crewType.size(); i++) {
 						
 						// Refresh labels and boxes
 						name1.setText("...");
@@ -322,13 +328,13 @@ public class CrewSelection {
 						lblMember4.setText("...");
 						try { 
 							// Add Members that are chosen
-							for (int j = 0; j < crew.size(); j++)
-								comBoxCharChosen.addItem(j+1 + ": " + crew.get(j));
+							for (int j = 0; j < crewType.size(); j++)
+								comBoxCharChosen.addItem(j+1 + ": " + crewType.get(j));
 								
-							lblMember1.setText(1 + ": " + crew.get(0).toString());
-							lblMember2.setText(2 + ": " + crew.get(1).toString());
-							lblMember3.setText(3 + ": " + crew.get(2).toString());
-							lblMember4.setText(4 + ": " + crew.get(3).toString());
+							lblMember1.setText(1 + ": " + crewType.get(0).toString());
+							lblMember2.setText(2 + ": " + crewType.get(1).toString());
+							lblMember3.setText(3 + ": " + crewType.get(2).toString());
+							lblMember4.setText(4 + ": " + crewType.get(3).toString());
 						} catch (Exception e) {
 							continue; // continue if list is greater
 						}
@@ -347,8 +353,8 @@ public class CrewSelection {
 			public void actionPerformed(ActionEvent e) {
 				// Only can move forward if names have been allocated to a player
 				//Error messages
-				if ((crewNames.size() == 0) || (crew.size() == 0)) JOptionPane.showMessageDialog(null, "Please complete the fields");  
-				else if (crewNames.size() == crew.size()) {
+				if ((crewNames.size() == 0) || (crewType.size() == 0)) JOptionPane.showMessageDialog(null, "Please complete the fields");  
+				else if (crewNames.size() == crewType.size()) {
 					// Setting a new frame
 					NameShip nameShip = new NameShip();
 					nameShip.frame.setVisible(true);  // turn on screen
@@ -364,8 +370,8 @@ public class CrewSelection {
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Setting a new frame
-				CrewNumber crewNum = new CrewNumber();
-				crewNum.frame.setVisible(true);  // turn on screen
+				ChooseDays choseDays = new ChooseDays();
+				choseDays.frame.setVisible(true);  // turn on screen
 				frame.setVisible(false);         // turn off screen
 			}
 		});
@@ -413,12 +419,12 @@ public class CrewSelection {
 				if (selectSoldier.isSelected()) { // check if selected
 					// remove the old amount to the list
 					for (int i = 0; i < countSoldier; i++) // countSoldier-1 because we added one when we selected the checkbox
-						crew.remove("Soldier");
+						crewType.remove("Soldier");
 					
 					// added the new amount to the list
 					countSoldier = Integer.valueOf(removeX.replace("x", ""));  // converting x1 -> 1 (string to int)
 					for (int i = 0; i < countSoldier; i++)
-						crew.add("Soldier");
+						crewType.add("Soldier");
 				}
 			}
 		});
@@ -427,7 +433,7 @@ public class CrewSelection {
 		comboBoxSoldier.setModel(new DefaultComboBoxModel(new String[] {"0", "x1", "x2", "x3", "x4"}));
 		comboBoxSoldier.setSelectedIndex(0);
 		comboBoxSoldier.setMaximumRowCount(4);
-		comboBoxSoldier.setBounds(35, 282, 72, 48);
+		comboBoxSoldier.setBounds(35, 282, 72, 36);
 		frame.getContentPane().add(comboBoxSoldier);
 		
 		
@@ -439,12 +445,12 @@ public class CrewSelection {
 				if (selectMedic.isSelected()) { // check if selected
 					// remove the old amount to the list
 					for (int i = 0; i < countMedic; i++) // countSoldier-1 because we added one when we selected the checkbox
-						crew.remove("Medic");
+						crewType.remove("Medic");
 					
 					// added the new amount to the list
 					countMedic = Integer.valueOf(removeX.replace("x", ""));  // converting x1 -> 1 (string to int)
 					for (int i = 0; i < countMedic; i++)
-						crew.add("Medic");
+						crewType.add("Medic");
 				}
 			}
 		});
@@ -466,12 +472,12 @@ public class CrewSelection {
 				if (selectLeader.isSelected()) { // check if selected
 					// remove the old amount to the list
 					for (int i = 0; i < countLeader; i++) // countSoldier-1 because we added one when we selected the checkbox
-						crew.remove("Leader");
+						crewType.remove("Leader");
 					
 					// added the new amount to the list
 					countLeader = Integer.valueOf(removeX.replace("x", ""));  // converting x1 -> 1 (string -> int)
 					for (int i = 0; i < countLeader; i++)
-						crew.add("Leader");
+						crewType.add("Leader");
 				}
 			}
 		});
@@ -493,12 +499,12 @@ public class CrewSelection {
 				if (selectMechanic.isSelected()) { // check if selected
 					// remove the old amount to the list
 					for (int i = 0; i < countMechanic; i++) // countSoldier-1 because we added one when we selected the checkbox
-						crew.remove("Mechanic");
+						crewType.remove("Mechanic");
 					
 					// added the new amount to the list
 					countMechanic = Integer.valueOf(removeX.replace("x", ""));  // converting x1 -> 1 (string -> int)
 					for (int i = 0; i < countMechanic; i++)
-						crew.add("Mechanic");
+						crewType.add("Mechanic");
 				}
 			}
 		});
@@ -520,12 +526,12 @@ public class CrewSelection {
 				if (selectPilot.isSelected()) { // check if selected
 					// remove the old amount to the list
 					for (int i = 0; i < countPilot; i++) // countSoldier-1 because we added one when we selected the checkbox
-						crew.remove("Pilot");
+						crewType.remove("Pilot");
 					
 					// added the new amount to the list
 					countPilot = Integer.valueOf(removeX.replace("x", ""));  // converting x1 -> 1 (string -> int)
 					for (int i = 0; i < countPilot; i++)
-						crew.add("Pilot");
+						crewType.add("Pilot");
 				}
 			}
 		});
@@ -547,12 +553,12 @@ public class CrewSelection {
 				if (selectThief.isSelected()) { // check if selected
 					// remove the old amount to the list
 					for (int i = 0; i < countThief; i++) // countSoldier-1 because we added one when we selected the checkbox
-						crew.remove("Thief");
+						crewType.remove("Thief");
 					
 					// added the new amount to the list
 					countThief = Integer.valueOf(removeX.replace("x", ""));  // converting x1 -> 1 (string -> int)
 					for (int i = 0; i < countThief; i++)
-						crew.add("Thief");
+						crewType.add("Thief");
 				}
 			}
 		});
@@ -582,7 +588,7 @@ public class CrewSelection {
 			public void actionPerformed(ActionEvent e) {
 				
 				// display error message
-				if (crew.size() == 0) JOptionPane.showMessageDialog(null, "Enter a crew member first");
+				if (crewType.size() == 0) JOptionPane.showMessageDialog(null, "Enter a crewType member first");
 				// checking how many names we have to input & output
 				else if (txtFdName.getText().equals("")) JOptionPane.showMessageDialog(null, "Please enter a name");  
 				
@@ -616,6 +622,17 @@ public class CrewSelection {
 		name4 = new JLabel("...");
 		name4.setBounds(134, 452, 109, 15);
 		frame.getContentPane().add(name4);
+		
+		progressBar = new JProgressBar();
+		progressBar.setValue(1);
+		progressBar.setStringPainted(true);
+		progressBar.setMaximum(3);
+		progressBar.setBounds(12, 52, 148, 25);
+		frame.getContentPane().add(progressBar);
+		
+		label = new JLabel("Setup progress");
+		label.setBounds(18, 22, 116, 18);
+		frame.getContentPane().add(label);
 		
 		
 	}
