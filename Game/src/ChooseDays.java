@@ -82,9 +82,10 @@ public class ChooseDays
 		JButton btnAccept = new JButton("Next");
 		btnAccept.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
 				// Setting a new frame
 				CrewSelection crewSelect = new CrewSelection();
+				
+				crewSelect.storeDays(slider.getValue());
 				crewSelect.frame.setVisible(true);  // turn on screen
 				frame.setVisible(false);   // turn off screen
 			}
@@ -134,5 +135,12 @@ public class ChooseDays
 				}
 			}
 		});
+	}
+
+
+	public void storeDays(int pieces) 
+	{
+		piecesToCollect = pieces;
+		slider.setValue(piecesToCollect);
 	}
 }

@@ -38,6 +38,7 @@ public class CrewSelection {
 	JComboBox<Object> comBoxCharChosen;
 	
 	int countSoldier, countMedic, countLeader, countMechanic, countPilot, countThief = 0, countNames = 0;;  // initial value
+	int days = 0;
 	
 	
 
@@ -53,6 +54,14 @@ public class CrewSelection {
 	private JLabel name4;
 	private JProgressBar progressBar;
 	private JLabel label;
+	
+	
+	
+//	// Store pieces
+//	public void storePieces(int pieces)
+//	{
+//		piecesToCollect = pieces;
+//	}
 	
 	
 	private void checkSoldier() 
@@ -244,6 +253,8 @@ public class CrewSelection {
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void initialize() {
+		
+		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 908, 537);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -371,6 +382,9 @@ public class CrewSelection {
 			public void actionPerformed(ActionEvent e) {
 				// Setting a new frame
 				ChooseDays choseDays = new ChooseDays();
+				
+				// Set stored pieces from last time
+				choseDays.storeDays(days);
 				choseDays.frame.setVisible(true);  // turn on screen
 				frame.setVisible(false);         // turn off screen
 			}
@@ -586,7 +600,6 @@ public class CrewSelection {
 		JButton btnAcceptName = new JButton("Accept Name");
 		btnAcceptName.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				// display error message
 				if (crewType.size() == 0) JOptionPane.showMessageDialog(null, "Enter a crewType member first");
 				// checking how many names we have to input & output
@@ -635,5 +648,12 @@ public class CrewSelection {
 		frame.getContentPane().add(label);
 		
 		
+	}
+
+
+	// Store pieces
+	public void storeDays(int daysSelected)
+	{
+		days = daysSelected;
 	}
 }
