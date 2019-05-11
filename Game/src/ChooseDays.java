@@ -21,13 +21,18 @@ public class ChooseDays
 
 	int piecesToCollect = 2;  // Pieces player selected
 	
+	
+	public void getDays(int pieces) 
+	{
+		slider.setValue(pieces);
+	}
+	
+	
 	/*
 	 * Initialize the contents of the frame.
 	*/
 	private void initialize() 
 	{
-		
-		
 		Settings set = new Settings();
 		final JLabel lblSliderDays = new JLabel("Number of Spaceship parts: 2");
 		
@@ -85,7 +90,7 @@ public class ChooseDays
 				// Setting a new frame
 				CrewSelection crewSelect = new CrewSelection();
 				
-				crewSelect.storeDays(slider.getValue());
+				crewSelect.storeDays(piecesToCollect);
 				crewSelect.frame.setVisible(true);  // turn on screen
 				frame.setVisible(false);   // turn off screen
 			}
@@ -135,12 +140,5 @@ public class ChooseDays
 				}
 			}
 		});
-	}
-
-
-	public void storeDays(int pieces) 
-	{
-		piecesToCollect = pieces;
-		slider.setValue(piecesToCollect);
 	}
 }

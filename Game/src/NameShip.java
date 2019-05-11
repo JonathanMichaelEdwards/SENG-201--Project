@@ -4,6 +4,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JOptionPane;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -37,6 +38,27 @@ public class NameShip {
 	JLabel lblName3;
 	JLabel lblName4;
 	
+	// Stored list of crewType members and there names
+	public ArrayList<String> crewType = new ArrayList<String>();
+	public ArrayList<String> crewName = new ArrayList<String>();
+	int piecesToCollect = 2;  // default value
+	
+	
+	// Retrieve data from selection
+	void getCrewInfo(ArrayList<String> crewType, ArrayList<String> crewName, int pieces)
+	{
+		for (int index = 0; index < crewType.size(); index++) {
+			if (index == 0) { lblMember1.setText("1. " + crewType.get(0)); lblName1.setText(crewName.get(0)); }
+			else if (index == 1) { lblMember2.setText("2. " + crewType.get(1)); lblName2.setText(crewName.get(1)); }
+			else if (index == 2) { lblMember3.setText("3. " + crewType.get(2)); lblName3.setText(crewName.get(2)); }
+			else if (index == 3) { lblMember4.setText("4. " + crewType.get(3)); lblName4.setText(crewName.get(3)); }
+		}
+		
+		piecesToCollect = pieces;
+		lblPieces.setText("" + pieces);
+	}
+	
+	
 	
 	void SetInfo()
 	{
@@ -64,10 +86,9 @@ public class NameShip {
 			}
 		}
 		
-		
-		
-		
 	}
+	
+	
 	
 	void rdbtnClear()
 	{
@@ -225,7 +246,7 @@ public class NameShip {
 	    JButton btnSetYourShips = new JButton("Set your ship's name");
 	    btnSetYourShips.addActionListener(new ActionListener() {
 	    	public void actionPerformed(ActionEvent e) {
-	    		if (txtShipsName.getText().equals("")) JOptionPane.showMessageDialog(null, "Please enter a name");
+	    		if (txtShipsName.getText().equals("")) JOptionPane.showMessageDialog(null, "Please enter the fields");  // displays error if not inputed or selected
 	    		else if (rdbtnRepairShip.isSelected()) {
 	    			lblShipChosen.setText("Repair");
 	    			lblNameOfShip.setText(txtShipsName.getText());
@@ -241,9 +262,6 @@ public class NameShip {
 	    		} else if (rdbtnMedicalShip.isSelected()) {
 	    			lblShipChosen.setText("Medical");
 	    			lblNameOfShip.setText(txtShipsName.getText());
-	    		} else {
-	    			JOptionPane.showMessageDialog(null, "Please Select a Ship type first");
-	    			lblNameOfShip.setText("...");
 	    		}
 	    		
 	    		// Clear the field

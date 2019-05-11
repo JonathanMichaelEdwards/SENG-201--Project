@@ -17,8 +17,6 @@ import javax.swing.JProgressBar;
 public class CrewSelection {
 
 	public JFrame frame;
-	private JTextField txtCharacterSelectionYou;
-	private JTextField txtClickOnEach;
 	private JTextField txtFdName;
 	
 	JCheckBox selectSoldier, selectMedic, selectLeader, selectMechanic, selectPilot, selectThief;
@@ -27,6 +25,7 @@ public class CrewSelection {
 	JLabel lblMember2;
 	JLabel lblMember3;
 	JLabel lblMember4;
+
 	
 	JComboBox<Object> comboBoxSoldier;
 	JComboBox<Object> comboBoxMedic;
@@ -37,9 +36,13 @@ public class CrewSelection {
 	
 	JComboBox<Object> comBoxCharChosen;
 	
-	int countSoldier, countMedic, countLeader, countMechanic, countPilot, countThief = 0, countNames = 0;;  // initial value
-	int days = 0;
+	int countSoldier, countMedic, countLeader, countMechanic, countPilot, countThief, countNames = 0;  // initial value
+	int piecesToCollect = 0;
+	int previousCount = 0;
 	
+	
+	JButton btnAcceptName;
+	JButton btnReset;
 	
 
 	// Stored list of crewType members and there names
@@ -48,20 +51,73 @@ public class CrewSelection {
 	
 	
 	
-	private JLabel name1;
-	private JLabel name2;
-	private JLabel name3;
-	private JLabel name4;
+	private JLabel name1, name2, name3, name4;  // nameing labels
 	private JProgressBar progressBar;
 	private JLabel label;
 	
+	JCheckBox charSelect[] = new JCheckBox[6];
+	JComboBox<?> charNumber[] = new JComboBox<?>[6];
 	
 	
-//	// Store pieces
-//	public void storePieces(int pieces)
-//	{
-//		piecesToCollect = pieces;
-//	}
+	// Retrives current status of varibles for array
+	void settingChar() 
+	{
+		charSelect[0] = selectSoldier;
+		charSelect[1] = selectMedic;
+		charSelect[2] = selectLeader;
+		charSelect[3] = selectMechanic;
+		charSelect[4] = selectPilot;
+		charSelect[5] = selectThief;
+	}
+	
+	// Retrives current status of varibles for array
+	void settingNumber() 
+	{
+		charNumber[0] = comboBoxSoldier;
+		charNumber[1] = comboBoxMedic;
+		charNumber[2] = comboBoxLeader;
+		charNumber[3] = comboBoxMechanic;
+		charNumber[4] = comboBoxPilot;
+		charNumber[5] = comboBoxThief;
+	}
+	
+	
+	// Disable tick boxes
+	void disableCharBoxes(JCheckBox charSelect, JComboBox<?> charNumber) 
+	{
+		charSelect.setEnabled(false);
+		charNumber.setEnabled(false);
+		
+		if (charNumber.getSelectedIndex() == 0) {
+			charSelect.setSelected(false);  // disable if pushed and no number is given
+			charNumber.setVisible(false);   // disable boxes
+		}
+	}
+	
+	
+	// Store pieces
+	public void storeDays(int pieces)
+	{
+		piecesToCollect = pieces;
+		System.out.println("1. " + piecesToCollect);
+		
+	}
+	
+	
+	// If character is selected, if selected diplay combo box,  else remove if character exists and change box
+	void selectedChar(JCheckBox selectedChar, JComboBox<?> selectedNumber, int counter, String playerType)
+	{
+		if (selectedChar.isSelected()) {
+			selectedNumber.setVisible(true);
+		} else {
+			// removing crew member from list if check box disabled
+			for (int index = 0; index < counter; index++)
+				crewType.remove(playerType);
+			
+			selectedNumber.setVisible(false);
+			selectedNumber.setSelectedIndex(0);
+		}
+	}
 	
 	
 	private void checkSoldier() 
@@ -69,16 +125,11 @@ public class CrewSelection {
 		selectSoldier = new JCheckBox("select");
 		selectSoldier.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (selectSoldier.isSelected()) {
-					comboBoxSoldier.setVisible(true);
-				} else {
-					// removing Soldier from list if deselected
-					for (int i = 0; i < countSoldier; i++)
-						crewType.remove("Soldier");
-					
-					comboBoxSoldier.setVisible(false);
-					comboBoxSoldier.setSelectedIndex(0);
-				}
+				// set values for global array's
+				settingChar();
+				settingNumber();
+				
+				selectedChar(charSelect[0], charNumber[0], countSoldier, "Soldier");
 			}
 		});
 		selectSoldier.setBounds(25, 259, 126, 23);
@@ -91,16 +142,11 @@ public class CrewSelection {
 		selectMedic = new JCheckBox("select");
 		selectMedic.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (selectMedic.isSelected()) {
-//					crewType.add("Medic");
-					comboBoxMedic.setVisible(true);
-				} else {
-					// removing Soldier from list if deselected
-					for (int i = 0; i < countMedic; i++)
-						crewType.remove("Medic");
-					comboBoxMedic.setVisible(false);
-					comboBoxMedic.setSelectedIndex(0);
-				}
+				// set values for global array's
+				settingChar();
+				settingNumber();
+				
+				selectedChar(charSelect[1], charNumber[1], countMedic, "Medic");
 			}
 		});
 		selectMedic.setBounds(157, 259, 126, 23);
@@ -113,16 +159,12 @@ public class CrewSelection {
 		selectLeader = new JCheckBox("select");
 		selectLeader.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (selectLeader.isSelected()) {
-//					crewType.add("Leader");
-					comboBoxLeader.setVisible(true);
-				} else {
-					// removing Soldier from list if deselected
-					for (int i = 0; i < countLeader; i++)
-						crewType.remove("Leader");
-					comboBoxLeader.setVisible(false);
-					comboBoxLeader.setSelectedIndex(0);
-				}
+				// set values for global array's
+				settingChar();
+				settingNumber();
+				
+				selectedChar(charSelect[2], charNumber[2], countLeader, "Leader");
+
 			}
 		});
 		selectLeader.setBounds(300, 259, 126, 23);
@@ -135,16 +177,11 @@ public class CrewSelection {
 		selectMechanic = new JCheckBox("select");
 		selectMechanic.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (selectMechanic.isSelected()) {
-					// removing Soldier from list if deselected
-//					crewType.add("Mechanic");
-					comboBoxMechanic.setVisible(true);
-				} else {
-					for (int i = 0; i < countMechanic; i++)
-						crewType.remove("Mechanic");
-					comboBoxMechanic.setVisible(false);
-					comboBoxMechanic.setSelectedIndex(0);
-				}
+				// set values for global array's
+				settingChar();
+				settingNumber();
+				
+				selectedChar(charSelect[3], charNumber[3], countMechanic, "Mechanic");
 			}
 		});
 		selectMechanic.setBounds(448, 259, 126, 23);
@@ -157,16 +194,11 @@ public class CrewSelection {
 		selectPilot = new JCheckBox("select");
 		selectPilot.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (selectPilot.isSelected()) {
-//					crewType.add("Pilot");
-					comboBoxPilot.setVisible(true);
-				} else {
-					// removing Soldier from list if deselected
-					for (int i = 0; i < countPilot; i++)
-						crewType.remove("Pilot");
-					comboBoxPilot.setVisible(false);
-					comboBoxPilot.setSelectedIndex(0);
-				}
+				// set values for global array's
+				settingChar();
+				settingNumber();
+				
+				selectedChar(charSelect[4], charNumber[4], countPilot, "Pilot");
 			}
 		});
 		selectPilot.setBounds(583, 259, 126, 23);
@@ -179,16 +211,11 @@ public class CrewSelection {
 		selectThief = new JCheckBox("select");
 		selectThief.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (selectThief.isSelected()) {
-//					crewType.add("Thief");
-					comboBoxThief.setVisible(true);
-				} else {
-					// removing Soldier from list if deselected
-					for (int i = 0; i < countThief; i++)
-						crewType.remove("Thief");
-					comboBoxThief.setVisible(false);
-					comboBoxThief.setSelectedIndex(0);
-				}
+				// set values for global array's
+				settingChar();
+				settingNumber();
+				
+				selectedChar(charSelect[5], charNumber[5], countThief, "Thief");
 			}
 		});
 		selectThief.setBounds(730, 259, 126, 23);
@@ -223,6 +250,69 @@ public class CrewSelection {
 		}
 	}
 	
+	
+	// reseting 
+	void resetScreen()
+	{
+		// Setting a new frame
+		CrewSelection selectCrew = new CrewSelection();
+		selectCrew.frame.setVisible(true);  // turn on screen
+		frame.setVisible(false);   // turn off screen
+
+	}
+	
+	void AddMember(JCheckBox selectedChar, JComboBox<?> selectedNumber, int count, String playerType) 
+	{
+		String removeX = (String) selectedNumber.getSelectedItem();  // get the item
+		
+		if (selectedChar.isSelected()) { // check if selected
+			// remove the old amount to the list
+			for (int i = 0; i < previousCount; i++) 
+				crewType.remove(playerType);
+			
+			
+			// added the new amount to the list
+			int value = Integer.valueOf(removeX.replace("x", ""));  // converting x1 -> 1 (string to int)
+			for (int i = 0; i < value; i++)
+				crewType.add(playerType);
+			
+			previousCount = crewType.size();  // store first count
+			
+		} else {
+			// remove the old amount to the list
+			for (int i = 0; i < previousCount; i++) 
+				crewType.remove(playerType);
+			
+			previousCount = crewType.size();  // store first count  (update again)
+		}
+	}
+	
+	void setMembersChosen()
+	{
+		settingChar();
+		settingNumber();
+		
+		// turning greyed areas on
+		comBoxCharChosen.setEnabled(true);
+		txtFdName.setEnabled(true);
+		btnAcceptName.setEnabled(true);
+		btnReset.setEnabled(true);
+		
+		
+		for (int index = 0; index < 6; index++) { // 6 because number of possible character selections
+			disableCharBoxes(charSelect[index], charNumber[index]);
+		}
+		
+		// Add Members that were chosen to the combo box
+		for (int index = 0; index < crewType.size(); index++) {
+			comBoxCharChosen.addItem(index+1 + ": " + crewType.get(index));
+		}
+
+		lblMember1.setText(1 + ": " + crewType.get(0).toString());
+		lblMember2.setText(2 + ": " + crewType.get(1).toString());
+		lblMember3.setText(3 + ": " + crewType.get(2).toString());
+		lblMember4.setText(4 + ": " + crewType.get(3).toString());
+	}
 	
 	/**
 	 * Launch the application.
@@ -260,23 +350,12 @@ public class CrewSelection {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		txtCharacterSelectionYou = new JTextField();
-		txtCharacterSelectionYou.setText("Character selection, you can choose VARIABLE characters in any combination to form your astronaut team");
-		txtCharacterSelectionYou.setBounds(202, 12, 654, 36);
-		frame.getContentPane().add(txtCharacterSelectionYou);
-		txtCharacterSelectionYou.setColumns(10);
-		
-		txtClickOnEach = new JTextField();
-		txtClickOnEach.setText("Click on each to select or view extra information");
-		txtClickOnEach.setBounds(217, 59, 308, 19);
-		frame.getContentPane().add(txtClickOnEach);
-		txtClickOnEach.setColumns(10);
-		
 		JLabel lblCurrentTeam = new JLabel("Current Team");
 		lblCurrentTeam.setBounds(25, 342, 109, 15);
 		frame.getContentPane().add(lblCurrentTeam);
 		
 		txtFdName = new JTextField();
+		txtFdName.setEnabled(false);
 		txtFdName.setBounds(448, 361, 183, 36);
 		frame.getContentPane().add(txtFdName);
 		txtFdName.setColumns(10);
@@ -309,48 +388,25 @@ public class CrewSelection {
 		
 		selectedPlayers();
 		
-		
+
 		
 		// Buttons
-		JButton btnAcceptChars = new JButton("Accept Characters");
-		
+		final JButton btnAcceptChars = new JButton("Accept Characters");
 		btnAcceptChars.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
-				if ((crewType.size() > 4) || (crewType.size() < 2)) {
-					JOptionPane.showMessageDialog(null, "Please select 2 to 4 crewType members only");
+				
+				
+				if ((crewType.size() < 2) || (crewType.size() > 4)) {
+					JOptionPane.showMessageDialog(null, "Please select 2 to 4 crewType members only"); 
 				} else {
-					for (int i = 0; i < crewType.size(); i++) {
+					try { 
+						setMembersChosen();
 						
-						// Refresh labels and boxes
-						name1.setText("...");
-						name2.setText("...");
-						name3.setText("...");
-						name4.setText("...");
-						
-						comBoxCharChosen.removeAllItems();
-						
-						for (int index = 0; index < crewNames.size(); index++)
-							crewNames.remove(index);
-						
-						lblMember1.setText("...");
-						lblMember2.setText("...");
-						lblMember3.setText("...");
-						lblMember4.setText("...");
-						try { 
-							// Add Members that are chosen
-							for (int j = 0; j < crewType.size(); j++)
-								comBoxCharChosen.addItem(j+1 + ": " + crewType.get(j));
-								
-							lblMember1.setText(1 + ": " + crewType.get(0).toString());
-							lblMember2.setText(2 + ": " + crewType.get(1).toString());
-							lblMember3.setText(3 + ": " + crewType.get(2).toString());
-							lblMember4.setText(4 + ": " + crewType.get(3).toString());
-						} catch (Exception e) {
-							continue; // continue if list is greater
-						}
+					} catch (Exception e) {
+						 // continue if list is greater
 					}
-					
+					btnAcceptChars.setEnabled(false);  // disable button
 				}
 			}
 		});
@@ -359,17 +415,28 @@ public class CrewSelection {
 		frame.getContentPane().add(btnAcceptChars);
 		
 		
+		
+		
+		
+		
+		
 		JButton btnNext = new JButton("Next");
 		btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Only can move forward if names have been allocated to a player
 				//Error messages
-				if ((crewNames.size() == 0) || (crewType.size() == 0)) JOptionPane.showMessageDialog(null, "Please complete the fields");  
+				if ((crewNames.size() == 0) || (crewType.size() == 0)) { JOptionPane.showMessageDialog(null, "Please complete the fields");}
 				else if (crewNames.size() == crewType.size()) {
 					// Setting a new frame
 					NameShip nameShip = new NameShip();
 					nameShip.frame.setVisible(true);  // turn on screen
-					frame.setVisible(false);   // turn off screen
+					frame.setVisible(false);          // turn off screen
+					
+					System.out.println(piecesToCollect);
+					// Send data to name ship
+					nameShip.getCrewInfo(crewType, crewNames, piecesToCollect);
+
+					
 				} else JOptionPane.showMessageDialog(null, "Please complete the fields");  // Error message
 			}
 		});
@@ -377,20 +444,32 @@ public class CrewSelection {
 		frame.getContentPane().add(btnNext);
 		
 		
+		
+		
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Setting a new frame
-				ChooseDays choseDays = new ChooseDays();
+				ChooseDays chooseDays = new ChooseDays();
 				
 				// Set stored pieces from last time
-				choseDays.storeDays(days);
-				choseDays.frame.setVisible(true);  // turn on screen
-				frame.setVisible(false);         // turn off screen
+				chooseDays.getDays(piecesToCollect);  // Send back to choose days
+				chooseDays.frame.setVisible(true);    // turn on screen
+				frame.setVisible(false);              // turn off screen
 			}
 		});
 		btnBack.setBounds(583, 438, 126, 47);
 		frame.getContentPane().add(btnBack);
+		
+		btnReset = new JButton("Reset");
+		btnReset.setEnabled(false);
+		btnReset.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				resetScreen();
+			}
+		});
+		btnReset.setBounds(465, 426, 109, 54);
+		frame.getContentPane().add(btnReset);
 		
 		
 		
@@ -422,26 +501,18 @@ public class CrewSelection {
 		frame.getContentPane().add(lblThief);
 		
 		
-		
-		
-		
 		comboBoxSoldier = new JComboBox();
 		comboBoxSoldier.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
-				String removeX = (String) comboBoxSoldier.getSelectedItem();  // get the item
+				// set values for global array's
+				settingChar();
+				settingNumber();
 				
-				if (selectSoldier.isSelected()) { // check if selected
-					// remove the old amount to the list
-					for (int i = 0; i < countSoldier; i++) // countSoldier-1 because we added one when we selected the checkbox
-						crewType.remove("Soldier");
-					
-					// added the new amount to the list
-					countSoldier = Integer.valueOf(removeX.replace("x", ""));  // converting x1 -> 1 (string to int)
-					for (int i = 0; i < countSoldier; i++)
-						crewType.add("Soldier");
-				}
+				AddMember(charSelect[0], charNumber[0], countSoldier, "Soldier");
 			}
 		});
+		
 		comboBoxSoldier.setVisible(false);
 		comboBoxSoldier.setToolTipText("");
 		comboBoxSoldier.setModel(new DefaultComboBoxModel(new String[] {"0", "x1", "x2", "x3", "x4"}));
@@ -451,23 +522,21 @@ public class CrewSelection {
 		frame.getContentPane().add(comboBoxSoldier);
 		
 		
+		
+		
+		
 		comboBoxMedic = new JComboBox();
 		comboBoxMedic.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
-				String removeX = (String) comboBoxMedic.getSelectedItem();  // get the item
+				// set values for global array's
+				settingChar();
+				settingNumber();
 				
-				if (selectMedic.isSelected()) { // check if selected
-					// remove the old amount to the list
-					for (int i = 0; i < countMedic; i++) // countSoldier-1 because we added one when we selected the checkbox
-						crewType.remove("Medic");
-					
-					// added the new amount to the list
-					countMedic = Integer.valueOf(removeX.replace("x", ""));  // converting x1 -> 1 (string to int)
-					for (int i = 0; i < countMedic; i++)
-						crewType.add("Medic");
-				}
+				AddMember(charSelect[1], charNumber[1], countMedic, "Medic");
 			}
 		});
+		
 		comboBoxMedic.setToolTipText("");
 		comboBoxMedic.setVisible(false);
 		comboBoxMedic.setModel(new DefaultComboBoxModel(new String[] {"0", "x1", "x2", "x3", "x4"}));
@@ -480,21 +549,16 @@ public class CrewSelection {
 		
 		comboBoxLeader = new JComboBox();
 		comboBoxLeader.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
-				String removeX = (String) comboBoxLeader.getSelectedItem();  // get the item in the combo box
+				// set values for global array's
+				settingChar();
+				settingNumber();
 				
-				if (selectLeader.isSelected()) { // check if selected
-					// remove the old amount to the list
-					for (int i = 0; i < countLeader; i++) // countSoldier-1 because we added one when we selected the checkbox
-						crewType.remove("Leader");
-					
-					// added the new amount to the list
-					countLeader = Integer.valueOf(removeX.replace("x", ""));  // converting x1 -> 1 (string -> int)
-					for (int i = 0; i < countLeader; i++)
-						crewType.add("Leader");
-				}
+				AddMember(charSelect[2], charNumber[2], countLeader, "Leader");
 			}
 		});
+		
 		comboBoxLeader.setToolTipText("");
 		comboBoxLeader.setVisible(false);
 		comboBoxLeader.setModel(new DefaultComboBoxModel(new String[] {"0", "x1", "x2", "x3", "x4"}));
@@ -507,21 +571,16 @@ public class CrewSelection {
 		
 		comboBoxMechanic = new JComboBox<Object>();
 		comboBoxMechanic.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
-				String removeX = (String) comboBoxMechanic.getSelectedItem();  // get the item
+				// set values for global array's
+				settingChar();
+				settingNumber();
 				
-				if (selectMechanic.isSelected()) { // check if selected
-					// remove the old amount to the list
-					for (int i = 0; i < countMechanic; i++) // countSoldier-1 because we added one when we selected the checkbox
-						crewType.remove("Mechanic");
-					
-					// added the new amount to the list
-					countMechanic = Integer.valueOf(removeX.replace("x", ""));  // converting x1 -> 1 (string -> int)
-					for (int i = 0; i < countMechanic; i++)
-						crewType.add("Mechanic");
-				}
+				AddMember(charSelect[3], charNumber[3], countMechanic, "Mechanic");
 			}
 		});
+		
 		comboBoxMechanic.setToolTipText("");
 		comboBoxMechanic.setVisible(false);
 		comboBoxMechanic.setModel(new DefaultComboBoxModel(new String[] {"0", "x1", "x2", "x3", "x4"}));
@@ -534,21 +593,16 @@ public class CrewSelection {
 		
 		comboBoxPilot = new JComboBox();
 		comboBoxPilot.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
-				String removeX = (String) comboBoxPilot.getSelectedItem();  // get the item
+				// set values for global array's
+				settingChar();
+				settingNumber();
 				
-				if (selectPilot.isSelected()) { // check if selected
-					// remove the old amount to the list
-					for (int i = 0; i < countPilot; i++) // countSoldier-1 because we added one when we selected the checkbox
-						crewType.remove("Pilot");
-					
-					// added the new amount to the list
-					countPilot = Integer.valueOf(removeX.replace("x", ""));  // converting x1 -> 1 (string -> int)
-					for (int i = 0; i < countPilot; i++)
-						crewType.add("Pilot");
-				}
+				AddMember(charSelect[4], charNumber[4], countPilot, "Pilot");
 			}
 		});
+		
 		comboBoxPilot.setToolTipText("");
 		comboBoxPilot.setVisible(false);
 		comboBoxPilot.setModel(new DefaultComboBoxModel(new String[] {"0", "x1", "x2", "x3", "x4"}));
@@ -561,21 +615,16 @@ public class CrewSelection {
 		
 		comboBoxThief = new JComboBox();
 		comboBoxThief.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
-				String removeX = (String) comboBoxThief.getSelectedItem();  // get the item
+				// set values for global array's
+				settingChar();
+				settingNumber();
 				
-				if (selectThief.isSelected()) { // check if selected
-					// remove the old amount to the list
-					for (int i = 0; i < countThief; i++) // countSoldier-1 because we added one when we selected the checkbox
-						crewType.remove("Thief");
-					
-					// added the new amount to the list
-					countThief = Integer.valueOf(removeX.replace("x", ""));  // converting x1 -> 1 (string -> int)
-					for (int i = 0; i < countThief; i++)
-						crewType.add("Thief");
-				}
+				AddMember(charSelect[5], charNumber[5], countThief, "Thief");
 			}
 		});
+		
 		comboBoxThief.setToolTipText("");
 		comboBoxThief.setVisible(false);
 		comboBoxThief.setModel(new DefaultComboBoxModel(new String[] {"0", "x1", "x2", "x3", "x4"}));
@@ -584,11 +633,15 @@ public class CrewSelection {
 		comboBoxThief.setBounds(722, 282, 72, 41);
 		frame.getContentPane().add(comboBoxThief);
 		
-		JLabel lblPleaseInputA = new JLabel("Please input a name for:\n");
+		
+		
+		
+		JLabel lblPleaseInputA = new JLabel("Please input a name for:");
 		lblPleaseInputA.setBounds(300, 330, 157, 15);
 		frame.getContentPane().add(lblPleaseInputA);
 		
 		comBoxCharChosen = new JComboBox();
+		comBoxCharChosen.setEnabled(false);
 		comBoxCharChosen.setBounds(300, 360, 142, 27);
 		frame.getContentPane().add(comBoxCharChosen);
 		
@@ -597,7 +650,11 @@ public class CrewSelection {
 
 		
 		
-		JButton btnAcceptName = new JButton("Accept Name");
+		
+		
+		
+		btnAcceptName = new JButton("Accept Name");
+		btnAcceptName.setEnabled(false);
 		btnAcceptName.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// display error message
@@ -612,13 +669,18 @@ public class CrewSelection {
 					if (comBoxCharChosen.getSelectedIndex() == 3) addNames(name4);
 				}
 		
-				// clear & reset
+				// clear & reset nameing field
 				txtFdName.setText("");
 		
 			}
 		});
 		btnAcceptName.setBounds(300, 405, 157, 59);
 		frame.getContentPane().add(btnAcceptName);
+		
+		
+		
+		
+		
 		
 		name1 = new JLabel("...");
 		name1.setBounds(134, 371, 109, 15);
@@ -647,13 +709,12 @@ public class CrewSelection {
 		label.setBounds(18, 22, 116, 18);
 		frame.getContentPane().add(label);
 		
+		JLabel lblNewLabel = new JLabel("Character selection, you can choose VARIABLE characters in any combination to form your astronaut team");
+		lblNewLabel.setBounds(165, 64, 691, 27);
+		frame.getContentPane().add(lblNewLabel);
 		
-	}
-
-
-	// Store pieces
-	public void storeDays(int daysSelected)
-	{
-		days = daysSelected;
+		JLabel lblNewLabel_1 = new JLabel("Click on each to select or view extra information");
+		lblNewLabel_1.setBounds(304, 113, 327, 16);
+		frame.getContentPane().add(lblNewLabel_1);
 	}
 }
