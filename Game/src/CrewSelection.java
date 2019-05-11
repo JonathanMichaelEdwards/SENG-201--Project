@@ -40,6 +40,8 @@ public class CrewSelection {
 	int piecesToCollect = 0;
 	int previousCount = 0;
 	
+	boolean checkedState = false;
+	
 	
 	JButton btnAcceptName;
 	JButton btnReset;
@@ -88,7 +90,7 @@ public class CrewSelection {
 		charSelect.setEnabled(false);
 		charNumber.setEnabled(false);
 		
-		if (charNumber.getSelectedIndex() == 0) {
+		if (charNumber.getSelectedIndex() == -1) {
 			charSelect.setSelected(false);  // disable if pushed and no number is given
 			charNumber.setVisible(false);   // disable boxes
 		}
@@ -130,6 +132,7 @@ public class CrewSelection {
 				settingNumber();
 				
 				selectedChar(charSelect[0], charNumber[0], countSoldier, "Soldier");
+				addMember(charSelect[0], charNumber[0], countSoldier, "Soldier");
 			}
 		});
 		selectSoldier.setBounds(25, 259, 126, 23);
@@ -147,6 +150,7 @@ public class CrewSelection {
 				settingNumber();
 				
 				selectedChar(charSelect[1], charNumber[1], countMedic, "Medic");
+				addMember(charSelect[1], charNumber[1], countMedic, "Medic");
 			}
 		});
 		selectMedic.setBounds(157, 259, 126, 23);
@@ -164,6 +168,7 @@ public class CrewSelection {
 				settingNumber();
 				
 				selectedChar(charSelect[2], charNumber[2], countLeader, "Leader");
+				addMember(charSelect[2], charNumber[2], countLeader, "Leader");
 
 			}
 		});
@@ -182,6 +187,7 @@ public class CrewSelection {
 				settingNumber();
 				
 				selectedChar(charSelect[3], charNumber[3], countMechanic, "Mechanic");
+				addMember(charSelect[3], charNumber[3], countMechanic, "Mechanic");
 			}
 		});
 		selectMechanic.setBounds(448, 259, 126, 23);
@@ -199,6 +205,7 @@ public class CrewSelection {
 				settingNumber();
 				
 				selectedChar(charSelect[4], charNumber[4], countPilot, "Pilot");
+				addMember(charSelect[4], charNumber[4], countPilot, "Pilot");
 			}
 		});
 		selectPilot.setBounds(583, 259, 126, 23);
@@ -216,6 +223,7 @@ public class CrewSelection {
 				settingNumber();
 				
 				selectedChar(charSelect[5], charNumber[5], countThief, "Thief");
+				addMember(charSelect[5], charNumber[5], countThief, "Thief");
 			}
 		});
 		selectThief.setBounds(730, 259, 126, 23);
@@ -261,7 +269,7 @@ public class CrewSelection {
 
 	}
 	
-	void AddMember(JCheckBox selectedChar, JComboBox<?> selectedNumber, int count, String playerType) 
+	void addMember(JCheckBox selectedChar, JComboBox<?> selectedNumber, int count, String playerType) 
 	{
 		String removeX = (String) selectedNumber.getSelectedItem();  // get the item
 		
@@ -273,6 +281,7 @@ public class CrewSelection {
 			
 			// added the new amount to the list
 			int value = Integer.valueOf(removeX.replace("x", ""));  // converting x1 -> 1 (string to int)
+			System.out.println(value);
 			for (int i = 0; i < value; i++)
 				crewType.add(playerType);
 			
@@ -396,7 +405,7 @@ public class CrewSelection {
 
 			public void actionPerformed(ActionEvent arg0) {
 				
-				
+				System.out.println(crewType);
 				if ((crewType.size() < 2) || (crewType.size() > 4)) {
 					JOptionPane.showMessageDialog(null, "Please select 2 to 4 crewType members only"); 
 				} else {
@@ -509,14 +518,13 @@ public class CrewSelection {
 				settingChar();
 				settingNumber();
 				
-				AddMember(charSelect[0], charNumber[0], countSoldier, "Soldier");
+				addMember(charSelect[0], charNumber[0], countSoldier, "Soldier");
 			}
 		});
 		
 		comboBoxSoldier.setVisible(false);
 		comboBoxSoldier.setToolTipText("");
-		comboBoxSoldier.setModel(new DefaultComboBoxModel(new String[] {"0", "x1", "x2", "x3", "x4"}));
-		comboBoxSoldier.setSelectedIndex(0);
+		comboBoxSoldier.setModel(new DefaultComboBoxModel(new String[] {"x1", "x2", "x3", "x4"}));
 		comboBoxSoldier.setMaximumRowCount(4);
 		comboBoxSoldier.setBounds(35, 282, 72, 36);
 		frame.getContentPane().add(comboBoxSoldier);
@@ -533,14 +541,13 @@ public class CrewSelection {
 				settingChar();
 				settingNumber();
 				
-				AddMember(charSelect[1], charNumber[1], countMedic, "Medic");
+				addMember(charSelect[1], charNumber[1], countMedic, "Medic");
 			}
 		});
 		
 		comboBoxMedic.setToolTipText("");
 		comboBoxMedic.setVisible(false);
-		comboBoxMedic.setModel(new DefaultComboBoxModel(new String[] {"0", "x1", "x2", "x3", "x4"}));
-		comboBoxMedic.setSelectedIndex(0);
+		comboBoxMedic.setModel(new DefaultComboBoxModel(new String[] {"x1", "x2", "x3", "x4"}));
 		comboBoxMedic.setMaximumRowCount(4);
 		comboBoxMedic.setBounds(171, 282, 72, 36);
 		frame.getContentPane().add(comboBoxMedic);
@@ -555,14 +562,13 @@ public class CrewSelection {
 				settingChar();
 				settingNumber();
 				
-				AddMember(charSelect[2], charNumber[2], countLeader, "Leader");
+				addMember(charSelect[2], charNumber[2], countLeader, "Leader");
 			}
 		});
 		
 		comboBoxLeader.setToolTipText("");
 		comboBoxLeader.setVisible(false);
-		comboBoxLeader.setModel(new DefaultComboBoxModel(new String[] {"0", "x1", "x2", "x3", "x4"}));
-		comboBoxLeader.setSelectedIndex(0);
+		comboBoxLeader.setModel(new DefaultComboBoxModel(new String[] {"x1", "x2", "x3", "x4"}));
 		comboBoxLeader.setMaximumRowCount(4);
 		comboBoxLeader.setBounds(310, 282, 72, 36);
 		frame.getContentPane().add(comboBoxLeader);
@@ -577,14 +583,13 @@ public class CrewSelection {
 				settingChar();
 				settingNumber();
 				
-				AddMember(charSelect[3], charNumber[3], countMechanic, "Mechanic");
+				addMember(charSelect[3], charNumber[3], countMechanic, "Mechanic");
 			}
 		});
 		
 		comboBoxMechanic.setToolTipText("");
 		comboBoxMechanic.setVisible(false);
-		comboBoxMechanic.setModel(new DefaultComboBoxModel(new String[] {"0", "x1", "x2", "x3", "x4"}));
-		comboBoxMechanic.setSelectedIndex(0);
+		comboBoxMechanic.setModel(new DefaultComboBoxModel(new String[] {"x1", "x2", "x3", "x4"}));
 		comboBoxMechanic.setMaximumRowCount(4);
 		comboBoxMechanic.setBounds(448, 282, 72, 36);
 		frame.getContentPane().add(comboBoxMechanic);
@@ -599,14 +604,13 @@ public class CrewSelection {
 				settingChar();
 				settingNumber();
 				
-				AddMember(charSelect[4], charNumber[4], countPilot, "Pilot");
+				addMember(charSelect[4], charNumber[4], countPilot, "Pilot");
 			}
 		});
 		
 		comboBoxPilot.setToolTipText("");
 		comboBoxPilot.setVisible(false);
-		comboBoxPilot.setModel(new DefaultComboBoxModel(new String[] {"0", "x1", "x2", "x3", "x4"}));
-		comboBoxPilot.setSelectedIndex(0);
+		comboBoxPilot.setModel(new DefaultComboBoxModel(new String[] {"x1", "x2", "x3", "x4"}));
 		comboBoxPilot.setMaximumRowCount(4);
 		comboBoxPilot.setBounds(577, 282, 72, 36);
 		frame.getContentPane().add(comboBoxPilot);
@@ -621,13 +625,13 @@ public class CrewSelection {
 				settingChar();
 				settingNumber();
 				
-				AddMember(charSelect[5], charNumber[5], countThief, "Thief");
+				addMember(charSelect[5], charNumber[5], countThief, "Thief");
 			}
 		});
 		
 		comboBoxThief.setToolTipText("");
 		comboBoxThief.setVisible(false);
-		comboBoxThief.setModel(new DefaultComboBoxModel(new String[] {"0", "x1", "x2", "x3", "x4"}));
+		comboBoxThief.setModel(new DefaultComboBoxModel(new String[] {"x1", "x2", "x3", "x4"}));
 		comboBoxThief.setSelectedIndex(0);
 		comboBoxThief.setMaximumRowCount(4);
 		comboBoxThief.setBounds(722, 282, 72, 41);
