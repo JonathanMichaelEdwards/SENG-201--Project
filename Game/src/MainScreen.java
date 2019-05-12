@@ -51,7 +51,7 @@ public class MainScreen {
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnTravelToA = new JButton("Travel to a new planet");
-		btnTravelToA.setBounds(730, 403, 169, 139);
+		btnTravelToA.setBounds(701, 403, 198, 139);
 		frame.getContentPane().add(btnTravelToA);
 		
 		JButton btnViewuseShipSupplies = new JButton("View/Use Ship Supplies");
@@ -75,7 +75,7 @@ public class MainScreen {
 		frame.getContentPane().add(btnExploreCurrentPlanet);
 		
 		JButton btnGoToNext = new JButton("Sleep crew to next day");
-		btnGoToNext.setBounds(374, 521, 151, 21);
+		btnGoToNext.setBounds(374, 521, 223, 21);
 		frame.getContentPane().add(btnGoToNext);
 		
 		JLabel lblTurns = new JLabel("Turns");

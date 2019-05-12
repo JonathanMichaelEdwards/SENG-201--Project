@@ -43,7 +43,7 @@ public class FoodStore {
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblFoodStore = new JLabel("Food Store");
-		lblFoodStore.setBounds(368, 39, 70, 13);
+		lblFoodStore.setBounds(368, 39, 183, 13);
 		frame.getContentPane().add(lblFoodStore);
 		
 		JLabel label = new JLabel("Common (Found by exploring planets)");
@@ -175,6 +175,10 @@ public class FoodStore {
 		JButton btnBuy = new JButton("Buy");
 		btnBuy.setBounds(719, 510, 205, 61);
 		frame.getContentPane().add(btnBuy);
+		
+		JLabel lblCurrentlyOwned = new JLabel("Currently Owned");
+		lblCurrentlyOwned.setBounds(689, 92, 138, 15);
+		frame.getContentPane().add(lblCurrentlyOwned);
 	}
 
 }
