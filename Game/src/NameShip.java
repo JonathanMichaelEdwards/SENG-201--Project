@@ -16,36 +16,30 @@ import javax.swing.JProgressBar;
 public class NameShip {
 
 	public JFrame frame;
+	
 	private JTextField txtShipsName;
+	private JLabel lblShipChosen;
+	private JLabel lblNameOfShip;
+	private JLabel lblPieces;
 	
-	JRadioButton rdbtnRepairShip;
-	JRadioButton rdbtnAttackShip;
-	JRadioButton rdbtnInvisibleShip;
-	JRadioButton rdbtnStorageShip;
-	JRadioButton rdbtnMedicalShip;
+	// Setting up radio buttons that are being selected
+	private JRadioButton rdbtnRepairShip, rdbtnAttackShip, rdbtnInvisibleShip, rdbtnStorageShip, rdbtnMedicalShip;
 	
-	JLabel lblShipChosen;
-	JLabel lblNameOfShip;
-	JLabel lblPieces;
+	private JButton btnStart;
 	
-	JLabel lblMember1;
-	JLabel lblMember2;
-	JLabel lblMember3;
-	JLabel lblMember4;
+	// Members chosen  with there name stored
+	private JLabel lblMember1, lblMember2, lblMember3, lblMember4;
+	private JLabel lblName1, lblName2, lblName3, lblName4; 
 	
-	JLabel lblName1;
-	JLabel lblName2;
-	JLabel lblName3;
-	JLabel lblName4;
-	
-	// Stored list of crewType members and there names
-	public ArrayList<String> crewType = new ArrayList<String>();
-	public ArrayList<String> crewName = new ArrayList<String>();
-	int piecesToCollect = 2;  // default value
+	// Stored list of crewType members chosen, there names and the number of pieces to collect
+	private ArrayList<String> crewType = new ArrayList<String>();
+	private ArrayList<String> crewName = new ArrayList<String>();
+	private int piecesToCollect = 2;  // default value
 	
 	
-	// Retrieve data from selection
-	void getCrewInfo(ArrayList<String> crewType, ArrayList<String> crewName, int pieces)
+	
+	// Retrieve data from the previous screen
+	public void getCrewInfo(ArrayList<String> crewType, ArrayList<String> crewName, int pieces)
 	{
 		for (int index = 0; index < crewType.size(); index++) {
 			if (index == 0) { lblMember1.setText("1. " + crewType.get(0)); lblName1.setText(crewName.get(0)); }
@@ -59,15 +53,15 @@ public class NameShip {
 	}
 	
 	
-	
+	// Display info that was gathered from previous screens
 	void SetInfo()
 	{
-		ChooseDays chooseDays = new ChooseDays();
 		CrewSelection crewSelect = new CrewSelection();
 		
 		// Display Pieces
-		lblPieces.setText("" + chooseDays.piecesToCollect);
+		lblPieces.setText("" + piecesToCollect);
 		
+		// display players stored and there names 
 		// Go through how many players were selected
 		for (int index = 0; index < crewSelect.crewType.size(); index++) {
 			// Display crew members and names
@@ -89,7 +83,7 @@ public class NameShip {
 	}
 	
 	
-	
+	// Clear all the radio buttons
 	void rdbtnClear()
 	{
 		rdbtnRepairShip.setSelected(false);
@@ -105,7 +99,6 @@ public class NameShip {
 	*/
 	private void initialize() 
 	{
-//		SetInfo();   // Fix Function
 		
 		
 		frame = new JFrame();
@@ -134,23 +127,10 @@ public class NameShip {
 		frame.getContentPane().add(lblNameShip);
 		
 		
-		// Buttons
-		JButton btnBack = new JButton("Back");
-		btnBack.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// Setting a new frame
-				CrewSelection crewSelect = new CrewSelection();
-				crewSelect.frame.setVisible(true);  // turn on screen
-				frame.setVisible(false);            // turn off screen
-			}
-		});
-		btnBack.setBounds(504, 374, 125, 77);
-		frame.getContentPane().add(btnBack);
 		
-		
-		
-		// Buttons
-		JButton btnStart = new JButton("Start game");
+		// if fields are complete, start game 
+		btnStart = new JButton("Start game");
+		btnStart.setEnabled(false);
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// if fields arn't completed, display error
@@ -165,7 +145,7 @@ public class NameShip {
 				}
 			}
 		});
-		btnStart.setBounds(672, 374, 125, 77);
+		btnStart.setBounds(618, 374, 125, 77);
 		frame.getContentPane().add(btnStart);
 		
 		
@@ -264,6 +244,9 @@ public class NameShip {
 	    			lblNameOfShip.setText(txtShipsName.getText());
 	    		}
 	    		
+	    		if (!lblShipChosen.getText().equals("...") || !lblNameOfShip.getText().equals("...")) 
+	    			btnStart.setEnabled(true);
+	    			
 	    		// Clear the field
 	    		txtShipsName.setText("");
 	    	}

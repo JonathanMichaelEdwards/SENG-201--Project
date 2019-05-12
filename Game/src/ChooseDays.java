@@ -17,15 +17,16 @@ public class ChooseDays
 {
 
 	public JFrame frame;
-	public JSlider slider;
-
-	int piecesToCollect = 2;  // Pieces player selected
+	
+	private JSlider slider;
+	private JLabel lblSliderDays;
+	private int piecesToCollect = 2;  // Pieces player selected
 	
 	
-	public void getDays(int pieces) 
-	{
-		slider.setValue(pieces);
-	}
+//	public void getDays(int pieces) 
+//	{
+//		slider.setValue(pieces);
+//	}
 	
 	
 	/*
@@ -34,7 +35,8 @@ public class ChooseDays
 	private void initialize() 
 	{
 		Settings set = new Settings();
-		final JLabel lblSliderDays = new JLabel("Number of Spaceship parts: 2");
+		
+		lblSliderDays = new JLabel("Number of Spaceship parts: " + piecesToCollect);
 		
 		frame = new JFrame();
 		frame.setBounds(set.x, set.y, set.width, set.height);
@@ -46,7 +48,8 @@ public class ChooseDays
 		lblWelcomeToThe.setBounds(351, 41, 310, 111);
 		frame.getContentPane().add(lblWelcomeToThe);
 		
-
+		
+		// Initializing a new slide to choose days
 		slider = new JSlider();
 		slider.setPaintTicks(true);
 		slider.setPaintLabels(true);
@@ -67,32 +70,40 @@ public class ChooseDays
 		position.put(8, new JLabel("8"));
 		position.put(9, new JLabel("9"));
 		position.put(10, new JLabel("10"));
+		
 		// Set the label to be drawn
 		slider.setLabelTable(position); 
-		
 		frame.getContentPane().add(slider);
 		
 	
-		slider.addChangeListener(new ChangeListener() {
-			
-            public void stateChanged(ChangeEvent e) {
-            	piecesToCollect = (int)(slider.getValue()*(0.667));   // Formula days 2/3 (now correct)
-            	lblSliderDays.setText("Number of Spaceship parts: " + (piecesToCollect));
-            }
-        });
+		// Add a new slider listener
+		// Get the value the user selected and times it by 2/3 (0.667) to find the pieces
+		slider.addChangeListener(new ChangeListener() 
+		{
+	        public void stateChanged(ChangeEvent e) 
+	        {
+	        	piecesToCollect = (int)(slider.getValue()*(0.667));   // Formula days 2/3 (now correct)
+	        	lblSliderDays.setText("Number of Spaceship parts: " + (piecesToCollect));
+	        }
+		});
 		
 	
-		
-		
+		// Add a new button listener
+		// Take the pieces information to the next screen
 		JButton btnAccept = new JButton("Next");
-		btnAccept.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		btnAccept.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent arg0) 
+			{
 				// Setting a new frame
 				CrewSelection crewSelect = new CrewSelection();
 				
-				crewSelect.storeDays(piecesToCollect);
+				// Transfering from ChooseDays class to CrewSelection class  
 				crewSelect.frame.setVisible(true);  // turn on screen
 				frame.setVisible(false);   // turn off screen
+				
+				// Send pieces over
+				crewSelect.storeDays(piecesToCollect);
 			}
 		});
 		btnAccept.setBounds(779, 494, 151, 103);
