@@ -43,5 +43,25 @@ public class ShipInventory {
 		frame.setBounds(100, 100, 998, 650);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		
+		JLabel lblShipsInventory = new JLabel("Ships inventory");
+		lblShipsInventory.setBounds(401, 37, 188, 38);
+		frame.getContentPane().add(lblShipsInventory);
+		
+		JLabel lblSelectAnItem = new JLabel("Select an Item to use");
+		lblSelectAnItem.setBounds(120, 126, 121, 38);
+		frame.getContentPane().add(lblSelectAnItem);
+		
+		JLabel lblSelectOneOf = new JLabel("Select one of your crew ");
+		lblSelectOneOf.setBounds(645, 139, 121, 13);
+		frame.getContentPane().add(lblSelectOneOf);
+		
+		JButton btnApplyChanges = new JButton("Apply Changes");
+		btnApplyChanges.setBounds(768, 521, 171, 53);
+		frame.getContentPane().add(btnApplyChanges);
+		
+		JButton btnBack = new JButton("Back ");
+		btnBack.setBounds(537, 521, 188, 53);
+		frame.getContentPane().add(btnBack);
 	}
 }
