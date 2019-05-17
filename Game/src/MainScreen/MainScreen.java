@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 
 
 //Self implemented
-import WindowSettings.Display;
+import GameSettings.Display;
 import SpaceOutpost.SpaceOutpost;
 
 
@@ -161,12 +161,12 @@ public class MainScreen
 		frame.getContentPane().add(btnGoToNext);
 		
 		panel = new JPanel();
-		panel.setBounds(887, 22, 1012, 593);
+		panel.setBounds(770, 111, 1012, 593);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		panelShip = new JPanel();
-		panelShip.setBounds(23, 49, 530, 170);
+		panelShip.setBounds(23, 42, 530, 170);
 		panel.add(panelShip);
 		panelShip.setLayout(null);
 		
@@ -196,7 +196,7 @@ public class MainScreen
 		lblHealth.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		
 		pBarShipHealth = new JProgressBar();
-		pBarShipHealth.setBounds(268, 71, 223, 58);
+		pBarShipHealth.setBounds(259, 93, 223, 34);
 		panelShip.add(pBarShipHealth);
 		
 		lblSp = new JLabel("Ship Info");
@@ -215,11 +215,11 @@ public class MainScreen
 		panelCrew.setLayout(null);
 		
 		pBarHealth1 = new JProgressBar();
-		pBarHealth1.setBounds(207, 107, 146, 52);
+		pBarHealth1.setBounds(204, 107, 146, 30);
 		panelCrew.add(pBarHealth1);
 		
 		pBarStrength1 = new JProgressBar();
-		pBarStrength1.setBounds(204, 165, 146, 52);
+		pBarStrength1.setBounds(204, 171, 146, 30);
 		panelCrew.add(pBarStrength1);
 		
 		JProgressBar progressBar_4 = new JProgressBar();
@@ -235,7 +235,7 @@ public class MainScreen
 		panelCrew.add(progressBar_2);
 		
 		pBarHunger1 = new JProgressBar();
-		pBarHunger1.setBounds(204, 229, 146, 52);
+		pBarHunger1.setBounds(204, 251, 146, 30);
 		panelCrew.add(pBarHunger1);
 		
 		JProgressBar progressBar_1 = new JProgressBar();

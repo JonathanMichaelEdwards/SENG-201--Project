@@ -15,7 +15,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JProgressBar;
 
 // Self implemented
-import WindowSettings.Display;
+import GameSettings.Display;
 
 
 

@@ -15,12 +15,12 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JProgressBar;
 
-// Self implemented
-import WindowSettings.Display;
+//Self implemented
+import GameSettings.Display;
 
 
-
-public class CrewSelection {
+public class CrewSelection 
+{
 
 	public JFrame frame; // Frame for screen
 	
@@ -593,7 +593,7 @@ public class CrewSelection {
 		
 		// Initializing displays
 		JLabel lblCurrentTeam = new JLabel("Current Team");
-		lblCurrentTeam.setBounds(38, 476, 109, 15);
+		frame.setBounds(display.x, display.y, display.width, display.height);
 		frame.getContentPane().add(lblCurrentTeam);
 		
 		txtFdName = new JTextField();

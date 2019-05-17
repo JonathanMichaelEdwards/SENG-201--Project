@@ -14,8 +14,8 @@ import javax.swing.JButton;
 import javax.swing.JRadioButton;
 import javax.swing.JProgressBar;
 
-// Self implemented
-import WindowSettings.Display;
+//Self implemented
+import GameSettings.Display;
 import MainScreen.MainScreen;
 
 

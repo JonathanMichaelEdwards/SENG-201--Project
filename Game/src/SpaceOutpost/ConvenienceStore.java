@@ -8,7 +8,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 
 //Self implemented
-import WindowSettings.Display;
+import GameSettings.Display;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 

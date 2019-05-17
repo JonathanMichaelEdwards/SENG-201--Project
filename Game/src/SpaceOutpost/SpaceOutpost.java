@@ -6,11 +6,11 @@ import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
-
-//Self implemented
-import WindowSettings.Display;
 import SpaceOutpost.SpaceOutpost;
 import MainScreen.MainScreen;
+
+//Self implemented
+import GameSettings.Display;
 
 
 
