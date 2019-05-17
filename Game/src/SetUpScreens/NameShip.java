@@ -44,12 +44,27 @@ public class NameShip {
 	private String shipName = "";
 	private int piecesToCollect = 2;  // default value
 	
+	String a;
+	
+	
+	
+	public void SetA(String input) 
+	{
+		a = input;
+	}
+	
+	public String getA() 
+	{
+		return a;
+	}
+	
 	
 	//	Storing info for next screen
 	private void crewInfo(ArrayList<String> type, ArrayList<String> name, int index)
 	{
 		crewType.add(type.get(index));
 		crewNames.add(name.get(index));
+		
 	}
 	
 	
@@ -220,6 +235,12 @@ public class NameShip {
 	    		}
 	    		shipName = txtShipsName.getText();
 	    
+	    		
+	    		
+	    		SetA(shipName);
+	    		
+	    		
+	    		
 	    		// If both have been filled in, enable button 
 	    		if (!lblShipChosen.getText().equals("...") && !lblNameOfShip.getText().equals("...")) 
 	    			btnStart.setEnabled(true);
@@ -259,15 +280,13 @@ public class NameShip {
 				else {
 					// move to the main screen
 					// Setting a new frame
-					MainScreen mainScreen = new MainScreen();
+					MainScreen mainScreen = new MainScreen(getA());
 					mainScreen.frame.setVisible(true);  // turn on screen
-					frame.setVisible(false);            // turn off screen
-					
+//					frame.setVisible(false);            // turn off screen
+//					
 					// Send info to next screen
 					mainScreen.getCrewInfo(crewType, crewNames, piecesToCollect, shipType, shipName);
 					
-					
-					mainScreen.getA("a");
 				}
 			}
 		});

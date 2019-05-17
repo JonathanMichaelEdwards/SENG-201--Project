@@ -6,7 +6,13 @@ import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
+<<<<<<< Updated upstream
 
+=======
+import SpaceOutpost.SpaceOutpost;
+import MainScreen.MainScreen;
+import SetUpScreens.NameShip;
+>>>>>>> Stashed changes
 //Self implemented
 import WindowSettings.Display;
 import SpaceOutpost.SpaceOutpost;
@@ -82,7 +88,9 @@ public class SpaceOutpost
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				MainScreen mainScreen = new MainScreen();
+				NameShip namesh = new NameShip();
+				
+				MainScreen mainScreen = new MainScreen("");
 				mainScreen.frame.setVisible(true);  // turn on screen
 				frame.setVisible(false);            // turn off screen
 			}
