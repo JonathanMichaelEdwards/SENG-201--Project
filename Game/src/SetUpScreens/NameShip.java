@@ -1,3 +1,6 @@
+package SetUpScreens;
+
+// Libary imports
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -11,6 +14,9 @@ import javax.swing.JButton;
 import javax.swing.JRadioButton;
 import javax.swing.JProgressBar;
 
+// Self implemented
+import WindowSettings.Display;
+import MainScreen.MainScreen;
 
 
 public class NameShip {
@@ -33,58 +39,202 @@ public class NameShip {
 	
 	// Stored list of crewType members chosen, there names and the number of pieces to collect
 	private ArrayList<String> crewType = new ArrayList<String>();
-	private ArrayList<String> crewName = new ArrayList<String>();
+	private ArrayList<String> crewNames = new ArrayList<String>();
+	private String shipType = "";
+	private String shipName = "";
 	private int piecesToCollect = 2;  // default value
 	
 	
-	
-	// Retrieve data from the previous screen
-	public void getCrewInfo(ArrayList<String> crewType, ArrayList<String> crewName, int pieces)
+	//	Storing info for next screen
+	private void crewInfo(ArrayList<String> type, ArrayList<String> name, int index)
 	{
-		for (int index = 0; index < crewType.size(); index++) {
-			if (index == 0) { lblMember1.setText("1. " + crewType.get(0)); lblName1.setText(crewName.get(0)); }
-			else if (index == 1) { lblMember2.setText("2. " + crewType.get(1)); lblName2.setText(crewName.get(1)); }
-			else if (index == 2) { lblMember3.setText("3. " + crewType.get(2)); lblName3.setText(crewName.get(2)); }
-			else if (index == 3) { lblMember4.setText("4. " + crewType.get(3)); lblName4.setText(crewName.get(3)); }
-		}
-		
-		piecesToCollect = pieces;
-		lblPieces.setText("" + pieces);
+		crewType.add(type.get(index));
+		crewNames.add(name.get(index));
 	}
 	
 	
-	// Display info that was gathered from previous screens
-	void SetInfo()
+	// Retrieve data from previous screen
+	public void getCrewInfo(ArrayList<String> type, ArrayList<String> name, int pieces)
 	{
-		CrewSelection crewSelect = new CrewSelection();
-		
-		// Display Pieces
-		lblPieces.setText("" + piecesToCollect);
-		
-		// display players stored and there names 
-		// Go through how many players were selected
-		for (int index = 0; index < crewSelect.crewType.size(); index++) {
-			// Display crew members and names
-			if (index == 0) {
-				lblMember1.setText(crewSelect.crewType.get(index));
-				lblName1.setText(crewSelect.crewNames.get(index));
-			} else if (index == 1) {
-				lblMember2.setText(crewSelect.crewType.get(index));
-				lblName2.setText(crewSelect.crewNames.get(index));
-			} else if (index == 2) {
-				lblMember3.setText(crewSelect.crewType.get(index));
-				lblName3.setText(crewSelect.crewNames.get(index));
-			} else if (index == 3) {
-				lblMember4.setText(crewSelect.crewType.get(index));
-				lblName4.setText(crewSelect.crewNames.get(index));
+		// Displaying info collected info
+		for (int index = 0; index < type.size(); index++) {
+			if (index == 0) { 
+				lblMember1.setText("1. " + type.get(index)); 
+				lblName1.setText(name.get(index)); 
+				// Store info
+				crewInfo(type, name, index);
+			} else if (index == 1) { 
+				lblMember2.setText("2. " + type.get(index)); 
+				lblName2.setText(name.get(index)); 
+				// Store info
+				crewInfo(type, name, index);
+			} else if (index == 2) { 
+				lblMember3.setText("3. " + type.get(index)); 
+				lblName3.setText(name.get(index)); 
+				crewInfo(type, name, index);
+				// Store info
+			} else if (index == 3) { 
+				lblMember4.setText("4. " + type.get(index)); 
+				lblName4.setText(name.get(index)); 
+				// Store info
+				crewInfo(type, name, index);
 			}
 		}
-		
+
+		// Storing number of pieces needed to be collected
+		piecesToCollect = pieces;
+		lblPieces.setText("" + piecesToCollect);
+	}
+	
+
+	// Different type of ships that can be chosen
+	private void repairShip()
+	{
+		rdbtnRepairShip = new JRadioButton("Repair Ship");
+		rdbtnRepairShip.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				// Clear then set button
+				rdbtnClear();
+				rdbtnRepairShip.setSelected(true);
+			}
+		});
+		rdbtnRepairShip.setActionCommand("Repair");
+		rdbtnRepairShip.setBounds(244, 197, 144, 23);
+		frame.getContentPane().add(rdbtnRepairShip);
+	}
+	
+	private void attackShip()
+	{
+		rdbtnAttackShip = new JRadioButton("Attack Ship");
+		rdbtnAttackShip.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				// Clear then set button
+				rdbtnClear();
+				rdbtnAttackShip.setSelected(true);
+			}
+		});
+		rdbtnAttackShip.setActionCommand("Attack");
+		rdbtnAttackShip.setBounds(244, 231, 144, 23);
+		frame.getContentPane().add(rdbtnAttackShip);
+	}
+
+	private void invisibleShip()
+	{
+		rdbtnInvisibleShip = new JRadioButton("Invisible Ship");
+		rdbtnInvisibleShip.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				// Clear then set button
+				rdbtnClear();
+				rdbtnInvisibleShip.setSelected(true);
+			}
+		});
+		rdbtnInvisibleShip.setActionCommand("Invisible");
+		rdbtnInvisibleShip.setBounds(244, 266, 144, 23);
+		frame.getContentPane().add(rdbtnInvisibleShip);
+	}
+	
+	private void storageShip()
+	{
+		rdbtnStorageShip = new JRadioButton("Storage Ship");
+		rdbtnStorageShip.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				// Clear then set button
+				rdbtnClear();
+				rdbtnStorageShip.setSelected(true);
+			}
+		});
+		rdbtnStorageShip.setActionCommand("Storage");
+		rdbtnStorageShip.setBounds(244, 306, 144, 23);
+		frame.getContentPane().add(rdbtnStorageShip);
+	}
+	
+	private void medicShip()
+	{
+		rdbtnMedicalShip = new JRadioButton("Medical Ship");
+		rdbtnMedicalShip.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				// Clear then set button
+				rdbtnClear();
+				rdbtnMedicalShip.setSelected(true);
+			}
+		});
+		rdbtnMedicalShip.setActionCommand("Medical");
+		rdbtnMedicalShip.setBounds(244, 344, 144, 23);
+		frame.getContentPane().add(rdbtnMedicalShip);
+	}
+
+	// The different range of ship choices
+	private void shipChoices()
+	{
+		repairShip();
+		attackShip();
+		invisibleShip();
+		storageShip();
+		medicShip();
 	}
 	
 	
-	// Clear all the radio buttons
-	void rdbtnClear()
+	// Displays the ship the user selected and stores the output
+	private void setShips()
+	{
+	    // Set your ship
+	    JButton btnSetYourShips = new JButton("Set your ship's name");
+	    btnSetYourShips.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    		if (txtShipsName.getText().equals("")) JOptionPane.showMessageDialog(null, "Please enter the fields");  // displays error if not inputed or selected
+	    		else if (rdbtnRepairShip.isSelected()) {
+	    			lblShipChosen.setText("Repair");
+	    			lblNameOfShip.setText(txtShipsName.getText());
+	    			// Store ship info
+	    			shipType = "Repair";
+	    		} else if (rdbtnAttackShip.isSelected()) {
+	    			lblShipChosen.setText("Attack");
+	    			lblNameOfShip.setText(txtShipsName.getText());
+	    			// Store ship info
+	    			shipType = "Attack";
+	    		} else if (rdbtnInvisibleShip.isSelected()) {
+	    			lblShipChosen.setText("Invisible");
+	    			lblNameOfShip.setText(txtShipsName.getText());
+	    			// Store ship info
+	    			shipType = "Invisible";
+	    		} else if (rdbtnStorageShip.isSelected()) {
+	    			lblShipChosen.setText("Storage");
+	    			lblNameOfShip.setText(txtShipsName.getText());
+	    			// Store ship info
+	    			shipType = "Storage";
+	    		} else if (rdbtnMedicalShip.isSelected()) {
+	    			lblShipChosen.setText("Medical");
+	    			lblNameOfShip.setText(txtShipsName.getText());
+	    			// Store ship info
+	    			shipType = "Medical";
+	    		}
+	    		shipName = txtShipsName.getText();
+	    
+	    		// If both have been filled in, enable button 
+	    		if (!lblShipChosen.getText().equals("...") && !lblNameOfShip.getText().equals("...")) 
+	    			btnStart.setEnabled(true);
+	    			
+	    		// Clear the field
+	    		txtShipsName.setText("");
+	    	}
+	    });
+	    btnSetYourShips.setBounds(560, 305, 218, 45);
+	    frame.getContentPane().add(btnSetYourShips);
+	}
+	
+	
+	// Refreshing the radio button for the last pushed state
+	private void rdbtnClear()
 	{
 		rdbtnRepairShip.setSelected(false);
 		rdbtnAttackShip.setSelected(false);
@@ -93,19 +243,57 @@ public class NameShip {
 		rdbtnMedicalShip.setSelected(false);
 	}
 	
+	// Go to game screen if all fields are completed
+	private void startGameButton()
+	{
+		// if fields are complete, start game 
+		btnStart = new JButton("Start game");
+		btnStart.setEnabled(false);
+		btnStart.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				// if fields arn't completed, display error
+				if (lblShipChosen.getText().equals("...") || lblNameOfShip.getText().equals("...")) 
+					JOptionPane.showMessageDialog(null, "Please fill in the required fields");
+				else {
+					// move to the main screen
+					// Setting a new frame
+					MainScreen mainScreen = new MainScreen();
+					mainScreen.frame.setVisible(true);  // turn on screen
+					frame.setVisible(false);            // turn off screen
+					
+					// Send info to next screen
+					mainScreen.getCrewInfo(crewType, crewNames, piecesToCollect, shipType, shipName);
+					
+					
+					mainScreen.getA("a");
+				}
+			}
+		});
+		btnStart.setBounds(618, 374, 125, 77);
+		frame.getContentPane().add(btnStart);
+	}
+	
 	
 	/*
 	 * Initialize the contents of the frame.
 	*/
 	private void initialize() 
-	{
-		
-		
+	{	
+		// Setting Layout dimensions
 		frame = new JFrame();
-		frame.setBounds(100, 100, 869, 530);
+		Display display = new Display();  // Retrieving game window size
+		
+		// Setting frame of window
+		frame.setBounds(display.x, display.y, display.width, display.height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setUndecorated(false);  // Frame cannot be adjusted during game
+		frame.setResizable(false);
 		
+		
+		// Initializing displays
 		JLabel lblNameYourShip = new JLabel("Choose & Name Your ship");
 		lblNameYourShip.setFont(new Font("Dialog", Font.BOLD, 25));
 		lblNameYourShip.setBounds(223, 12, 430, 107);
@@ -126,136 +314,6 @@ public class NameShip {
 		lblNameShip.setBounds(560, 126, 134, 94);
 		frame.getContentPane().add(lblNameShip);
 		
-		
-		
-		// if fields are complete, start game 
-		btnStart = new JButton("Start game");
-		btnStart.setEnabled(false);
-		btnStart.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// if fields arn't completed, display error
-				if (lblShipChosen.getText().equals("...") || lblNameOfShip.getText().equals("...")) 
-					JOptionPane.showMessageDialog(null, "Please fill in the required fields");
-				else {
-					// move to the main screen
-					// Setting a new frame
-//					MainScreen mainScreen = new MainScreen();
-//					mainScreen.frame.setVisible(true);  // turn on screen
-//					frame.setVisible(false);            // turn off screen
-				}
-			}
-		});
-		btnStart.setBounds(618, 374, 125, 77);
-		frame.getContentPane().add(btnStart);
-		
-		
-		
-		
-		
-		final JLabel lblName = new JLabel("Please enter the name of your ship:");
-		lblName.setBounds(464, 216, 257, 15);
-		frame.getContentPane().add(lblName);
-		
-		
-		
-
-		rdbtnRepairShip = new JRadioButton("Repair Ship");
-		rdbtnRepairShip.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// Clear then set button
-				rdbtnClear();
-				rdbtnRepairShip.setSelected(true);
-			}
-		});
-		rdbtnRepairShip.setActionCommand("Repair");
-		rdbtnRepairShip.setBounds(244, 197, 144, 23);
-		frame.getContentPane().add(rdbtnRepairShip);
-		
-		
-		rdbtnAttackShip = new JRadioButton("Attack Ship");
-		rdbtnAttackShip.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// Clear then set button
-				rdbtnClear();
-				rdbtnAttackShip.setSelected(true);
-			}
-		});
-		rdbtnAttackShip.setActionCommand("Attack");
-		rdbtnAttackShip.setBounds(244, 231, 144, 23);
-		frame.getContentPane().add(rdbtnAttackShip);
-		
-		
-		rdbtnInvisibleShip = new JRadioButton("Invisible Ship");
-		rdbtnInvisibleShip.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// Clear then set button
-				rdbtnClear();
-				rdbtnInvisibleShip.setSelected(true);
-			}
-		});
-		rdbtnInvisibleShip.setActionCommand("Invisible");
-		rdbtnInvisibleShip.setBounds(244, 266, 144, 23);
-		frame.getContentPane().add(rdbtnInvisibleShip);
-		
-		rdbtnStorageShip = new JRadioButton("Storage Ship");
-		rdbtnStorageShip.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// Clear then set button
-				rdbtnClear();
-				rdbtnStorageShip.setSelected(true);
-			}
-		});
-		rdbtnStorageShip.setActionCommand("Storage");
-		rdbtnStorageShip.setBounds(244, 306, 144, 23);
-		frame.getContentPane().add(rdbtnStorageShip);
-		
-		rdbtnMedicalShip = new JRadioButton("Medical Ship");
-		rdbtnMedicalShip.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// Clear then set button
-				rdbtnClear();
-				rdbtnMedicalShip.setSelected(true);
-			}
-		});
-		rdbtnMedicalShip.setActionCommand("Medical");
-		rdbtnMedicalShip.setBounds(244, 344, 144, 23);
-		frame.getContentPane().add(rdbtnMedicalShip);
-		
-		
-	    // Set your ship
-	    JButton btnSetYourShips = new JButton("Set your ship's name");
-	    btnSetYourShips.addActionListener(new ActionListener() {
-	    	public void actionPerformed(ActionEvent e) {
-	    		if (txtShipsName.getText().equals("")) JOptionPane.showMessageDialog(null, "Please enter the fields");  // displays error if not inputed or selected
-	    		else if (rdbtnRepairShip.isSelected()) {
-	    			lblShipChosen.setText("Repair");
-	    			lblNameOfShip.setText(txtShipsName.getText());
-	    		} else if (rdbtnAttackShip.isSelected()) {
-	    			lblShipChosen.setText("Attack");
-	    			lblNameOfShip.setText(txtShipsName.getText());
-	    		} else if (rdbtnInvisibleShip.isSelected()) {
-	    			lblShipChosen.setText("Invisible");
-	    			lblNameOfShip.setText(txtShipsName.getText());
-	    		} else if (rdbtnStorageShip.isSelected()) {
-	    			lblShipChosen.setText("Storage");
-	    			lblNameOfShip.setText(txtShipsName.getText());
-	    		} else if (rdbtnMedicalShip.isSelected()) {
-	    			lblShipChosen.setText("Medical");
-	    			lblNameOfShip.setText(txtShipsName.getText());
-	    		}
-	    		
-	    		if (!lblShipChosen.getText().equals("...") || !lblNameOfShip.getText().equals("...")) 
-	    			btnStart.setEnabled(true);
-	    			
-	    		// Clear the field
-	    		txtShipsName.setText("");
-	    	}
-	    });
-	    btnSetYourShips.setBounds(560, 305, 218, 45);
-	    frame.getContentPane().add(btnSetYourShips);
-	    
-	    
-	    
 	    lblShipChosen = new JLabel("...");
 	    lblShipChosen.setBounds(75, 393, 212, 15);
 	    frame.getContentPane().add(lblShipChosen);
@@ -288,7 +346,6 @@ public class NameShip {
 	    progressBar.setBounds(9, 42, 148, 25);
 	    frame.getContentPane().add(progressBar);
 	   
-	    
 	    lblMember1 = new JLabel("1. ...");
 	    lblMember1.setBounds(12, 198, 109, 15);
 	    frame.getContentPane().add(lblMember1);
@@ -305,8 +362,6 @@ public class NameShip {
 	    lblMember4.setBounds(12, 279, 117, 15);
 	    frame.getContentPane().add(lblMember4);
 	    
-
-	    
 	    lblName1 = new JLabel("...");
 	    lblName1.setBounds(134, 197, 109, 15);
 	    frame.getContentPane().add(lblName1);
@@ -322,7 +377,6 @@ public class NameShip {
 	    lblName4 = new JLabel("...");
 	    lblName4.setBounds(134, 278, 109, 15);
 	    frame.getContentPane().add(lblName4);
-	    
 	    
 	    JLabel lblCrewStatus = new JLabel("Crew");
 	    lblCrewStatus.setFont(new Font("Dialog", Font.PLAIN, 16));
@@ -345,6 +399,16 @@ public class NameShip {
 	    JLabel label_10 = new JLabel("Names");
 	    label_10.setBounds(144, 171, 66, 15);
 	    frame.getContentPane().add(label_10);
+		
+		JLabel lblName = new JLabel("Please enter the name of your ship:");
+		lblName.setBounds(464, 216, 257, 15);
+		frame.getContentPane().add(lblName);
+		
+	
+		// Button Actions
+		shipChoices();
+		setShips();
+		startGameButton();
 	}
 	
 	
@@ -355,7 +419,6 @@ public class NameShip {
 	{
 		initialize();
 	}
-	
 	
 	
 	/*

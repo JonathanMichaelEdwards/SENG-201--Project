@@ -1,47 +1,67 @@
-import java.awt.EventQueue;
+package SpaceOutpost;
 
+import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 
-public class ConvenienceStore {
+//Self implemented
+import WindowSettings.Display;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-	private JFrame frame;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ConvenienceStore window = new ConvenienceStore();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+
+public class ConvenienceStore 
+{
+	public JFrame frame;
+
+
+	private void backToOutpost()
+	{
+		JButton btnBackToOupost = new JButton("Back to Outpost");
+		btnBackToOupost.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				SpaceOutpost spaceOutpost = new SpaceOutpost();
+				spaceOutpost.frame.setVisible(true);  // turn on screen
+				frame.setVisible(false);              // turn off screen
 			}
 		});
+		btnBackToOupost.setBounds(556, 500, 171, 57);
+		frame.getContentPane().add(btnBackToOupost);
 	}
-
-	/**
+	
+	
+	/*
 	 * Create the application.
-	 */
-	public ConvenienceStore() {
+	*/
+	public ConvenienceStore() 
+	{
 		initialize();
 	}
 
-	/**
+	/*
 	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
+	*/
+	private void initialize() 
+	{
+		// Setting Layout dimensions
 		frame = new JFrame();
-		frame.setBounds(100, 100, 1045, 620);
+		Display display = new Display();  // Retrieving game window size
+		
+		// Setting frame of window
+		frame.setBounds(display.x, display.y, display.width, display.height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setUndecorated(false);  // Frame cannot be adjusted during game
+		frame.setResizable(false);
 		
+		
+		// Initializing displays
 		JLabel lblConvenienceStore = new JLabel("Convenience Store");
 		lblConvenienceStore.setBounds(269, 39, 217, 15);
 		frame.getContentPane().add(lblConvenienceStore);
@@ -124,8 +144,29 @@ public class ConvenienceStore {
 		btnNewButton.setBounds(749, 500, 171, 57);
 		frame.getContentPane().add(btnNewButton);
 		
-		JButton btnBackToOupost = new JButton("Back to Outpost");
-		btnBackToOupost.setBounds(556, 500, 171, 57);
-		frame.getContentPane().add(btnBackToOupost);
+
+		
+		// Button Actions
+		backToOutpost();
+	}
+	
+
+	/*
+	 * Launch the application.
+	*/
+	public static void main(String[] args) 
+	{
+		EventQueue.invokeLater(new Runnable() 
+		{
+			public void run() 
+			{
+				try {
+					ConvenienceStore window = new ConvenienceStore();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 }
