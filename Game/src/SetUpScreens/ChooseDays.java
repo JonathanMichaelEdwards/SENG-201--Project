@@ -7,9 +7,13 @@ import javax.swing.JLabel;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import IOFile.IOFile;
+
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.awt.event.ActionEvent;
 import javax.swing.JProgressBar;
@@ -25,6 +29,7 @@ public class ChooseDays
 	
 	private JSlider slider;
 	private JLabel lblSliderDays;
+	private int days = 3;
 	private int piecesToCollect = 2;  // Pieces player selected
 	
 	
@@ -38,6 +43,7 @@ public class ChooseDays
 		{
 	        public void stateChanged(ChangeEvent e) 
 	        {
+	        	days = slider.getValue();
 	        	piecesToCollect = (int)(slider.getValue()*(0.667));   // Formula days 2/3 (now correct)
 	        	lblSliderDays.setText("Number of Spaceship parts: " + (piecesToCollect));
 	        }
@@ -65,8 +71,15 @@ public class ChooseDays
 				crewSelect.frame.setVisible(true);  // turn on screen
 				frame.setVisible(false);   // turn off screen
 				
-				// Send pieces over
-				crewSelect.storeDays(piecesToCollect);
+				// Send pieces and days to next screen
+				IOFile ioFile = new IOFile();
+				ArrayList<String> storeDays = new ArrayList<String>();
+				
+				// storing information
+				storeDays.add(""+days);
+				storeDays.add(""+piecesToCollect);
+				
+				ioFile.lstFileWrite(storeDays, "StoreGame/DaysInfo.txt");
 			}
 		});
 		btnAccept.setBounds(779, 494, 151, 103);

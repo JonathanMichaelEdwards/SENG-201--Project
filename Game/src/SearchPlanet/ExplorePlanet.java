@@ -1,46 +1,55 @@
+package SearchPlanet;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import MainScreen.MainScreen;
+import WindowSettings.Display;
+
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class ExploreScreen {
+public class ExplorePlanet 
+{
+	public JFrame frame;
 
-	private JFrame frame;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ExploreScreen window = new ExploreScreen();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+	
+	private void btnBack()
+	{
+		JButton btnRecallToShip = new JButton("Re-call to ship");
+		btnRecallToShip.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				MainScreen screen = new MainScreen();
+				screen.frame.setVisible(true);    // turn on screen
+				frame.setVisible(false);          // turn off screen
 			}
 		});
+		btnRecallToShip.setBounds(435, 634, 184, 75);
+		frame.getContentPane().add(btnRecallToShip);
 	}
-
-	/**
-	 * Create the application.
-	 */
-	public ExploreScreen() {
-		initialize();
-	}
-
-	/**
+	
+	
+	/*
 	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
+	*/
+	private void initialize() 
+	{
+		// Setting Layout dimensions
 		frame = new JFrame();
-		frame.setBounds(100, 100, 897, 587);
+		Display display = new Display();  // Retrieving game window size
+		
+		// Setting frame of window
+		frame.setBounds(display.x, display.y, display.width, display.height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+//		frame.setUndecorated(true);  // Frame cannot be adjusted during game
+//		frame.setResizable(false);
 		
 		JLabel lblXLaunchesDown = new JLabel("X launches down from the spaceship in the ships rider/glider/shuttle/teleporter.");
 		lblXLaunchesDown.setBounds(41, 27, 787, 15);
@@ -86,17 +95,41 @@ public class ExploreScreen {
 		lblHeaapsOfStufff.setBounds(205, 460, 465, 75);
 		frame.getContentPane().add(lblHeaapsOfStufff);
 		
-		JButton btnRecallToShip = new JButton("Re-call to ship");
-		btnRecallToShip.setBounds(698, 502, 161, 25);
-		frame.getContentPane().add(btnRecallToShip);
-		
 		JLabel lblBagYou = new JLabel("Bag - You lost your only camo net/sentry/air support beacon in the trip down");
 		lblBagYou.setBounds(41, 250, 787, 15);
 		frame.getContentPane().add(lblBagYou);
 		
 		JLabel lblCrewYou = new JLabel("Crew - You have no backup, the rest of the crew is off world");
-		lblCrewYou.setBounds(41, 282, 787, 15);
+		lblCrewYou.setBounds(34, 535, 414, 64);
 		frame.getContentPane().add(lblCrewYou);
+		
+		// Back button
+		btnBack();
+	}
+	
+	
+	/*
+	 * Create the application.
+	*/
+	public ExplorePlanet() {
+		initialize();
+	}
+	
+	
+	/*
+	 * Launch the application.
+	*/
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ExplorePlanet window = new ExplorePlanet();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 
 }

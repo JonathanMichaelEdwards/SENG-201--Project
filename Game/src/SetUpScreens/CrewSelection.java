@@ -5,6 +5,14 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+
+import CrewTypes.Leader;
+import CrewTypes.Mechanic;
+import CrewTypes.Medic;
+import CrewTypes.Pilot;
+import CrewTypes.Soldier;
+import CrewTypes.Thief;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -40,13 +48,16 @@ public class CrewSelection {
 	private JLabel name1, name2, name3, name4; 
 	
 	// keep track the added and removed players
-	private int piecesToCollect, previousCount = 0;
+	private int days, piecesToCollect, previousCount = 0;
 	
 	// Button Actions
 	private JButton btnAcceptChars;
 	private JButton btnAcceptName;
 	private JButton btnNext;
 	private JButton btnReset;
+	
+	// go to new windows
+	private JButton soldierInfo, leaderInfo, pilotInfo, medicInfo, mechanicInfo, thiefInfo;
 	
 	// Stored list of crewType members and there names
 	private ArrayList<String> crewType = new ArrayList<String>();
@@ -95,14 +106,7 @@ public class CrewSelection {
 		}
 	}
 	
-	
-	// Store pieces selected from previous screen
-	public void storeDays(int pieces)
-	{
-		piecesToCollect = pieces;
-	}
-	
-	
+
 	// reseting the screen
 	private void resetScreen()
 	{
@@ -487,6 +491,14 @@ public class CrewSelection {
 					// Display the information the user selected
 					setMembersChosen();	
 					btnAcceptChars.setEnabled(false);  // disable button
+					
+					// Disable info windows					
+					soldierInfo.setEnabled(false);
+					leaderInfo.setEnabled(false);
+					pilotInfo.setEnabled(false);
+					medicInfo.setEnabled(false);
+					mechanicInfo.setEnabled(false);
+					thiefInfo.setEnabled(false);
 				}
 			}
 		});
@@ -514,7 +526,7 @@ public class CrewSelection {
 					frame.setVisible(false);          // turn off screen
 					
 					// Send info to next screen
-					nameShip.getCrewInfo(crewType, crewNames, piecesToCollect);
+					nameShip.getCrewInfo(crewType, crewNames);
 					
 				} else JOptionPane.showMessageDialog(null, "Please complete the fields");  // Error message
 			}
@@ -572,174 +584,115 @@ public class CrewSelection {
 		});
 		btnAcceptName.setBounds(482, 750, 157, 59);
 		frame.getContentPane().add(btnAcceptName);
-		
-		//int healthmax = 100;
-		//int tiredmax = 100;
-		//int hungermax = 100;
-		
-		JProgressBar soldierHealth = new JProgressBar();
-		soldierHealth.setStringPainted(true);
-		soldierHealth.setForeground(Color.black);
-		soldierHealth.setValue(80);
-		soldierHealth.setBounds(58, 259, 146, 11);
-		frame.getContentPane().add(soldierHealth);
-		
-		JProgressBar soldierTired = new JProgressBar();
-		soldierTired.setStringPainted(true);
-		soldierTired.setForeground(Color.black);
-		soldierTired.setValue(50);
-		soldierTired.setBounds(58, 286, 146, 11);
-		frame.getContentPane().add(soldierTired);
-		
-		JProgressBar soldierHunger = new JProgressBar();
-		soldierHunger.setStringPainted(true);
-		soldierHunger.setForeground(Color.black);
-		soldierHunger.setValue(70);
-		soldierHunger.setBounds(58, 319, 146, 11);
-		frame.getContentPane().add(soldierHunger);
-		
-		JProgressBar medicHealth = new JProgressBar();
-		medicHealth.setStringPainted(true);
-		medicHealth.setForeground(Color.black);
-		medicHealth.setValue(100);
-		medicHealth.setBounds(309, 259, 146, 11);
-		frame.getContentPane().add(medicHealth);
-		
-		JProgressBar medicTired = new JProgressBar();
-		medicTired.setStringPainted(true);
-		medicTired.setForeground(Color.black);
-		medicTired.setValue(50);
-		medicTired.setBounds(309, 286, 146, 11);
-		frame.getContentPane().add(medicTired);
-		
-		JProgressBar medicHunger = new JProgressBar();
-		medicHunger.setStringPainted(true);
-		medicHunger.setForeground(Color.black);
-		medicHunger.setValue(50);
-		medicHunger.setBounds(309, 319, 146, 11);
-		frame.getContentPane().add(medicHunger);
-		
-		JLabel lblHealth = new JLabel("Health");
-		lblHealth.setBounds(12, 259, 46, 13);
-		frame.getContentPane().add(lblHealth);
-		
-		JLabel lblTiredness = new JLabel("Tiredness");
-		lblTiredness.setBounds(12, 284, 46, 13);
-		frame.getContentPane().add(lblTiredness);
-		
-		JLabel lblHunger = new JLabel("Hunger");
-		lblHunger.setBounds(12, 317, 46, 13);
-		frame.getContentPane().add(lblHunger);
-		
-		JProgressBar leaderHealth = new JProgressBar();
-		leaderHealth.setStringPainted(true);
-		leaderHealth.setForeground(Color.black);
-		leaderHealth.setValue(40);
-		leaderHealth.setBounds(574, 259, 146, 11);
-		frame.getContentPane().add(leaderHealth);
-		
-		JProgressBar leaderTired = new JProgressBar();
-		leaderTired.setStringPainted(true);
-		leaderTired.setForeground(Color.black);
-		leaderTired.setValue(60);
-		leaderTired.setBounds(574, 286, 146, 11);
-		frame.getContentPane().add(leaderTired);
-		
-		JProgressBar leaderHunger = new JProgressBar();
-		leaderHunger.setStringPainted(true);
-		leaderHunger.setForeground(Color.black);
-		leaderHunger.setValue(100);
-		leaderHunger.setBounds(574, 319, 146, 11);
-		frame.getContentPane().add(leaderHunger);
-		
-		JProgressBar mechanicHealth = new JProgressBar();
-		mechanicHealth.setStringPainted(true);
-		mechanicHealth.setForeground(Color.black);
-		mechanicHealth.setValue(80);
-		mechanicHealth.setBounds(837, 259, 146, 11);
-		frame.getContentPane().add(mechanicHealth);
-		
-		JProgressBar mechanicTired = new JProgressBar();
-		mechanicTired.setStringPainted(true);
-		mechanicTired.setForeground(Color.black);
-		mechanicTired.setValue(50);
-		mechanicTired.setBounds(837, 286, 146, 11);
-		frame.getContentPane().add(mechanicTired);
-		
-		JProgressBar mechanicHunger = new JProgressBar();
-		mechanicHunger.setStringPainted(true);
-		mechanicHunger.setForeground(Color.black);
-		mechanicHunger.setValue(70);
-		mechanicHunger.setBounds(837, 319, 146, 11);
-		frame.getContentPane().add(mechanicHunger);
-		
-		JProgressBar pilotHealth = new JProgressBar();
-		pilotHealth.setStringPainted(true);
-		pilotHealth.setForeground(Color.black);
-		pilotHealth.setValue(50);
-		pilotHealth.setBounds(1082, 259, 146, 11);
-		frame.getContentPane().add(pilotHealth);
-		
-		JProgressBar pilotTired = new JProgressBar();
-		pilotTired.setStringPainted(true);
-		pilotTired.setForeground(Color.black);
-		pilotTired.setValue(100);
-		pilotTired.setBounds(1082, 286, 146, 11);
-		frame.getContentPane().add(pilotTired);
-		
-		JProgressBar pilotHunger = new JProgressBar();
-		pilotHunger.setStringPainted(true);
-		pilotHunger.setForeground(Color.black);
-		pilotHunger.setValue(50);
-		pilotHunger.setBounds(1082, 319, 146, 11);
-		frame.getContentPane().add(pilotHunger);
-		
-		JProgressBar thiefHealth = new JProgressBar();
-		thiefHealth.setStringPainted(true);
-		thiefHealth.setForeground(Color.black);
-		thiefHealth.setValue(70);
-		thiefHealth.setBounds(1313, 259, 146, 11);
-		frame.getContentPane().add(thiefHealth);
-		
-		JProgressBar thiefTired = new JProgressBar();
-		thiefTired.setStringPainted(true);
-		thiefTired.setForeground(Color.black);
-		thiefTired.setValue(60);
-		thiefTired.setBounds(1313, 286, 146, 11);
-		frame.getContentPane().add(thiefTired);
-		
-		JProgressBar thiefHunger = new JProgressBar();
-		thiefHunger.setStringPainted(true);
-		thiefHunger.setForeground(Color.black);
-		thiefHunger.setValue(70);
-		thiefHunger.setBounds(1313, 319, 146, 11);
-		frame.getContentPane().add(thiefHunger);
-		
-		JButton soldierInfo = new JButton("More Info");
-		soldierInfo.setBounds(58, 402, 85, 21);
-		frame.getContentPane().add(soldierInfo);
-		
-		JButton medicInfo = new JButton("More Info");
-		medicInfo.setBounds(320, 403, 85, 21);
-		frame.getContentPane().add(medicInfo);
-		
-		JButton leaderInfo = new JButton("More Info");
-		leaderInfo.setBounds(574, 402, 85, 21);
-		frame.getContentPane().add(leaderInfo);
-		
-		JButton mechanicInfo = new JButton("More Info");
-		mechanicInfo.setBounds(837, 402, 85, 21);
-		frame.getContentPane().add(mechanicInfo);
-		
-		JButton pilotInfo = new JButton("More Info");
-		pilotInfo.setBounds(1082, 402, 85, 21);
-		frame.getContentPane().add(pilotInfo);
-		
-		JButton thiefInfo = new JButton("More Info");
+	}
+	
+	
+	private void thiefWindow()
+	{
+		thiefInfo = new JButton("More Info");
+		thiefInfo.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				// Setting a new frame
+				Thief thief = new Thief();
+				thief.frame.setVisible(true);  // turn on screen
+				frame.setVisible(false);          // turn off screen
+			}
+		});
 		thiefInfo.setBounds(1313, 402, 85, 21);
 		frame.getContentPane().add(thiefInfo);
 	}
 	
+	
+	private void pilotWindow()
+	{
+		pilotInfo = new JButton("More Info");
+		pilotInfo.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				// Setting a new frame
+				Pilot pilot = new Pilot();
+				pilot.frame.setVisible(true);  // turn on screen
+				frame.setVisible(false);          // turn off screen
+			}
+		});
+		pilotInfo.setBounds(1082, 402, 85, 21);
+		frame.getContentPane().add(pilotInfo);
+	}
+	
+	
+	private void mechanicWindow()
+	{
+		mechanicInfo = new JButton("More Info");
+		mechanicInfo.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				// Setting a new frame
+				Mechanic mechanic = new Mechanic();
+				mechanic.frame.setVisible(true);  // turn on screen
+				frame.setVisible(false);          // turn off screen
+			}
+		});
+		mechanicInfo.setBounds(837, 402, 85, 21);
+		frame.getContentPane().add(mechanicInfo);
+	}
+	
+	
+	private void leaderWindow()
+	{
+		leaderInfo = new JButton("More Info");
+		leaderInfo.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				// Setting a new frame
+				Leader medic = new Leader();
+				medic.frame.setVisible(true);  // turn on screen
+				frame.setVisible(false);          // turn off screen
+			}
+		});
+		leaderInfo.setBounds(574, 402, 85, 21);
+		frame.getContentPane().add(leaderInfo);
+	}
+	
+	
+	private void soldierWindow()
+	{
+		soldierInfo = new JButton("More Info");
+		soldierInfo.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				// Setting a new frame
+				Soldier soldier = new Soldier();
+				soldier.frame.setVisible(true);  // turn on screen
+				frame.setVisible(false); 
+			}
+		});
+		soldierInfo.setBounds(58, 402, 85, 21);
+		frame.getContentPane().add(soldierInfo);
+	}
+	
+	
+	private void medicWindow()
+	{
+		medicInfo = new JButton("More Info");
+		medicInfo.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				// Setting a new frame
+				Medic medic = new Medic();
+				medic.frame.setVisible(true);  // turn on screen
+				frame.setVisible(false);          // turn off screen
+			}
+		});
+		medicInfo.setBounds(320, 403, 85, 21);
+		frame.getContentPane().add(medicInfo);
+	}
 	
 	
 	/*
@@ -865,6 +818,145 @@ public class CrewSelection {
 		comBoxCharChosen.setBounds(251, 716, 142, 27);
 		frame.getContentPane().add(comBoxCharChosen);
 		
+		JProgressBar soldierHealth = new JProgressBar();
+		soldierHealth.setStringPainted(true);
+		soldierHealth.setForeground(Color.black);
+		soldierHealth.setValue(80);
+		soldierHealth.setBounds(79, 259, 146, 11);
+		frame.getContentPane().add(soldierHealth);
+		
+		JProgressBar soldierTired = new JProgressBar();
+		soldierTired.setStringPainted(true);
+		soldierTired.setForeground(Color.black);
+		soldierTired.setValue(50);
+		soldierTired.setBounds(79, 282, 146, 11);
+		frame.getContentPane().add(soldierTired);
+		
+		JProgressBar soldierHunger = new JProgressBar();
+		soldierHunger.setStringPainted(true);
+		soldierHunger.setForeground(Color.black);
+		soldierHunger.setValue(70);
+		soldierHunger.setBounds(79, 319, 146, 11);
+		frame.getContentPane().add(soldierHunger);
+		
+		JProgressBar medicHealth = new JProgressBar();
+		medicHealth.setStringPainted(true);
+		medicHealth.setForeground(Color.black);
+		medicHealth.setValue(100);
+		medicHealth.setBounds(309, 259, 146, 11);
+		frame.getContentPane().add(medicHealth);
+		
+		JProgressBar medicTired = new JProgressBar();
+		medicTired.setStringPainted(true);
+		medicTired.setForeground(Color.black);
+		medicTired.setValue(50);
+		medicTired.setBounds(309, 286, 146, 11);
+		frame.getContentPane().add(medicTired);
+		
+		JProgressBar medicHunger = new JProgressBar();
+		medicHunger.setStringPainted(true);
+		medicHunger.setForeground(Color.black);
+		medicHunger.setValue(50);
+		medicHunger.setBounds(309, 319, 146, 11);
+		frame.getContentPane().add(medicHunger);
+		
+		JLabel lblHealth = new JLabel("Health");
+		lblHealth.setBounds(12, 259, 46, 13);
+		frame.getContentPane().add(lblHealth);
+		
+		JLabel lblTiredness = new JLabel("Tiredness");
+		lblTiredness.setBounds(12, 284, 66, 13);
+		frame.getContentPane().add(lblTiredness);
+		
+		JLabel lblHunger = new JLabel("Hunger");
+		lblHunger.setBounds(12, 317, 46, 13);
+		frame.getContentPane().add(lblHunger);
+		
+		JProgressBar leaderHealth = new JProgressBar();
+		leaderHealth.setStringPainted(true);
+		leaderHealth.setForeground(Color.black);
+		leaderHealth.setValue(40);
+		leaderHealth.setBounds(574, 259, 146, 11);
+		frame.getContentPane().add(leaderHealth);
+		
+		JProgressBar leaderTired = new JProgressBar();
+		leaderTired.setStringPainted(true);
+		leaderTired.setForeground(Color.black);
+		leaderTired.setValue(60);
+		leaderTired.setBounds(574, 286, 146, 11);
+		frame.getContentPane().add(leaderTired);
+		
+		JProgressBar leaderHunger = new JProgressBar();
+		leaderHunger.setStringPainted(true);
+		leaderHunger.setForeground(Color.black);
+		leaderHunger.setValue(100);
+		leaderHunger.setBounds(574, 319, 146, 11);
+		frame.getContentPane().add(leaderHunger);
+		
+		JProgressBar mechanicHealth = new JProgressBar();
+		mechanicHealth.setStringPainted(true);
+		mechanicHealth.setForeground(Color.black);
+		mechanicHealth.setValue(80);
+		mechanicHealth.setBounds(837, 259, 146, 11);
+		frame.getContentPane().add(mechanicHealth);
+		
+		JProgressBar mechanicTired = new JProgressBar();
+		mechanicTired.setStringPainted(true);
+		mechanicTired.setForeground(Color.black);
+		mechanicTired.setValue(50);
+		mechanicTired.setBounds(837, 286, 146, 11);
+		frame.getContentPane().add(mechanicTired);
+		
+		JProgressBar mechanicHunger = new JProgressBar();
+		mechanicHunger.setStringPainted(true);
+		mechanicHunger.setForeground(Color.black);
+		mechanicHunger.setValue(70);
+		mechanicHunger.setBounds(837, 319, 146, 11);
+		frame.getContentPane().add(mechanicHunger);
+		
+		JProgressBar pilotHealth = new JProgressBar();
+		pilotHealth.setStringPainted(true);
+		pilotHealth.setForeground(Color.black);
+		pilotHealth.setValue(50);
+		pilotHealth.setBounds(1082, 259, 146, 11);
+		frame.getContentPane().add(pilotHealth);
+		
+		JProgressBar pilotTired = new JProgressBar();
+		pilotTired.setStringPainted(true);
+		pilotTired.setForeground(Color.black);
+		pilotTired.setValue(100);
+		pilotTired.setBounds(1082, 286, 146, 11);
+		frame.getContentPane().add(pilotTired);
+		
+		JProgressBar pilotHunger = new JProgressBar();
+		pilotHunger.setStringPainted(true);
+		pilotHunger.setForeground(Color.black);
+		pilotHunger.setValue(50);
+		pilotHunger.setBounds(1082, 319, 146, 11);
+		frame.getContentPane().add(pilotHunger);
+		
+		JProgressBar thiefHealth = new JProgressBar();
+		thiefHealth.setStringPainted(true);
+		thiefHealth.setForeground(Color.black);
+		thiefHealth.setValue(70);
+		thiefHealth.setBounds(1313, 259, 146, 11);
+		frame.getContentPane().add(thiefHealth);
+		
+		JProgressBar thiefTired = new JProgressBar();
+		thiefTired.setStringPainted(true);
+		thiefTired.setForeground(Color.black);
+		thiefTired.setValue(60);
+		thiefTired.setBounds(1313, 286, 146, 11);
+		frame.getContentPane().add(thiefTired);
+		
+		JProgressBar thiefHunger = new JProgressBar();
+		thiefHunger.setStringPainted(true);
+		thiefHunger.setForeground(Color.black);
+		thiefHunger.setValue(70);
+		thiefHunger.setBounds(1313, 319, 146, 11);
+		frame.getContentPane().add(thiefHunger);
+		
+		
 
 		// Button Actions
 		characterChoices();
@@ -874,6 +966,13 @@ public class CrewSelection {
 		resetButton();
 		acceptName();
 		
+		// Information window
+		mechanicWindow();
+		pilotWindow();
+		leaderWindow();
+		soldierWindow();
+		medicWindow();
+		thiefWindow();
 	}
 	
 	

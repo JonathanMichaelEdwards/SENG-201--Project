@@ -17,6 +17,7 @@ import javax.swing.JProgressBar;
 // Self implemented
 import WindowSettings.Display;
 import MainScreen.MainScreen;
+import IOFile.IOFile;
 
 
 public class NameShip {
@@ -42,21 +43,7 @@ public class NameShip {
 	private ArrayList<String> crewNames = new ArrayList<String>();
 	private String shipType = "";
 	private String shipName = "";
-	private int piecesToCollect = 2;  // default value
 	
-	String a;
-	
-	
-	
-	public void SetA(String input) 
-	{
-		a = input;
-	}
-	
-	public String getA() 
-	{
-		return a;
-	}
 	
 	
 	//	Storing info for next screen
@@ -69,8 +56,10 @@ public class NameShip {
 	
 	
 	// Retrieve data from previous screen
-	public void getCrewInfo(ArrayList<String> type, ArrayList<String> name, int pieces)
+	public void getCrewInfo(ArrayList<String> type, ArrayList<String> name)
 	{
+		IOFile ioFile = new IOFile();
+		
 		// Displaying info collected info
 		for (int index = 0; index < type.size(); index++) {
 			if (index == 0) { 
@@ -97,8 +86,9 @@ public class NameShip {
 		}
 
 		// Storing number of pieces needed to be collected
-		piecesToCollect = pieces;
-		lblPieces.setText("" + piecesToCollect);
+		ArrayList<String> shipInfo = ioFile.fileRead("StoreGame/DaysInfo.txt");
+		
+		lblPieces.setText(shipInfo.get(1));
 	}
 	
 
@@ -234,12 +224,6 @@ public class NameShip {
 	    			shipType = "Medical";
 	    		}
 	    		shipName = txtShipsName.getText();
-	    
-	    		
-	    		
-	    		SetA(shipName);
-	    		
-	    		
 	    		
 	    		// If both have been filled in, enable button 
 	    		if (!lblShipChosen.getText().equals("...") && !lblNameOfShip.getText().equals("...")) 
@@ -264,6 +248,25 @@ public class NameShip {
 		rdbtnMedicalShip.setSelected(false);
 	}
 	
+	
+	private void storeInfo()
+	{
+		// Store information in files
+		IOFile ioFile = new IOFile();
+		ArrayList<String> storeCrew = new ArrayList<String>();
+		ArrayList<String> storeShip = new ArrayList<String>();
+		
+		storeCrew.addAll(crewType);
+		storeCrew.addAll(crewNames);
+		
+		storeShip.add(shipType);
+		storeShip.add(shipName);
+		
+		ioFile.lstFileWrite(storeCrew, "StoreGame/CrewInfo.txt");
+		ioFile.lstFileWrite(storeShip, "StoreGame/ShipInfo.txt");
+	}
+	
+	
 	// Go to game screen if all fields are completed
 	private void startGameButton()
 	{
@@ -278,15 +281,13 @@ public class NameShip {
 				if (lblShipChosen.getText().equals("...") || lblNameOfShip.getText().equals("...")) 
 					JOptionPane.showMessageDialog(null, "Please fill in the required fields");
 				else {
+					storeInfo();  // Store information in files
+					
 					// move to the main screen
 					// Setting a new frame
-					MainScreen mainScreen = new MainScreen(getA());
+					MainScreen mainScreen = new MainScreen();
 					mainScreen.frame.setVisible(true);  // turn on screen
-//					frame.setVisible(false);            // turn off screen
-//					
-					// Send info to next screen
-					mainScreen.getCrewInfo(crewType, crewNames, piecesToCollect, shipType, shipName);
-					
+					frame.setVisible(false);            // turn off screen
 				}
 			}
 		});

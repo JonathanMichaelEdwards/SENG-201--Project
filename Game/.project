@@ -14,14 +14,4 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-<<<<<<< Updated upstream
-=======
-	<linkedResources>
-		<link>
-			<name>src/GameSettings/Display.java</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Display.java</locationURI>
-		</link>
-	</linkedResources>
->>>>>>> Stashed changes
 </projectDescription>
