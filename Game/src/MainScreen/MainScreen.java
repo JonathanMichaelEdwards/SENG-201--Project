@@ -55,8 +55,8 @@ public class MainScreen
 	private int repair;
 	
 	// stores the selection type
-	private JLabel type[] = new JLabel[6];
-	private JLabel member[] = new JLabel[6];
+	private JLabel type[] = new JLabel[4];
+	private JLabel member[] = new JLabel[4];
 	
 	
 	private JProgressBar health[] = new JProgressBar[4];
@@ -95,6 +95,7 @@ public class MainScreen
 	// Stores crew details in data arrays so it can be used easily
 	private void dispCrewType() 
 	{
+		System.out.println(lblCrewType1);
 		type[0] = lblCrewType1;
 		type[1] = lblCrewType2;
 		type[2] = lblCrewType3;
@@ -117,7 +118,7 @@ public class MainScreen
 			crewType.add(crewInfo.get(index));
 			crewName.add(crewInfo.get(index+size));
 		}
-		diasbleStatus(size);
+		disableStatus(size);
 	}
 	
 	
@@ -132,7 +133,7 @@ public class MainScreen
 	}
 	
 	// helper function to disable/(grey out) unused status information areas
-	private void diasbleStatus(int size)
+	private void disableStatus(int size)
 	{
 		int lsSize = 4;
 		
@@ -529,6 +530,8 @@ public class MainScreen
 		lblCrewType4.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
 		lblCrewType4.setBounds(803, 79, 134, 22);
 		panelCrew.add(lblCrewType4);
+		
+		
 		lblDaysLeft = new JLabel("Day: ...");
 		lblDaysLeft.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
 		lblDaysLeft.setBounds(133, 75, 76, 33);
