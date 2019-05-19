@@ -153,9 +153,9 @@ public class MainScreen
 	{
 		// store crew member and there names at the correct index in separate lists
 		// size is -1 because an empty value is added on to the end
-		if ((crewInfo.size()-1) == 4) addCrew(crewInfo, 2);
-		else if ((crewInfo.size()-1) == 6) addCrew(crewInfo, 3);
-		else if ((crewInfo.size()-1) == 8) addCrew(crewInfo, 4);
+		if ((crewInfo.size()) == 4) addCrew(crewInfo, 2);
+		else if (crewInfo.size() == 6) addCrew(crewInfo, 3);
+		else if (crewInfo.size() == 8) addCrew(crewInfo, 4);
 	}
 	
 	
@@ -535,12 +535,6 @@ public class MainScreen
 		
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(lblDaysLeft);
-		
-		
-		// Initialize progress bars
-		IOFile ioFile = new IOFile();
-		
-
 		
 		
 		// Initialize storage arrays
