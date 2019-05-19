@@ -60,7 +60,6 @@ public class IOFile
 
 		    while (readLine != null) {
 		    	strBuffer.append(readLine);
-		    	strBuffer.append(System.lineSeparator());
 		    	readLine = buffer.readLine();  
 		    }
 			

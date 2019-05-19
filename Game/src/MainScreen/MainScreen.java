@@ -271,7 +271,7 @@ public class MainScreen
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				CrewSleep sleep = new CrewSleep();
-				sleep.frame.setVisible(true);    // turn on screen
+				sleep.frame.setVisible(true);     // turn on screen
 				frame.setVisible(false);          // turn off screen
 			}
 		});
@@ -304,6 +304,26 @@ public class MainScreen
 	private void nextDay()
 	{	
 		JButton btnNextDay = new JButton("Next Day");
+		btnNextDay.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				ArrayList<String> changeDays = new ArrayList<String>();
+				IOFile ioFile = new IOFile();
+				
+				changeDays = ioFile.fileRead("StoreGame/DaysInfo.txt");
+				int days = Integer.parseInt(changeDays.get(0)) - 1;
+				
+				changeDays.set(0, "" + days);
+				
+				ioFile.fileWrite(changeDays, "StoreGame/DaysInfo.txt");  // Writing in new days
+				
+				// Reseting screen
+				MainScreen screen = new MainScreen();
+				screen.frame.setVisible(true);    // turn on screen
+				frame.setVisible(false);          // turn off screen
+			}
+		});
 		btnNextDay.setFont(new Font("Lucida Grande", Font.PLAIN, 23));
 		btnNextDay.setBounds(562, 62, 249, 101);
 		frame.getContentPane().add(btnNextDay);
