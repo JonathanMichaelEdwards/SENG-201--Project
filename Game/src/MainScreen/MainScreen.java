@@ -18,6 +18,7 @@ import SpaceOutpost.SpaceOutpost;
 import IOFile.IOFile;
 import Inventory.ShipInventory;
 import NewPlanet.CrewTravel;
+import RepairShields.CrewRepair;
 import SearchPlanet.CrewPlanet;
 import Sleep.CrewSleep;
 
@@ -42,6 +43,7 @@ public class MainScreen
 	private JProgressBar pBarHealth1, pBarHealth2, pBarHealth3, pBarHealth4;
 	private JProgressBar pBarTiredness1, pBarTiredness2, pBarTiredness3, pBarTiredness4;
 	private JProgressBar pBarHunger1, pBarHunger2, pBarHunger3, pBarHunger4;
+	private JProgressBar pBarShipHealth;
 	
 	// Stored information that the user has chosen
 	private ArrayList<String> crewType = new ArrayList<String>();
@@ -50,6 +52,7 @@ public class MainScreen
 	private String shipName;
 	private int days;
 	private int parts;
+	private int repair;
 	
 	// stores the selection type
 	private JLabel type[] = new JLabel[6];
@@ -161,9 +164,12 @@ public class MainScreen
 	{
 		// gather information stored in file
 		IOFile ioFile = new IOFile();
+		
+		// Reading files
 		ArrayList<String> crewInfo = ioFile.fileRead("StoreGame/CrewInfo.txt");
 		ArrayList<String> shipInfo = ioFile.fileRead("StoreGame/ShipInfo.txt");
 		ArrayList<String> daysInfo = ioFile.fileRead("StoreGame/DaysInfo.txt");
+		ArrayList<String> changeShields = ioFile.fileRead("StoreGame/ShipInfo.txt");
 		
 		// unwrap information
 		decodeCrewInfo(crewInfo);
@@ -174,6 +180,7 @@ public class MainScreen
 		days = Integer.parseInt(daysInfo.get(0));
 		parts = Integer.parseInt(daysInfo.get(1));
 		
+		repair = Integer.parseInt(changeShields.get(2));
 		
 		// displaying stored info
 		lblShipType.setText(shipType);
@@ -181,6 +188,8 @@ public class MainScreen
 		
 		lblDaysLeft.setText("Day: " + days);
 		lblParts.setText("Parts to find: " + parts);
+		
+		pBarShipHealth.setValue(repair);
 		
 		for (int index = 0; index < crewType.size(); index++) {
 			type[index].setText(crewType.get(index));
@@ -256,6 +265,9 @@ public class MainScreen
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
+				CrewRepair screen = new CrewRepair();
+				screen.frame.setVisible(true);    // turn on screen
+				frame.setVisible(false);          // turn off screen
 			}
 		});
 		frame.getContentPane().add(btnRepairShields);
@@ -312,16 +324,11 @@ public class MainScreen
 				IOFile ioFile = new IOFile();
 				
 				changeDays = ioFile.fileRead("StoreGame/DaysInfo.txt");
-				int days = Integer.parseInt(changeDays.get(0)) - 1;
-				
+				days = Integer.parseInt(changeDays.get(0)) - 1;
 				changeDays.set(0, "" + days);
-				
 				ioFile.fileWrite(changeDays, "StoreGame/DaysInfo.txt");  // Writing in new days
 				
-				// Reseting screen
-				MainScreen screen = new MainScreen();
-				screen.frame.setVisible(true);    // turn on screen
-				frame.setVisible(false);          // turn off screen
+				lblDaysLeft.setText("Day: "  + days);
 			}
 		});
 		btnNextDay.setFont(new Font("Lucida Grande", Font.PLAIN, 23));
@@ -386,7 +393,7 @@ public class MainScreen
 		panelShip.add(lblHealth);
 		lblHealth.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		
-		JProgressBar pBarShipHealth = new JProgressBar();
+		pBarShipHealth = new JProgressBar();
 		pBarShipHealth.setBounds(259, 93, 223, 34);
 		panelShip.add(pBarShipHealth);
 		
@@ -528,6 +535,12 @@ public class MainScreen
 		
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(lblDaysLeft);
+		
+		
+		// Initialize progress bars
+		IOFile ioFile = new IOFile();
+		
+
 		
 		
 		// Initialize storage arrays
