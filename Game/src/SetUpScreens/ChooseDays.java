@@ -1,6 +1,6 @@
 package SetUpScreens;
 
-// Libary imports
+// Library imports
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -67,7 +67,7 @@ public class ChooseDays
 				// Setting a new frame
 				CrewSelection crewSelect = new CrewSelection();
 				
-				// Transfering from ChooseDays class to CrewSelection class  
+				// Transferring from ChooseDays class to CrewSelection class  
 				crewSelect.frame.setVisible(true);  // turn on screen
 				frame.setVisible(false);   // turn off screen
 				
@@ -79,7 +79,7 @@ public class ChooseDays
 				storeDays.add(""+days);
 				storeDays.add(""+piecesToCollect);
 				
-				ioFile.lstFileWrite(storeDays, "StoreGame/DaysInfo.txt");
+				ioFile.fileWrite(storeDays, "StoreGame/DaysInfo.txt");
 			}
 		});
 		btnAccept.setBounds(779, 494, 151, 103);

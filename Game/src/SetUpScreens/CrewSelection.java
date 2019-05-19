@@ -1,18 +1,9 @@
 package SetUpScreens;
 
-import java.awt.Color;
-// Libary imports
+// Library imports
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
-
-import CrewTypes.Leader;
-import CrewTypes.Mechanic;
-import CrewTypes.Medic;
-import CrewTypes.Pilot;
-import CrewTypes.Soldier;
-import CrewTypes.Thief;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -21,13 +12,21 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import java.awt.Color;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JProgressBar;
 
 // Self implemented
 import WindowSettings.Display;
 import java.awt.Font;
-
+import CrewTypes.CrewRatings;
+import CrewTypes.Leader;
+import CrewTypes.Mechanic;
+import CrewTypes.Medic;
+import CrewTypes.Pilot;
+import CrewTypes.Soldier;
+import CrewTypes.Thief;
+import IOFile.IOFile;
 
 
 public class CrewSelection {
@@ -39,7 +38,7 @@ public class CrewSelection {
 	private JLabel label;
 	private JComboBox<Object> comBoxCharChosen;
 	
-	// Setting up player selection varibles
+	// Setting up player selection variables
 	private JCheckBox selectSoldier, selectMedic, selectLeader, selectMechanic, selectPilot, selectThief;
 	private JComboBox<Object> comboBoxSoldier, comboBoxMedic, comboBoxLeader, comboBoxMechanic, comboBoxPilot, comboBoxThief;
 	
@@ -48,7 +47,7 @@ public class CrewSelection {
 	private JLabel name1, name2, name3, name4; 
 	
 	// keep track the added and removed players
-	private int days, piecesToCollect, previousCount = 0;
+	private int previousCount = 0;
 	
 	// Button Actions
 	private JButton btnAcceptChars;
@@ -58,6 +57,9 @@ public class CrewSelection {
 	
 	// go to new windows
 	private JButton soldierInfo, leaderInfo, pilotInfo, medicInfo, mechanicInfo, thiefInfo;
+	
+	// Store crew ratings
+	ArrayList<String> soldier, medic, leader, mechanic, pilot, thief;
 	
 	// Stored list of crewType members and there names
 	private ArrayList<String> crewType = new ArrayList<String>();
@@ -692,6 +694,22 @@ public class CrewSelection {
 		});
 		medicInfo.setBounds(320, 403, 85, 21);
 		frame.getContentPane().add(medicInfo);
+	}	
+	
+	
+	private void storeCrewRatings()
+	{
+		IOFile ioFile = new IOFile();
+		CrewRatings crew = new CrewRatings();
+		crew.crewRatings();  // Each rating stored in list
+		
+		// Storing number of pieces needed to be collected
+		ioFile.fileWrite(crew.soldier, "StoreGame/CrewRatings/Soldier.txt");
+		ioFile.fileWrite(crew.medic, "StoreGame/CrewRatings/Medic.txt");
+		ioFile.fileWrite(crew.leader, "StoreGame/CrewRatings/Leader.txt");
+		ioFile.fileWrite(crew.mechanic, "StoreGame/CrewRatings/Mechanic.txt");
+		ioFile.fileWrite(crew.pilot, "StoreGame/CrewRatings/Pilot.txt");
+		ioFile.fileWrite(crew.thief, "StoreGame/CrewRatings/Thief.txt");
 	}
 	
 	
@@ -981,6 +999,7 @@ public class CrewSelection {
 	*/
 	public CrewSelection() {
 		initialize();
+		storeCrewRatings();  // Store ratings
 	}
 	
 	

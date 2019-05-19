@@ -1,13 +1,13 @@
 package SearchPlanet;
 
+//Library imports
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-import MainScreen.MainScreen;
+//Self implemented
 import WindowSettings.Display;
 
 
@@ -28,7 +28,8 @@ public class CrewPlanet {
 				frame.setVisible(false);          // turn off screen
 			}
 		});
-		btnSearchPlanet.setBounds(320, 440, 285, 173);
+		frame.getContentPane().setLayout(null);
+		btnSearchPlanet.setBounds(392, 514, 307, 122);
 		frame.getContentPane().add(btnSearchPlanet);
 	}
 	
@@ -44,10 +45,8 @@ public class CrewPlanet {
 		// Setting frame of window
 		frame.setBounds(display.x, display.y, display.width, display.height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		
+		frame.setResizable(false);
 //		frame.setUndecorated(true);  // Frame cannot be adjusted during game
-//		frame.setResizable(false);
 		
 		
 		// forward Button

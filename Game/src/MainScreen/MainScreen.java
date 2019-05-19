@@ -1,10 +1,9 @@
 package MainScreen;
 
-//Libary imports
+// Library imports
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
@@ -17,7 +16,10 @@ import javax.swing.JPanel;
 import WindowSettings.Display;
 import SpaceOutpost.SpaceOutpost;
 import IOFile.IOFile;
+import Inventory.ShipInventory;
+import NewPlanet.CrewTravel;
 import SearchPlanet.CrewPlanet;
+import Sleep.CrewSleep;
 
 
 
@@ -58,7 +60,6 @@ public class MainScreen
 	private JProgressBar tiredness[] = new JProgressBar[4];
 	private JProgressBar hunger[] = new JProgressBar [4];
 	private JButton btnSleep;
-	
 	
 	
 	// Store all progress bar so it can be used easily
@@ -174,13 +175,12 @@ public class MainScreen
 		parts = Integer.parseInt(daysInfo.get(1));
 		
 		
-		
+		// displaying stored info
 		lblShipType.setText(shipType);
 		lblShipName.setText(shipName);
 		
 		lblDaysLeft.setText("Day: " + days);
 		lblParts.setText("Parts to find: " + parts);
-		
 		
 		for (int index = 0; index < crewType.size(); index++) {
 			type[index].setText(crewType.get(index));
@@ -218,6 +218,9 @@ public class MainScreen
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
+				CrewTravel screen = new CrewTravel();
+				screen.frame.setVisible(true);    // turn on screen
+				frame.setVisible(false);          // turn off screen
 			}
 		});
 		frame.getContentPane().add(btnNewPlanet);
@@ -259,24 +262,51 @@ public class MainScreen
 	}
 	
 	
+	// Go to sleep screen
+	private void btnSleep()
+	{
+		btnSleep = new JButton("Sleep");
+		btnSleep.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				CrewSleep sleep = new CrewSleep();
+				sleep.frame.setVisible(true);    // turn on screen
+				frame.setVisible(false);          // turn off screen
+			}
+		});
+		btnSleep.setFont(new Font("Lucida Grande", Font.PLAIN, 23));
+		btnSleep.setBounds(85, 258, 230, 101);
+		frame.getContentPane().add(btnSleep);
+		
+
+	}
+	
+	private void btnInventory()
+	{
+		JButton btnInventory = new JButton("Inventory");
+		btnInventory.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				ShipInventory sleep = new ShipInventory();
+				sleep.frame.setVisible(true);    // turn on screen
+				frame.setVisible(false);         // turn off screen
+			}
+		});
+		btnInventory.setFont(new Font("Dialog", Font.PLAIN, 23));
+		btnInventory.setBounds(49, 400, 230, 101);
+		frame.getContentPane().add(btnInventory);
+	}
+	
+	
 	// go to the next day
 	private void nextDay()
-	{
-		
-		lblParts = new JLabel("Parts: ...");
-		lblParts.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		lblParts.setBounds(308, 75, 155, 33);
-		frame.getContentPane().add(lblParts);
-		
+	{	
 		JButton btnNextDay = new JButton("Next Day");
 		btnNextDay.setFont(new Font("Lucida Grande", Font.PLAIN, 23));
 		btnNextDay.setBounds(562, 62, 249, 101);
 		frame.getContentPane().add(btnNextDay);
-		
-		btnSleep = new JButton("Sleep");
-		btnSleep.setFont(new Font("Lucida Grande", Font.PLAIN, 23));
-		btnSleep.setBounds(85, 258, 230, 101);
-		frame.getContentPane().add(btnSleep);
 	}
 	
 	
@@ -292,9 +322,9 @@ public class MainScreen
 		// Setting frame of window
 		frame.setBounds(display.x, display.y, display.width, display.height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
 //		frame.setUndecorated(true);  // Frame cannot be adjusted during game
-//		frame.setResizable(false);
-		
+
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(884, 23, 1012, 593);
@@ -325,6 +355,11 @@ public class MainScreen
 		lblShipType.setBounds(127, 66, 132, 23);
 		panelShip.add(lblShipType);
 		lblShipType.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		
+		lblParts = new JLabel("Parts: ...");
+		lblParts.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		lblParts.setBounds(308, 75, 155, 33);
+		frame.getContentPane().add(lblParts);
 		
 		JLabel lblHealth = new JLabel("Health");
 		lblHealth.setBounds(326, 36, 112, 23);
@@ -367,7 +402,7 @@ public class MainScreen
 		panelCrew.add(pBarTiredness4);
 		
 		pBarHunger2 = new JProgressBar();
-		pBarHunger2.setBounds(409, 229, 146, 52);
+		pBarHunger2.setBounds(429, 241, 126, 30);
 		panelCrew.add(pBarHunger2);
 		
 		pBarHunger1 = new JProgressBar();
@@ -375,11 +410,11 @@ public class MainScreen
 		panelCrew.add(pBarHunger1);
 		
 		pBarTiredness2 = new JProgressBar();
-		pBarTiredness2.setBounds(409, 165, 146, 52);
+		pBarTiredness2.setBounds(421, 171, 134, 30);
 		panelCrew.add(pBarTiredness2);
 		
 		pBarHealth2 = new JProgressBar();
-		pBarHealth2.setBounds(409, 101, 146, 52);
+		pBarHealth2.setBounds(409, 107, 146, 36);
 		panelCrew.add(pBarHealth2);
 		
 		pBarHunger3 = new JProgressBar();
@@ -473,7 +508,6 @@ public class MainScreen
 		
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(lblDaysLeft);
-		////
 		
 		
 		// Initialize storage arrays
@@ -485,13 +519,14 @@ public class MainScreen
 		pBarHunger();
 		
 		
-		
 		// Button Actions
 		spaceOutpost();
 		newPlanet();
 		explorePlanet();
 		repairShields();
+		btnInventory();
 		nextDay();
+		btnSleep();
 	}
 	
 	

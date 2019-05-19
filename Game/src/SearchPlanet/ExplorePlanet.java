@@ -1,17 +1,17 @@
 package SearchPlanet;
+
+//Library imports
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-
-import MainScreen.MainScreen;
-import WindowSettings.Display;
-
-import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+//Self implemented
+import MainScreen.MainScreen;
+import WindowSettings.Display;
+
 
 public class ExplorePlanet 
 {
@@ -30,7 +30,7 @@ public class ExplorePlanet
 				frame.setVisible(false);          // turn off screen
 			}
 		});
-		btnRecallToShip.setBounds(435, 634, 184, 75);
+		btnRecallToShip.setBounds(444, 626, 193, 88);
 		frame.getContentPane().add(btnRecallToShip);
 	}
 	
@@ -47,10 +47,11 @@ public class ExplorePlanet
 		// Setting frame of window
 		frame.setBounds(display.x, display.y, display.width, display.height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
 		frame.getContentPane().setLayout(null);
 //		frame.setUndecorated(true);  // Frame cannot be adjusted during game
-//		frame.setResizable(false);
 		
+		// Initialize displays
 		JLabel lblXLaunchesDown = new JLabel("X launches down from the spaceship in the ships rider/glider/shuttle/teleporter.");
 		lblXLaunchesDown.setBounds(41, 27, 787, 15);
 		frame.getContentPane().add(lblXLaunchesDown);

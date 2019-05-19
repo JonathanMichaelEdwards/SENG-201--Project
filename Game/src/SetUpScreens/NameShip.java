@@ -1,6 +1,6 @@
 package SetUpScreens;
 
-// Libary imports
+// Library imports
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -51,7 +51,6 @@ public class NameShip {
 	{
 		crewType.add(type.get(index));
 		crewNames.add(name.get(index));
-		
 	}
 	
 	
@@ -223,12 +222,15 @@ public class NameShip {
 	    			// Store ship info
 	    			shipType = "Medical";
 	    		}
-	    		shipName = txtShipsName.getText();
-	    		
+
 	    		// If both have been filled in, enable button 
 	    		if (!lblShipChosen.getText().equals("...") && !lblNameOfShip.getText().equals("...")) 
 	    			btnStart.setEnabled(true);
 	    			
+	    		// Store the names that are displayed
+	    		shipType = lblShipChosen.getText();
+	    		shipName = lblNameOfShip.getText();
+	    		
 	    		// Clear the field
 	    		txtShipsName.setText("");
 	    	}
@@ -262,8 +264,8 @@ public class NameShip {
 		storeShip.add(shipType);
 		storeShip.add(shipName);
 		
-		ioFile.lstFileWrite(storeCrew, "StoreGame/CrewInfo.txt");
-		ioFile.lstFileWrite(storeShip, "StoreGame/ShipInfo.txt");
+		ioFile.fileWrite(storeCrew, "StoreGame/CrewInfo.txt");
+		ioFile.fileWrite(storeShip, "StoreGame/ShipInfo.txt");
 	}
 	
 	

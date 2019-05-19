@@ -9,11 +9,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
-
 public class IOFile 
 {
 	// writing list data to file
-    public void lstFileWrite(ArrayList<String> input, String fileName)
+    public void fileWrite(ArrayList<String> input, String fileName)
     {
         try {
         	BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
@@ -30,9 +29,8 @@ public class IOFile
     }
 
     
-    
 	// Append data	
-	public void lsFileAppend(String input, String fileName)
+	public void fileAppend(String input, String fileName)
 	{
 		try {
 			File file = new File(fileName);
@@ -49,7 +47,6 @@ public class IOFile
 	}
 
 	
-    
 	// Read file, return list from file
 	public ArrayList<String> fileRead(String fileName)
 	{
