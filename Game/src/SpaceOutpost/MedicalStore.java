@@ -4,20 +4,38 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
 //Self implemented
 import WindowSettings.Display;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
+import IOFile.IOFile;
 
 
 public class MedicalStore 
 {
 	public JFrame frame;
 
+	private JLabel lblCurrentCash;
+	private JComboBox cBox1, cBox2, cBox3, cBox4, cBox5;
+	private JLabel lbl1, lbl2, lbl3, lbl4, lbl5;
+	
+	private int cashSpent, cash1, cash2, cash3, cash4, cash5 = 0;
+	
+	
+	// get the amount of cash the player has in his bank
+	private void totalCash()
+	{
+		ArrayList<String> bank = new ArrayList<String>();
+		IOFile ioFile = new IOFile();
+		
+		bank = ioFile.fileRead("StoreGame/CashInfo.txt");
+		lblCurrentCash.setText("Current Cash = $ " + bank.get(0).toString());
+	}
+	
 	
 	// Go back to the space outpost
 	private void backToOutpost()
@@ -34,6 +52,106 @@ public class MedicalStore
 		});
 		btnBackToOutpost.setBounds(437, 441, 199, 53);
 		frame.getContentPane().add(btnBackToOutpost);
+	}
+	
+	
+	private void btnBuy()
+	{
+		JButton btnBuy = new JButton("Buy");
+		btnBuy.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent arg0) 
+			{		
+				ArrayList<String> totalCash = new ArrayList<String>();
+				IOFile ioFile = new IOFile();
+				
+				cashSpent += cash1 + cash2 + cash3 + cash4 + cash5;
+				totalCash = ioFile.fileRead("StoreGame/CashInfo.txt");
+				int bank = Integer.parseInt(totalCash.get(0)) - cashSpent;
+				totalCash.set(0, "" + bank);
+				
+				// store the new cash amount
+				ioFile.fileWrite(totalCash, "StoreGame/CashInfo.txt");  // Writing in new days
+				lblCurrentCash.setText("Current Cash = $ " + totalCash.get(0).toString());
+				
+				// Go back to outpost
+				SpaceOutpost screen = new SpaceOutpost();
+				screen.frame.setVisible(true);  // turn on screen
+				frame.setVisible(false);              // turn off screen
+			}
+		});
+		btnBuy.setBounds(646, 441, 194, 53);
+		frame.getContentPane().add(btnBuy);
+	}
+	
+	
+	private void cBoxActions()
+	{
+		cBox1 = new JComboBox();
+		cBox1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cash1 = Integer.valueOf(((String)cBox1.getSelectedItem()).replace("x", "")) * 5;
+				lbl1.setText("= $" + cash1);
+			}
+		});
+		cBox1.setModel(new DefaultComboBoxModel(new String[] {"0", "x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9"}));
+		cBox1.setMaximumRowCount(9);
+		cBox1.setBounds(342, 102, 90, 21);
+		frame.getContentPane().add(cBox1);
+		
+		
+		
+		cBox2 = new JComboBox();
+		cBox2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cash2 = Integer.valueOf(((String)cBox2.getSelectedItem()).replace("x", "")) * 8;
+				lbl2.setText("= $" + cash2);
+			}
+		});
+		cBox2.setModel(new DefaultComboBoxModel(new String[] {"0", "x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9"}));
+		cBox2.setSelectedIndex(0);
+		cBox2.setMaximumRowCount(9);
+		cBox2.setBounds(342, 143, 90, 21);
+		frame.getContentPane().add(cBox2);
+		
+		cBox3 = new JComboBox();
+		cBox3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cash3 = Integer.valueOf(((String)cBox3.getSelectedItem()).replace("x", "")) * 14;
+				lbl3.setText("= $" + cash3);
+			}
+		});
+		cBox3.setModel(new DefaultComboBoxModel(new String[] {"0", "x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9"}));
+		cBox3.setSelectedIndex(0);
+		cBox3.setMaximumRowCount(9);
+		cBox3.setBounds(342, 193, 90, 21);
+		frame.getContentPane().add(cBox3);
+		
+		cBox4 = new JComboBox();
+		cBox4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cash4 = Integer.valueOf(((String)cBox4.getSelectedItem()).replace("x", "")) * 50;
+				lbl4.setText("= $" + cash4);
+			}
+		});
+		cBox4.setModel(new DefaultComboBoxModel(new String[] {"0", "x1"}));
+		cBox4.setSelectedIndex(0);
+		cBox4.setMaximumRowCount(2);
+		cBox4.setBounds(342, 276, 77, 21);
+		frame.getContentPane().add(cBox4);
+		
+		cBox5 = new JComboBox();
+		cBox5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cash5 = Integer.valueOf(((String)cBox5.getSelectedItem()).replace("x", "")) * 50;
+				lbl5.setText("= $" + cash5);
+			}
+		});
+		cBox5.setModel(new DefaultComboBoxModel(new String[] {"0", "x1"}));
+		cBox5.setSelectedIndex(0);
+		cBox5.setMaximumRowCount(2);
+		cBox5.setBounds(342, 321, 77, 21);
+		frame.getContentPane().add(cBox5);
 	}
 	
 	
@@ -72,7 +190,7 @@ public class MedicalStore
 		frame.getContentPane().add(lblSurgicalPackage);
 		
 		JLabel lblCommon = new JLabel("Common (Found by exploring planets)");
-		lblCommon.setBounds(59, 72, 183, 13);
+		lblCommon.setBounds(59, 72, 283, 13);
 		frame.getContentPane().add(lblCommon);
 		
 		JLabel lblRare = new JLabel("Rare (Unlockable by exploring planets only)");
@@ -87,40 +205,6 @@ public class MedicalStore
 		lblNewLabel.setBounds(59, 327, 227, 13);
 		frame.getContentPane().add(lblNewLabel);
 		
-		JComboBox comboBoxBandages = new JComboBox();
-		comboBoxBandages.setModel(new DefaultComboBoxModel(new String[] {"x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9"}));
-		comboBoxBandages.setMaximumRowCount(9);
-		comboBoxBandages.setBounds(342, 102, 90, 21);
-		frame.getContentPane().add(comboBoxBandages);
-		
-		JComboBox comboBoxMedkit = new JComboBox();
-		comboBoxMedkit.setModel(new DefaultComboBoxModel(new String[] {"x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9"}));
-		comboBoxMedkit.setSelectedIndex(0);
-		comboBoxMedkit.setMaximumRowCount(9);
-		comboBoxMedkit.setBounds(342, 143, 90, 21);
-		frame.getContentPane().add(comboBoxMedkit);
-		
-		JComboBox comboBoxSurgical = new JComboBox();
-		comboBoxSurgical.setModel(new DefaultComboBoxModel(new String[] {"x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9"}));
-		comboBoxSurgical.setSelectedIndex(0);
-		comboBoxSurgical.setMaximumRowCount(9);
-		comboBoxSurgical.setBounds(342, 193, 90, 21);
-		frame.getContentPane().add(comboBoxSurgical);
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"x0", "x1"}));
-		comboBox.setSelectedIndex(0);
-		comboBox.setMaximumRowCount(2);
-		comboBox.setBounds(342, 276, 77, 21);
-		frame.getContentPane().add(comboBox);
-		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"x0", "x1"}));
-		comboBox_1.setSelectedIndex(0);
-		comboBox_1.setMaximumRowCount(1);
-		comboBox_1.setBounds(342, 323, 77, 21);
-		frame.getContentPane().add(comboBox_1);
-		
 		JLabel label = new JLabel("$5");
 		label.setBounds(291, 106, 46, 13);
 		frame.getContentPane().add(label);
@@ -133,18 +217,6 @@ public class MedicalStore
 		label_2.setBounds(291, 197, 46, 13);
 		frame.getContentPane().add(label_2);
 		
-		JLabel label_3 = new JLabel("=");
-		label_3.setBounds(494, 106, 46, 13);
-		frame.getContentPane().add(label_3);
-		
-		JLabel label_4 = new JLabel("=");
-		label_4.setBounds(494, 147, 46, 13);
-		frame.getContentPane().add(label_4);
-		
-		JLabel label_5 = new JLabel("=");
-		label_5.setBounds(494, 197, 46, 13);
-		frame.getContentPane().add(label_5);
-		
 		JLabel label_6 = new JLabel("$50");
 		label_6.setBounds(291, 280, 46, 13);
 		frame.getContentPane().add(label_6);
@@ -153,56 +225,45 @@ public class MedicalStore
 		label_7.setBounds(291, 327, 46, 13);
 		frame.getContentPane().add(label_7);
 		
-
+		lbl5 = new JLabel("= $");
+		lbl5.setBounds(494, 325, 105, 17);
+		frame.getContentPane().add(lbl5);
 		
-		JLabel label_8 = new JLabel("=");
-		label_8.setBounds(494, 280, 46, 13);
-		frame.getContentPane().add(label_8);
-		
-		JLabel label_9 = new JLabel("=");
-		label_9.setBounds(494, 327, 46, 13);
-		frame.getContentPane().add(label_9);
-		
-		JLabel lblCurrentCash = new JLabel("Current Cash = $");
-		lblCurrentCash.setBounds(401, 71, 127, 13);
+		lblCurrentCash = new JLabel("Current Cash = $");
+		lblCurrentCash.setBounds(401, 63, 220, 21);
 		frame.getContentPane().add(lblCurrentCash);
 		
-		JLabel label_10 = new JLabel("$");
-		label_10.setBounds(540, 106, 46, 13);
-		frame.getContentPane().add(label_10);
+		lbl1 = new JLabel("= $");
+		lbl1.setBounds(494, 102, 127, 21);
+		frame.getContentPane().add(lbl1);
 		
-		JLabel label_11 = new JLabel("$");
-		label_11.setBounds(540, 147, 46, 13);
-		frame.getContentPane().add(label_11);
+		lbl2 = new JLabel("= $");
+		lbl2.setBounds(494, 131, 158, 31);
+		frame.getContentPane().add(lbl2);
 		
-		JLabel label_12 = new JLabel("$");
-		label_12.setBounds(524, 197, 62, 13);
-		frame.getContentPane().add(label_12);
+		lbl3 = new JLabel("= $");
+		lbl3.setBounds(494, 188, 112, 30);
+		frame.getContentPane().add(lbl3);
 		
-		JLabel label_13 = new JLabel("$");
-		label_13.setBounds(540, 280, 46, 13);
-		frame.getContentPane().add(label_13);
-		
-		JLabel label_14 = new JLabel("$");
-		label_14.setBounds(524, 327, 46, 13);
-		frame.getContentPane().add(label_14);
-		
-		JButton btnBuy = new JButton("Buy");
-		btnBuy.setBounds(646, 441, 194, 53);
-		frame.getContentPane().add(btnBuy);
-		
+		lbl4 = new JLabel("= $");
+		lbl4.setBounds(483, 271, 138, 30);
+		frame.getContentPane().add(lbl4);
+
 		
 		// Button Actions
+		cBoxActions();
+		btnBuy();
 		backToOutpost();
 	}
 	
-
+	
 	/*
 	 * Create the application.
 	*/
 	public MedicalStore() 
 	{
 		initialize();
+		totalCash();
 	}
 	
 	

@@ -257,17 +257,19 @@ public class NameShip {
 		IOFile ioFile = new IOFile();
 		ArrayList<String> storeCrew = new ArrayList<String>();
 		ArrayList<String> storeShip = new ArrayList<String>();
+		ArrayList<String> storeCash = new ArrayList<String>();
 		
 		
 		storeCrew.addAll(crewType);
 		storeCrew.addAll(crewNames);
-		
 		storeShip.add(shipType);
 		storeShip.add(shipName);
 		storeShip.add("75");
+		storeCash.add("200");
 		
 		ioFile.fileWrite(storeCrew, "StoreGame/CrewInfo.txt");
 		ioFile.fileWrite(storeShip, "StoreGame/ShipInfo.txt");
+		ioFile.fileWrite(storeCash, "StoreGame/CashInfo.txt");
 	}
 	
 	

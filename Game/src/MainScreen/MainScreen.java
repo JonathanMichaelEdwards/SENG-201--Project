@@ -144,8 +144,7 @@ public class MainScreen
 			} else if ((lsSize-size) == 3 && (index == 3)) {
 				disableInfo(index);
 			}
-		}
-		
+		}	
 	}
 
 	
@@ -192,6 +191,7 @@ public class MainScreen
 		
 		pBarShipHealth.setValue(repair);
 		
+		System.out.println(crewType.size());
 		for (int index = 0; index < crewType.size(); index++) {
 			type[index].setText(crewType.get(index));
 			member[index].setText(crewName.get(index));
@@ -265,7 +265,7 @@ public class MainScreen
 		btnRepairShields.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
-			{
+			{	
 				CrewRepair screen = new CrewRepair();
 				screen.frame.setVisible(true);    // turn on screen
 				frame.setVisible(false);          // turn off screen

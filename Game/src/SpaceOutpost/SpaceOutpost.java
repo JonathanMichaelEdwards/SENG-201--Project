@@ -3,7 +3,11 @@ package SpaceOutpost;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
+import IOFile.IOFile;
+
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 
@@ -18,7 +22,20 @@ public class SpaceOutpost
 {
 
 	public JFrame frame;
+	
+	private JLabel lblCashTotal;
 
+	
+	private void bankStore()
+	{
+		ArrayList<String> totalCash = new ArrayList<String>();
+		IOFile ioFile = new IOFile();
+
+		// read how much cash the player has
+		totalCash = ioFile.fileRead("StoreGame/CashInfo.txt");
+		lblCashTotal.setText("Current Cash = $ " + totalCash.get(0).toString());
+	}
+	
 	
 	// Go to the medical shop
 	private void medicalShop()
@@ -33,7 +50,7 @@ public class SpaceOutpost
 				frame.setVisible(false);              // turn off screen
 			}
 		});
-		btnClickHereTo.setBounds(140, 181, 183, 188);
+		btnClickHereTo.setBounds(137, 131, 183, 188);
 		frame.getContentPane().add(btnClickHereTo);
 	}
 	
@@ -51,7 +68,7 @@ public class SpaceOutpost
 				frame.setVisible(false);                  // turn off screen
 			}
 		});
-		btnConvenienceStore.setBounds(594, 181, 183, 188);
+		btnConvenienceStore.setBounds(867, 131, 183, 188);
 		frame.getContentPane().add(btnConvenienceStore);
 	}
 	
@@ -69,7 +86,7 @@ public class SpaceOutpost
 				frame.setVisible(false);           // turn off screen
 			}
 		});
-		btnFoodShop.setBounds(373, 181, 183, 188);
+		btnFoodShop.setBounds(495, 131, 183, 188);
 		frame.getContentPane().add(btnFoodShop);
 	}
 	
@@ -115,21 +132,21 @@ public class SpaceOutpost
 		lblWelcomeToYour.setBounds(348, 47, 444, 45);
 		frame.getContentPane().add(lblWelcomeToYour);
 		
-		JLabel lblCrew = new JLabel("Crew");
-		lblCrew.setBounds(72, 293, 46, 13);
-		frame.getContentPane().add(lblCrew);
-		
 		JLabel lblMedicalShop = new JLabel("Purchase items to heal/boost your crew");
-		lblMedicalShop.setBounds(137, 379, 198, 55);
+		lblMedicalShop.setBounds(96, 331, 301, 55);
 		frame.getContentPane().add(lblMedicalShop);
 		
 		JLabel lblFoodShop = new JLabel("Purchase items to replenish Hunger");
-		lblFoodShop.setBounds(373, 400, 183, 13);
+		lblFoodShop.setBounds(470, 341, 316, 34);
 		frame.getContentPane().add(lblFoodShop);
 		
 		JLabel lblConvenienceStore = new JLabel("Purchase items to aid your quest");
-		lblConvenienceStore.setBounds(608, 400, 169, 13);
+		lblConvenienceStore.setBounds(847, 365, 271, 34);
 		frame.getContentPane().add(lblConvenienceStore);
+		
+		lblCashTotal = new JLabel("Current Cash = $ <dynamic>");
+		lblCashTotal.setBounds(764, 62, 220, 21);
+		frame.getContentPane().add(lblCashTotal);
 		
 		
 		// Button Actions
@@ -146,6 +163,7 @@ public class SpaceOutpost
 	public SpaceOutpost() 
 	{
 		initialize();
+		bankStore();
 	}
 	
 	
