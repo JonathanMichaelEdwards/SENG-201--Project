@@ -3,6 +3,9 @@ package SpaceOutpost;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
+import IOFile.IOFile;
+
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -10,6 +13,7 @@ import javax.swing.JButton;
 //Self implemented
 import WindowSettings.Display;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 
@@ -19,10 +23,30 @@ public class ConvenienceStore
 	public JFrame frame;
 
 
+	private JLabel lblCurrentCash;
+	private JComboBox cBox1, cBox2, cBox3;
+	private JLabel lbl1, lbl2, lbl3;
+	private JLabel lblAmount;
+	
+	private int cashSpent, totalAmount, cash1, cash2, cash3, cash4, cash5 = 0;
+	
+	
+	// get the amount of cash the player has in his bank
+	private void totalCash()
+	{
+		ArrayList<String> bank = new ArrayList<String>();
+		IOFile ioFile = new IOFile();
+		
+		bank = ioFile.fileRead("StoreGame/CashInfo.txt");
+		lblCurrentCash.setText("Current Cash = $ " + bank.get(0).toString());
+	}
+	
+	
+	// Go back to the space outpost
 	private void backToOutpost()
 	{
-		JButton btnBackToOupost = new JButton("Back to Outpost");
-		btnBackToOupost.addActionListener(new ActionListener()
+		JButton btnBackToOutpost = new JButton("Back to Outpost");
+		btnBackToOutpost.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
@@ -31,18 +55,90 @@ public class ConvenienceStore
 				frame.setVisible(false);              // turn off screen
 			}
 		});
-		btnBackToOupost.setBounds(556, 500, 171, 57);
-		frame.getContentPane().add(btnBackToOupost);
+		btnBackToOutpost.setBounds(437, 441, 199, 53);
+		frame.getContentPane().add(btnBackToOutpost);
 	}
 	
 	
-	/*
-	 * Create the application.
-	*/
-	public ConvenienceStore() 
+	private void btnBuy()
 	{
-		initialize();
+		JButton btnBuy = new JButton("Buy");
+		btnBuy.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent arg0) 
+			{		
+				ArrayList<String> totalCash = new ArrayList<String>();
+				IOFile ioFile = new IOFile();
+				
+				cashSpent += cash1 + cash2 + cash3 + cash4 + cash5;
+				totalCash = ioFile.fileRead("StoreGame/CashInfo.txt");
+				int bank = Integer.parseInt(totalCash.get(0)) - cashSpent;
+				totalCash.set(0, "" + bank);
+				
+				// store the new cash amount
+				ioFile.fileWrite(totalCash, "StoreGame/CashInfo.txt");  // Writing in new days
+				lblCurrentCash.setText("Current Cash = $ " + totalCash.get(0).toString());
+				
+				// Go back to outpost
+				SpaceOutpost screen = new SpaceOutpost();
+				screen.frame.setVisible(true);  // turn on screen
+				frame.setVisible(false);        // turn off screen
+			}
+		});
+		btnBuy.setBounds(646, 441, 194, 53);
+		frame.getContentPane().add(btnBuy);
 	}
+	
+	
+	private void cBoxActions()
+	{
+		cBox1 = new JComboBox();
+		cBox1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cash1 = Integer.valueOf(((String)cBox1.getSelectedItem()).replace("x", "")) * 30;
+				lbl1.setText("= $" + cash1);
+				totalAmount = cash1 + cash2 + cash3 + cash4 + cash5;
+				lblAmount.setText("Selected Amount = $ " + totalAmount);
+			}
+		});
+		cBox1.setModel(new DefaultComboBoxModel(new String[] {"0", "x1"}));
+		cBox1.setMaximumRowCount(9);
+		cBox1.setBounds(478, 127, 90, 21);
+		frame.getContentPane().add(cBox1);
+		
+		
+		
+		cBox2 = new JComboBox();
+		cBox2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cash2 = Integer.valueOf(((String)cBox2.getSelectedItem()).replace("x", "")) * 30;
+				lbl2.setText("= $" + cash2);
+				totalAmount = cash1 + cash2 + cash3 + cash4 + cash5;
+				lblAmount.setText("Selected Amount = $ " + totalAmount);
+			}
+		});
+		cBox2.setModel(new DefaultComboBoxModel(new String[] {"0", "x1"}));
+		cBox2.setSelectedIndex(0);
+		cBox2.setMaximumRowCount(9);
+		cBox2.setBounds(478, 197, 90, 21);
+		frame.getContentPane().add(cBox2);
+		
+		cBox3 = new JComboBox();
+		cBox3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cash3 = Integer.valueOf(((String)cBox3.getSelectedItem()).replace("x", "")) * 30;
+				lbl3.setText("= $" + cash3);
+				totalAmount = cash1 + cash2 + cash3 + cash4 + cash5;
+				lblAmount.setText("Selected Amount = $ " + totalAmount);
+			}
+		});
+		cBox3.setModel(new DefaultComboBoxModel(new String[] {"0", "x1"}));
+		cBox3.setSelectedIndex(0);
+		cBox3.setMaximumRowCount(9);
+		cBox3.setBounds(490, 286, 90, 21);
+		frame.getContentPane().add(cBox3);
+	}
+	
 
 	/*
 	 * Initialize the contents of the frame.
@@ -57,7 +153,7 @@ public class ConvenienceStore
 		frame.setBounds(display.x, display.y, display.width, display.height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		frame.setUndecorated(false);  // Frame cannot be adjusted during game
+//		frame.setUndecorated(false);  // Frame cannot be adjusted during game
 		frame.setResizable(false);
 		
 		
@@ -94,63 +190,44 @@ public class ConvenienceStore
 		label_2.setBounds(406, 200, 66, 15);
 		frame.getContentPane().add(label_2);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setMaximumRowCount(1);
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"x0", "x1"}));
-		comboBox.setBounds(518, 125, 66, 24);
-		frame.getContentPane().add(comboBox);
-		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setMaximumRowCount(1);
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"x0", "x1"}));
-		comboBox_1.setBounds(518, 195, 66, 24);
-		frame.getContentPane().add(comboBox_1);
-		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"x0", "x1"}));
-		comboBox_2.setMaximumRowCount(1);
-		comboBox_2.setBounds(518, 284, 66, 24);
-		frame.getContentPane().add(comboBox_2);
-		
-		JLabel label_3 = new JLabel("=");
-		label_3.setBounds(614, 130, 66, 15);
-		frame.getContentPane().add(label_3);
-		
-		JLabel label_4 = new JLabel("=");
-		label_4.setBounds(614, 200, 66, 15);
-		frame.getContentPane().add(label_4);
-		
-		JLabel label_5 = new JLabel("=");
-		label_5.setBounds(614, 289, 66, 15);
-		frame.getContentPane().add(label_5);
-		
-		JLabel lblCurrentCash = new JLabel("Current Cash = $");
+		lblCurrentCash = new JLabel("Current Cash = $");
 		lblCurrentCash.setBounds(518, 80, 145, 15);
 		frame.getContentPane().add(lblCurrentCash);
 		
-		JLabel label_6 = new JLabel("$");
-		label_6.setBounds(672, 130, 66, 15);
-		frame.getContentPane().add(label_6);
+		lbl1 = new JLabel("= $ 0");
+		lbl1.setBounds(612, 127, 127, 21);
+		frame.getContentPane().add(lbl1);
 		
-		JLabel label_7 = new JLabel("$");
-		label_7.setBounds(672, 200, 66, 15);
-		frame.getContentPane().add(label_7);
+		lbl2 = new JLabel("= $ 0");
+		lbl2.setBounds(621, 192, 158, 31);
+		frame.getContentPane().add(lbl2);
 		
-		JLabel label_8 = new JLabel("$");
-		label_8.setBounds(672, 289, 66, 15);
-		frame.getContentPane().add(label_8);
+		lbl3 = new JLabel("= $ 0");
+		lbl3.setBounds(610, 281, 112, 30);
+		frame.getContentPane().add(lbl3);
 		
-		JButton btnNewButton = new JButton("Buy");
-		btnNewButton.setBounds(749, 500, 171, 57);
-		frame.getContentPane().add(btnNewButton);
+		lblAmount = new JLabel("Selected Amount = $ 0");
+		lblAmount.setBounds(416, 364, 220, 21);
+		frame.getContentPane().add(lblAmount);
 		
-
 		
 		// Button Actions
+		cBoxActions();
+		btnBuy();
 		backToOutpost();
 	}
 	
 
+	/*
+	 * Create the application.
+	*/
+	public ConvenienceStore() 
+	{
+		initialize();
+		totalCash();
+	}
+	
+	
 	/*
 	 * Launch the application.
 	*/

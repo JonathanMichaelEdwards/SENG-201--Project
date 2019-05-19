@@ -22,8 +22,9 @@ public class MedicalStore
 	private JLabel lblCurrentCash;
 	private JComboBox cBox1, cBox2, cBox3, cBox4, cBox5;
 	private JLabel lbl1, lbl2, lbl3, lbl4, lbl5;
+	private JLabel lblAmount;
 	
-	private int cashSpent, cash1, cash2, cash3, cash4, cash5 = 0;
+	private int cashSpent, totalAmount, cash1, cash2, cash3, cash4, cash5 = 0;
 	
 	
 	// get the amount of cash the player has in his bank
@@ -77,7 +78,7 @@ public class MedicalStore
 				// Go back to outpost
 				SpaceOutpost screen = new SpaceOutpost();
 				screen.frame.setVisible(true);  // turn on screen
-				frame.setVisible(false);              // turn off screen
+				frame.setVisible(false);        // turn off screen
 			}
 		});
 		btnBuy.setBounds(646, 441, 194, 53);
@@ -92,6 +93,8 @@ public class MedicalStore
 			public void actionPerformed(ActionEvent arg0) {
 				cash1 = Integer.valueOf(((String)cBox1.getSelectedItem()).replace("x", "")) * 5;
 				lbl1.setText("= $" + cash1);
+				totalAmount = cash1 + cash2 + cash3 + cash4 + cash5;
+				lblAmount.setText("Selected Amount = $ " + totalAmount);
 			}
 		});
 		cBox1.setModel(new DefaultComboBoxModel(new String[] {"0", "x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9"}));
@@ -106,6 +109,8 @@ public class MedicalStore
 			public void actionPerformed(ActionEvent arg0) {
 				cash2 = Integer.valueOf(((String)cBox2.getSelectedItem()).replace("x", "")) * 8;
 				lbl2.setText("= $" + cash2);
+				totalAmount = cash1 + cash2 + cash3 + cash4 + cash5;
+				lblAmount.setText("Selected Amount = $ " + totalAmount);
 			}
 		});
 		cBox2.setModel(new DefaultComboBoxModel(new String[] {"0", "x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9"}));
@@ -119,6 +124,8 @@ public class MedicalStore
 			public void actionPerformed(ActionEvent arg0) {
 				cash3 = Integer.valueOf(((String)cBox3.getSelectedItem()).replace("x", "")) * 14;
 				lbl3.setText("= $" + cash3);
+				totalAmount = cash1 + cash2 + cash3 + cash4 + cash5;
+				lblAmount.setText("Selected Amount = $ " + totalAmount);
 			}
 		});
 		cBox3.setModel(new DefaultComboBoxModel(new String[] {"0", "x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9"}));
@@ -132,6 +139,8 @@ public class MedicalStore
 			public void actionPerformed(ActionEvent arg0) {
 				cash4 = Integer.valueOf(((String)cBox4.getSelectedItem()).replace("x", "")) * 50;
 				lbl4.setText("= $" + cash4);
+				totalAmount = cash1 + cash2 + cash3 + cash4 + cash5;
+				lblAmount.setText("Selected Amount = $ " + totalAmount);
 			}
 		});
 		cBox4.setModel(new DefaultComboBoxModel(new String[] {"0", "x1"}));
@@ -145,6 +154,8 @@ public class MedicalStore
 			public void actionPerformed(ActionEvent arg0) {
 				cash5 = Integer.valueOf(((String)cBox5.getSelectedItem()).replace("x", "")) * 50;
 				lbl5.setText("= $" + cash5);
+				totalAmount = cash1 + cash2 + cash3 + cash4 + cash5;
+				lblAmount.setText("Selected Amount = $ " + totalAmount);
 			}
 		});
 		cBox5.setModel(new DefaultComboBoxModel(new String[] {"0", "x1"}));
@@ -225,7 +236,7 @@ public class MedicalStore
 		label_7.setBounds(291, 327, 46, 13);
 		frame.getContentPane().add(label_7);
 		
-		lbl5 = new JLabel("= $");
+		lbl5 = new JLabel("= $ 0");
 		lbl5.setBounds(494, 325, 105, 17);
 		frame.getContentPane().add(lbl5);
 		
@@ -233,21 +244,25 @@ public class MedicalStore
 		lblCurrentCash.setBounds(401, 63, 220, 21);
 		frame.getContentPane().add(lblCurrentCash);
 		
-		lbl1 = new JLabel("= $");
+		lbl1 = new JLabel("= $ 0");
 		lbl1.setBounds(494, 102, 127, 21);
 		frame.getContentPane().add(lbl1);
 		
-		lbl2 = new JLabel("= $");
+		lbl2 = new JLabel("= $ 0");
 		lbl2.setBounds(494, 131, 158, 31);
 		frame.getContentPane().add(lbl2);
 		
-		lbl3 = new JLabel("= $");
+		lbl3 = new JLabel("= $ 0");
 		lbl3.setBounds(494, 188, 112, 30);
 		frame.getContentPane().add(lbl3);
 		
-		lbl4 = new JLabel("= $");
+		lbl4 = new JLabel("= $ 0");
 		lbl4.setBounds(483, 271, 138, 30);
 		frame.getContentPane().add(lbl4);
+		
+		lblAmount = new JLabel("Selected Amount = $ 0");
+		lblAmount.setBounds(416, 364, 220, 21);
+		frame.getContentPane().add(lblAmount);
 
 		
 		// Button Actions
