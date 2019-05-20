@@ -15,7 +15,12 @@ import WindowSettings.Display;
 
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.awt.event.ActionEvent;
+import javax.swing.JList;
+import javax.swing.AbstractListModel;
+import javax.swing.JRadioButton;
 
 
 public class ShipInventory
@@ -36,6 +41,8 @@ public class ShipInventory
 
 	private JLabel type[] = new JLabel[4];
 	private JLabel member[] = new JLabel[4];
+	
+	private JRadioButton btnCookie, btnPizza, btnFull, btnPlaguePotion, btnSurgical, btnMedkit, btnBandages;
 	
 	
 	private JProgressBar health[] = new JProgressBar[4];
@@ -126,7 +133,16 @@ public class ShipInventory
 		}
 	}
 
-	
+	private void clearSelection()
+	{
+		btnCookie.setSelected(false);
+		btnPizza.setSelected(false);
+		btnFull.setSelected(false);
+		btnPlaguePotion.setSelected(false);
+		btnSurgical.setSelected(false);
+		btnMedkit.setSelected(false);
+		btnBandages.setSelected(false);
+	}
 	// decode crew information to get correct data
 	private void decodeCrewInfo(ArrayList<String> crewInfo)
 	{
@@ -157,10 +173,126 @@ public class ShipInventory
 	}
 		
 	
+	private void Cookie()
+	{
+		btnCookie = new JRadioButton("");
+		btnCookie.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				clearSelection();
+				btnCookie.setSelected(true);
+			}
+		});
+		btnCookie.setBounds(194, 170, 38, 23);
+		frame.getContentPane().add(btnCookie);
+	}
+	
+	private void Pizza()
+	{
+		btnPizza = new JRadioButton("");
+		btnPizza.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				clearSelection();
+				btnPizza.setSelected(true);
+			}
+		});
+		
+		btnPizza.setBounds(194, 206, 38, 23);
+		frame.getContentPane().add(btnPizza);
+	}
+	
+	private void Full()
+	{
+		btnFull = new JRadioButton("");
+		btnFull.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				clearSelection();
+				btnFull.setSelected(true);
+			}
+		});
+		btnFull.setBounds(194, 245, 38, 23);
+		frame.getContentPane().add(btnFull);
+		
+	}
+	
+	private void PlaguePotion()
+	{
+		btnPlaguePotion = new JRadioButton("");
+		btnPlaguePotion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				clearSelection();
+				btnPlaguePotion.setSelected(true);
+			}
+		});
+		btnPlaguePotion.setBounds(514, 284, 38, 23);
+		frame.getContentPane().add(btnPlaguePotion);
+	}
+	
+	private void Surgical()
+	{
+		btnSurgical = new JRadioButton("");
+		btnSurgical.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				clearSelection();
+				btnSurgical.setSelected(true);
+			}
+		});
+		btnSurgical.setBounds(514, 246, 38, 23);
+		frame.getContentPane().add(btnSurgical);
+	}
+		
+	private void Medkit()
+	{
+		btnMedkit = new JRadioButton("");
+		btnMedkit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				clearSelection();
+				btnMedkit.setSelected(true);
+			}
+		});
+		btnMedkit.setBounds(514, 207, 38, 23);
+		frame.getContentPane().add(btnMedkit);
+
+	
+	}
+
+	
+	
+	private void Bandage()
+	{
+		
+		btnBandages = new JRadioButton("");
+		btnBandages.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				clearSelection();
+				btnBandages.setSelected(true);
+			}
+		});
+		btnBandages.setBounds(514, 167, 38, 23);
+		frame.getContentPane().add(btnBandages);
+		
+		JLabel lblCountcookie = new JLabel("xcookie");
+		lblCountcookie.setBounds(120, 170, 66, 15);
+		frame.getContentPane().add(lblCountcookie);
+	}
+	
+	private void ItemChoice()
+	{
+		Cookie();
+		Pizza();
+		Full();
+		PlaguePotion();
+		Surgical();
+		Medkit();
+		Bandage();
+		
+	}
+	
+	
+	
 	private void btnBack()
 	{
 		JButton btnBack = new JButton("Back");
-		btnBack.setBounds(1181, 879, 198, 112);
+		btnBack.setBounds(845, 862, 198, 112);
 		btnBack.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent arg0)
@@ -171,13 +303,134 @@ public class ShipInventory
 			}
 		});
 		frame.getContentPane().add(btnBack);
+
+
+		
+		JLabel lblFood = new JLabel("Food");
+		lblFood.setBounds(54, 129, 66, 15);
+		lblFood.setFont(new Font("Dialog", Font.BOLD, 16));
+		frame.getContentPane().add(lblFood);
+		
+		JLabel lblMedical = new JLabel("Medical");
+		lblMedical.setBounds(258, 129, 110, 15);
+		lblMedical.setFont(new Font("Dialog", Font.BOLD, 16));
+		frame.getContentPane().add(lblMedical);
+		
+		JLabel lblCookieX = new JLabel("Cookie");
+		lblCookieX.setBounds(54, 170, 66, 15);
+		frame.getContentPane().add(lblCookieX);
+		
+		JLabel lblPizzaX = new JLabel("Pizza");
+		lblPizzaX.setBounds(54, 210, 66, 15);
+		frame.getContentPane().add(lblPizzaX);
+		
+		JLabel lblFullMealX = new JLabel("Full meal");
+		lblFullMealX.setBounds(54, 249, 91, 15);
+		frame.getContentPane().add(lblFullMealX);
+		
+		JLabel lblBandages = new JLabel("Bandages");
+		lblBandages.setBounds(258, 170, 126, 15);
+		frame.getContentPane().add(lblBandages);
+		
+		JLabel lblMedKit = new JLabel("Med Kit");
+		lblMedKit.setBounds(258, 210, 66, 15);
+		frame.getContentPane().add(lblMedKit);
+		
+		JLabel lblSurgialSuite = new JLabel("Surgial Package");
+		lblSurgialSuite.setBounds(258, 249, 126, 15);
+		frame.getContentPane().add(lblSurgialSuite);
+		
+		JLabel lblSpacePlaguePotion = new JLabel("Space Plague Potion");
+		lblSpacePlaguePotion.setBounds(258, 287, 177, 15);
+		frame.getContentPane().add(lblSpacePlaguePotion);
+		
+	
+		
+		JRadioButton rdbtnCrew1 = new JRadioButton("Choose");
+		rdbtnCrew1.setEnabled(false);
+		rdbtnCrew1.setBounds(514, 683, 144, 23);
+		frame.getContentPane().add(rdbtnCrew1);
+		
+		JRadioButton rdbtnCrew2 = new JRadioButton("Choose");
+		rdbtnCrew2.setEnabled(false);
+		rdbtnCrew2.setBounds(731, 683, 144, 23);
+		frame.getContentPane().add(rdbtnCrew2);
+		
+		JRadioButton rdbtnCrew3 = new JRadioButton("Choose");
+		rdbtnCrew3.setEnabled(false);
+		rdbtnCrew3.setBounds(917, 683, 144, 23);
+		frame.getContentPane().add(rdbtnCrew3);
+		
+		JRadioButton rdbtnCrew4 = new JRadioButton("Choose");
+		rdbtnCrew4.setEnabled(false);
+		rdbtnCrew4.setBounds(1101, 683, 144, 23);
+		frame.getContentPane().add(rdbtnCrew4);
+		
+		JButton btnConfirmChoice = new JButton("Confirm Choice");
+		btnConfirmChoice.setBounds(596, 282, 161, 25);
+		frame.getContentPane().add(btnConfirmChoice);
 	}
 	
+	private void numberItem()
+	{
+		IOFile ioFile = new IOFile();
+		ArrayList<String> storeInventory = new ArrayList<String>();
+		ArrayList<String> inventoryList = ioFile.fileRead("StoreGame/Inventory/Storage.txt");
+		
+		
+		int i, cookies = 0, pizzas = 0, full = 0, bandage = 0, medkit = 0, surgical = 0, potion = 0;
+
+		for (i = 0; i < inventoryList.size(); i++) {
+			if (inventoryList.get(i).equals("Cookie")) {
+				cookies++;
+				System.out.println("Cookies" + cookies);
+			}
+			if (inventoryList.get(i).equals("Pizza")) {
+				pizzas++;
+				System.out.println("Pizza" + pizzas);
+			}
+			if (inventoryList.get(i).equals("Full Meal")) {
+				full++;
+				System.out.println("Full Meal" + full);
+			}
+			if (inventoryList.get(i).equals("Bandage")) {
+				bandage++;
+				System.out.println("Bandages" + bandage);
+			}
+			if (inventoryList.get(i).equals("Pizza")) {
+				pizzas++;
+				System.out.println("Pizza" + pizzas);
+			}
+			if (inventoryList.get(i).equals("Medkit")) {
+				medkit++;
+				System.out.println("Medkit" + medkit);
+			}
+			if (inventoryList.get(i).equals("Surgical")) {
+				surgical++;
+				System.out.println("Surgical Package" + surgical);
+			}
+			if (inventoryList.get(i).equals("Potion")) {
+				potion++;
+				System.out.println("Space Plague Potion" + potion);
+			}
+		}
+		
+		System.out.println(storeInventory);
+//		Arrays.stream(inventoryList)
+		
+//		for (String i : inventoryList) 
+//		{
+//			System.out.println(i);
+//		}
+		
+		
+	}
 	
 	private void btnAccept()
 	{
 		JButton btnApplyChanges = new JButton("Apply Changes");
-		btnApplyChanges.setBounds(1486, 899, 208, 101);
+		btnApplyChanges.setEnabled(false);
+		btnApplyChanges.setBounds(1104, 868, 208, 101);
 		btnApplyChanges.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent arg0) 
@@ -210,15 +463,15 @@ public class ShipInventory
 		
 		// Initialize displays
 		JLabel lblShipsInventory = new JLabel("Ships inventory");
-		lblShipsInventory.setBounds(401, 37, 188, 38);
+		lblShipsInventory.setBounds(503, 37, 188, 38);
 		frame.getContentPane().add(lblShipsInventory);
 		
 		JLabel lblSelectAnItem = new JLabel("Select an Item to use");
-		lblSelectAnItem.setBounds(120, 126, 177, 38);
+		lblSelectAnItem.setBounds(133, 37, 177, 38);
 		frame.getContentPane().add(lblSelectAnItem);
 		
 		JLabel lblSelectOneOf = new JLabel("Select one of your crew ");
-		lblSelectOneOf.setBounds(578, 120, 188, 32);
+		lblSelectOneOf.setBounds(581, 338, 188, 32);
 		frame.getContentPane().add(lblSelectOneOf);
 		
 		siHealth1 = new JProgressBar();
@@ -362,13 +615,13 @@ public class ShipInventory
 
 		siType();
 		siName();
-		
 		siHealth();
 		siTired();
 		siHunger();
 		// Back Actions
 		btnAccept();;
 		btnBack();
+		ItemChoice();
 	}
 	
 	
@@ -379,6 +632,7 @@ public class ShipInventory
 	{
 		initialize();
 		organizeGameInfo();
+		numberItem();
 	}
 	
 	

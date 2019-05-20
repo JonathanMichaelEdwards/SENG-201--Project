@@ -178,6 +178,7 @@ public class MedicalStore
 	private void backToOutpost()
 	{
 		JButton btnBackToOutpost = new JButton("Back to Outpost");
+		btnBackToOutpost.setBounds(437, 441, 199, 53);
 		btnBackToOutpost.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
@@ -187,7 +188,6 @@ public class MedicalStore
 				frame.setVisible(false);              // turn off screen
 			}
 		});
-		btnBackToOutpost.setBounds(437, 441, 199, 53);
 		frame.getContentPane().add(btnBackToOutpost);
 	}
 	
@@ -195,6 +195,7 @@ public class MedicalStore
 	private void btnBuy()
 	{
 		JButton btnBuy = new JButton("Buy");
+		btnBuy.setBounds(646, 441, 194, 53);
 		btnBuy.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent arg0) 
@@ -217,7 +218,6 @@ public class MedicalStore
 				frame.setVisible(false);        // turn off screen
 			}
 		});
-		btnBuy.setBounds(646, 441, 194, 53);
 		frame.getContentPane().add(btnBuy);
 	}
 	
@@ -225,6 +225,7 @@ public class MedicalStore
 	private void cBoxActions()
 	{
 		cBox1 = new JComboBox();
+		cBox1.setBounds(342, 102, 90, 21);
 		cBox1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				cash1 = Integer.valueOf(((String)cBox1.getSelectedItem()).replace("x", "")) * 5;
@@ -235,12 +236,12 @@ public class MedicalStore
 		});
 		cBox1.setModel(new DefaultComboBoxModel(new String[] {"0", "x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9"}));
 		cBox1.setMaximumRowCount(9);
-		cBox1.setBounds(342, 102, 90, 21);
 		frame.getContentPane().add(cBox1);
 		
 		
 		
 		cBox2 = new JComboBox();
+		cBox2.setBounds(342, 143, 90, 21);
 		cBox2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				cash2 = Integer.valueOf(((String)cBox2.getSelectedItem()).replace("x", "")) * 8;
@@ -252,10 +253,10 @@ public class MedicalStore
 		cBox2.setModel(new DefaultComboBoxModel(new String[] {"0", "x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9"}));
 		cBox2.setSelectedIndex(0);
 		cBox2.setMaximumRowCount(9);
-		cBox2.setBounds(342, 143, 90, 21);
 		frame.getContentPane().add(cBox2);
 		
 		cBox3 = new JComboBox();
+		cBox3.setBounds(342, 193, 90, 21);
 		cBox3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				cash3 = Integer.valueOf(((String)cBox3.getSelectedItem()).replace("x", "")) * 14;
@@ -267,10 +268,10 @@ public class MedicalStore
 		cBox3.setModel(new DefaultComboBoxModel(new String[] {"0", "x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9"}));
 		cBox3.setSelectedIndex(0);
 		cBox3.setMaximumRowCount(9);
-		cBox3.setBounds(342, 193, 90, 21);
 		frame.getContentPane().add(cBox3);
 		
 		cBox4 = new JComboBox();
+		cBox4.setBounds(342, 276, 77, 21);
 		cBox4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				cash4 = Integer.valueOf(((String)cBox4.getSelectedItem()).replace("x", "")) * 50;
@@ -282,7 +283,6 @@ public class MedicalStore
 		cBox4.setModel(new DefaultComboBoxModel(new String[] {"0", "x1"}));
 		cBox4.setSelectedIndex(0);
 		cBox4.setMaximumRowCount(2);
-		cBox4.setBounds(342, 276, 77, 21);
 		frame.getContentPane().add(cBox4);
 	}
 	
@@ -299,9 +299,9 @@ public class MedicalStore
 		// Setting frame of window
 		frame.setBounds(display.x, display.y, display.width, display.height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
 		frame.setUndecorated(false);  // Frame cannot be adjusted during game
 		frame.setResizable(false);
+		frame.getContentPane().setLayout(null);
 		
 		
 		// Initializing displays
@@ -330,7 +330,7 @@ public class MedicalStore
 		frame.getContentPane().add(lblPlaguePotion);
 		
 		JLabel label = new JLabel("$5");
-		label.setBounds(291, 106, 46, 13);
+		label.setBounds(287, 105, 46, 15);
 		frame.getContentPane().add(label);
 		
 		JLabel label_1 = new JLabel("$8");
@@ -427,52 +427,51 @@ public class MedicalStore
 		frame.getContentPane().add(msHunger4);
 
 		msName4 = new JLabel("...");
-		msName4.setFont(new Font("Dialog", Font.PLAIN, 18));
 		msName4.setBounds(828, 777, 127, 23);
+		msName4.setFont(new Font("Dialog", Font.PLAIN, 18));
 		frame.getContentPane().add(msName4);
 
 		msName3 = new JLabel("...");
-		msName3.setFont(new Font("Dialog", Font.PLAIN, 18));
 		msName3.setBounds(644, 777, 126, 23);
+		msName3.setFont(new Font("Dialog", Font.PLAIN, 18));
 		frame.getContentPane().add(msName3);
 
 		msName2 = new JLabel("...");
-		msName2.setFont(new Font("Dialog", Font.PLAIN, 18));
 		msName2.setBounds(456, 781, 119, 22);
+		msName2.setFont(new Font("Dialog", Font.PLAIN, 18));
 		frame.getContentPane().add(msName2);
 		
 		msName1 = new JLabel("...");
-		msName1.setFont(new Font("Dialog", Font.PLAIN, 18));
 		msName1.setBounds(251, 775, 117, 28);
+		msName1.setFont(new Font("Dialog", Font.PLAIN, 18));
 		frame.getContentPane().add(msName1);
 		
 		JLabel labell = new JLabel("Crew Info");
-		labell.setFont(new Font("Dialog", Font.PLAIN, 16));
 		labell.setBounds(472, 524, 112, 23);
+		labell.setFont(new Font("Dialog", Font.PLAIN, 16));
 		frame.getContentPane().add(labell);
 	
 
 		JLabel label0 = new JLabel("Hunger:");
-		label0.setFont(new Font("Dialog", Font.PLAIN, 16));
 		label0.setBounds(97, 747, 81, 15);
+		label0.setFont(new Font("Dialog", Font.PLAIN, 16));
 		frame.getContentPane().add(label0);
 
 		JLabel label1 = new JLabel("Tiredness:");
-		label1.setFont(new Font("Dialog", Font.PLAIN, 16));
 		label1.setBounds(97, 690, 81, 15);
+		label1.setFont(new Font("Dialog", Font.PLAIN, 16));
 		frame.getContentPane().add(label1);
 	
 
 		JLabel label2 = new JLabel("Health:");
-		label2.setLocation(37, 502);
+		label2.setBounds(37, 502, 0, 0);
 		label2.setFont(new Font("Dialog", Font.PLAIN, 16));
-		label.setBounds(60, 125, 81, 15);
 		frame.getContentPane().add(label2);
 		
 		
 		JLabel label3 = new JLabel("Name:");
-		label3.setFont(new Font("Dialog", Font.PLAIN, 16));
 		label3.setBounds(99, 780, 81, 15);
+		label3.setFont(new Font("Dialog", Font.PLAIN, 16));
 		frame.getContentPane().add(label3);
 
 	
@@ -481,29 +480,29 @@ public class MedicalStore
 
 
 		JLabel label4 = new JLabel("Type:");
-		label4.setFont(new Font("Dialog", Font.PLAIN, 16));
 		label4.setBounds(97, 587, 81, 15);
+		label4.setFont(new Font("Dialog", Font.PLAIN, 16));
 		frame.getContentPane().add(label4);
 
 		msType1 = new JLabel("...");
-		msType1.setFont(new Font("Dialog", Font.PLAIN, 18));
 		msType1.setBounds(258, 571, 129, 30);
+		msType1.setFont(new Font("Dialog", Font.PLAIN, 18));
 		frame.getContentPane().add(msType1);
 
 		msType2 = new JLabel("...");
-		msType2.setFont(new Font("Dialog", Font.PLAIN, 18));
 		msType2.setBounds(469, 578, 119, 23);
+		msType2.setFont(new Font("Dialog", Font.PLAIN, 18));
 		frame.getContentPane().add(msType2);
 
 		msType3 = new JLabel("...");
-		msType3.setFont(new Font("Dialog", Font.PLAIN, 18));
 		msType3.setBounds(661, 581, 129, 21);
+		msType3.setFont(new Font("Dialog", Font.PLAIN, 18));
 		frame.getContentPane().add(msType3);
 	
 
 		msType4 = new JLabel("...");
-		msType4.setFont(new Font("Dialog", Font.PLAIN, 18));
 		msType4.setBounds(840, 581, 134, 22);
+		msType4.setFont(new Font("Dialog", Font.PLAIN, 18));
 		frame.getContentPane().add(msType4);
 		
 		frame.getContentPane().setLayout(null);

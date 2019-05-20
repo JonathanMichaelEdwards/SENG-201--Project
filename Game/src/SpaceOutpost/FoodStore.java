@@ -155,10 +155,8 @@ public class FoodStore
 		
 		// Reading files
 		ArrayList<String> crewInfo = ioFile.fileRead("StoreGame/CrewInfo.txt");
-		
 		// unwrap information
 		decodeCrewInfo(crewInfo);
-		
 		for (int index = 0; index < crewType.size(); index++) {
 			type[index].setText(crewType.get(index));
 			member[index].setText(crewName.get(index));
@@ -327,7 +325,7 @@ public class FoodStore
 		frame.getContentPane().add(lblFoodStore);
 		
 		JLabel label = new JLabel("Common (Found by exploring planets)");
-		label.setBounds(72, 93, 183, 13);
+		label.setBounds(72, 107, 183, 13);
 		frame.getContentPane().add(label);
 		
 		lblAmount = new JLabel("Selected Amount = $ 0");

@@ -258,18 +258,32 @@ public class NameShip {
 		ArrayList<String> storeCrew = new ArrayList<String>();
 		ArrayList<String> storeShip = new ArrayList<String>();
 		ArrayList<String> storeCash = new ArrayList<String>();
+		ArrayList<String> inventory = new ArrayList<String>();
 		
 		
 		storeCrew.addAll(crewType);
 		storeCrew.addAll(crewNames);
+		
 		storeShip.add(shipType);
 		storeShip.add(shipName);
+		
 		storeShip.add("75");
+		
 		storeCash.add("200");
+		
+		inventory.add("Bandages");
+		inventory.add("Bandages");
+		inventory.add("Bandages");
+		inventory.add("Bandages");
+		inventory.add("Cookie");
+		inventory.add("Cookie");
+		inventory.add("Cookie");
+		inventory.add("Cookie");
 		
 		ioFile.fileWrite(storeCrew, "StoreGame/CrewInfo.txt");
 		ioFile.fileWrite(storeShip, "StoreGame/ShipInfo.txt");
 		ioFile.fileWrite(storeCash, "StoreGame/CashInfo.txt");
+		ioFile.fileWrite(inventory, "StoreGame/Inventory/Storage.txt");
 	}
 	
 	
