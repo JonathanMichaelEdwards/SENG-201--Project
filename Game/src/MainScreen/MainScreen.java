@@ -21,10 +21,14 @@ import NewPlanet.CrewTravel;
 import RepairShields.CrewRepair;
 import SearchPlanet.CrewPlanet;
 import Sleep.CrewSleep;
+import RandomEvents.asteroids;
+import RandomEvents.alienPirates;
+import RandomEvents.spacePlague;
 
 
 
 public class MainScreen
+
 {
 	public JFrame frame;
 	
@@ -307,6 +311,12 @@ public class MainScreen
 		frame.getContentPane().add(btnSpaceOutpost);
 	}
 	
+//	private void asteroids()
+//			{
+//				asteroids outpost = new asteroids();
+//				outpost.frame.setVisible(true);  // turn on screen
+//				frame.setVisible(false);         // turn off screen
+//			}
 	
 	// Go to the newPlanet screen
 	private void newPlanet()
@@ -318,6 +328,7 @@ public class MainScreen
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
+				
 				CrewTravel screen = new CrewTravel();
 				screen.frame.setVisible(true);    // turn on screen
 				frame.setVisible(false);          // turn off screen
@@ -411,6 +422,7 @@ public class MainScreen
 		{
 			public void actionPerformed(ActionEvent arg0) 
 			{
+
 				IOFile ioFile = new IOFile();
 				ArrayList<String> changeDays = new ArrayList<String>();
 				
@@ -449,12 +461,38 @@ public class MainScreen
 					}
 				}
 				
+			int x = (int)(Math.random()*((3-0)+0))+0;
+			System.out.println(x);
+			if (x == 1)
+			{
+				System.out.println("nothing");
 				// reset Screen
-				MainScreen screen = new MainScreen();
-				screen.frame.setVisible(true);    // turn on screen
-				frame.setVisible(false);         // turn off screen
+					MainScreen screen = new MainScreen();
+					screen.frame.setVisible(true);    // turn on screen
+					frame.setVisible(false);         // turn off screen
+			}
+			if (x == 0)
+			{
+				System.out.println("plague");
+//					SpaceOutpost outpost = new SpaceOutpost();
+//					outpost.frame.setVisible(true);  // turn on screen
+//					frame.setVisible(false);         // turn off screen
+					
+					spacePlague outpost = new spacePlague();
+					outpost.frame.setVisible(true);  // turn on screen
+					frame.setVisible(false);         // turn off screen
+			}
+			if (x == 2)
+			{
+				System.out.println("aliens");
+				alienPirates outpost = new alienPirates();
+				outpost.frame.setVisible(true);
+				frame.setVisible(false);
+			}
+			
 			}
 		});
+	
 		btnNextDay.setFont(new Font("Lucida Grande", Font.PLAIN, 23));
 		btnNextDay.setBounds(561, 51, 249, 101);
 		frame.getContentPane().add(btnNextDay);
@@ -705,6 +743,7 @@ public class MainScreen
 		btnInventory();
 		nextDay();
 		btnSleep();
+
 	}
 	
 	
@@ -730,6 +769,8 @@ public class MainScreen
 				try {
 					MainScreen window = new MainScreen();
 					window.frame.setVisible(true);
+//					asteroids window = new asteroids();
+//					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

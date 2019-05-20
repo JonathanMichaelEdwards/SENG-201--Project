@@ -14,7 +14,7 @@ import WindowSettings.Display;
 
 public class alienPirates {
 
-	private JFrame frame;
+	public JFrame frame;
 	private void btnBack()
 	{
 		JButton btnLetsGetGoing = new JButton("Back to Base");

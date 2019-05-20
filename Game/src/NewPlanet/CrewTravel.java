@@ -14,6 +14,7 @@ import javax.swing.JProgressBar;
 
 import IOFile.IOFile;
 import MainScreen.MainScreen;
+import RandomEvents.asteroids;
 import SearchPlanet.ExplorePlanet;
 //Self implemented
 import WindowSettings.Display;
@@ -301,27 +302,50 @@ public class CrewTravel {
 				if (character1.isSelected()) {
 					member = ioFile.fileRead(readFile + "MemberOne.txt");
 					member.set(3, ""+(Integer.parseInt(member.get(3)) - 1));
+					int tired = Integer.parseInt(member.get(1)) + 10; //this is the value in which a repair heals
+					
+					member.set(1, "" + tired);
 					ioFile.fileWrite(member, readFile + "MemberOne.txt");
 				} 
 				if (character2.isSelected()) {
 					member = ioFile.fileRead(readFile + "MemberTwo.txt");
 					member.set(3, ""+(Integer.parseInt(member.get(3)) - 1));
+					int tired = Integer.parseInt(member.get(1)) + 10; //this is the value in which a repair heals
+					
+					member.set(1, "" + tired);
 					ioFile.fileWrite(member, readFile + "MemberTwo.txt");
 				} 
 				if (character3.isSelected()) {
 					member = ioFile.fileRead(readFile + "MemberThree.txt");
 					member.set(3, ""+(Integer.parseInt(member.get(3)) - 1));
+					int tired = Integer.parseInt(member.get(1)) + 10; //this is the value in which a repair heals
+					
+					member.set(1, "" + tired);
 					ioFile.fileWrite(member, readFile + "MemberThree.txt");
 				} 
 				if (character4.isSelected()) {
 					member = ioFile.fileRead(readFile + "MemberFour.txt");
 					member.set(3, ""+(Integer.parseInt(member.get(3)) - 1));
+					int tired = Integer.parseInt(member.get(1)) + 10; //this is the value in which a repair heals
+					
+					member.set(1, "" + tired);
 					ioFile.fileWrite(member, readFile + "MemberFour.txt");
 				} 
-				
-				TravelPlanet screen = new TravelPlanet();
-				screen.frame.setVisible(true);    // turn on screen
-				frame.setVisible(false);          // turn off screen
+				int x = (int)(Math.random()*((2-0)+0))+0;
+				System.out.println(x);
+				if (x == 1)
+				{
+					TravelPlanet screen = new TravelPlanet();
+					screen.frame.setVisible(true);    // turn on screen
+					frame.setVisible(false);          // turn off screen
+				}
+				if (x == 0)
+				{
+					System.out.println("asteroids");
+					asteroids outpost = new asteroids();
+					outpost.frame.setVisible(true);
+					frame.setVisible(false);
+				}
 			}
 		});
 		frame.getContentPane().setLayout(null);

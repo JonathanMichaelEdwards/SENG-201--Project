@@ -261,18 +261,32 @@ public JFrame frame;
 				if (rBChar1.isSelected()) {
 					member = ioFile.fileRead(readFile + "MemberOne.txt");
 					member.set(3, ""+(Integer.parseInt(member.get(3)) - 1));
+					//member.set(1, ""+(Integer.parseInt(member.get(1)) - 30));
+					
+					int repair = Integer.parseInt(member.get(1)) - 30; //this is the value in which a repair heals
+					
+					member.set(1, "" + repair);
 					ioFile.fileWrite(member, readFile + "MemberOne.txt");
 				} else if (rBChar2.isSelected()) {
 					member = ioFile.fileRead(readFile + "MemberTwo.txt");
 					member.set(3, ""+(Integer.parseInt(member.get(3)) - 1));
+					int repair = Integer.parseInt(member.get(1)) - 30; //this is the value in which a repair heals
+					
+					member.set(1, "" + repair);
 					ioFile.fileWrite(member, readFile + "MemberTwo.txt");
 				} else if (rBChar3.isSelected()) {
 					member = ioFile.fileRead(readFile + "MemberThree.txt");
 					member.set(3, ""+(Integer.parseInt(member.get(3)) - 1));
+					int repair = Integer.parseInt(member.get(1)) - 30; //this is the value in which a repair heals
+					
+					member.set(1, "" + repair);
 					ioFile.fileWrite(member, readFile + "MemberThree.txt");
 				} else if (rBChar4.isSelected()) {
 					member = ioFile.fileRead(readFile + "MemberFour.txt");
 					member.set(3, ""+(Integer.parseInt(member.get(3)) - 1));
+					int repair = Integer.parseInt(member.get(1)) - 30; //this is the value in which a repair heals
+					
+					member.set(1, "" + repair);
 					ioFile.fileWrite(member, readFile + "MemberFour.txt");
 				} 
 				

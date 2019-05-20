@@ -14,7 +14,7 @@ import WindowSettings.Display;
 
 public class spacePlague {
 
-	private JFrame frame;
+	public JFrame frame;
 	
 	private void btnBack()
 	{

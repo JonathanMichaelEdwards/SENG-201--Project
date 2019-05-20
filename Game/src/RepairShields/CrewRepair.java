@@ -259,18 +259,30 @@ public class CrewRepair {
 				if (rBChar1.isSelected()) {
 					crewMember = ioFile.fileRead(readFile + "MemberOne.txt");
 					crewMember.set(3, ""+(Integer.parseInt(crewMember.get(3)) - 1));
+					int tired = Integer.parseInt(crewMember.get(1)) + 10; //this is the value in which a repair heals
+					
+					crewMember.set(1, "" + tired);
 					ioFile.fileWrite(crewMember, readFile + "MemberOne.txt");
 				} else if (rBChar2.isSelected()) {
 					crewMember = ioFile.fileRead(readFile + "MemberTwo.txt");
 					crewMember.set(3, ""+(Integer.parseInt(crewMember.get(3)) - 1));
+					int tired = Integer.parseInt(crewMember.get(1)) + 10; //this is the value in which a repair heals
+					
+					crewMember.set(1, "" + tired);
 					ioFile.fileWrite(crewMember, readFile + "MemberTwo.txt");
 				} else if (rBChar3.isSelected()) {
 					crewMember = ioFile.fileRead(readFile + "MemberThree.txt");
 					crewMember.set(3, ""+(Integer.parseInt(crewMember.get(3)) - 1));
+					int tired = Integer.parseInt(crewMember.get(1)) + 10; //this is the value in which a repair heals
+					
+					crewMember.set(1, "" + tired);
 					ioFile.fileWrite(crewMember, readFile + "MemberThree.txt");
 				} else if (rBChar4.isSelected()) {
 					crewMember = ioFile.fileRead(readFile + "MemberFour.txt");
 					crewMember.set(3, ""+(Integer.parseInt(crewMember.get(3)) - 1));
+					int tired = Integer.parseInt(crewMember.get(1)) + 10; //this is the value in which a repair heals
+					
+					crewMember.set(1, "" + tired);
 					ioFile.fileWrite(crewMember, readFile + "MemberFour.txt");
 				} 
 			

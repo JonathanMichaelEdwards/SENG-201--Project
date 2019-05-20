@@ -10,11 +10,13 @@ import java.awt.event.ActionEvent;
 // Self implemented
 import MainScreen.MainScreen;
 import WindowSettings.Display;
+import javax.swing.JLabel;
 
 
 public class TravelPlanet 
 {
 	public JFrame frame;
+	private final JLabel lblLookAtThis = new JLabel("look at this nice ass planet lol");
 
 
 	private void btnBack()
@@ -32,6 +34,8 @@ public class TravelPlanet
 		frame.getContentPane().setLayout(null);
 		btnLetsGetGoing.setBounds(655, 508, 210, 56);
 		frame.getContentPane().add(btnLetsGetGoing);
+		lblLookAtThis.setBounds(460, 104, 800, 250);
+		frame.getContentPane().add(lblLookAtThis);
 	}
 	
 	

@@ -221,11 +221,11 @@ public class FoodStore
 		ArrayList<String> crewInfo = ioFile.fileRead("StoreGame/CrewInfo.txt");
 		// unwrap information
 		decodeCrewInfo(crewInfo);
-<<<<<<< HEAD
-=======
+//<<<<<<< HEAD
+//=======
 		readCrewRatings();
 		
->>>>>>> master
+//>>>>>>> master
 		for (int index = 0; index < crewType.size(); index++) {
 			type[index].setText(crewType.get(index));
 			member[index].setText(crewName.get(index));

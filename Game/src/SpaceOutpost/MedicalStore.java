@@ -550,28 +550,28 @@ public class MedicalStore
 		label4.setFont(new Font("Dialog", Font.PLAIN, 16));
 		frame.getContentPane().add(label4);
 
-<<<<<<< HEAD
-		msType1 = new JLabel("...");
-		msType1.setBounds(258, 571, 129, 30);
-		msType1.setFont(new Font("Dialog", Font.PLAIN, 18));
-		frame.getContentPane().add(msType1);
-
-		msType2 = new JLabel("...");
-		msType2.setBounds(469, 578, 119, 23);
-		msType2.setFont(new Font("Dialog", Font.PLAIN, 18));
-		frame.getContentPane().add(msType2);
-
-		msType3 = new JLabel("...");
-		msType3.setBounds(661, 581, 129, 21);
-		msType3.setFont(new Font("Dialog", Font.PLAIN, 18));
-		frame.getContentPane().add(msType3);
-	
-
-		msType4 = new JLabel("...");
-		msType4.setBounds(840, 581, 134, 22);
-		msType4.setFont(new Font("Dialog", Font.PLAIN, 18));
-		frame.getContentPane().add(msType4);
-=======
+//<<<<<<< HEAD
+//		msType1 = new JLabel("...");
+//		msType1.setBounds(258, 571, 129, 30);
+//		msType1.setFont(new Font("Dialog", Font.PLAIN, 18));
+//		frame.getContentPane().add(msType1);
+//
+//		msType2 = new JLabel("...");
+//		msType2.setBounds(469, 578, 119, 23);
+//		msType2.setFont(new Font("Dialog", Font.PLAIN, 18));
+//		frame.getContentPane().add(msType2);
+//
+//		msType3 = new JLabel("...");
+//		msType3.setBounds(661, 581, 129, 21);
+//		msType3.setFont(new Font("Dialog", Font.PLAIN, 18));
+//		frame.getContentPane().add(msType3);
+//	
+//
+//		msType4 = new JLabel("...");
+//		msType4.setBounds(840, 581, 134, 22);
+//		msType4.setFont(new Font("Dialog", Font.PLAIN, 18));
+//		frame.getContentPane().add(msType4);
+//=======
 		cBType1 = new JLabel("...");
 		cBType1.setFont(new Font("Dialog", Font.PLAIN, 18));
 		cBType1.setBounds(258, 571, 129, 30);
@@ -592,7 +592,7 @@ public class MedicalStore
 		cBType4.setFont(new Font("Dialog", Font.PLAIN, 18));
 		cBType4.setBounds(840, 581, 134, 22);
 		frame.getContentPane().add(cBType4);
->>>>>>> master
+//>>>>>>> master
 		
 		frame.getContentPane().setLayout(null);
 		

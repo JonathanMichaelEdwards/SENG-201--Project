@@ -1,17 +1,1 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-Medic, Leader, rrr, w2, 
-=======
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-Medic, Leader, Mechanic, joanth, fgf, fhgfhjfdh, 
-=======
-Medic, Leader, ffff, fewfw, 
->>>>>>> Stashed changes
-=======
-Mechanic, Leader, fdgf, jono, 
->>>>>>> Stashed changes
->>>>>>> master
-=======
-Leader, Mechanic, Mechanic, jono, jake, josh, 
->>>>>>> master
+Medic, Leader, awwa, add, 

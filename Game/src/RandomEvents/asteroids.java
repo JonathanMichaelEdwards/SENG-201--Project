@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class asteroids {
 
-	private JFrame frame;
+	public JFrame frame;
 	private void btnBack()
 	{
 		JButton btnSearchPlanet = new JButton("View Damage");

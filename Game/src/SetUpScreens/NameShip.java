@@ -275,7 +275,7 @@ public class NameShip {
 		
 		storeCash.add("200");
 		
-		inventory.add("Bandages");
+		inventory.add("Bandages"); //tester stuff
 		inventory.add("Bandages");
 		inventory.add("Bandages");
 		inventory.add("Bandages");
@@ -287,9 +287,9 @@ public class NameShip {
 		ioFile.fileWrite(storeCrew, "StoreGame/CrewInfo.txt");
 		ioFile.fileWrite(storeShip, "StoreGame/ShipInfo.txt");
 		ioFile.fileWrite(storeCash, "StoreGame/CashInfo.txt");
-<<<<<<< HEAD
+//<<<<<<< HEAD
 		ioFile.fileWrite(inventory, "StoreGame/Inventory/Storage.txt");
-=======
+//=======
 		
 		for (int index = 0; index < crewType.size(); index++) {
 			if (index == 0) {
@@ -310,7 +310,7 @@ public class NameShip {
 				ioFile.fileWrite(memberActions4, "StoreGame/CrewSelected/MemberFour.txt");
 			}
 		}
->>>>>>> master
+//>>>>>>> master
 	}
 	
 	// Go to game screen if all fields are completed
