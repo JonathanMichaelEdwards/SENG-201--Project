@@ -30,17 +30,22 @@ public class IOFile
 
     
 	// Append data	
-	public void fileAppend(String input, String fileName)
+	public void fileAppend(ArrayList<String> input, String fileName)
 	{
 		try {
 			File file = new File(fileName);
-			FileWriter fr = new FileWriter(file, true);
-			BufferedWriter br = new BufferedWriter(fr);
+			FileWriter fileWrite = new FileWriter(file, true);
+			BufferedWriter bufferWrite = new BufferedWriter(fileWrite);
 			
-			br.write(input + "\n");
+        	// converting list to string
+        	for (String txtStr: input) {
+        		bufferWrite.write(txtStr + ", ");
+        		bufferWrite.write(input + "\n");
+        	}
+        	
 			
-			br.close();
-			fr.close();
+        	bufferWrite.close();
+        	fileWrite.close();
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}

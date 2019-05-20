@@ -261,7 +261,7 @@ public class ConvenienceStore
 		cBox3 = new JComboBox();
 		cBox3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				cash3 = Integer.valueOf(((String)cBox3.getSelectedItem()).replace("x", "")) * 30;
+				cash3 = Integer.valueOf(((String)cBox3.getSelectedItem()).replace("x", "")) * 50;
 				lbl3.setText("= $" + cash3);
 				totalAmount = cash1 + cash2 + cash3 + cash4 + cash5;
 				lblAmount.setText("Selected Amount = $ " + totalAmount);
@@ -326,7 +326,7 @@ public class ConvenienceStore
 		frame.getContentPane().add(label_2);
 		
 		lblCurrentCash = new JLabel("Current Cash = $");
-		lblCurrentCash.setBounds(518, 80, 145, 15);
+		lblCurrentCash.setBounds(518, 74, 221, 21);
 		frame.getContentPane().add(lblCurrentCash);
 		
 		lbl1 = new JLabel("= $ 0");

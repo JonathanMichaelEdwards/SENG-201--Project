@@ -54,6 +54,10 @@ public class MainScreen
 	private int parts;
 	private int repair;
 	
+	// File locations
+	private String readCrew = "StoreGame/CrewRatings/";
+	private String writeHealth = "StoreGame/CrewSelected/";
+	
 	// stores the selection type
 	private JLabel type[] = new JLabel[4];
 	private JLabel member[] = new JLabel[4];
@@ -158,6 +162,72 @@ public class MainScreen
 	}
 	
 	
+	// Storing and displaying the characters health
+	private void memberOne(ArrayList<String> crewMember1, IOFile ioFile)
+	{
+		crewMember1 = ioFile.fileRead(readCrew + crewType.get(0) + ".txt");
+		ioFile.fileWrite(crewMember1, writeHealth + "MemberOne.txt");
+		
+		pBarHealth1.setValue(Integer.valueOf(crewMember1.get(0)));
+		pBarTiredness1.setValue(Integer.valueOf(crewMember1.get(1)));
+		pBarHunger1.setValue(Integer.valueOf(crewMember1.get(2)));
+	}
+	
+	private void memberTwo(ArrayList<String> crewMember2, IOFile ioFile)
+	{
+		crewMember2 = ioFile.fileRead(readCrew + crewType.get(1) + ".txt");
+		ioFile.fileWrite(crewMember2, writeHealth + "MemberTwo.txt");
+		
+		pBarHealth2.setValue(Integer.valueOf(crewMember2.get(0)));
+		pBarTiredness2.setValue(Integer.valueOf(crewMember2.get(1)));
+		pBarHunger2.setValue(Integer.valueOf(crewMember2.get(2)));
+	}
+	
+	private void memberThree(ArrayList<String> crewMember3, IOFile ioFile)
+	{
+		crewMember3 = ioFile.fileRead(readCrew + crewType.get(2) + ".txt");
+		ioFile.fileWrite(crewMember3, writeHealth + "MemberThree.txt");
+		
+		pBarHealth3.setValue(Integer.valueOf(crewMember3.get(0)));
+		pBarTiredness3.setValue(Integer.valueOf(crewMember3.get(1)));
+		pBarHunger3.setValue(Integer.valueOf(crewMember3.get(2)));
+	}
+	
+	private void memberFour(ArrayList<String> crewMember4, IOFile ioFile)
+	{
+		crewMember4 = ioFile.fileRead(readCrew + crewType.get(3) + ".txt");
+		ioFile.fileWrite(crewMember4, writeHealth + "MemberFour.txt");
+		
+		pBarHealth4.setValue(Integer.valueOf(crewMember4.get(0)));
+		pBarTiredness4.setValue(Integer.valueOf(crewMember4.get(1)));
+		pBarHunger4.setValue(Integer.valueOf(crewMember4.get(2)));
+	}
+	
+	
+	private void readCrewRatings(IOFile ioFile)
+	{ 
+		ArrayList<String> crewMember1 = new ArrayList<String>();
+		ArrayList<String> crewMember2 = new ArrayList<String>();
+		ArrayList<String> crewMember3 = new ArrayList<String>();
+		ArrayList<String> crewMember4 = new ArrayList<String>();
+		
+		// Reading and storing the crew members health rating
+		for (int index = 0; index < crewType.size(); index++)
+		{
+			// Storing the character types health rating
+			if (index == 0) {
+				memberOne(crewMember1, ioFile);
+			} if (index == 1) {
+				memberTwo(crewMember2, ioFile);
+			} if (index == 2) {
+				memberThree(crewMember3, ioFile);
+			} if (index == 3) {
+				memberFour(crewMember4, ioFile);;
+			}
+		}
+	}
+	
+	
 	// organizing information from files
 	private void organizeGameInfo()
 	{
@@ -170,7 +240,7 @@ public class MainScreen
 		ArrayList<String> daysInfo = ioFile.fileRead("StoreGame/DaysInfo.txt");
 		ArrayList<String> changeShields = ioFile.fileRead("StoreGame/ShipInfo.txt");
 		
-		// unwrap information
+		// unwrap the crew information
 		decodeCrewInfo(crewInfo);
 		
 		shipType = shipInfo.get(0);
@@ -181,19 +251,21 @@ public class MainScreen
 		
 		repair = Integer.parseInt(changeShields.get(2));
 		
-		// displaying stored info
+		// Displaying crew info
 		lblShipType.setText(shipType);
 		lblShipName.setText(shipName);
-		
 		lblDaysLeft.setText("Day: " + days);
 		lblParts.setText("Parts to find: " + parts);
-		
 		pBarShipHealth.setValue(repair);
-		
+
+		// Output crew
 		for (int index = 0; index < crewType.size(); index++) {
 			type[index].setText(crewType.get(index));
 			member[index].setText(crewName.get(index));
 		}
+		
+		// Read and display the crew ratings
+		readCrewRatings(ioFile);
 	}
 	
 	
