@@ -1,8 +1,11 @@
 package SpaceOutpost;
 
 import java.awt.EventQueue;
+import java.awt.Font;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JProgressBar;
 
 import IOFile.IOFile;
 
@@ -28,7 +31,140 @@ public class FoodStore
 	private JLabel lblAmount;
 	
 	private int cashSpent, totalAmount, cash1, cash2, cash3, cash4, cash5 = 0;
+	private JLabel fsType1, fsType2, fsType3, fsType4;
+	private JLabel fsName1, fsName2, fsName3, fsName4;
+	
+	
+	private JProgressBar fsHealth1, fsHealth2, fsHealth3, fsHealth4;
+	private JProgressBar fsTired1, fsTired2, fsTired3, fsTired4;
+	private JProgressBar fsHunger1, fsHunger2, fsHunger3, fsHunger4;
+	
+	// stores the selection type
+	private ArrayList<String> crewType = new ArrayList<String>();
+	private ArrayList<String> crewName = new ArrayList<String>();
 
+	private JLabel type[] = new JLabel[4];
+	private JLabel member[] = new JLabel[4];
+	
+	
+	private JProgressBar health[] = new JProgressBar[4];
+	private JProgressBar tiredness[] = new JProgressBar[4];
+	private JProgressBar hunger[] = new JProgressBar [4];
+	
+
+	// Store all progress bar so it can be used easily
+	// Stores crew details in data arrays so it can be used easily
+	private void fsHealth() 
+	{
+		health[0] = fsHealth1;
+		health[1] = fsHealth2;
+		health[2] = fsHealth3;
+		health[3] = fsHealth4;
+	}
+	
+	private void fsTired() 
+	{
+		tiredness[0] = fsTired1;
+		tiredness[1] = fsTired2;
+		tiredness[2] = fsTired3;
+		tiredness[3] = fsTired4;
+	}
+	
+	private void fsHunger() 
+	{
+		hunger[0] = fsHunger1;
+		hunger[1] = fsHunger2;
+		hunger[2] = fsHunger3;
+		hunger[3] = fsHunger4;
+	}
+	
+	
+	// Stores crew details in data arrays so it can be used easily
+	private void fsType() 
+	{
+		
+		type[0] = fsType1;
+		type[1] = fsType2;
+		type[2] = fsType3;
+		type[3] = fsType4;
+	}
+	
+	private void fsName() 
+	{
+		member[0] = fsName1;
+		member[1] = fsName2;
+		member[2] = fsName3;
+		member[3] = fsName4;
+	}
+	
+
+	// helper function to find the correct member and name
+	private void addCrew(ArrayList<String> crewInfo, int size)
+	{	
+		for (int index = 0; index < size; index ++) {
+			crewType.add(crewInfo.get(index));
+			crewName.add(crewInfo.get(index+size));
+		}
+		disableStatus(size);
+	}
+	
+	
+	// items to be disabled
+	private void disableInfo(int index) 
+	{
+
+		type[index].setEnabled(false);
+		member[index].setEnabled(false);
+		hunger[index].setEnabled(false);
+		health[index].setEnabled(false);
+		tiredness[index].setEnabled(false);
+	}
+	
+	// helper function to disable/(grey out) unused status information areas
+	private void disableStatus(int size)
+	{
+		int lsSize = 4;
+		
+		// disable/(grey out) unused status information areas
+		for (int index = 0; index < lsSize; index++) {
+			if ((lsSize-size) == 2 && (index >= 2)) {
+				disableInfo(index);
+			} else if ((lsSize-size) == 3 && (index == 3)) {
+				disableInfo(index);
+			}
+		}
+	}
+
+	
+	// decode crew information to get correct data
+	private void decodeCrewInfo(ArrayList<String> crewInfo)
+	{
+		// store crew member and there names at the correct index in separate lists
+		// size is -1 because an empty value is added on to the end
+		if ((crewInfo.size()) == 4) addCrew(crewInfo, 2);
+		else if (crewInfo.size() == 6) addCrew(crewInfo, 3);
+		else if (crewInfo.size() == 8) addCrew(crewInfo, 4);
+	}
+	
+	
+	// organizing information from files
+	private void organizeGameInfo()
+	{
+		// gather information stored in file
+		IOFile ioFile = new IOFile();
+		
+		// Reading files
+		ArrayList<String> crewInfo = ioFile.fileRead("StoreGame/CrewInfo.txt");
+		
+		// unwrap information
+		decodeCrewInfo(crewInfo);
+		
+		for (int index = 0; index < crewType.size(); index++) {
+			type[index].setText(crewType.get(index));
+			member[index].setText(crewName.get(index));
+		}
+	}
+		
 	
 	
 	// get the amount of cash the player has in his bank
@@ -269,12 +405,161 @@ public class FoodStore
 		JLabel lblCurrentlyOwned = new JLabel("Currently Owned");
 		lblCurrentlyOwned.setBounds(689, 92, 138, 15);
 		frame.getContentPane().add(lblCurrentlyOwned);
+		fsHealth1 = new JProgressBar();
+		fsHealth1.setBounds(313, 733, 146, 30);
+		frame.getContentPane().add(fsHealth1);
+
+		fsTired1 = new JProgressBar();
+		fsTired1.setBounds(313, 797, 146, 30);
+		frame.getContentPane().add(fsTired1);
+	
+
+		fsHunger1 = new JProgressBar();
+		fsHunger1.setBounds(313, 867, 146, 30);
+		frame.getContentPane().add(fsHunger1);
 		
+	
+		fsHealth2 = new JProgressBar();
+		fsHealth2.setBounds(518, 733, 146, 36);
+		frame.getContentPane().add(fsHealth2);
+		
+
+		fsTired2 = new JProgressBar();
+		fsTired2.setBounds(530, 797, 134, 30);
+		frame.getContentPane().add(fsTired2);
+		
+	
+		fsHunger2 = new JProgressBar();
+		fsHunger2.setBounds(538, 867, 126, 30);
+		frame.getContentPane().add(fsHunger2);
+	
+
+		fsHealth3 = new JProgressBar();
+		fsHealth3.setBounds(716, 727, 146, 52);
+		frame.getContentPane().add(fsHealth3);
+		
+	
+		fsTired3 = new JProgressBar();
+		fsTired3.setBounds(716, 791, 146, 52);
+		frame.getContentPane().add(fsTired3);
+
+		fsHunger3 = new JProgressBar();
+		fsHunger3.setBounds(716, 855, 146, 52);
+		frame.getContentPane().add(fsHunger3);
+
+
+
+		fsHealth4 = new JProgressBar();
+		fsHealth4.setBounds(900, 733, 146, 52);
+		frame.getContentPane().add(fsHealth4);
+		
+	
+		fsTired4 = new JProgressBar();
+		fsTired4.setBounds(900, 797, 146, 52);
+		frame.getContentPane().add(fsTired4);
+		
+	
+		fsHunger4 = new JProgressBar();
+		fsHunger4.setBounds(897, 855, 146, 52);
+		frame.getContentPane().add(fsHunger4);
+
+		fsName4 = new JLabel("...");
+		fsName4.setFont(new Font("Dialog", Font.PLAIN, 18));
+		fsName4.setBounds(900, 901, 127, 23);
+		frame.getContentPane().add(fsName4);
+
+		fsName3 = new JLabel("...");
+		fsName3.setFont(new Font("Dialog", Font.PLAIN, 18));
+		fsName3.setBounds(716, 901, 126, 23);
+		frame.getContentPane().add(fsName3);
+
+		fsName2 = new JLabel("...");
+		fsName2.setFont(new Font("Dialog", Font.PLAIN, 18));
+		fsName2.setBounds(528, 905, 119, 22);
+		frame.getContentPane().add(fsName2);
+		
+		fsName1 = new JLabel("...");
+		fsName1.setFont(new Font("Dialog", Font.PLAIN, 18));
+		fsName1.setBounds(323, 899, 117, 28);
+		frame.getContentPane().add(fsName1);
+		
+		JLabel labell = new JLabel("Crew Info");
+		labell.setFont(new Font("Dialog", Font.PLAIN, 16));
+		labell.setBounds(544, 648, 112, 23);
+		frame.getContentPane().add(labell);
+	
+
+		JLabel label0 = new JLabel("Hunger:");
+		label0.setFont(new Font("Dialog", Font.PLAIN, 16));
+		label0.setBounds(169, 871, 81, 15);
+		frame.getContentPane().add(label0);
+
+		JLabel label1 = new JLabel("Tiredness:");
+		label1.setFont(new Font("Dialog", Font.PLAIN, 16));
+		label1.setBounds(169, 814, 81, 15);
+		frame.getContentPane().add(label1);
+	
+
+		JLabel label2 = new JLabel("Health:");
+		label2.setLocation(109, 626);
+		label2.setFont(new Font("Dialog", Font.PLAIN, 16));
+		label.setBounds(60, 125, 81, 15);
+		frame.getContentPane().add(label2);
+		
+		
+		JLabel label3 = new JLabel("Name:");
+		label3.setFont(new Font("Dialog", Font.PLAIN, 16));
+		label3.setBounds(171, 904, 81, 15);
+		frame.getContentPane().add(label3);
+
+	
+
+		
+
+
+		JLabel label4 = new JLabel("Type:");
+		label4.setFont(new Font("Dialog", Font.PLAIN, 16));
+		label4.setBounds(169, 711, 81, 15);
+		frame.getContentPane().add(label4);
+
+		fsType1 = new JLabel("...");
+		fsType1.setFont(new Font("Dialog", Font.PLAIN, 18));
+		fsType1.setBounds(330, 695, 129, 30);
+		frame.getContentPane().add(fsType1);
+
+		fsType2 = new JLabel("...");
+		fsType2.setFont(new Font("Dialog", Font.PLAIN, 18));
+		fsType2.setBounds(541, 702, 119, 23);
+		frame.getContentPane().add(fsType2);
+
+		fsType3 = new JLabel("...");
+		fsType3.setFont(new Font("Dialog", Font.PLAIN, 18));
+		fsType3.setBounds(733, 705, 129, 21);
+		frame.getContentPane().add(fsType3);
+	
+
+		fsType4 = new JLabel("...");
+		fsType4.setFont(new Font("Dialog", Font.PLAIN, 18));
+		fsType4.setBounds(912, 705, 134, 22);
+		frame.getContentPane().add(fsType4);
+		
+		frame.getContentPane().setLayout(null);
+		
+		
+
+		//initialize storage arrays
+		fsType();
+		fsName();
+		
+		fsHealth();
+		fsTired();
+		fsHunger();
 		
 		// Button Actions
 		cBoxActions();
 		backToOutpost();
 		btnBuy();
+		organizeGameInfo();
 	}
 
 	

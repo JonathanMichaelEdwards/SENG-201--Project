@@ -95,7 +95,6 @@ public class MainScreen
 	// Stores crew details in data arrays so it can be used easily
 	private void dispCrewType() 
 	{
-		System.out.println(lblCrewType1);
 		type[0] = lblCrewType1;
 		type[1] = lblCrewType2;
 		type[2] = lblCrewType3;
@@ -191,7 +190,6 @@ public class MainScreen
 		
 		pBarShipHealth.setValue(repair);
 		
-		System.out.println(crewType.size());
 		for (int index = 0; index < crewType.size(); index++) {
 			type[index].setText(crewType.get(index));
 			member[index].setText(crewName.get(index));

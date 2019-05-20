@@ -167,7 +167,7 @@ public class CrewRepair {
 				IOFile ioFile = new IOFile();
 				
 				ArrayList<String> changeShields = ioFile.fileRead("StoreGame/ShipInfo.txt");
-				int repair = Integer.parseInt(changeShields.get(2)) + 10; //this is the value in which a repair heals
+				int repair = Integer.parseInt(changeShields.get(2)) + 30; //this is the value in which a repair heals
 				
 				changeShields.set(2, "" + repair);
 				ioFile.fileWrite(changeShields, "StoreGame/ShipInfo.txt");  // Writing in new days

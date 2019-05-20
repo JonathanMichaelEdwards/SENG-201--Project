@@ -80,7 +80,7 @@ public class ExplorePlanet
 		btnRun.setBounds(200, 192, 114, 25);
 		frame.getContentPane().add(btnRun);
 		
-		JLabel lblFightXDraws = new JLabel("Fight: X draws their reapeater/thumper/scattergun and fires away. Emerging victorious");
+		JLabel lblFightXDraws = new JLabel("Fight: X draws their reapeater/thumper/scattergun and unloads. Emerging victorious");
 		lblFightXDraws.setBounds(41, 309, 787, 15);
 		frame.getContentPane().add(lblFightXDraws);
 		
@@ -101,7 +101,7 @@ public class ExplorePlanet
 		frame.getContentPane().add(lblBagYou);
 		
 		JLabel lblCrewYou = new JLabel("Crew - You have no backup, the rest of the crew is off world");
-		lblCrewYou.setBounds(34, 535, 414, 64);
+		lblCrewYou.setBounds(41, 371, 414, 15);
 		frame.getContentPane().add(lblCrewYou);
 		
 		// Back button

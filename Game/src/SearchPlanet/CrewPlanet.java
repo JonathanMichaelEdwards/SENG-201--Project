@@ -16,6 +16,7 @@ import IOFile.IOFile;
 import MainScreen.MainScreen;
 //Self implemented
 import WindowSettings.Display;
+import javax.swing.JCheckBox;
 
 
 public class CrewPlanet {
@@ -170,6 +171,22 @@ public class CrewPlanet {
 		btnBack.setBounds(1054, 594, 207, 69);
 		frame.getContentPane().add(btnBack);
 		
+		JCheckBox chckbxChoose = new JCheckBox("Choose ");
+		chckbxChoose.setBounds(204, 344, 126, 23);
+		frame.getContentPane().add(chckbxChoose);
+		
+		JCheckBox checkBox = new JCheckBox("Choose ");
+		checkBox.setBounds(409, 344, 126, 23);
+		frame.getContentPane().add(checkBox);
+		
+		JCheckBox checkBox_1 = new JCheckBox("Choose ");
+		checkBox_1.setBounds(607, 344, 126, 23);
+		frame.getContentPane().add(checkBox_1);
+		
+		JCheckBox checkBox_2 = new JCheckBox("Choose ");
+		checkBox_2.setBounds(791, 344, 126, 23);
+		frame.getContentPane().add(checkBox_2);
+		
 	}
 	
 	
@@ -220,47 +237,47 @@ public class CrewPlanet {
 		
 	
 		cpHealth2 = new JProgressBar();
-		cpHealth2.setBounds(409, 107, 146, 36);
+		cpHealth2.setBounds(409, 107, 146, 30);
 		frame.getContentPane().add(cpHealth2);
 		
 
 		cpTired2 = new JProgressBar();
-		cpTired2.setBounds(421, 171, 134, 30);
+		cpTired2.setBounds(409, 171, 146, 30);
 		frame.getContentPane().add(cpTired2);
 		
 	
 		cpHunger2 = new JProgressBar();
-		cpHunger2.setBounds(429, 241, 126, 30);
+		cpHunger2.setBounds(409, 241, 146, 30);
 		frame.getContentPane().add(cpHunger2);
 	
 
 		cpHealth3 = new JProgressBar();
-		cpHealth3.setBounds(607, 101, 146, 52);
+		cpHealth3.setBounds(607, 107, 146, 30);
 		frame.getContentPane().add(cpHealth3);
 		
 	
 		cpTired3 = new JProgressBar();
-		cpTired3.setBounds(607, 165, 146, 52);
+		cpTired3.setBounds(607, 171, 146, 30);
 		frame.getContentPane().add(cpTired3);
 
 		cpHunger3 = new JProgressBar();
-		cpHunger3.setBounds(607, 229, 146, 52);
+		cpHunger3.setBounds(607, 241, 146, 30);
 		frame.getContentPane().add(cpHunger3);
 
 
 
 		cpHealth4 = new JProgressBar();
-		cpHealth4.setBounds(791, 107, 146, 52);
+		cpHealth4.setBounds(791, 107, 146, 30);
 		frame.getContentPane().add(cpHealth4);
 		
 	
 		cpTired4 = new JProgressBar();
-		cpTired4.setBounds(791, 171, 146, 52);
+		cpTired4.setBounds(791, 171, 146, 30);
 		frame.getContentPane().add(cpTired4);
 		
 	
 		cpHunger4 = new JProgressBar();
-		cpHunger4.setBounds(788, 229, 146, 52);
+		cpHunger4.setBounds(791, 241, 146, 30);
 		frame.getContentPane().add(cpHunger4);
 
 		cpName4 = new JLabel("...");
