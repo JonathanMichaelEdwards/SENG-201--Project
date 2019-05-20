@@ -483,6 +483,7 @@ public class MainScreen
 		panel.add(panelCrew);
 		panelCrew.setLayout(null);
 		
+		
 		pBarHealth1 = new JProgressBar();
 		pBarHealth1.setBounds(204, 107, 146, 30);
 		panelCrew.add(pBarHealth1);

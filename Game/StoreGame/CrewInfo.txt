@@ -1,1 +1,5 @@
+<<<<<<< Updated upstream
 Medic, Leader, Mechanic, joanth, fgf, fhgfhjfdh, 
+=======
+Medic, Leader, ffff, fewfw, 
+>>>>>>> Stashed changes
