@@ -10,26 +10,31 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
 
 import IOFile.IOFile;
 //Self implemented
 import WindowSettings.Display;
 import MainScreen.MainScreen;
+import javax.swing.JCheckBox;
+import javax.swing.JRadioButton;
 
 
 public class CrewSleep {
 
 public JFrame frame;
 	
-	private JLabel csType1, csType2, csType3, csType4;
-	private JLabel csName1, csName2, csName3, csName4;
+	private JLabel cBType1, cBType2, cBType3, cBType4;
+	private JLabel cBName1, cBName2, cBName3, cBName4;
 	
+	private JProgressBar cBHealth1, cBHealth2, cBHealth3, cBHealth4;
+	private JProgressBar cBTired1, cBTired2, cBTired3, cBTired4;
+	private JProgressBar cBHunger1, cBHunger2, cBHunger3, cBHunger4;
 	
-	private JProgressBar csHealth1, csHealth2, csHealth3, csHealth4;
-	private JProgressBar csTired1, csTired2, csTired3, csTired4;
-	private JProgressBar csHunger1, csHunger2, csHunger3, csHunger4;
-	
+	// File locations
+	private String readCrew = "StoreGame/CrewRatings/";
+
 	// stores the selection type
 	private ArrayList<String> crewType = new ArrayList<String>();
 	private ArrayList<String> crewName = new ArrayList<String>();
@@ -37,6 +42,8 @@ public JFrame frame;
 	private JLabel type[] = new JLabel[4];
 	private JLabel member[] = new JLabel[4];
 	
+	private JRadioButton rBChar1, rBChar2, rBChar3, rBChar4;
+	private JButton btnSleep;
 	
 	private JProgressBar health[] = new JProgressBar[4];
 	private JProgressBar tiredness[] = new JProgressBar[4];
@@ -45,47 +52,47 @@ public JFrame frame;
 
 	// Store all progress bar so it can be used easily
 	// Stores crew details in data arrays so it can be used easily
-	private void csHealth() 
+	private void cBHealth() 
 	{
-		health[0] = csHealth1;
-		health[1] = csHealth2;
-		health[2] = csHealth3;
-		health[3] = csHealth4;
+		health[0] = cBHealth1;
+		health[1] = cBHealth2;
+		health[2] = cBHealth3;
+		health[3] = cBHealth4;
 	}
 	
-	private void csTired() 
+	private void cBTired() 
 	{
-		tiredness[0] = csTired1;
-		tiredness[1] = csTired2;
-		tiredness[2] = csTired3;
-		tiredness[3] = csTired4;
+		tiredness[0] = cBTired1;
+		tiredness[1] = cBTired2;
+		tiredness[2] = cBTired3;
+		tiredness[3] = cBTired4;
 	}
 	
-	private void csHunger() 
+	private void cBHunger() 
 	{
-		hunger[0] = csHunger1;
-		hunger[1] = csHunger2;
-		hunger[2] = csHunger3;
-		hunger[3] = csHunger4;
+		hunger[0] = cBHunger1;
+		hunger[1] = cBHunger2;
+		hunger[2] = cBHunger3;
+		hunger[3] = cBHunger4;
 	}
 	
 	
 	// Stores crew details in data arrays so it can be used easily
-	private void csType() 
+	private void cBType() 
 	{
 		
-		type[0] = csType1;
-		type[1] = csType2;
-		type[2] = csType3;
-		type[3] = csType4;
+		type[0] = cBType1;
+		type[1] = cBType2;
+		type[2] = cBType3;
+		type[3] = cBType4;
 	}
 	
-	private void csName() 
+	private void cBName() 
 	{
-		member[0] = csName1;
-		member[1] = csName2;
-		member[2] = csName3;
-		member[3] = csName4;
+		member[0] = cBName1;
+		member[1] = cBName2;
+		member[2] = cBName3;
+		member[3] = cBName4;
 	}
 	
 
@@ -103,7 +110,6 @@ public JFrame frame;
 	// items to be disabled
 	private void disableInfo(int index) 
 	{
-
 		type[index].setEnabled(false);
 		member[index].setEnabled(false);
 		hunger[index].setEnabled(false);
@@ -138,6 +144,68 @@ public JFrame frame;
 	}
 	
 	
+	// Storing and displaying the characters health
+	private void memberOne(ArrayList<String> crewMember1, IOFile ioFile)
+	{
+		crewMember1 = ioFile.fileRead(readCrew + crewType.get(0) + ".txt");
+		
+		cBHealth1.setValue(Integer.valueOf(crewMember1.get(0)));
+		cBTired1.setValue(Integer.valueOf(crewMember1.get(1)));
+		cBHunger1.setValue(Integer.valueOf(crewMember1.get(2)));
+	}
+	
+	private void memberTwo(ArrayList<String> crewMember2, IOFile ioFile)
+	{
+		crewMember2 = ioFile.fileRead(readCrew + crewType.get(1) + ".txt");
+		
+		cBHealth2.setValue(Integer.valueOf(crewMember2.get(0)));
+		cBTired2.setValue(Integer.valueOf(crewMember2.get(1)));
+		cBHunger2.setValue(Integer.valueOf(crewMember2.get(2)));
+	}
+	
+	private void memberThree(ArrayList<String> crewMember3, IOFile ioFile)
+	{
+		crewMember3 = ioFile.fileRead(readCrew + crewType.get(2) + ".txt");
+		
+		cBHealth3.setValue(Integer.valueOf(crewMember3.get(0)));
+		cBTired3.setValue(Integer.valueOf(crewMember3.get(1)));
+		cBHunger3.setValue(Integer.valueOf(crewMember3.get(2)));
+	}
+	
+	private void memberFour(ArrayList<String> crewMember4, IOFile ioFile)
+	{
+		crewMember4 = ioFile.fileRead(readCrew + crewType.get(3) + ".txt");
+		
+		cBHealth4.setValue(Integer.valueOf(crewMember4.get(0)));
+		cBTired4.setValue(Integer.valueOf(crewMember4.get(1)));
+		cBHunger4.setValue(Integer.valueOf(crewMember4.get(2)));
+	}
+	
+	
+	private void readCrewRatings()
+	{ 
+		ArrayList<String> crewMember1 = new ArrayList<String>();
+		ArrayList<String> crewMember2 = new ArrayList<String>();
+		ArrayList<String> crewMember3 = new ArrayList<String>();
+		ArrayList<String> crewMember4 = new ArrayList<String>();
+		IOFile ioFile = new IOFile();
+		
+		// Reading and storing the crew members health rating
+		for (int index = 0; index < crewType.size(); index++) {
+			// Storing the character types health rating
+			if (index == 0) {
+				memberOne(crewMember1, ioFile);
+			} else if (index == 1) {
+				memberTwo(crewMember2, ioFile);
+			} else if (index == 2) {
+				memberThree(crewMember3, ioFile);
+			} else if (index == 3) {
+				memberFour(crewMember4, ioFile);;
+			}
+		}
+	}
+		
+		
 	// organizing information from files
 	private void organizeGameInfo()
 	{
@@ -149,6 +217,7 @@ public JFrame frame;
 		
 		// unwrap information
 		decodeCrewInfo(crewInfo);
+		readCrewRatings();
 		
 		for (int index = 0; index < crewType.size(); index++) {
 			type[index].setText(crewType.get(index));
@@ -156,7 +225,6 @@ public JFrame frame;
 		}
 	}
 		
-	
 	
 	// back button
 	private void btnBack()
@@ -173,11 +241,127 @@ public JFrame frame;
 		});
 		btnBack.setBounds(1054, 594, 207, 69);
 		frame.getContentPane().add(btnBack);
+	}
+	
+	
+	private void btnSleep()
+	{
+		btnSleep = new JButton("SLEEPTHIS");
+		btnSleep.setEnabled(false);
+		btnSleep.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				IOFile ioFile = new IOFile();
+				ArrayList<String> member = new ArrayList<String>();
+				
+				String readFile = "StoreGame/CrewSelected/";
+				
+				// changes the member selected file
+				if (rBChar1.isSelected()) {
+					member = ioFile.fileRead(readFile + "MemberOne.txt");
+					member.set(3, ""+(Integer.parseInt(member.get(3)) - 1));
+					ioFile.fileWrite(member, readFile + "MemberOne.txt");
+				} else if (rBChar2.isSelected()) {
+					member = ioFile.fileRead(readFile + "MemberTwo.txt");
+					member.set(3, ""+(Integer.parseInt(member.get(3)) - 1));
+					ioFile.fileWrite(member, readFile + "MemberTwo.txt");
+				} else if (rBChar3.isSelected()) {
+					member = ioFile.fileRead(readFile + "MemberThree.txt");
+					member.set(3, ""+(Integer.parseInt(member.get(3)) - 1));
+					ioFile.fileWrite(member, readFile + "MemberThree.txt");
+				} else if (rBChar4.isSelected()) {
+					member = ioFile.fileRead(readFile + "MemberFour.txt");
+					member.set(3, ""+(Integer.parseInt(member.get(3)) - 1));
+					ioFile.fileWrite(member, readFile + "MemberFour.txt");
+				} 
+				
+				MainScreen screen = new MainScreen();
+				screen.frame.setVisible(true);    // turn on screen
+				frame.setVisible(false);          // turn off screen
+					
+			}
+		});
+		btnSleep.setBounds(154, 580, 309, 77);
+		frame.getContentPane().add(btnSleep);
+	}
+	
+	
+	
+	private void clearSleep()
+	{
+		rBChar1.setSelected(false);
+		rBChar2.setSelected(false);
+		rBChar3.setSelected(false);
+		rBChar4.setSelected(false);
+	}
+	
+	
+	private void disableMember()
+	{
+		IOFile ioFile = new IOFile();
 		
-		JButton btnSleepthis = new JButton("SLEEPTHIS");
-		btnSleepthis.setBounds(154, 580, 309, 77);
-		frame.getContentPane().add(btnSleepthis);
+		// Reading files
+		ArrayList<String> crewMembers = ioFile.fileRead("StoreGame/CrewInfo.txt");
 		
+		if ((crewMembers.size()/2) == 2) {
+			rBChar3.setEnabled(false);
+			rBChar4.setEnabled(false);
+		} else if ((crewMembers.size()/2) == 3) {
+			rBChar4.setEnabled(false);
+		}
+	}
+	
+	
+	// characters that can be chosen
+	private void characterChoice()
+	{
+		rBChar1 = new JRadioButton("character 1");
+		rBChar1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				clearSleep();
+				rBChar1.setSelected(true);
+				btnSleep.setEnabled(true);
+			}
+		});
+		rBChar1.setBounds(214, 327, 144, 23);
+		frame.getContentPane().add(rBChar1);
+		
+		
+		rBChar2 = new JRadioButton("character 2");
+		rBChar2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				clearSleep();
+				rBChar2.setSelected(true);
+				btnSleep.setEnabled(true);
+			}
+		});
+		rBChar2.setBounds(428, 327, 144, 23);
+		frame.getContentPane().add(rBChar2);
+		
+		
+		rBChar3 = new JRadioButton("character 3");
+		rBChar3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				clearSleep();
+				rBChar3.setSelected(true);
+				btnSleep.setEnabled(true);
+			}
+		});
+		rBChar3.setBounds(607, 327, 144, 23);
+		frame.getContentPane().add(rBChar3);
+		
+		
+		rBChar4 = new JRadioButton("character 4");
+		rBChar4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				clearSleep();
+				rBChar4.setSelected(true);
+				btnSleep.setEnabled(true);
+			}
+		});
+		rBChar4.setBounds(791, 327, 144, 23);
+		frame.getContentPane().add(rBChar4);
 	}
 	
 	
@@ -196,159 +380,138 @@ public JFrame frame;
 //		frame.setUndecorated(true);  // Frame cannot be adjusted during game
 		
 		
-		
+		cBHealth1 = new JProgressBar();
+		cBHealth1.setBounds(204, 107, 146, 30);
+		frame.getContentPane().add(cBHealth1);
 
-		csHealth1 = new JProgressBar();
-		csHealth1.setBounds(204, 107, 146, 30);
-		frame.getContentPane().add(csHealth1);
-
-		csTired1 = new JProgressBar();
-		csTired1.setBounds(204, 171, 146, 30);
-		frame.getContentPane().add(csTired1);
+		cBTired1 = new JProgressBar();
+		cBTired1.setBounds(204, 171, 146, 30);
+		frame.getContentPane().add(cBTired1);
 	
-
-		csHunger1 = new JProgressBar();
-		csHunger1.setBounds(204, 241, 146, 30);
-		frame.getContentPane().add(csHunger1);
+		cBHunger1 = new JProgressBar();
+		cBHunger1.setBounds(204, 241, 146, 30);
+		frame.getContentPane().add(cBHunger1);
 		
+		cBHealth2 = new JProgressBar();
+		cBHealth2.setBounds(409, 107, 146, 36);
+		frame.getContentPane().add(cBHealth2);
+		
+		cBTired2 = new JProgressBar();
+		cBTired2.setBounds(421, 171, 134, 30);
+		frame.getContentPane().add(cBTired2);
+		
+		cBHunger2 = new JProgressBar();
+		cBHunger2.setBounds(429, 241, 126, 30);
+		frame.getContentPane().add(cBHunger2);
+
+		cBHealth3 = new JProgressBar();
+		cBHealth3.setBounds(607, 101, 146, 52);
+		frame.getContentPane().add(cBHealth3);
+		
+		cBTired3 = new JProgressBar();
+		cBTired3.setBounds(607, 165, 146, 52);
+		frame.getContentPane().add(cBTired3);
+
+		cBHunger3 = new JProgressBar();
+		cBHunger3.setBounds(607, 229, 146, 52);
+		frame.getContentPane().add(cBHunger3);
+
+		cBHealth4 = new JProgressBar();
+		cBHealth4.setBounds(791, 107, 146, 52);
+		frame.getContentPane().add(cBHealth4);
+		
+		cBTired4 = new JProgressBar();
+		cBTired4.setBounds(791, 171, 146, 52);
+		frame.getContentPane().add(cBTired4);
 	
-		csHealth2 = new JProgressBar();
-		csHealth2.setBounds(409, 107, 146, 36);
-		frame.getContentPane().add(csHealth2);
+		cBHunger4 = new JProgressBar();
+		cBHunger4.setBounds(788, 229, 146, 52);
+		frame.getContentPane().add(cBHunger4);
+
+		cBName4 = new JLabel("...");
+		cBName4.setFont(new Font("Dialog", Font.PLAIN, 18));
+		cBName4.setBounds(791, 275, 127, 23);
+		frame.getContentPane().add(cBName4);
+
+		cBName3 = new JLabel("...");
+		cBName3.setFont(new Font("Dialog", Font.PLAIN, 18));
+		cBName3.setBounds(607, 275, 126, 23);
+		frame.getContentPane().add(cBName3);
+
+		cBName2 = new JLabel("...");
+		cBName2.setFont(new Font("Dialog", Font.PLAIN, 18));
+		cBName2.setBounds(419, 279, 119, 22);
+		frame.getContentPane().add(cBName2);
 		
-
-		csTired2 = new JProgressBar();
-		csTired2.setBounds(421, 171, 134, 30);
-		frame.getContentPane().add(csTired2);
-		
-	
-		csHunger2 = new JProgressBar();
-		csHunger2.setBounds(429, 241, 126, 30);
-		frame.getContentPane().add(csHunger2);
-	
-
-		csHealth3 = new JProgressBar();
-		csHealth3.setBounds(607, 101, 146, 52);
-		frame.getContentPane().add(csHealth3);
-		
-	
-		csTired3 = new JProgressBar();
-		csTired3.setBounds(607, 165, 146, 52);
-		frame.getContentPane().add(csTired3);
-
-		csHunger3 = new JProgressBar();
-		csHunger3.setBounds(607, 229, 146, 52);
-		frame.getContentPane().add(csHunger3);
-
-
-
-		csHealth4 = new JProgressBar();
-		csHealth4.setBounds(791, 107, 146, 52);
-		frame.getContentPane().add(csHealth4);
-		
-	
-		csTired4 = new JProgressBar();
-		csTired4.setBounds(791, 171, 146, 52);
-		frame.getContentPane().add(csTired4);
-		
-	
-		csHunger4 = new JProgressBar();
-		csHunger4.setBounds(788, 229, 146, 52);
-		frame.getContentPane().add(csHunger4);
-
-		csName4 = new JLabel("...");
-		csName4.setFont(new Font("Dialog", Font.PLAIN, 18));
-		csName4.setBounds(791, 275, 127, 23);
-		frame.getContentPane().add(csName4);
-
-		csName3 = new JLabel("...");
-		csName3.setFont(new Font("Dialog", Font.PLAIN, 18));
-		csName3.setBounds(607, 275, 126, 23);
-		frame.getContentPane().add(csName3);
-
-		csName2 = new JLabel("...");
-		csName2.setFont(new Font("Dialog", Font.PLAIN, 18));
-		csName2.setBounds(419, 279, 119, 22);
-		frame.getContentPane().add(csName2);
-		
-		csName1 = new JLabel("...");
-		csName1.setFont(new Font("Dialog", Font.PLAIN, 18));
-		csName1.setBounds(214, 273, 117, 28);
-		frame.getContentPane().add(csName1);
+		cBName1 = new JLabel("...");
+		cBName1.setFont(new Font("Dialog", Font.PLAIN, 18));
+		cBName1.setBounds(214, 273, 117, 28);
+		frame.getContentPane().add(cBName1);
 		
 		JLabel label = new JLabel("Crew Info");
 		label.setFont(new Font("Dialog", Font.PLAIN, 16));
 		label.setBounds(435, 22, 112, 23);
 		frame.getContentPane().add(label);
 	
-
 		JLabel label0 = new JLabel("Hunger:");
 		label0.setFont(new Font("Dialog", Font.PLAIN, 16));
 		label0.setBounds(60, 245, 81, 15);
 		frame.getContentPane().add(label0);
-
 		JLabel label1 = new JLabel("Tiredness:");
 		label1.setFont(new Font("Dialog", Font.PLAIN, 16));
 		label1.setBounds(60, 188, 81, 15);
 		frame.getContentPane().add(label1);
-	
 
 		JLabel label2 = new JLabel("Health:");
 		label2.setFont(new Font("Dialog", Font.PLAIN, 16));
 		label.setBounds(60, 125, 81, 15);
 		frame.getContentPane().add(label2);
 		
-		
 		JLabel label3 = new JLabel("Name:");
 		label3.setFont(new Font("Dialog", Font.PLAIN, 16));
 		label3.setBounds(62, 278, 81, 15);
 		frame.getContentPane().add(label3);
-
-	
-
-		
-
 
 		JLabel label4 = new JLabel("Type:");
 		label4.setFont(new Font("Dialog", Font.PLAIN, 16));
 		label4.setBounds(60, 85, 81, 15);
 		frame.getContentPane().add(label4);
 
-		csType1 = new JLabel("...");
-		csType1.setFont(new Font("Dialog", Font.PLAIN, 18));
-		csType1.setBounds(221, 69, 129, 30);
-		frame.getContentPane().add(csType1);
+		cBType1 = new JLabel("...");
+		cBType1.setFont(new Font("Dialog", Font.PLAIN, 18));
+		cBType1.setBounds(221, 69, 129, 30);
+		frame.getContentPane().add(cBType1);
 
-		csType2 = new JLabel("...");
-		csType2.setFont(new Font("Dialog", Font.PLAIN, 18));
-		csType2.setBounds(432, 76, 119, 23);
-		frame.getContentPane().add(csType2);
+		cBType2 = new JLabel("...");
+		cBType2.setFont(new Font("Dialog", Font.PLAIN, 18));
+		cBType2.setBounds(432, 76, 119, 23);
+		frame.getContentPane().add(cBType2);
 
-		csType3 = new JLabel("...");
-		csType3.setFont(new Font("Dialog", Font.PLAIN, 18));
-		csType3.setBounds(624, 79, 129, 21);
-		frame.getContentPane().add(csType3);
-	
+		cBType3 = new JLabel("...");
+		cBType3.setFont(new Font("Dialog", Font.PLAIN, 18));
+		cBType3.setBounds(624, 79, 129, 21);
+		frame.getContentPane().add(cBType3);
 
-		csType4 = new JLabel("...");
-		csType4.setFont(new Font("Dialog", Font.PLAIN, 18));
-		csType4.setBounds(803, 79, 134, 22);
-		frame.getContentPane().add(csType4);
-		
+		cBType4 = new JLabel("...");
+		cBType4.setFont(new Font("Dialog", Font.PLAIN, 18));
+		cBType4.setBounds(803, 79, 134, 22);
+		frame.getContentPane().add(cBType4);
 		frame.getContentPane().setLayout(null);
 		
 		
 
 		//initialize storage arrays
-		csType();
-		csName();
+		cBType();
+		cBName();
 		
-		csHealth();
-		csTired();
-		csHunger();
+		cBHealth();
+		cBTired();
+		cBHunger();
 		
 		// Button actions
-		
+		characterChoice();
+		disableMember();
+		btnSleep();
 		btnBack();
 	}
 	

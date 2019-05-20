@@ -32,13 +32,16 @@ public class ConvenienceStore
 	private JLabel lblAmount;
 	
 	private int cashSpent, totalAmount, cash1, cash2, cash3, cash4, cash5 = 0;
-	private JLabel cpType1, cpType2, cpType3, cpType4;
+	private JLabel cBType1, cBType2, cBType3, cBType4;
 	private JLabel cpName1, cpName2, cpName3, cpName4;
 	
+	// File locations
+	private String readCrew = "StoreGame/CrewRatings/";
 	
-	private JProgressBar cpHealth1, cpHealth2, cpHealth3, cpHealth4;
-	private JProgressBar cpTired1, cpTired2, cpTired3, cpTired4;
-	private JProgressBar cpHunger1, cpHunger2, cpHunger3, cpHunger4;
+	
+	private JProgressBar cBHealth1, cBHealth2, cBHealth3, cBHealth4;
+	private JProgressBar cBTired1, cBTired2, cBTired3, cBTired4;
+	private JProgressBar cBHunger1, cBHunger2, cBHunger3, cBHunger4;
 	
 	// stores the selection type
 	private ArrayList<String> crewType = new ArrayList<String>();
@@ -55,39 +58,39 @@ public class ConvenienceStore
 
 	// Store all progress bar so it can be used easily
 	// Stores crew details in data arrays so it can be used easily
-	private void cpHealth() 
+	private void cBHealth() 
 	{
-		health[0] = cpHealth1;
-		health[1] = cpHealth2;
-		health[2] = cpHealth3;
-		health[3] = cpHealth4;
+		health[0] = cBHealth1;
+		health[1] = cBHealth2;
+		health[2] = cBHealth3;
+		health[3] = cBHealth4;
 	}
 	
-	private void cpTired() 
+	private void cBTired() 
 	{
-		tiredness[0] = cpTired1;
-		tiredness[1] = cpTired2;
-		tiredness[2] = cpTired3;
-		tiredness[3] = cpTired4;
+		tiredness[0] = cBTired1;
+		tiredness[1] = cBTired2;
+		tiredness[2] = cBTired3;
+		tiredness[3] = cBTired4;
 	}
 	
-	private void cpHunger() 
+	private void cBHunger() 
 	{
-		hunger[0] = cpHunger1;
-		hunger[1] = cpHunger2;
-		hunger[2] = cpHunger3;
-		hunger[3] = cpHunger4;
+		hunger[0] = cBHunger1;
+		hunger[1] = cBHunger2;
+		hunger[2] = cBHunger3;
+		hunger[3] = cBHunger4;
 	}
 	
 	
 	// Stores crew details in data arrays so it can be used easily
-	private void cpType() 
+	private void cBType() 
 	{
 		
-		type[0] = cpType1;
-		type[1] = cpType2;
-		type[2] = cpType3;
-		type[3] = cpType4;
+		type[0] = cBType1;
+		type[1] = cBType2;
+		type[2] = cBType3;
+		type[3] = cBType4;
 	}
 	
 	private void cpName() 
@@ -148,6 +151,68 @@ public class ConvenienceStore
 	}
 	
 	
+	// Storing and displaying the characters health
+	private void memberOne(ArrayList<String> crewMember1, IOFile ioFile)
+	{
+		crewMember1 = ioFile.fileRead(readCrew + crewType.get(0) + ".txt");
+		
+		cBHealth1.setValue(Integer.valueOf(crewMember1.get(0)));
+		cBTired1.setValue(Integer.valueOf(crewMember1.get(1)));
+		cBHunger1.setValue(Integer.valueOf(crewMember1.get(2)));
+	}
+	
+	private void memberTwo(ArrayList<String> crewMember2, IOFile ioFile)
+	{
+		crewMember2 = ioFile.fileRead(readCrew + crewType.get(1) + ".txt");
+		
+		cBHealth2.setValue(Integer.valueOf(crewMember2.get(0)));
+		cBTired2.setValue(Integer.valueOf(crewMember2.get(1)));
+		cBHunger2.setValue(Integer.valueOf(crewMember2.get(2)));
+	}
+	
+	private void memberThree(ArrayList<String> crewMember3, IOFile ioFile)
+	{
+		crewMember3 = ioFile.fileRead(readCrew + crewType.get(2) + ".txt");
+		
+		cBHealth3.setValue(Integer.valueOf(crewMember3.get(0)));
+		cBTired3.setValue(Integer.valueOf(crewMember3.get(1)));
+		cBHunger3.setValue(Integer.valueOf(crewMember3.get(2)));
+	}
+	
+	private void memberFour(ArrayList<String> crewMember4, IOFile ioFile)
+	{
+		crewMember4 = ioFile.fileRead(readCrew + crewType.get(3) + ".txt");
+		
+		cBHealth4.setValue(Integer.valueOf(crewMember4.get(0)));
+		cBTired4.setValue(Integer.valueOf(crewMember4.get(1)));
+		cBHunger4.setValue(Integer.valueOf(crewMember4.get(2)));
+	}
+	
+	
+	private void readCrewRatings()
+	{ 
+		ArrayList<String> crewMember1 = new ArrayList<String>();
+		ArrayList<String> crewMember2 = new ArrayList<String>();
+		ArrayList<String> crewMember3 = new ArrayList<String>();
+		ArrayList<String> crewMember4 = new ArrayList<String>();
+		IOFile ioFile = new IOFile();
+		
+		// Reading and storing the crew members health rating
+		for (int index = 0; index < crewType.size(); index++) {
+			// Storing the character types health rating
+			if (index == 0) {
+				memberOne(crewMember1, ioFile);
+			} else if (index == 1) {
+				memberTwo(crewMember2, ioFile);
+			} else if (index == 2) {
+				memberThree(crewMember3, ioFile);
+			} else if (index == 3) {
+				memberFour(crewMember4, ioFile);;
+			}
+		}
+	}
+		
+		
 	// organizing information from files
 	private void organizeGameInfo()
 	{
@@ -159,6 +224,7 @@ public class ConvenienceStore
 		
 		// unwrap information
 		decodeCrewInfo(crewInfo);
+		readCrewRatings();
 		
 		for (int index = 0; index < crewType.size(); index++) {
 			type[index].setText(crewType.get(index));
@@ -344,63 +410,63 @@ public class ConvenienceStore
 		lblAmount = new JLabel("Selected Amount = $ 0");
 		lblAmount.setBounds(416, 364, 220, 21);
 		frame.getContentPane().add(lblAmount);
-		cpHealth1 = new JProgressBar();
-		cpHealth1.setBounds(331, 650, 146, 30);
-		frame.getContentPane().add(cpHealth1);
+		cBHealth1 = new JProgressBar();
+		cBHealth1.setBounds(331, 650, 146, 30);
+		frame.getContentPane().add(cBHealth1);
 
-		cpTired1 = new JProgressBar();
-		cpTired1.setBounds(331, 714, 146, 30);
-		frame.getContentPane().add(cpTired1);
+		cBTired1 = new JProgressBar();
+		cBTired1.setBounds(331, 714, 146, 30);
+		frame.getContentPane().add(cBTired1);
 	
 
-		cpHunger1 = new JProgressBar();
-		cpHunger1.setBounds(331, 784, 146, 30);
-		frame.getContentPane().add(cpHunger1);
+		cBHunger1 = new JProgressBar();
+		cBHunger1.setBounds(331, 784, 146, 30);
+		frame.getContentPane().add(cBHunger1);
 		
 	
-		cpHealth2 = new JProgressBar();
-		cpHealth2.setBounds(536, 650, 146, 36);
-		frame.getContentPane().add(cpHealth2);
+		cBHealth2 = new JProgressBar();
+		cBHealth2.setBounds(536, 650, 146, 36);
+		frame.getContentPane().add(cBHealth2);
 		
 
-		cpTired2 = new JProgressBar();
-		cpTired2.setBounds(548, 714, 134, 30);
-		frame.getContentPane().add(cpTired2);
+		cBTired2 = new JProgressBar();
+		cBTired2.setBounds(548, 714, 134, 30);
+		frame.getContentPane().add(cBTired2);
 		
 	
-		cpHunger2 = new JProgressBar();
-		cpHunger2.setBounds(556, 784, 126, 30);
-		frame.getContentPane().add(cpHunger2);
+		cBHunger2 = new JProgressBar();
+		cBHunger2.setBounds(556, 784, 126, 30);
+		frame.getContentPane().add(cBHunger2);
 	
 
-		cpHealth3 = new JProgressBar();
-		cpHealth3.setBounds(734, 644, 146, 52);
-		frame.getContentPane().add(cpHealth3);
+		cBHealth3 = new JProgressBar();
+		cBHealth3.setBounds(734, 644, 146, 52);
+		frame.getContentPane().add(cBHealth3);
 		
 	
-		cpTired3 = new JProgressBar();
-		cpTired3.setBounds(734, 708, 146, 52);
-		frame.getContentPane().add(cpTired3);
+		cBTired3 = new JProgressBar();
+		cBTired3.setBounds(734, 708, 146, 52);
+		frame.getContentPane().add(cBTired3);
 
-		cpHunger3 = new JProgressBar();
-		cpHunger3.setBounds(734, 772, 146, 52);
-		frame.getContentPane().add(cpHunger3);
+		cBHunger3 = new JProgressBar();
+		cBHunger3.setBounds(734, 772, 146, 52);
+		frame.getContentPane().add(cBHunger3);
 
 
 
-		cpHealth4 = new JProgressBar();
-		cpHealth4.setBounds(918, 650, 146, 52);
-		frame.getContentPane().add(cpHealth4);
+		cBHealth4 = new JProgressBar();
+		cBHealth4.setBounds(918, 650, 146, 52);
+		frame.getContentPane().add(cBHealth4);
 		
 	
-		cpTired4 = new JProgressBar();
-		cpTired4.setBounds(918, 714, 146, 52);
-		frame.getContentPane().add(cpTired4);
+		cBTired4 = new JProgressBar();
+		cBTired4.setBounds(918, 714, 146, 52);
+		frame.getContentPane().add(cBTired4);
 		
 	
-		cpHunger4 = new JProgressBar();
-		cpHunger4.setBounds(915, 772, 146, 52);
-		frame.getContentPane().add(cpHunger4);
+		cBHunger4 = new JProgressBar();
+		cBHunger4.setBounds(915, 772, 146, 52);
+		frame.getContentPane().add(cBHunger4);
 
 		cpName4 = new JLabel("...");
 		cpName4.setFont(new Font("Dialog", Font.PLAIN, 18));
@@ -461,38 +527,38 @@ public class ConvenienceStore
 		label4.setBounds(187, 628, 81, 15);
 		frame.getContentPane().add(label4);
 
-		cpType1 = new JLabel("...");
-		cpType1.setFont(new Font("Dialog", Font.PLAIN, 18));
-		cpType1.setBounds(348, 612, 129, 30);
-		frame.getContentPane().add(cpType1);
+		cBType1 = new JLabel("...");
+		cBType1.setFont(new Font("Dialog", Font.PLAIN, 18));
+		cBType1.setBounds(348, 612, 129, 30);
+		frame.getContentPane().add(cBType1);
 
-		cpType2 = new JLabel("...");
-		cpType2.setFont(new Font("Dialog", Font.PLAIN, 18));
-		cpType2.setBounds(559, 619, 119, 23);
-		frame.getContentPane().add(cpType2);
+		cBType2 = new JLabel("...");
+		cBType2.setFont(new Font("Dialog", Font.PLAIN, 18));
+		cBType2.setBounds(559, 619, 119, 23);
+		frame.getContentPane().add(cBType2);
 
-		cpType3 = new JLabel("...");
-		cpType3.setFont(new Font("Dialog", Font.PLAIN, 18));
-		cpType3.setBounds(751, 622, 129, 21);
-		frame.getContentPane().add(cpType3);
+		cBType3 = new JLabel("...");
+		cBType3.setFont(new Font("Dialog", Font.PLAIN, 18));
+		cBType3.setBounds(751, 622, 129, 21);
+		frame.getContentPane().add(cBType3);
 	
 
-		cpType4 = new JLabel("...");
-		cpType4.setFont(new Font("Dialog", Font.PLAIN, 18));
-		cpType4.setBounds(930, 622, 134, 22);
-		frame.getContentPane().add(cpType4);
+		cBType4 = new JLabel("...");
+		cBType4.setFont(new Font("Dialog", Font.PLAIN, 18));
+		cBType4.setBounds(930, 622, 134, 22);
+		frame.getContentPane().add(cBType4);
 		
 		frame.getContentPane().setLayout(null);
 		
 		
 
 		//initialize storage arrays
-		cpType();
+		cBType();
 		cpName();
 		
-		cpHealth();
-		cpTired();
-		cpHunger();
+		cBHealth();
+		cBTired();
+		cBHunger();
 		
 		// Button Actions
 		cBoxActions();

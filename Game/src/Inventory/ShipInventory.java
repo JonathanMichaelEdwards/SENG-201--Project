@@ -27,13 +27,15 @@ public class ShipInventory
 {
 	public JFrame frame;
 	
-	private JLabel siType1, siType2, siType3, siType4;
+	private JLabel crType1, crType2, crType3, crType4;
 	private JLabel siName1, siName2, siName3, siName4;
 	
+	private JProgressBar crHealth1, crHealth2, crHealth3, crHealth4;
+	private JProgressBar crTired1, crTired2, crTired3, crTired4;
+	private JProgressBar crHunger1, crHunger2, crHunger3, crHunger4;
 	
-	private JProgressBar siHealth1, siHealth2, siHealth3, siHealth4;
-	private JProgressBar siTired1, siTired2, siTired3, siTired4;
-	private JProgressBar siHunger1, siHunger2, siHunger3, siHunger4;
+	// File locations
+	private String readCrew = "StoreGame/CrewRatings/";
 	
 	// stores the selection type
 	private ArrayList<String> crewType = new ArrayList<String>();
@@ -52,39 +54,39 @@ public class ShipInventory
 
 	// Store all progress bar so it can be used easily
 	// Stores crew details in data arrays so it can be used easily
-	private void siHealth() 
+	private void crHealth() 
 	{
-		health[0] = siHealth1;
-		health[1] = siHealth2;
-		health[2] = siHealth3;
-		health[3] = siHealth4;
+		health[0] = crHealth1;
+		health[1] = crHealth2;
+		health[2] = crHealth3;
+		health[3] = crHealth4;
 	}
 	
-	private void siTired() 
+	private void crTired() 
 	{
-		tiredness[0] = siTired1;
-		tiredness[1] = siTired2;
-		tiredness[2] = siTired3;
-		tiredness[3] = siTired4;
+		tiredness[0] = crTired1;
+		tiredness[1] = crTired2;
+		tiredness[2] = crTired3;
+		tiredness[3] = crTired4;
 	}
 	
-	private void siHunger() 
+	private void crHunger() 
 	{
-		hunger[0] = siHunger1;
-		hunger[1] = siHunger2;
-		hunger[2] = siHunger3;
-		hunger[3] = siHunger4;
+		hunger[0] = crHunger1;
+		hunger[1] = crHunger2;
+		hunger[2] = crHunger3;
+		hunger[3] = crHunger4;
 	}
 	
 	
 	// Stores crew details in data arrays so it can be used easily
-	private void siType() 
+	private void crType() 
 	{
 		
-		type[0] = siType1;
-		type[1] = siType2;
-		type[2] = siType3;
-		type[3] = siType4;
+		type[0] = crType1;
+		type[1] = crType2;
+		type[2] = crType3;
+		type[3] = crType4;
 	}
 	
 	private void siName() 
@@ -154,6 +156,68 @@ public class ShipInventory
 	}
 	
 	
+	// Storing and displaying the characters health
+	private void memberOne(ArrayList<String> crewMember1, IOFile ioFile)
+	{
+		crewMember1 = ioFile.fileRead(readCrew + crewType.get(0) + ".txt");
+		
+		crHealth1.setValue(Integer.valueOf(crewMember1.get(0)));
+		crTired1.setValue(Integer.valueOf(crewMember1.get(1)));
+		crHunger1.setValue(Integer.valueOf(crewMember1.get(2)));
+	}
+	
+	private void memberTwo(ArrayList<String> crewMember2, IOFile ioFile)
+	{
+		crewMember2 = ioFile.fileRead(readCrew + crewType.get(1) + ".txt");
+		
+		crHealth2.setValue(Integer.valueOf(crewMember2.get(0)));
+		crTired2.setValue(Integer.valueOf(crewMember2.get(1)));
+		crHunger2.setValue(Integer.valueOf(crewMember2.get(2)));
+	}
+	
+	private void memberThree(ArrayList<String> crewMember3, IOFile ioFile)
+	{
+		crewMember3 = ioFile.fileRead(readCrew + crewType.get(2) + ".txt");
+		
+		crHealth3.setValue(Integer.valueOf(crewMember3.get(0)));
+		crTired3.setValue(Integer.valueOf(crewMember3.get(1)));
+		crHunger3.setValue(Integer.valueOf(crewMember3.get(2)));
+	}
+	
+	private void memberFour(ArrayList<String> crewMember4, IOFile ioFile)
+	{
+		crewMember4 = ioFile.fileRead(readCrew + crewType.get(3) + ".txt");
+		
+		crHealth4.setValue(Integer.valueOf(crewMember4.get(0)));
+		crTired4.setValue(Integer.valueOf(crewMember4.get(1)));
+		crHunger4.setValue(Integer.valueOf(crewMember4.get(2)));
+	}
+	
+	
+	private void readCrewRatings()
+	{ 
+		ArrayList<String> crewMember1 = new ArrayList<String>();
+		ArrayList<String> crewMember2 = new ArrayList<String>();
+		ArrayList<String> crewMember3 = new ArrayList<String>();
+		ArrayList<String> crewMember4 = new ArrayList<String>();
+		IOFile ioFile = new IOFile();
+		
+		// Reading and storing the crew members health rating
+		for (int index = 0; index < crewType.size(); index++) {
+			// Storing the character types health rating
+			if (index == 0) {
+				memberOne(crewMember1, ioFile);
+			} else if (index == 1) {
+				memberTwo(crewMember2, ioFile);
+			} else if (index == 2) {
+				memberThree(crewMember3, ioFile);
+			} else if (index == 3) {
+				memberFour(crewMember4, ioFile);;
+			}
+		}
+	}
+		
+		
 	// organizing information from files
 	private void organizeGameInfo()
 	{
@@ -165,6 +229,7 @@ public class ShipInventory
 		
 		// unwrap information
 		decodeCrewInfo(crewInfo);
+		readCrewRatings();
 		
 		for (int index = 0; index < crewType.size(); index++) {
 			type[index].setText(crewType.get(index));
@@ -474,63 +539,63 @@ public class ShipInventory
 		lblSelectOneOf.setBounds(581, 338, 188, 32);
 		frame.getContentPane().add(lblSelectOneOf);
 		
-		siHealth1 = new JProgressBar();
-		siHealth1.setBounds(514, 460, 146, 30);
-		frame.getContentPane().add(siHealth1);
+		crHealth1 = new JProgressBar();
+		crHealth1.setBounds(514, 460, 146, 30);
+		frame.getContentPane().add(crHealth1);
 
-		siTired1 = new JProgressBar();
-		siTired1.setBounds(514, 524, 146, 30);
-		frame.getContentPane().add(siTired1);
+		crTired1 = new JProgressBar();
+		crTired1.setBounds(514, 524, 146, 30);
+		frame.getContentPane().add(crTired1);
 	
 
-		siHunger1 = new JProgressBar();
-		siHunger1.setBounds(514, 594, 146, 30);
-		frame.getContentPane().add(siHunger1);
+		crHunger1 = new JProgressBar();
+		crHunger1.setBounds(514, 594, 146, 30);
+		frame.getContentPane().add(crHunger1);
 		
 	
-		siHealth2 = new JProgressBar();
-		siHealth2.setBounds(719, 460, 146, 36);
-		frame.getContentPane().add(siHealth2);
+		crHealth2 = new JProgressBar();
+		crHealth2.setBounds(719, 460, 146, 36);
+		frame.getContentPane().add(crHealth2);
 		
 
-		siTired2 = new JProgressBar();
-		siTired2.setBounds(731, 524, 134, 30);
-		frame.getContentPane().add(siTired2);
+		crTired2 = new JProgressBar();
+		crTired2.setBounds(731, 524, 134, 30);
+		frame.getContentPane().add(crTired2);
 		
 	
-		siHunger2 = new JProgressBar();
-		siHunger2.setBounds(739, 594, 126, 30);
-		frame.getContentPane().add(siHunger2);
+		crHunger2 = new JProgressBar();
+		crHunger2.setBounds(739, 594, 126, 30);
+		frame.getContentPane().add(crHunger2);
 	
 
-		siHealth3 = new JProgressBar();
-		siHealth3.setBounds(917, 454, 146, 52);
-		frame.getContentPane().add(siHealth3);
+		crHealth3 = new JProgressBar();
+		crHealth3.setBounds(917, 454, 146, 52);
+		frame.getContentPane().add(crHealth3);
 		
 	
-		siTired3 = new JProgressBar();
-		siTired3.setBounds(917, 518, 146, 52);
-		frame.getContentPane().add(siTired3);
+		crTired3 = new JProgressBar();
+		crTired3.setBounds(917, 518, 146, 52);
+		frame.getContentPane().add(crTired3);
 
-		siHunger3 = new JProgressBar();
-		siHunger3.setBounds(917, 582, 146, 52);
-		frame.getContentPane().add(siHunger3);
+		crHunger3 = new JProgressBar();
+		crHunger3.setBounds(917, 582, 146, 52);
+		frame.getContentPane().add(crHunger3);
 
 
 
-		siHealth4 = new JProgressBar();
-		siHealth4.setBounds(1101, 460, 146, 52);
-		frame.getContentPane().add(siHealth4);
+		crHealth4 = new JProgressBar();
+		crHealth4.setBounds(1101, 460, 146, 52);
+		frame.getContentPane().add(crHealth4);
 		
 	
-		siTired4 = new JProgressBar();
-		siTired4.setBounds(1101, 524, 146, 52);
-		frame.getContentPane().add(siTired4);
+		crTired4 = new JProgressBar();
+		crTired4.setBounds(1101, 524, 146, 52);
+		frame.getContentPane().add(crTired4);
 		
 	
-		siHunger4 = new JProgressBar();
-		siHunger4.setBounds(1098, 582, 146, 52);
-		frame.getContentPane().add(siHunger4);
+		crHunger4 = new JProgressBar();
+		crHunger4.setBounds(1098, 582, 146, 52);
+		frame.getContentPane().add(crHunger4);
 
 		siName4 = new JLabel("...");
 		siName4.setBounds(1101, 628, 127, 23);
@@ -590,34 +655,41 @@ public class ShipInventory
 		label4.setFont(new Font("Dialog", Font.PLAIN, 16));
 		frame.getContentPane().add(label4);
 
-		siType1 = new JLabel("...");
-		siType1.setBounds(531, 422, 129, 30);
-		siType1.setFont(new Font("Dialog", Font.PLAIN, 18));
-		frame.getContentPane().add(siType1);
+		crType1 = new JLabel("...");
+		crType1.setBounds(531, 422, 129, 30);
+		crType1.setFont(new Font("Dialog", Font.PLAIN, 18));
+		frame.getContentPane().add(crType1);
 
-		siType2 = new JLabel("...");
-		siType2.setBounds(742, 429, 119, 23);
-		siType2.setFont(new Font("Dialog", Font.PLAIN, 18));
-		frame.getContentPane().add(siType2);
+		crType2 = new JLabel("...");
+		crType2.setBounds(742, 429, 119, 23);
+		crType2.setFont(new Font("Dialog", Font.PLAIN, 18));
+		frame.getContentPane().add(crType2);
 
-		siType3 = new JLabel("...");
-		siType3.setBounds(934, 432, 129, 21);
-		siType3.setFont(new Font("Dialog", Font.PLAIN, 18));
-		frame.getContentPane().add(siType3);
+		crType3 = new JLabel("...");
+		crType3.setBounds(934, 432, 129, 21);
+		crType3.setFont(new Font("Dialog", Font.PLAIN, 18));
+		frame.getContentPane().add(crType3);
 	
 
-		siType4 = new JLabel("...");
-		siType4.setBounds(1113, 432, 134, 22);
-		siType4.setFont(new Font("Dialog", Font.PLAIN, 18));
-		frame.getContentPane().add(siType4);
+		crType4 = new JLabel("...");
+		crType4.setBounds(1113, 432, 134, 22);
+		crType4.setFont(new Font("Dialog", Font.PLAIN, 18));
+		frame.getContentPane().add(crType4);
 		
 		frame.getContentPane().setLayout(null);
 
-		siType();
+		crType();
 		siName();
+<<<<<<< HEAD
 		siHealth();
 		siTired();
 		siHunger();
+=======
+		
+		crHealth();
+		crTired();
+		crHunger();
+>>>>>>> master
 		// Back Actions
 		btnAccept();;
 		btnBack();

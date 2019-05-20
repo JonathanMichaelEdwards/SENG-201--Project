@@ -13,9 +13,11 @@ import javax.swing.JProgressBar;
 
 import IOFile.IOFile;
 import MainScreen.MainScreen;
+import SearchPlanet.ExplorePlanet;
 //Self implemented
 import WindowSettings.Display;
 import java.awt.Font;
+import javax.swing.JRadioButton;
 
 
 public class CrewRepair {
@@ -24,11 +26,15 @@ public class CrewRepair {
 	
 	private JLabel crType1, crType2, crType3, crType4;
 	private JLabel crName1, crName2, crName3, crName4;
-	
+	private JRadioButton rBChar1, rBChar2, rBChar3, rBChar4;
+	JButton btnRepair;
 	
 	private JProgressBar crHealth1, crHealth2, crHealth3, crHealth4;
 	private JProgressBar crTired1, crTired2, crTired3, crTired4;
 	private JProgressBar crHunger1, crHunger2, crHunger3, crHunger4;
+	
+	// File locations
+	private String readCrew = "StoreGame/CrewRatings/";
 	
 	// stores the selection type
 	private ArrayList<String> crewType = new ArrayList<String>();
@@ -138,6 +144,68 @@ public class CrewRepair {
 	}
 	
 	
+	// Storing and displaying the characters health
+	private void memberOne(ArrayList<String> crewMember1, IOFile ioFile)
+	{
+		crewMember1 = ioFile.fileRead(readCrew + crewType.get(0) + ".txt");
+		
+		crHealth1.setValue(Integer.valueOf(crewMember1.get(0)));
+		crTired1.setValue(Integer.valueOf(crewMember1.get(1)));
+		crHunger1.setValue(Integer.valueOf(crewMember1.get(2)));
+	}
+	
+	private void memberTwo(ArrayList<String> crewMember2, IOFile ioFile)
+	{
+		crewMember2 = ioFile.fileRead(readCrew + crewType.get(1) + ".txt");
+		
+		crHealth2.setValue(Integer.valueOf(crewMember2.get(0)));
+		crTired2.setValue(Integer.valueOf(crewMember2.get(1)));
+		crHunger2.setValue(Integer.valueOf(crewMember2.get(2)));
+	}
+	
+	private void memberThree(ArrayList<String> crewMember3, IOFile ioFile)
+	{
+		crewMember3 = ioFile.fileRead(readCrew + crewType.get(2) + ".txt");
+		
+		crHealth3.setValue(Integer.valueOf(crewMember3.get(0)));
+		crTired3.setValue(Integer.valueOf(crewMember3.get(1)));
+		crHunger3.setValue(Integer.valueOf(crewMember3.get(2)));
+	}
+	
+	private void memberFour(ArrayList<String> crewMember4, IOFile ioFile)
+	{
+		crewMember4 = ioFile.fileRead(readCrew + crewType.get(3) + ".txt");
+		
+		crHealth4.setValue(Integer.valueOf(crewMember4.get(0)));
+		crTired4.setValue(Integer.valueOf(crewMember4.get(1)));
+		crHunger4.setValue(Integer.valueOf(crewMember4.get(2)));
+	}
+	
+	
+	private void readCrewRatings()
+	{ 
+		ArrayList<String> crewMember1 = new ArrayList<String>();
+		ArrayList<String> crewMember2 = new ArrayList<String>();
+		ArrayList<String> crewMember3 = new ArrayList<String>();
+		ArrayList<String> crewMember4 = new ArrayList<String>();
+		IOFile ioFile = new IOFile();
+		
+		// Reading and storing the crew members health rating
+		for (int index = 0; index < crewType.size(); index++) {
+			// Storing the character types health rating
+			if (index == 0) {
+				memberOne(crewMember1, ioFile);
+			} else if (index == 1) {
+				memberTwo(crewMember2, ioFile);
+			} else if (index == 2) {
+				memberThree(crewMember3, ioFile);
+			} else if (index == 3) {
+				memberFour(crewMember4, ioFile);;
+			}
+		}
+	}
+	
+	
 	// organizing information from files
 	private void organizeGameInfo()
 	{
@@ -150,6 +218,8 @@ public class CrewRepair {
 		// unwrap information
 		decodeCrewInfo(crewInfo);
 		
+		readCrewRatings();
+		
 		for (int index = 0; index < crewType.size(); index++) {
 			type[index].setText(crewType.get(index));
 			member[index].setText(crewName.get(index));
@@ -157,33 +227,61 @@ public class CrewRepair {
 	}
 		
 			
+	private void clearRepair()
+	{
+		rBChar1.setSelected(false);
+		rBChar2.setSelected(false);
+		rBChar3.setSelected(false);
+		rBChar4.setSelected(false);
+	}
+	
+	
 	private void btnRepair()
 	{
-		JButton btnSearchPlanet = new JButton("Repair");
-		btnSearchPlanet.addActionListener(new ActionListener() 
+		btnRepair = new JButton("Repair");
+		btnRepair.setEnabled(false);
+		btnRepair.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
 				IOFile ioFile = new IOFile();
 				
 				ArrayList<String> changeShields = ioFile.fileRead("StoreGame/ShipInfo.txt");
+				ArrayList<String> crewMember = new ArrayList<String>();
 				int repair = Integer.parseInt(changeShields.get(2)) + 30; //this is the value in which a repair heals
 				
 				changeShields.set(2, "" + repair);
 				ioFile.fileWrite(changeShields, "StoreGame/ShipInfo.txt");  // Writing in new days
 				
+				String readFile = "StoreGame/CrewSelected/";
+				
+				// changes the member selected file
+				if (rBChar1.isSelected()) {
+					crewMember = ioFile.fileRead(readFile + "MemberOne.txt");
+					crewMember.set(3, ""+(Integer.parseInt(crewMember.get(3)) - 1));
+					ioFile.fileWrite(crewMember, readFile + "MemberOne.txt");
+				} else if (rBChar2.isSelected()) {
+					crewMember = ioFile.fileRead(readFile + "MemberTwo.txt");
+					crewMember.set(3, ""+(Integer.parseInt(crewMember.get(3)) - 1));
+					ioFile.fileWrite(crewMember, readFile + "MemberTwo.txt");
+				} else if (rBChar3.isSelected()) {
+					crewMember = ioFile.fileRead(readFile + "MemberThree.txt");
+					crewMember.set(3, ""+(Integer.parseInt(crewMember.get(3)) - 1));
+					ioFile.fileWrite(crewMember, readFile + "MemberThree.txt");
+				} else if (rBChar4.isSelected()) {
+					crewMember = ioFile.fileRead(readFile + "MemberFour.txt");
+					crewMember.set(3, ""+(Integer.parseInt(crewMember.get(3)) - 1));
+					ioFile.fileWrite(crewMember, readFile + "MemberFour.txt");
+				} 
+			
 				MainScreen screen = new MainScreen();
 				screen.frame.setVisible(true);    // turn on screen
 				frame.setVisible(false);          // turn off screen
 			}
 		});
 		frame.getContentPane().setLayout(null);
-		
-		
-		
-	
-		btnSearchPlanet.setBounds(725, 580, 197, 97);
-		frame.getContentPane().add(btnSearchPlanet);
+		btnRepair.setBounds(725, 580, 197, 97);
+		frame.getContentPane().add(btnRepair);
 	}
 	
 	
@@ -203,6 +301,74 @@ public class CrewRepair {
 		btnBack.setBounds(1054, 594, 207, 69);
 		frame.getContentPane().add(btnBack);
 		
+	}
+	
+	
+	private void disableMember()
+	{
+		IOFile ioFile = new IOFile();
+		
+		// Reading files
+		ArrayList<String> crewMembers = ioFile.fileRead("StoreGame/CrewInfo.txt");
+		
+		if ((crewMembers.size()/2) == 2) {
+			rBChar3.setEnabled(false);
+			rBChar4.setEnabled(false);
+		} else if ((crewMembers.size()/2) == 3) {
+			rBChar4.setEnabled(false);
+		}
+	}
+	
+	
+	// characters that can be chosen
+	private void characterChoice()
+	{
+		rBChar1 = new JRadioButton("character 1");
+		rBChar1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				clearRepair();
+				rBChar1.setSelected(true);
+				btnRepair.setEnabled(true);
+			}
+		});
+		rBChar1.setBounds(214, 327, 144, 23);
+		frame.getContentPane().add(rBChar1);
+		
+		
+		rBChar2 = new JRadioButton("character 2");
+		rBChar2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				clearRepair();
+				rBChar2.setSelected(true);
+				btnRepair.setEnabled(true);
+			}
+		});
+		rBChar2.setBounds(428, 327, 144, 23);
+		frame.getContentPane().add(rBChar2);
+		
+		
+		rBChar3 = new JRadioButton("character 3");
+		rBChar3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				clearRepair();
+				rBChar3.setSelected(true);
+				btnRepair.setEnabled(true);
+			}
+		});
+		rBChar3.setBounds(607, 327, 144, 23);
+		frame.getContentPane().add(rBChar3);
+		
+		
+		rBChar4 = new JRadioButton("character 4");
+		rBChar4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				clearRepair();
+				rBChar4.setSelected(true);
+				btnRepair.setEnabled(true);
+			}
+		});
+		rBChar4.setBounds(791, 327, 144, 23);
+		frame.getContentPane().add(rBChar4);
 	}
 	
 	
@@ -305,7 +471,6 @@ public class CrewRepair {
 		label.setFont(new Font("Dialog", Font.PLAIN, 16));
 		label.setBounds(435, 22, 112, 23);
 		frame.getContentPane().add(label);
-	
 
 		JLabel label0 = new JLabel("Hunger:");
 		label0.setFont(new Font("Dialog", Font.PLAIN, 16));
@@ -317,22 +482,15 @@ public class CrewRepair {
 		label1.setBounds(60, 188, 81, 15);
 		frame.getContentPane().add(label1);
 	
-
 		JLabel label2 = new JLabel("Health:");
 		label2.setFont(new Font("Dialog", Font.PLAIN, 16));
 		label.setBounds(60, 125, 81, 15);
 		frame.getContentPane().add(label2);
 		
-		
 		JLabel label3 = new JLabel("Name:");
 		label3.setFont(new Font("Dialog", Font.PLAIN, 16));
 		label3.setBounds(62, 278, 81, 15);
 		frame.getContentPane().add(label3);
-
-	
-
-		
-
 
 		JLabel label4 = new JLabel("Type:");
 		label4.setFont(new Font("Dialog", Font.PLAIN, 16));
@@ -371,6 +529,8 @@ public class CrewRepair {
 		crHunger();
 		
 		// Button actions
+		characterChoice();
+		disableMember();
 		btnRepair();
 		btnBack();
 	}

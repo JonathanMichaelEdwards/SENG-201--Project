@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 
-
 public class FoodStore 
 {
 	public JFrame frame;
@@ -31,13 +30,16 @@ public class FoodStore
 	private JLabel lblAmount;
 	
 	private int cashSpent, totalAmount, cash1, cash2, cash3, cash4, cash5 = 0;
-	private JLabel fsType1, fsType2, fsType3, fsType4;
+	private JLabel cBType1, cBType2, cBType3, cBType4;
 	private JLabel fsName1, fsName2, fsName3, fsName4;
 	
 	
-	private JProgressBar fsHealth1, fsHealth2, fsHealth3, fsHealth4;
-	private JProgressBar fsTired1, fsTired2, fsTired3, fsTired4;
-	private JProgressBar fsHunger1, fsHunger2, fsHunger3, fsHunger4;
+	private JProgressBar cBHealth1, cBHealth2, cBHealth3, cBHealth4;
+	private JProgressBar cBTired1, cBTired2, cBTired3, cBTired4;
+	private JProgressBar cBHunger1, cBHunger2, cBHunger3, cBHunger4;
+	
+	// File locations
+	private String readCrew = "StoreGame/CrewRatings/";
 	
 	// stores the selection type
 	private ArrayList<String> crewType = new ArrayList<String>();
@@ -54,39 +56,39 @@ public class FoodStore
 
 	// Store all progress bar so it can be used easily
 	// Stores crew details in data arrays so it can be used easily
-	private void fsHealth() 
+	private void cBHealth() 
 	{
-		health[0] = fsHealth1;
-		health[1] = fsHealth2;
-		health[2] = fsHealth3;
-		health[3] = fsHealth4;
+		health[0] = cBHealth1;
+		health[1] = cBHealth2;
+		health[2] = cBHealth3;
+		health[3] = cBHealth4;
 	}
 	
-	private void fsTired() 
+	private void cBTired() 
 	{
-		tiredness[0] = fsTired1;
-		tiredness[1] = fsTired2;
-		tiredness[2] = fsTired3;
-		tiredness[3] = fsTired4;
+		tiredness[0] = cBTired1;
+		tiredness[1] = cBTired2;
+		tiredness[2] = cBTired3;
+		tiredness[3] = cBTired4;
 	}
 	
-	private void fsHunger() 
+	private void cBHunger() 
 	{
-		hunger[0] = fsHunger1;
-		hunger[1] = fsHunger2;
-		hunger[2] = fsHunger3;
-		hunger[3] = fsHunger4;
+		hunger[0] = cBHunger1;
+		hunger[1] = cBHunger2;
+		hunger[2] = cBHunger3;
+		hunger[3] = cBHunger4;
 	}
 	
 	
 	// Stores crew details in data arrays so it can be used easily
-	private void fsType() 
+	private void cBType() 
 	{
 		
-		type[0] = fsType1;
-		type[1] = fsType2;
-		type[2] = fsType3;
-		type[3] = fsType4;
+		type[0] = cBType1;
+		type[1] = cBType2;
+		type[2] = cBType3;
+		type[3] = cBType4;
 	}
 	
 	private void fsName() 
@@ -134,7 +136,7 @@ public class FoodStore
 			}
 		}
 	}
-
+	
 	
 	// decode crew information to get correct data
 	private void decodeCrewInfo(ArrayList<String> crewInfo)
@@ -144,6 +146,68 @@ public class FoodStore
 		if ((crewInfo.size()) == 4) addCrew(crewInfo, 2);
 		else if (crewInfo.size() == 6) addCrew(crewInfo, 3);
 		else if (crewInfo.size() == 8) addCrew(crewInfo, 4);
+	}
+	
+	
+	// Storing and displaying the characters health
+	private void memberOne(ArrayList<String> crewMember1, IOFile ioFile)
+	{
+		crewMember1 = ioFile.fileRead(readCrew + crewType.get(0) + ".txt");
+		
+		cBHealth1.setValue(Integer.valueOf(crewMember1.get(0)));
+		cBTired1.setValue(Integer.valueOf(crewMember1.get(1)));
+		cBHunger1.setValue(Integer.valueOf(crewMember1.get(2)));
+	}
+	
+	private void memberTwo(ArrayList<String> crewMember2, IOFile ioFile)
+	{
+		crewMember2 = ioFile.fileRead(readCrew + crewType.get(1) + ".txt");
+		
+		cBHealth2.setValue(Integer.valueOf(crewMember2.get(0)));
+		cBTired2.setValue(Integer.valueOf(crewMember2.get(1)));
+		cBHunger2.setValue(Integer.valueOf(crewMember2.get(2)));
+	}
+	
+	private void memberThree(ArrayList<String> crewMember3, IOFile ioFile)
+	{
+		crewMember3 = ioFile.fileRead(readCrew + crewType.get(2) + ".txt");
+		
+		cBHealth3.setValue(Integer.valueOf(crewMember3.get(0)));
+		cBTired3.setValue(Integer.valueOf(crewMember3.get(1)));
+		cBHunger3.setValue(Integer.valueOf(crewMember3.get(2)));
+	}
+	
+	private void memberFour(ArrayList<String> crewMember4, IOFile ioFile)
+	{
+		crewMember4 = ioFile.fileRead(readCrew + crewType.get(3) + ".txt");
+		
+		cBHealth4.setValue(Integer.valueOf(crewMember4.get(0)));
+		cBTired4.setValue(Integer.valueOf(crewMember4.get(1)));
+		cBHunger4.setValue(Integer.valueOf(crewMember4.get(2)));
+	}
+	
+	
+	private void readCrewRatings()
+	{ 
+		ArrayList<String> crewMember1 = new ArrayList<String>();
+		ArrayList<String> crewMember2 = new ArrayList<String>();
+		ArrayList<String> crewMember3 = new ArrayList<String>();
+		ArrayList<String> crewMember4 = new ArrayList<String>();
+		IOFile ioFile = new IOFile();
+		
+		// Reading and storing the crew members health rating
+		for (int index = 0; index < crewType.size(); index++) {
+			// Storing the character types health rating
+			if (index == 0) {
+				memberOne(crewMember1, ioFile);
+			} else if (index == 1) {
+				memberTwo(crewMember2, ioFile);
+			} else if (index == 2) {
+				memberThree(crewMember3, ioFile);
+			} else if (index == 3) {
+				memberFour(crewMember4, ioFile);;
+			}
+		}
 	}
 	
 	
@@ -157,6 +221,11 @@ public class FoodStore
 		ArrayList<String> crewInfo = ioFile.fileRead("StoreGame/CrewInfo.txt");
 		// unwrap information
 		decodeCrewInfo(crewInfo);
+<<<<<<< HEAD
+=======
+		readCrewRatings();
+		
+>>>>>>> master
 		for (int index = 0; index < crewType.size(); index++) {
 			type[index].setText(crewType.get(index));
 			member[index].setText(crewName.get(index));
@@ -403,63 +472,63 @@ public class FoodStore
 		JLabel lblCurrentlyOwned = new JLabel("Currently Owned");
 		lblCurrentlyOwned.setBounds(689, 92, 138, 15);
 		frame.getContentPane().add(lblCurrentlyOwned);
-		fsHealth1 = new JProgressBar();
-		fsHealth1.setBounds(313, 733, 146, 30);
-		frame.getContentPane().add(fsHealth1);
+		cBHealth1 = new JProgressBar();
+		cBHealth1.setBounds(313, 733, 146, 30);
+		frame.getContentPane().add(cBHealth1);
 
-		fsTired1 = new JProgressBar();
-		fsTired1.setBounds(313, 797, 146, 30);
-		frame.getContentPane().add(fsTired1);
+		cBTired1 = new JProgressBar();
+		cBTired1.setBounds(313, 797, 146, 30);
+		frame.getContentPane().add(cBTired1);
 	
 
-		fsHunger1 = new JProgressBar();
-		fsHunger1.setBounds(313, 867, 146, 30);
-		frame.getContentPane().add(fsHunger1);
+		cBHunger1 = new JProgressBar();
+		cBHunger1.setBounds(313, 867, 146, 30);
+		frame.getContentPane().add(cBHunger1);
 		
 	
-		fsHealth2 = new JProgressBar();
-		fsHealth2.setBounds(518, 733, 146, 36);
-		frame.getContentPane().add(fsHealth2);
+		cBHealth2 = new JProgressBar();
+		cBHealth2.setBounds(518, 733, 146, 36);
+		frame.getContentPane().add(cBHealth2);
 		
 
-		fsTired2 = new JProgressBar();
-		fsTired2.setBounds(530, 797, 134, 30);
-		frame.getContentPane().add(fsTired2);
+		cBTired2 = new JProgressBar();
+		cBTired2.setBounds(530, 797, 134, 30);
+		frame.getContentPane().add(cBTired2);
 		
 	
-		fsHunger2 = new JProgressBar();
-		fsHunger2.setBounds(538, 867, 126, 30);
-		frame.getContentPane().add(fsHunger2);
+		cBHunger2 = new JProgressBar();
+		cBHunger2.setBounds(538, 867, 126, 30);
+		frame.getContentPane().add(cBHunger2);
 	
 
-		fsHealth3 = new JProgressBar();
-		fsHealth3.setBounds(716, 727, 146, 52);
-		frame.getContentPane().add(fsHealth3);
+		cBHealth3 = new JProgressBar();
+		cBHealth3.setBounds(716, 727, 146, 52);
+		frame.getContentPane().add(cBHealth3);
 		
 	
-		fsTired3 = new JProgressBar();
-		fsTired3.setBounds(716, 791, 146, 52);
-		frame.getContentPane().add(fsTired3);
+		cBTired3 = new JProgressBar();
+		cBTired3.setBounds(716, 791, 146, 52);
+		frame.getContentPane().add(cBTired3);
 
-		fsHunger3 = new JProgressBar();
-		fsHunger3.setBounds(716, 855, 146, 52);
-		frame.getContentPane().add(fsHunger3);
+		cBHunger3 = new JProgressBar();
+		cBHunger3.setBounds(716, 855, 146, 52);
+		frame.getContentPane().add(cBHunger3);
 
 
 
-		fsHealth4 = new JProgressBar();
-		fsHealth4.setBounds(900, 733, 146, 52);
-		frame.getContentPane().add(fsHealth4);
+		cBHealth4 = new JProgressBar();
+		cBHealth4.setBounds(900, 733, 146, 52);
+		frame.getContentPane().add(cBHealth4);
 		
 	
-		fsTired4 = new JProgressBar();
-		fsTired4.setBounds(900, 797, 146, 52);
-		frame.getContentPane().add(fsTired4);
+		cBTired4 = new JProgressBar();
+		cBTired4.setBounds(900, 797, 146, 52);
+		frame.getContentPane().add(cBTired4);
 		
 	
-		fsHunger4 = new JProgressBar();
-		fsHunger4.setBounds(897, 855, 146, 52);
-		frame.getContentPane().add(fsHunger4);
+		cBHunger4 = new JProgressBar();
+		cBHunger4.setBounds(897, 855, 146, 52);
+		frame.getContentPane().add(cBHunger4);
 
 		fsName4 = new JLabel("...");
 		fsName4.setFont(new Font("Dialog", Font.PLAIN, 18));
@@ -520,38 +589,38 @@ public class FoodStore
 		label4.setBounds(169, 711, 81, 15);
 		frame.getContentPane().add(label4);
 
-		fsType1 = new JLabel("...");
-		fsType1.setFont(new Font("Dialog", Font.PLAIN, 18));
-		fsType1.setBounds(330, 695, 129, 30);
-		frame.getContentPane().add(fsType1);
+		cBType1 = new JLabel("...");
+		cBType1.setFont(new Font("Dialog", Font.PLAIN, 18));
+		cBType1.setBounds(330, 695, 129, 30);
+		frame.getContentPane().add(cBType1);
 
-		fsType2 = new JLabel("...");
-		fsType2.setFont(new Font("Dialog", Font.PLAIN, 18));
-		fsType2.setBounds(541, 702, 119, 23);
-		frame.getContentPane().add(fsType2);
+		cBType2 = new JLabel("...");
+		cBType2.setFont(new Font("Dialog", Font.PLAIN, 18));
+		cBType2.setBounds(541, 702, 119, 23);
+		frame.getContentPane().add(cBType2);
 
-		fsType3 = new JLabel("...");
-		fsType3.setFont(new Font("Dialog", Font.PLAIN, 18));
-		fsType3.setBounds(733, 705, 129, 21);
-		frame.getContentPane().add(fsType3);
+		cBType3 = new JLabel("...");
+		cBType3.setFont(new Font("Dialog", Font.PLAIN, 18));
+		cBType3.setBounds(733, 705, 129, 21);
+		frame.getContentPane().add(cBType3);
 	
 
-		fsType4 = new JLabel("...");
-		fsType4.setFont(new Font("Dialog", Font.PLAIN, 18));
-		fsType4.setBounds(912, 705, 134, 22);
-		frame.getContentPane().add(fsType4);
+		cBType4 = new JLabel("...");
+		cBType4.setFont(new Font("Dialog", Font.PLAIN, 18));
+		cBType4.setBounds(912, 705, 134, 22);
+		frame.getContentPane().add(cBType4);
 		
 		frame.getContentPane().setLayout(null);
 		
 		
 
 		//initialize storage arrays
-		fsType();
+		cBType();
 		fsName();
 		
-		fsHealth();
-		fsTired();
-		fsHunger();
+		cBHealth();
+		cBTired();
+		cBHunger();
 		
 		// Button Actions
 		cBoxActions();

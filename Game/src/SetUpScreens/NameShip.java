@@ -260,6 +260,10 @@ public class NameShip {
 		ArrayList<String> storeCash = new ArrayList<String>();
 		ArrayList<String> inventory = new ArrayList<String>();
 		
+		ArrayList<String> memberActions1 = new ArrayList<String>();
+		ArrayList<String> memberActions2 = new ArrayList<String>();
+		ArrayList<String> memberActions3 = new ArrayList<String>();
+		ArrayList<String> memberActions4 = new ArrayList<String>();
 		
 		storeCrew.addAll(crewType);
 		storeCrew.addAll(crewNames);
@@ -283,9 +287,31 @@ public class NameShip {
 		ioFile.fileWrite(storeCrew, "StoreGame/CrewInfo.txt");
 		ioFile.fileWrite(storeShip, "StoreGame/ShipInfo.txt");
 		ioFile.fileWrite(storeCash, "StoreGame/CashInfo.txt");
+<<<<<<< HEAD
 		ioFile.fileWrite(inventory, "StoreGame/Inventory/Storage.txt");
+=======
+		
+		for (int index = 0; index < crewType.size(); index++) {
+			if (index == 0) {
+				memberActions1 = ioFile.fileRead("StoreGame/CrewRatings/"+  crewType.get(0) + ".txt");
+				memberActions1.add("2");
+				ioFile.fileWrite(memberActions1, "StoreGame/CrewSelected/MemberOne.txt");
+			} else if (index == 1) {
+				memberActions2 = ioFile.fileRead("StoreGame/CrewRatings/"+  crewType.get(1) + ".txt");
+				memberActions2.add("2");
+				ioFile.fileWrite(memberActions2, "StoreGame/CrewSelected/MemberTwo.txt");
+			} else if (index == 2) {
+				memberActions3 = ioFile.fileRead("StoreGame/CrewRatings/"+  crewType.get(2) + ".txt");
+				memberActions3.add("2");
+				ioFile.fileWrite(memberActions3, "StoreGame/CrewSelected/MemberThree.txt");
+			} else if (index == 3) {
+				memberActions4 = ioFile.fileRead("StoreGame/CrewRatings/"+  crewType.get(3) + ".txt");
+				memberActions4.add("2");
+				ioFile.fileWrite(memberActions4, "StoreGame/CrewSelected/MemberFour.txt");
+			}
+		}
+>>>>>>> master
 	}
-	
 	
 	// Go to game screen if all fields are completed
 	private void startGameButton()

@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 Invisible, f22f, 75, 
 =======
 <<<<<<< Updated upstream
@@ -10,4 +11,7 @@ Invisible, wfwef, 75,
 =======
 Invisible, james, 75, 
 >>>>>>> Stashed changes
+>>>>>>> master
+=======
+Attack, james, 375, 
 >>>>>>> master
