@@ -44,6 +44,7 @@ public class MainScreen
 	private JProgressBar pBarTiredness1, pBarTiredness2, pBarTiredness3, pBarTiredness4;
 	private JProgressBar pBarHunger1, pBarHunger2, pBarHunger3, pBarHunger4;
 	private JProgressBar pBarShipHealth;
+	private JLabel player1, player2, player3, player4;
 	
 	// Stored information that the user has chosen
 	private ArrayList<String> crewType = new ArrayList<String>();
@@ -142,10 +143,13 @@ public class MainScreen
 		
 		// disable/(grey out) unused status information areas
 		for (int index = 0; index < lsSize; index++) {
-			if ((lsSize-size) == 2 && (index >= 2)) {
+			if ((lsSize-size) == 2 && (index == 2)) {
 				disableInfo(index);
-			} else if ((lsSize-size) == 3 && (index == 3)) {
+				player3.setEnabled(false);
+				player4.setEnabled(false);
+			} else if ((lsSize-size) == 1 && (index == 3)) {
 				disableInfo(index);
+				player4.setEnabled(false);
 			}
 		}	
 	}
@@ -166,7 +170,6 @@ public class MainScreen
 	private void memberOne(ArrayList<String> crewMember1, IOFile ioFile)
 	{
 		crewMember1 = ioFile.fileRead(readCrew + crewType.get(0) + ".txt");
-		ioFile.fileWrite(crewMember1, writeHealth + "MemberOne.txt");
 		
 		pBarHealth1.setValue(Integer.valueOf(crewMember1.get(0)));
 		pBarTiredness1.setValue(Integer.valueOf(crewMember1.get(1)));
@@ -176,7 +179,6 @@ public class MainScreen
 	private void memberTwo(ArrayList<String> crewMember2, IOFile ioFile)
 	{
 		crewMember2 = ioFile.fileRead(readCrew + crewType.get(1) + ".txt");
-		ioFile.fileWrite(crewMember2, writeHealth + "MemberTwo.txt");
 		
 		pBarHealth2.setValue(Integer.valueOf(crewMember2.get(0)));
 		pBarTiredness2.setValue(Integer.valueOf(crewMember2.get(1)));
@@ -186,7 +188,6 @@ public class MainScreen
 	private void memberThree(ArrayList<String> crewMember3, IOFile ioFile)
 	{
 		crewMember3 = ioFile.fileRead(readCrew + crewType.get(2) + ".txt");
-		ioFile.fileWrite(crewMember3, writeHealth + "MemberThree.txt");
 		
 		pBarHealth3.setValue(Integer.valueOf(crewMember3.get(0)));
 		pBarTiredness3.setValue(Integer.valueOf(crewMember3.get(1)));
@@ -196,7 +197,6 @@ public class MainScreen
 	private void memberFour(ArrayList<String> crewMember4, IOFile ioFile)
 	{
 		crewMember4 = ioFile.fileRead(readCrew + crewType.get(3) + ".txt");
-		ioFile.fileWrite(crewMember4, writeHealth + "MemberFour.txt");
 		
 		pBarHealth4.setValue(Integer.valueOf(crewMember4.get(0)));
 		pBarTiredness4.setValue(Integer.valueOf(crewMember4.get(1)));
@@ -212,16 +212,15 @@ public class MainScreen
 		ArrayList<String> crewMember4 = new ArrayList<String>();
 		
 		// Reading and storing the crew members health rating
-		for (int index = 0; index < crewType.size(); index++)
-		{
+		for (int index = 0; index < crewType.size(); index++) {
 			// Storing the character types health rating
 			if (index == 0) {
 				memberOne(crewMember1, ioFile);
-			} if (index == 1) {
+			} else if (index == 1) {
 				memberTwo(crewMember2, ioFile);
-			} if (index == 2) {
+			} else if (index == 2) {
 				memberThree(crewMember3, ioFile);
-			} if (index == 3) {
+			} else if (index == 3) {
 				memberFour(crewMember4, ioFile);;
 			}
 		}
@@ -239,6 +238,7 @@ public class MainScreen
 		ArrayList<String> shipInfo = ioFile.fileRead("StoreGame/ShipInfo.txt");
 		ArrayList<String> daysInfo = ioFile.fileRead("StoreGame/DaysInfo.txt");
 		ArrayList<String> changeShields = ioFile.fileRead("StoreGame/ShipInfo.txt");
+
 		
 		// unwrap the crew information
 		decodeCrewInfo(crewInfo);
@@ -266,6 +266,26 @@ public class MainScreen
 		
 		// Read and display the crew ratings
 		readCrewRatings(ioFile);
+		
+		
+		ArrayList<String> membersActions = new ArrayList<String>();
+		
+		// Display the crew Members action count
+		for (int index = 0; index < crewType.size(); index++) {
+			if (index == 0) {
+				membersActions = ioFile.fileRead("StoreGame/CrewSelected/MemberOne.txt");
+				player1.setText(membersActions.get(3));
+			} else if (index == 1) {
+				membersActions = ioFile.fileRead("StoreGame/CrewSelected/MemberTwo.txt");
+				player2.setText(membersActions.get(3));
+			} else if (index == 2) {
+				membersActions = ioFile.fileRead("StoreGame/CrewSelected/MemberThree.txt");
+				player3.setText(membersActions.get(3));
+			} else if (index == 3) {
+				membersActions = ioFile.fileRead("StoreGame/CrewSelected/MemberFour.txt");
+				player4.setText(membersActions.get(3));
+			}
+		}
 	}
 	
 	
@@ -273,7 +293,7 @@ public class MainScreen
 	private void spaceOutpost()
 	{
 		btnSpaceOutpost = new JButton("Space Outpost");
-		btnSpaceOutpost.setBounds(325, 478, 249, 101);
+		btnSpaceOutpost.setBounds(521, 478, 249, 101);
 		btnSpaceOutpost.setFont(new Font("Lucida Grande", Font.PLAIN, 23));
 		btnSpaceOutpost.addActionListener(new ActionListener() 
 		{
@@ -293,7 +313,7 @@ public class MainScreen
 	{
 		btnNewPlanet = new JButton("Travel to a new planet");
 		btnNewPlanet.setFont(new Font("Lucida Grande", Font.PLAIN, 23));
-		btnNewPlanet.setBounds(602, 729, 313, 113);
+		btnNewPlanet.setBounds(457, 726, 313, 113);
 		btnNewPlanet.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
@@ -312,7 +332,7 @@ public class MainScreen
 	{
 		JButton btnExplorePlanet = new JButton("Explore current planet");
 		btnExplorePlanet.setFont(new Font("Lucida Grande", Font.PLAIN, 23));
-		btnExplorePlanet.setBounds(23, 720, 313, 108);
+		btnExplorePlanet.setBounds(60, 731, 313, 108);
 		btnExplorePlanet.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
@@ -331,7 +351,7 @@ public class MainScreen
 	{
 		btnRepairShields = new JButton("Repair Shields!");
 		btnRepairShields.setFont(new Font("Lucida Grande", Font.PLAIN, 23));
-		btnRepairShields.setBounds(581, 260, 230, 96);
+		btnRepairShields.setBounds(540, 241, 230, 96);
 		btnRepairShields.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
@@ -359,7 +379,7 @@ public class MainScreen
 			}
 		});
 		btnSleep.setFont(new Font("Lucida Grande", Font.PLAIN, 23));
-		btnSleep.setBounds(85, 258, 230, 101);
+		btnSleep.setBounds(127, 239, 230, 101);
 		frame.getContentPane().add(btnSleep);
 		
 
@@ -378,7 +398,7 @@ public class MainScreen
 			}
 		});
 		btnInventory.setFont(new Font("Dialog", Font.PLAIN, 23));
-		btnInventory.setBounds(49, 400, 230, 101);
+		btnInventory.setBounds(127, 478, 230, 101);
 		frame.getContentPane().add(btnInventory);
 	}
 	
@@ -391,8 +411,15 @@ public class MainScreen
 		{
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				ArrayList<String> changeDays = new ArrayList<String>();
 				IOFile ioFile = new IOFile();
+				ArrayList<String> changeDays = new ArrayList<String>();
+				
+				// Resetting crew action count
+				ArrayList<String> memberActions1 = new ArrayList<String>();
+				ArrayList<String> memberActions2 = new ArrayList<String>();
+				ArrayList<String> memberActions3 = new ArrayList<String>();
+				ArrayList<String> memberActions4 = new ArrayList<String>();
+
 				
 				changeDays = ioFile.fileRead("StoreGame/DaysInfo.txt");
 				days = Integer.parseInt(changeDays.get(0)) - 1;
@@ -400,10 +427,36 @@ public class MainScreen
 				ioFile.fileWrite(changeDays, "StoreGame/DaysInfo.txt");  // Writing in new days
 				
 				lblDaysLeft.setText("Day: "  + days);
+				
+				// reading from file &Changing file & Writing back to file
+				for (int index = 0; index < crewType.size(); index++) {
+					if (index == 0) {
+						memberActions1 = ioFile.fileRead("StoreGame/CrewSelected/MemberOne.txt");
+						memberActions1.set(3, "2");
+						ioFile.fileWrite(memberActions1, writeHealth + "MemberOne.txt");
+					} else if (index == 1) {
+						memberActions2 = ioFile.fileRead("StoreGame/CrewSelected/MemberTwo.txt");
+						memberActions2.set(3, "2");
+						ioFile.fileWrite(memberActions2, writeHealth + "MemberTwo.txt");
+					} else if (index == 2) {
+						memberActions3 = ioFile.fileRead("StoreGame/CrewSelected/MemberThree.txt");
+						memberActions3.set(3, "2");
+						ioFile.fileWrite(memberActions3, writeHealth + "MemberThree.txt");
+					} else if (index == 3) {
+						memberActions4 = ioFile.fileRead("StoreGame/CrewSelected/MemberFour.txt");
+						memberActions4.set(3, "2");
+						ioFile.fileWrite(memberActions4, writeHealth + "MemberFour.txt");
+					}
+				}
+				
+				// reset Screen
+				MainScreen screen = new MainScreen();
+				screen.frame.setVisible(true);    // turn on screen
+				frame.setVisible(false);         // turn off screen
 			}
 		});
 		btnNextDay.setFont(new Font("Lucida Grande", Font.PLAIN, 23));
-		btnNextDay.setBounds(562, 62, 249, 101);
+		btnNextDay.setBounds(561, 51, 249, 101);
 		frame.getContentPane().add(btnNextDay);
 	}
 	
@@ -425,7 +478,7 @@ public class MainScreen
 
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(884, 23, 1012, 593);
+		panel.setBounds(884, 23, 1012, 646);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
@@ -479,11 +532,10 @@ public class MainScreen
 		lblStatus.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
 		
 		JPanel panelCrew = new JPanel();
-		panelCrew.setBounds(23, 249, 965, 317);
+		panelCrew.setBounds(23, 230, 965, 376);
 		panel.add(panelCrew);
 		panelCrew.setLayout(null);
-		
-		
+	
 		pBarHealth1 = new JProgressBar();
 		pBarHealth1.setBounds(204, 107, 146, 30);
 		panelCrew.add(pBarHealth1);
@@ -493,11 +545,11 @@ public class MainScreen
 		panelCrew.add(pBarTiredness1);
 		
 		pBarTiredness3 = new JProgressBar();
-		pBarTiredness3.setBounds(607, 165, 146, 52);
+		pBarTiredness3.setBounds(607, 165, 134, 36);
 		panelCrew.add(pBarTiredness3);
 		
 		pBarTiredness4 = new JProgressBar();
-		pBarTiredness4.setBounds(791, 171, 146, 52);
+		pBarTiredness4.setBounds(791, 171, 134, 30);
 		panelCrew.add(pBarTiredness4);
 		
 		pBarHunger2 = new JProgressBar();
@@ -517,20 +569,20 @@ public class MainScreen
 		panelCrew.add(pBarHealth2);
 		
 		pBarHunger3 = new JProgressBar();
-		pBarHunger3.setBounds(607, 229, 146, 52);
+		pBarHunger3.setBounds(607, 229, 146, 36);
 		panelCrew.add(pBarHunger3);
 		
 		pBarHunger4 = new JProgressBar();
-		pBarHunger4.setBounds(788, 229, 146, 52);
+		pBarHunger4.setBounds(791, 235, 146, 36);
 		panelCrew.add(pBarHunger4);
 		
 		lblMember4 = new JLabel("...");
-		lblMember4.setBounds(791, 275, 127, 23);
+		lblMember4.setBounds(791, 273, 134, 25);
 		panelCrew.add(lblMember4);
 		lblMember4.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
 		
 		lblMember3 = new JLabel("...");
-		lblMember3.setBounds(607, 275, 126, 23);
+		lblMember3.setBounds(615, 273, 138, 25);
 		panelCrew.add(lblMember3);
 		lblMember3.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
 		
@@ -570,11 +622,11 @@ public class MainScreen
 		lblMember1.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
 		
 		pBarHealth3 = new JProgressBar();
-		pBarHealth3.setBounds(607, 101, 146, 52);
+		pBarHealth3.setBounds(607, 101, 139, 36);
 		panelCrew.add(pBarHealth3);
 		
 		pBarHealth4 = new JProgressBar();
-		pBarHealth4.setBounds(791, 107, 146, 52);
+		pBarHealth4.setBounds(791, 107, 139, 36);
 		panelCrew.add(pBarHealth4);
 		
 		JLabel lblType = new JLabel("Type:");
@@ -601,6 +653,31 @@ public class MainScreen
 		lblCrewType4.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
 		lblCrewType4.setBounds(803, 79, 134, 22);
 		panelCrew.add(lblCrewType4);
+		
+		player1 = new JLabel("...");
+		player1.setFont(new Font("Dialog", Font.PLAIN, 18));
+		player1.setBounds(214, 313, 117, 28);
+		panelCrew.add(player1);
+		
+		player2 = new JLabel("...");
+		player2.setFont(new Font("Dialog", Font.PLAIN, 18));
+		player2.setBounds(429, 313, 117, 28);
+		panelCrew.add(player2);
+		
+		player3 = new JLabel("...");
+		player3.setFont(new Font("Dialog", Font.PLAIN, 18));
+		player3.setBounds(617, 310, 117, 28);
+		panelCrew.add(player3);
+		
+		player4 = new JLabel("0");
+		player4.setFont(new Font("Dialog", Font.PLAIN, 18));
+		player4.setBounds(801, 310, 117, 28);
+		panelCrew.add(player4);
+		
+		JLabel lblactions = new JLabel("Actions Left:");
+		lblactions.setFont(new Font("Dialog", Font.PLAIN, 16));
+		lblactions.setBounds(44, 312, 126, 31);
+		panelCrew.add(lblactions);
 		
 		
 		lblDaysLeft = new JLabel("Day: ...");

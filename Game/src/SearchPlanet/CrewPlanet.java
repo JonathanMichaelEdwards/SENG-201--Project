@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
+import javax.swing.JRadioButton;
 
 import IOFile.IOFile;
 import MainScreen.MainScreen;
@@ -22,13 +23,19 @@ import javax.swing.JCheckBox;
 public class CrewPlanet {
 
 	public JFrame frame;
-	private JLabel cpType1, cpType2, cpType3, cpType4;
+	
+	private JLabel cBType1, cBType2, cBType3, cBType4;
 	private JLabel cpName1, cpName2, cpName3, cpName4;
+	private JRadioButton rBChar1, rBChar2, rBChar3, rBChar4;
+	private JButton btnSearchPlanet;
 	
+
+	private JProgressBar cBHealth1, cBHealth2, cBHealth3, cBHealth4;
+	private JProgressBar cBTired1, cBTired2, cBTired3, cBTired4;
+	private JProgressBar cBHunger1, cBHunger2, cBHunger3, cBHunger4;
 	
-	private JProgressBar cpHealth1, cpHealth2, cpHealth3, cpHealth4;
-	private JProgressBar cpTired1, cpTired2, cpTired3, cpTired4;
-	private JProgressBar cpHunger1, cpHunger2, cpHunger3, cpHunger4;
+	// File locations
+	private String readCrew = "StoreGame/CrewRatings/";
 	
 	// stores the selection type
 	private ArrayList<String> crewType = new ArrayList<String>();
@@ -45,39 +52,39 @@ public class CrewPlanet {
 
 	// Store all progress bar so it can be used easily
 	// Stores crew details in data arrays so it can be used easily
-	private void cpHealth() 
+	private void cBHealth() 
 	{
-		health[0] = cpHealth1;
-		health[1] = cpHealth2;
-		health[2] = cpHealth3;
-		health[3] = cpHealth4;
+		health[0] = cBHealth1;
+		health[1] = cBHealth2;
+		health[2] = cBHealth3;
+		health[3] = cBHealth4;
 	}
 	
-	private void cpTired() 
+	private void cBTired() 
 	{
-		tiredness[0] = cpTired1;
-		tiredness[1] = cpTired2;
-		tiredness[2] = cpTired3;
-		tiredness[3] = cpTired4;
+		tiredness[0] = cBTired1;
+		tiredness[1] = cBTired2;
+		tiredness[2] = cBTired3;
+		tiredness[3] = cBTired4;
 	}
 	
-	private void cpHunger() 
+	private void cBHunger() 
 	{
-		hunger[0] = cpHunger1;
-		hunger[1] = cpHunger2;
-		hunger[2] = cpHunger3;
-		hunger[3] = cpHunger4;
+		hunger[0] = cBHunger1;
+		hunger[1] = cBHunger2;
+		hunger[2] = cBHunger3;
+		hunger[3] = cBHunger4;
 	}
 	
 	
 	// Stores crew details in data arrays so it can be used easily
-	private void cpType() 
+	private void cBType() 
 	{
 		
-		type[0] = cpType1;
-		type[1] = cpType2;
-		type[2] = cpType3;
-		type[3] = cpType4;
+		type[0] = cBType1;
+		type[1] = cBType2;
+		type[2] = cBType3;
+		type[3] = cBType4;
 	}
 	
 	private void cpName() 
@@ -138,6 +145,69 @@ public class CrewPlanet {
 	}
 	
 	
+
+	// Storing and displaying the characters health
+	private void memberOne(ArrayList<String> crewMember1, IOFile ioFile)
+	{
+		crewMember1 = ioFile.fileRead(readCrew + crewType.get(0) + ".txt");
+		
+		cBHealth1.setValue(Integer.valueOf(crewMember1.get(0)));
+		cBTired1.setValue(Integer.valueOf(crewMember1.get(1)));
+		cBHunger1.setValue(Integer.valueOf(crewMember1.get(2)));
+	}
+	
+	private void memberTwo(ArrayList<String> crewMember2, IOFile ioFile)
+	{
+		crewMember2 = ioFile.fileRead(readCrew + crewType.get(1) + ".txt");
+		
+		cBHealth2.setValue(Integer.valueOf(crewMember2.get(0)));
+		cBTired2.setValue(Integer.valueOf(crewMember2.get(1)));
+		cBHunger2.setValue(Integer.valueOf(crewMember2.get(2)));
+	}
+	
+	private void memberThree(ArrayList<String> crewMember3, IOFile ioFile)
+	{
+		crewMember3 = ioFile.fileRead(readCrew + crewType.get(2) + ".txt");
+		
+		cBHealth3.setValue(Integer.valueOf(crewMember3.get(0)));
+		cBTired3.setValue(Integer.valueOf(crewMember3.get(1)));
+		cBHunger3.setValue(Integer.valueOf(crewMember3.get(2)));
+	}
+	
+	private void memberFour(ArrayList<String> crewMember4, IOFile ioFile)
+	{
+		crewMember4 = ioFile.fileRead(readCrew + crewType.get(3) + ".txt");
+		
+		cBHealth4.setValue(Integer.valueOf(crewMember4.get(0)));
+		cBTired4.setValue(Integer.valueOf(crewMember4.get(1)));
+		cBHunger4.setValue(Integer.valueOf(crewMember4.get(2)));
+	}
+	
+	
+	private void readCrewRatings()
+	{ 
+		ArrayList<String> crewMember1 = new ArrayList<String>();
+		ArrayList<String> crewMember2 = new ArrayList<String>();
+		ArrayList<String> crewMember3 = new ArrayList<String>();
+		ArrayList<String> crewMember4 = new ArrayList<String>();
+		IOFile ioFile = new IOFile();
+		
+		// Reading and storing the crew members health rating
+		for (int index = 0; index < crewType.size(); index++) {
+			// Storing the character types health rating
+			if (index == 0) {
+				memberOne(crewMember1, ioFile);
+			} else if (index == 1) {
+				memberTwo(crewMember2, ioFile);
+			} else if (index == 2) {
+				memberThree(crewMember3, ioFile);
+			} else if (index == 3) {
+				memberFour(crewMember4, ioFile);;
+			}
+		}
+	}
+	
+	
 	// organizing information from files
 	private void organizeGameInfo()
 	{
@@ -149,6 +219,7 @@ public class CrewPlanet {
 		
 		// unwrap information
 		decodeCrewInfo(crewInfo);
+		readCrewRatings();
 		
 		for (int index = 0; index < crewType.size(); index++) {
 			type[index].setText(crewType.get(index));
@@ -170,33 +241,67 @@ public class CrewPlanet {
 		});
 		btnBack.setBounds(1054, 594, 207, 69);
 		frame.getContentPane().add(btnBack);
+	}
+	
+	
+	
+	private void clearSearch()
+	{
+		rBChar1.setSelected(false);
+		rBChar2.setSelected(false);
+		rBChar3.setSelected(false);
+		rBChar4.setSelected(false);
+	}
+	
+	
+	private void disableMember()
+	{
+		IOFile ioFile = new IOFile();
 		
-		JCheckBox chckbxChoose = new JCheckBox("Choose ");
-		chckbxChoose.setBounds(204, 344, 126, 23);
-		frame.getContentPane().add(chckbxChoose);
+		// Reading files
+		ArrayList<String> crewMembers = ioFile.fileRead("StoreGame/CrewInfo.txt");
 		
-		JCheckBox checkBox = new JCheckBox("Choose ");
-		checkBox.setBounds(409, 344, 126, 23);
-		frame.getContentPane().add(checkBox);
-		
-		JCheckBox checkBox_1 = new JCheckBox("Choose ");
-		checkBox_1.setBounds(607, 344, 126, 23);
-		frame.getContentPane().add(checkBox_1);
-		
-		JCheckBox checkBox_2 = new JCheckBox("Choose ");
-		checkBox_2.setBounds(791, 344, 126, 23);
-		frame.getContentPane().add(checkBox_2);
-		
+		if ((crewMembers.size()/2) == 2) {
+			rBChar3.setEnabled(false);
+			rBChar4.setEnabled(false);
+		} else if ((crewMembers.size()/2) == 3) {
+			rBChar4.setEnabled(false);
+		}
 	}
 	
 	
 	private void btnSearch()
 	{
-		JButton btnSearchPlanet = new JButton("Search Planet");
+		btnSearchPlanet = new JButton("Search Planet");
+		btnSearchPlanet.setEnabled(false);
 		btnSearchPlanet.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
+				IOFile ioFile = new IOFile();
+				ArrayList<String> member = new ArrayList<String>();
+				
+				String readFile = "StoreGame/CrewSelected/";
+				
+				// changes the member selected file
+				if (rBChar1.isSelected()) {
+					member = ioFile.fileRead(readFile + "MemberOne.txt");
+					member.set(3, ""+(Integer.parseInt(member.get(3)) - 1));
+					ioFile.fileWrite(member, readFile + "MemberOne.txt");
+				} else if (rBChar2.isSelected()) {
+					member = ioFile.fileRead(readFile + "MemberTwo.txt");
+					member.set(3, ""+(Integer.parseInt(member.get(3)) - 1));
+					ioFile.fileWrite(member, readFile + "MemberTwo.txt");
+				} else if (rBChar3.isSelected()) {
+					member = ioFile.fileRead(readFile + "MemberThree.txt");
+					member.set(3, ""+(Integer.parseInt(member.get(3)) - 1));
+					ioFile.fileWrite(member, readFile + "MemberThree.txt");
+				} else if (rBChar4.isSelected()) {
+					member = ioFile.fileRead(readFile + "MemberFour.txt");
+					member.set(3, ""+(Integer.parseInt(member.get(3)) - 1));
+					ioFile.fileWrite(member, readFile + "MemberFour.txt");
+				} 
+				
 				ExplorePlanet screen = new ExplorePlanet();
 				screen.frame.setVisible(true);    // turn on screen
 				frame.setVisible(false);          // turn off screen
@@ -208,6 +313,58 @@ public class CrewPlanet {
 	}
 	
 	
+	// characters that can be chosen
+	private void characterChoice()
+	{
+		rBChar1 = new JRadioButton("character 1");
+		rBChar1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				clearSearch();
+				rBChar1.setSelected(true);
+				btnSearchPlanet.setEnabled(true);
+			}
+		});
+		rBChar1.setBounds(214, 327, 144, 23);
+		frame.getContentPane().add(rBChar1);
+		
+		
+		rBChar2 = new JRadioButton("character 2");
+		rBChar2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				clearSearch();
+				rBChar2.setSelected(true);
+				btnSearchPlanet.setEnabled(true);
+			}
+		});
+		rBChar2.setBounds(428, 327, 144, 23);
+		frame.getContentPane().add(rBChar2);
+		
+		
+		rBChar3 = new JRadioButton("character 3");
+		rBChar3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				clearSearch();
+				rBChar3.setSelected(true);
+				btnSearchPlanet.setEnabled(true);
+			}
+		});
+		rBChar3.setBounds(607, 327, 144, 23);
+		frame.getContentPane().add(rBChar3);
+		
+		
+		rBChar4 = new JRadioButton("character 4");
+		rBChar4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				clearSearch();
+				rBChar4.setSelected(true);
+				btnSearchPlanet.setEnabled(true);
+			}
+		});
+		rBChar4.setBounds(791, 327, 144, 23);
+		frame.getContentPane().add(rBChar4);
+	}
+		
+		
 	/*
 	 * Initialize the contents of the frame.
 	*/
@@ -222,63 +379,59 @@ public class CrewPlanet {
 		frame.setResizable(false);
 //		frame.setUndecorated(true);  // Frame cannot be adjusted during game
 		
-		cpHealth1 = new JProgressBar();
-		cpHealth1.setBounds(204, 107, 146, 30);
-		frame.getContentPane().add(cpHealth1);
+		cBHealth1 = new JProgressBar();
+		cBHealth1.setBounds(204, 107, 146, 30);
+		frame.getContentPane().add(cBHealth1);
 
-		cpTired1 = new JProgressBar();
-		cpTired1.setBounds(204, 171, 146, 30);
-		frame.getContentPane().add(cpTired1);
+		cBTired1 = new JProgressBar();
+		cBTired1.setBounds(204, 171, 146, 30);
+		frame.getContentPane().add(cBTired1);
 	
 
-		cpHunger1 = new JProgressBar();
-		cpHunger1.setBounds(204, 241, 146, 30);
-		frame.getContentPane().add(cpHunger1);
+		cBHunger1 = new JProgressBar();
+		cBHunger1.setBounds(204, 241, 146, 30);
+		frame.getContentPane().add(cBHunger1);
 		
 	
-		cpHealth2 = new JProgressBar();
-		cpHealth2.setBounds(409, 107, 146, 30);
-		frame.getContentPane().add(cpHealth2);
+		cBHealth2 = new JProgressBar();
+		cBHealth2.setBounds(409, 107, 146, 30);
+		frame.getContentPane().add(cBHealth2);
 		
 
-		cpTired2 = new JProgressBar();
-		cpTired2.setBounds(409, 171, 146, 30);
-		frame.getContentPane().add(cpTired2);
+		cBTired2 = new JProgressBar();
+		cBTired2.setBounds(409, 171, 146, 30);
+		frame.getContentPane().add(cBTired2);
 		
 	
-		cpHunger2 = new JProgressBar();
-		cpHunger2.setBounds(409, 241, 146, 30);
-		frame.getContentPane().add(cpHunger2);
+		cBHunger2 = new JProgressBar();
+		cBHunger2.setBounds(409, 241, 146, 30);
+		frame.getContentPane().add(cBHunger2);
 	
 
-		cpHealth3 = new JProgressBar();
-		cpHealth3.setBounds(607, 107, 146, 30);
-		frame.getContentPane().add(cpHealth3);
+		cBHealth3 = new JProgressBar();
+		cBHealth3.setBounds(607, 107, 146, 30);
+		frame.getContentPane().add(cBHealth3);
 		
 	
-		cpTired3 = new JProgressBar();
-		cpTired3.setBounds(607, 171, 146, 30);
-		frame.getContentPane().add(cpTired3);
+		cBTired3 = new JProgressBar();
+		cBTired3.setBounds(607, 171, 146, 30);
+		frame.getContentPane().add(cBTired3);
 
-		cpHunger3 = new JProgressBar();
-		cpHunger3.setBounds(607, 241, 146, 30);
-		frame.getContentPane().add(cpHunger3);
+		cBHunger3 = new JProgressBar();
+		cBHunger3.setBounds(607, 241, 146, 30);
+		frame.getContentPane().add(cBHunger3);
 
-
-
-		cpHealth4 = new JProgressBar();
-		cpHealth4.setBounds(791, 107, 146, 30);
-		frame.getContentPane().add(cpHealth4);
+		cBHealth4 = new JProgressBar();
+		cBHealth4.setBounds(791, 107, 146, 30);
+		frame.getContentPane().add(cBHealth4);
 		
-	
-		cpTired4 = new JProgressBar();
-		cpTired4.setBounds(791, 171, 146, 30);
-		frame.getContentPane().add(cpTired4);
+		cBTired4 = new JProgressBar();
+		cBTired4.setBounds(791, 171, 146, 30);
+		frame.getContentPane().add(cBTired4);
 		
-	
-		cpHunger4 = new JProgressBar();
-		cpHunger4.setBounds(791, 241, 146, 30);
-		frame.getContentPane().add(cpHunger4);
+		cBHunger4 = new JProgressBar();
+		cBHunger4.setBounds(791, 241, 146, 30);
+		frame.getContentPane().add(cBHunger4);
 
 		cpName4 = new JLabel("...");
 		cpName4.setFont(new Font("Dialog", Font.PLAIN, 18));
@@ -338,45 +491,43 @@ public class CrewPlanet {
 		label4.setBounds(60, 85, 81, 15);
 		frame.getContentPane().add(label4);
 
-		cpType1 = new JLabel("...");
-		cpType1.setFont(new Font("Dialog", Font.PLAIN, 18));
-		cpType1.setBounds(221, 69, 129, 30);
-		frame.getContentPane().add(cpType1);
+		cBType1 = new JLabel("...");
+		cBType1.setFont(new Font("Dialog", Font.PLAIN, 18));
+		cBType1.setBounds(221, 69, 129, 30);
+		frame.getContentPane().add(cBType1);
 
-		cpType2 = new JLabel("...");
-		cpType2.setFont(new Font("Dialog", Font.PLAIN, 18));
-		cpType2.setBounds(432, 76, 119, 23);
-		frame.getContentPane().add(cpType2);
+		cBType2 = new JLabel("...");
+		cBType2.setFont(new Font("Dialog", Font.PLAIN, 18));
+		cBType2.setBounds(432, 76, 119, 23);
+		frame.getContentPane().add(cBType2);
 
-		cpType3 = new JLabel("...");
-		cpType3.setFont(new Font("Dialog", Font.PLAIN, 18));
-		cpType3.setBounds(624, 79, 129, 21);
-		frame.getContentPane().add(cpType3);
+		cBType3 = new JLabel("...");
+		cBType3.setFont(new Font("Dialog", Font.PLAIN, 18));
+		cBType3.setBounds(624, 79, 129, 21);
+		frame.getContentPane().add(cBType3);
 	
 
-		cpType4 = new JLabel("...");
-		cpType4.setFont(new Font("Dialog", Font.PLAIN, 18));
-		cpType4.setBounds(803, 79, 134, 22);
-		frame.getContentPane().add(cpType4);
+		cBType4 = new JLabel("...");
+		cBType4.setFont(new Font("Dialog", Font.PLAIN, 18));
+		cBType4.setBounds(803, 79, 134, 22);
+		frame.getContentPane().add(cBType4);
 		
 		frame.getContentPane().setLayout(null);
 		
 		
 
 		//initialize storage arrays
-		cpType();
+		cBType();
 		cpName();
 		
-		cpHealth();
-		cpTired();
-		cpHunger();
+		cBHealth();
+		cBTired();
+		cBHunger();
 		
 		// Button actions
-		
-
-		
-		// forward Button
 		btnSearch();
+		characterChoice();
+		disableMember();
 		btnBack();
 	}
 	
