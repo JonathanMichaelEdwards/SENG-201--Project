@@ -1,1 +1,1 @@
-Medical, aff, 75, true, 0, 
+Attack, jonathan, 75, false, 0, 

@@ -498,7 +498,7 @@ public class ShipInventory
 				else if (rBSurgical.isSelected())
 					inventory.remove("surgical");
 				else if (rBMedkit.isSelected())
-					inventory.remove("medKit");
+					inventory.remove("medkit");
 				else if (rBBandages.isSelected())
 					inventory.remove("bandage");
 				

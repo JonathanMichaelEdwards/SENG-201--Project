@@ -1,5 +1,1 @@
-<<<<<<< Updated upstream
-40, 60, 100, 2, false, ww, Leader, 
-=======
-40, 60, 190, 2, 
->>>>>>> Stashed changes
+40, 50, 100, 2, false, jono, Leader, 

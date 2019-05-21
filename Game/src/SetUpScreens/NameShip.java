@@ -276,8 +276,6 @@ public class NameShip {
 		
 		storeCash.add("200");
 		
-<<<<<<< Updated upstream
-=======
 		inventory.add("Bandages");
 		inventory.add("Bandages");
 		inventory.add("Bandages");
@@ -286,7 +284,6 @@ public class NameShip {
 		inventory.add("Cookie");
 		inventory.add("Cookie");
 		inventory.add("Cookie");
->>>>>>> Stashed changes
 		
 		ioFile.fileWrite(storeCrew, "StoreGame/CrewInfo.txt");
 		ioFile.fileWrite(storeShip, "StoreGame/ShipInfo.txt");
