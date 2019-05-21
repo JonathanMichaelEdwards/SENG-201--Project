@@ -287,10 +287,9 @@ public class NameShip {
 		ioFile.fileWrite(storeCrew, "StoreGame/CrewInfo.txt");
 		ioFile.fileWrite(storeShip, "StoreGame/ShipInfo.txt");
 		ioFile.fileWrite(storeCash, "StoreGame/CashInfo.txt");
-//<<<<<<< HEAD
 		ioFile.fileWrite(inventory, "StoreGame/Inventory/Storage.txt");
-//=======
 		
+		// Creating crew member each crew member there own information file
 		for (int index = 0; index < crewType.size(); index++) {
 			if (index == 0) {
 				memberActions1 = ioFile.fileRead("StoreGame/CrewRatings/"+  crewType.get(0) + ".txt");
@@ -310,8 +309,8 @@ public class NameShip {
 				ioFile.fileWrite(memberActions4, "StoreGame/CrewSelected/MemberFour.txt");
 			}
 		}
-//>>>>>>> master
 	}
+	
 	
 	// Go to game screen if all fields are completed
 	private void startGameButton()

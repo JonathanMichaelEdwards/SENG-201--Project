@@ -147,7 +147,7 @@ public class CrewRepair {
 	// Storing and displaying the characters health
 	private void memberOne(ArrayList<String> crewMember1, IOFile ioFile)
 	{
-		crewMember1 = ioFile.fileRead(readCrew + crewType.get(0) + ".txt");
+		crewMember1 = ioFile.fileRead("StoreGame/CrewSelected/MemberOne.txt");
 		
 		crHealth1.setValue(Integer.valueOf(crewMember1.get(0)));
 		crTired1.setValue(Integer.valueOf(crewMember1.get(1)));
@@ -156,7 +156,7 @@ public class CrewRepair {
 	
 	private void memberTwo(ArrayList<String> crewMember2, IOFile ioFile)
 	{
-		crewMember2 = ioFile.fileRead(readCrew + crewType.get(1) + ".txt");
+		crewMember2 = ioFile.fileRead("StoreGame/CrewSelected/MemberTwo.txt");
 		
 		crHealth2.setValue(Integer.valueOf(crewMember2.get(0)));
 		crTired2.setValue(Integer.valueOf(crewMember2.get(1)));
@@ -165,7 +165,7 @@ public class CrewRepair {
 	
 	private void memberThree(ArrayList<String> crewMember3, IOFile ioFile)
 	{
-		crewMember3 = ioFile.fileRead(readCrew + crewType.get(2) + ".txt");
+		crewMember3 = ioFile.fileRead("StoreGame/CrewSelected/MemberThree.txt");
 		
 		crHealth3.setValue(Integer.valueOf(crewMember3.get(0)));
 		crTired3.setValue(Integer.valueOf(crewMember3.get(1)));
@@ -174,7 +174,7 @@ public class CrewRepair {
 	
 	private void memberFour(ArrayList<String> crewMember4, IOFile ioFile)
 	{
-		crewMember4 = ioFile.fileRead(readCrew + crewType.get(3) + ".txt");
+		crewMember4 = ioFile.fileRead("StoreGame/CrewSelected/MemberFour.txt");
 		
 		crHealth4.setValue(Integer.valueOf(crewMember4.get(0)));
 		crTired4.setValue(Integer.valueOf(crewMember4.get(1)));
@@ -257,30 +257,31 @@ public class CrewRepair {
 				
 				// changes the member selected file
 				if (rBChar1.isSelected()) {
+					System.out.println("yes");
 					crewMember = ioFile.fileRead(readFile + "MemberOne.txt");
 					crewMember.set(3, ""+(Integer.parseInt(crewMember.get(3)) - 1));
-					int tired = Integer.parseInt(crewMember.get(1)) + 10; //this is the value in which a repair heals
+					int tired = Integer.parseInt(crewMember.get(1)) - 10; //this is the value in which a repair heals
 					
 					crewMember.set(1, "" + tired);
 					ioFile.fileWrite(crewMember, readFile + "MemberOne.txt");
 				} else if (rBChar2.isSelected()) {
 					crewMember = ioFile.fileRead(readFile + "MemberTwo.txt");
 					crewMember.set(3, ""+(Integer.parseInt(crewMember.get(3)) - 1));
-					int tired = Integer.parseInt(crewMember.get(1)) + 10; //this is the value in which a repair heals
+					int tired = Integer.parseInt(crewMember.get(1)) - 10; //this is the value in which a repair heals
 					
 					crewMember.set(1, "" + tired);
 					ioFile.fileWrite(crewMember, readFile + "MemberTwo.txt");
 				} else if (rBChar3.isSelected()) {
 					crewMember = ioFile.fileRead(readFile + "MemberThree.txt");
 					crewMember.set(3, ""+(Integer.parseInt(crewMember.get(3)) - 1));
-					int tired = Integer.parseInt(crewMember.get(1)) + 10; //this is the value in which a repair heals
+					int tired = Integer.parseInt(crewMember.get(1)) - 10; //this is the value in which a repair heals
 					
 					crewMember.set(1, "" + tired);
 					ioFile.fileWrite(crewMember, readFile + "MemberThree.txt");
 				} else if (rBChar4.isSelected()) {
 					crewMember = ioFile.fileRead(readFile + "MemberFour.txt");
 					crewMember.set(3, ""+(Integer.parseInt(crewMember.get(3)) - 1));
-					int tired = Integer.parseInt(crewMember.get(1)) + 10; //this is the value in which a repair heals
+					int tired = Integer.parseInt(crewMember.get(1)) - 10; //this is the value in which a repair heals
 					
 					crewMember.set(1, "" + tired);
 					ioFile.fileWrite(crewMember, readFile + "MemberFour.txt");

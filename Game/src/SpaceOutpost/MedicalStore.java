@@ -36,9 +36,7 @@ public class MedicalStore
 	private JProgressBar cBHealth1, cBHealth2, cBHealth3, cBHealth4;
 	private JProgressBar cBTired1, cBTired2, cBTired3, cBTired4;
 	private JProgressBar cBHunger1, cBHunger2, cBHunger3, cBHunger4;
-	
-	// File locations
-	private String readCrew = "StoreGame/CrewRatings/";
+
 	
 	// stores the selection type
 	private ArrayList<String> crewType = new ArrayList<String>();
@@ -151,7 +149,7 @@ public class MedicalStore
 	// Storing and displaying the characters health
 	private void memberOne(ArrayList<String> crewMember1, IOFile ioFile)
 	{
-		crewMember1 = ioFile.fileRead(readCrew + crewType.get(0) + ".txt");
+		crewMember1 = ioFile.fileRead("StoreGame/CrewSelected/MemberOne.txt");
 		
 		cBHealth1.setValue(Integer.valueOf(crewMember1.get(0)));
 		cBTired1.setValue(Integer.valueOf(crewMember1.get(1)));
@@ -160,7 +158,7 @@ public class MedicalStore
 	
 	private void memberTwo(ArrayList<String> crewMember2, IOFile ioFile)
 	{
-		crewMember2 = ioFile.fileRead(readCrew + crewType.get(1) + ".txt");
+		crewMember2 = ioFile.fileRead("StoreGame/CrewSelected/MemberTwo.txt");
 		
 		cBHealth2.setValue(Integer.valueOf(crewMember2.get(0)));
 		cBTired2.setValue(Integer.valueOf(crewMember2.get(1)));
@@ -169,7 +167,7 @@ public class MedicalStore
 	
 	private void memberThree(ArrayList<String> crewMember3, IOFile ioFile)
 	{
-		crewMember3 = ioFile.fileRead(readCrew + crewType.get(2) + ".txt");
+		crewMember3 = ioFile.fileRead("StoreGame/CrewSelected/MemberThree.txt");
 		
 		cBHealth3.setValue(Integer.valueOf(crewMember3.get(0)));
 		cBTired3.setValue(Integer.valueOf(crewMember3.get(1)));
@@ -178,7 +176,7 @@ public class MedicalStore
 	
 	private void memberFour(ArrayList<String> crewMember4, IOFile ioFile)
 	{
-		crewMember4 = ioFile.fileRead(readCrew + crewType.get(3) + ".txt");
+		crewMember4 = ioFile.fileRead("StoreGame/CrewSelected/MemberFour.txt");
 		
 		cBHealth4.setValue(Integer.valueOf(crewMember4.get(0)));
 		cBTired4.setValue(Integer.valueOf(crewMember4.get(1)));

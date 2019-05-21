@@ -21,6 +21,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JList;
 import javax.swing.AbstractListModel;
 import javax.swing.JRadioButton;
+import javax.swing.JComboBox;
 
 
 public class ShipInventory
@@ -31,33 +32,29 @@ public class ShipInventory
 	private JLabel siType1, siType2, siType3, siType4;
 	private JLabel siName1, siName2, siName3, siName4;
 	
-	private JLabel lblCountcookie, lblCountPizza, lblCountFull, lblCountBandages, lblCountMedkit, lblCountSurgical, lblCountPotion;
-
+	private JLabel lblCountcookie, lblCountPizza, lblCountFullMeal, lblCountBandages, lblCountMedkit, lblCountSurgical, lblCountPotion;
 
 	private JProgressBar siHealth1, siHealth2, siHealth3, siHealth4;
 	private JProgressBar siTired1, siTired2, siTired3, siTired4;
 	private JProgressBar siHunger1, siHunger2, siHunger3, siHunger4;
+	private JRadioButton rBCookie, rBPizza, rBFullMeal;
 	
 	// stores the selection type
 	private ArrayList<String> crewType = new ArrayList<String>();
 	private ArrayList<String> crewName = new ArrayList<String>();
+	ArrayList<String> storedItems = new ArrayList<String>();
 
 	private JLabel type[] = new JLabel[4];
 	private JLabel member[] = new JLabel[4];
 	
-	private JRadioButton btnCookie, btnPizza, btnFull, btnPlaguePotion, btnSurgical, btnMedkit, btnBandages;
+	private JRadioButton rBPlague, rBSurgical, rBMedkit, rBBandages;
 	
 	
 	private JProgressBar health[] = new JProgressBar[4];
 	private JProgressBar tiredness[] = new JProgressBar[4];
 	private JProgressBar hunger[] = new JProgressBar [4];
 	
-	private int cookies, pizzas, full, bandage, medkit, surgical, potion;
-//	private JLabel lblCountFull;
-//	private JLabel lblCountBandages;
-//	private JLabel lblCountMedkit;
-//	private JLabel lblCountSurgical;
-//	private JLabel lblCountPotion;
+	private int cookies, pizzas, fullMeal, bandage, medkit, surgical, potion;
 	
 
 	// Store all progress bar so it can be used easily
@@ -90,7 +87,6 @@ public class ShipInventory
 	// Stores crew details in data arrays so it can be used easily
 	private void siType() 
 	{
-		
 		type[0] = siType1;
 		type[1] = siType2;
 		type[2] = siType3;
@@ -143,16 +139,7 @@ public class ShipInventory
 		}
 	}
 
-	private void clearSelection()
-	{
-		btnCookie.setSelected(false);
-		btnPizza.setSelected(false);
-		btnFull.setSelected(false);
-		btnPlaguePotion.setSelected(false);
-		btnSurgical.setSelected(false);
-		btnMedkit.setSelected(false);
-		btnBandages.setSelected(false);
-	}
+
 	// decode crew information to get correct data
 	private void decodeCrewInfo(ArrayList<String> crewInfo)
 	{
@@ -172,6 +159,7 @@ public class ShipInventory
 		
 		// Reading files
 		ArrayList<String> crewInfo = ioFile.fileRead("StoreGame/CrewInfo.txt");
+		ArrayList<String> storedItems= ioFile.fileRead("StoreGame/Inventory/Storage.txt");
 		
 		// unwrap information
 		decodeCrewInfo(crewInfo);
@@ -180,124 +168,146 @@ public class ShipInventory
 			type[index].setText(crewType.get(index));
 			member[index].setText(crewName.get(index));
 		}
-	}
 		
-	
-	private void Cookie()
-	{
-		btnCookie = new JRadioButton("");
-		btnCookie.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				clearSelection();
-				btnCookie.setSelected(true);
-			}
-		});
-		btnCookie.setBounds(194, 170, 38, 23);
-		frame.getContentPane().add(btnCookie);
-	}
-	
-	private void Pizza()
-	{
-		btnPizza = new JRadioButton("");
-		btnPizza.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				clearSelection();
-				btnPizza.setSelected(true);
-			}
-		});
+		// Find out how many of the same items the player has
+		for (int index = 0; index < storedItems.size(); index++) {
+			if (storedItems.get(index).equals("cookie"))
+				cookies++;
+			else if (storedItems.get(index).equals("pizza"))
+				pizzas++;
+			else if (storedItems.get(index).equals("fullMeal"))
+				fullMeal++;
+			else if (storedItems.get(index).equals("bandage"))
+				bandage++;
+			else if (storedItems.get(index).equals("medkit"))
+				medkit++;
+			else if (storedItems.get(index).equals("surgical"))
+				surgical++; 
+			else if (storedItems.get(index).equals("potion"))
+				potion++;
+		}
 		
-		btnPizza.setBounds(194, 206, 38, 23);
-		frame.getContentPane().add(btnPizza);
+		// Display the item amounts
+		lblCountcookie.setText("x" + Integer.toString(cookies));
+		lblCountPizza.setText("x" + Integer.toString(pizzas));
+		lblCountFullMeal.setText("x" + Integer.toString(fullMeal));
+		lblCountBandages.setText("x" + Integer.toString(bandage));
+		lblCountMedkit.setText("x" + Integer.toString(medkit));
+		lblCountSurgical.setText("x" + Integer.toString(surgical));
+		lblCountPotion.setText("x" + Integer.toString(potion));
 	}
 	
-	private void Full()
+	
+	// disables the radio buttons
+	private void rbEnableFalse(boolean state)
 	{
-		btnFull = new JRadioButton("");
-		btnFull.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				clearSelection();
-				btnFull.setSelected(true);
+		rBCookie.setEnabled(state);
+		rBPizza.setEnabled(state);
+		rBFullMeal.setEnabled(state);
+		rBPlague.setEnabled(state);
+		rBSurgical.setEnabled(state);
+		rBMedkit.setEnabled(state);
+		rBBandages.setEnabled(state);
+	}
+	
+	
+	private void setradioButtons(JRadioButton button)
+	{
+		if (button.isSelected()) {
+			rbEnableFalse(false);
+			button.setEnabled(true);
+		} else {
+			rbEnableFalse(true);
+		}
+	}
+	
+	
+	private void cBoxActions()
+	{
+		rBCookie = new JRadioButton("");
+		rBCookie.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent arg0) 
+			{	
+				setradioButtons(rBCookie);
 			}
 		});
-		btnFull.setBounds(194, 245, 38, 23);
-		frame.getContentPane().add(btnFull);
+		rBCookie.setBounds(206, 166, 38, 23);
+		frame.getContentPane().add(rBCookie);
 		
-	}
-	
-	private void PlaguePotion()
-	{
-		btnPlaguePotion = new JRadioButton("");
-		btnPlaguePotion.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				clearSelection();
-				btnPlaguePotion.setSelected(true);
-			}
-		});
-		btnPlaguePotion.setBounds(514, 284, 38, 23);
-		frame.getContentPane().add(btnPlaguePotion);
-	}
-	
-	private void Surgical()
-	{
-		btnSurgical = new JRadioButton("");
-		btnSurgical.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				clearSelection();
-				btnSurgical.setSelected(true);
-			}
-		});
-		btnSurgical.setBounds(514, 246, 38, 23);
-		frame.getContentPane().add(btnSurgical);
-	}
 		
-	private void Medkit()
-	{
-		btnMedkit = new JRadioButton("");
-		btnMedkit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				clearSelection();
-				btnMedkit.setSelected(true);
+		rBPizza = new JRadioButton("");
+		rBPizza.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				setradioButtons(rBPizza);
 			}
 		});
-		btnMedkit.setBounds(514, 207, 38, 23);
-		frame.getContentPane().add(btnMedkit);
+		rBPizza.setBounds(200, 206, 38, 23);
+		frame.getContentPane().add(rBPizza);
+		
+		
+		rBFullMeal = new JRadioButton("");
+		rBFullMeal.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				setradioButtons(rBFullMeal);
+			}
+		});
+		rBFullMeal.setBounds(200, 245, 38, 23);
+		frame.getContentPane().add(rBFullMeal);
+		
+		
+		rBPlague = new JRadioButton("");
+		rBPlague.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				setradioButtons(rBPlague);
+			}
+		});
+		rBPlague.setBounds(514, 284, 38, 23);
+		frame.getContentPane().add(rBPlague);
+		
+		
+		rBSurgical = new JRadioButton("");
+		rBSurgical.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				setradioButtons(rBSurgical);
+			}
+		});
+		rBSurgical.setBounds(514, 246, 38, 23);
+		frame.getContentPane().add(rBSurgical);
+		
+		
+		rBMedkit = new JRadioButton("");
+		rBMedkit.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				setradioButtons(rBMedkit);
+			}
+		});
+		rBMedkit.setBounds(514, 207, 38, 23);
+		frame.getContentPane().add(rBMedkit);
+		
+		
+		rBBandages = new JRadioButton("");
+		rBBandages.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				setradioButtons(rBBandages);
+			}
+		});
+		rBBandages.setBounds(514, 167, 38, 23);
+		frame.getContentPane().add(rBBandages);
+	}
 
-	
-	}
-
-	
-	
-	private void Bandage()
-	{
-		
-		btnBandages = new JRadioButton("");
-		btnBandages.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				clearSelection();
-				btnBandages.setSelected(true);
-			}
-		});
-		btnBandages.setBounds(514, 167, 38, 23);
-		frame.getContentPane().add(btnBandages);
-		
-		
-
-		
-	}
-	
-	private void ItemChoice()
-	{
-		Cookie();
-		Pizza();
-		Full();
-		PlaguePotion();
-		Surgical();
-		Medkit();
-		Bandage();
-		
-	}
-	
-	
 	
 	private void btnBack()
 	{
@@ -313,157 +323,7 @@ public class ShipInventory
 			}
 		});
 		frame.getContentPane().add(btnBack);
-
-
-		
-		JLabel lblFood = new JLabel("Food");
-		lblFood.setBounds(54, 129, 66, 15);
-		lblFood.setFont(new Font("Dialog", Font.BOLD, 16));
-		frame.getContentPane().add(lblFood);
-		
-		JLabel lblMedical = new JLabel("Medical");
-		lblMedical.setBounds(258, 129, 110, 15);
-		lblMedical.setFont(new Font("Dialog", Font.BOLD, 16));
-		frame.getContentPane().add(lblMedical);
-		
-		JLabel lblCookieX = new JLabel("Cookie");
-		lblCookieX.setBounds(54, 170, 66, 15);
-		frame.getContentPane().add(lblCookieX);
-		
-		JLabel lblPizzaX = new JLabel("Pizza");
-		lblPizzaX.setBounds(54, 210, 66, 15);
-		frame.getContentPane().add(lblPizzaX);
-		
-		JLabel lblFullMealX = new JLabel("Full meal");
-		lblFullMealX.setBounds(54, 249, 91, 15);
-		frame.getContentPane().add(lblFullMealX);
-		
-		JLabel lblBandages = new JLabel("Bandages");
-		lblBandages.setBounds(258, 170, 126, 15);
-		frame.getContentPane().add(lblBandages);
-		
-		JLabel lblMedKit = new JLabel("Med Kit");
-		lblMedKit.setBounds(258, 210, 66, 15);
-		frame.getContentPane().add(lblMedKit);
-		
-		JLabel lblSurgialSuite = new JLabel("Surgial Package");
-		lblSurgialSuite.setBounds(258, 249, 126, 15);
-		frame.getContentPane().add(lblSurgialSuite);
-		
-		JLabel lblSpacePlaguePotion = new JLabel("Space Plague Potion");
-		lblSpacePlaguePotion.setBounds(258, 287, 177, 15);
-		frame.getContentPane().add(lblSpacePlaguePotion);
-		
-	
-		
-		JRadioButton rdbtnCrew1 = new JRadioButton("Choose");
-		rdbtnCrew1.setEnabled(false);
-		rdbtnCrew1.setBounds(514, 683, 144, 23);
-		frame.getContentPane().add(rdbtnCrew1);
-		
-		JRadioButton rdbtnCrew2 = new JRadioButton("Choose");
-		rdbtnCrew2.setEnabled(false);
-		rdbtnCrew2.setBounds(731, 683, 144, 23);
-		frame.getContentPane().add(rdbtnCrew2);
-		
-		JRadioButton rdbtnCrew3 = new JRadioButton("Choose");
-		rdbtnCrew3.setEnabled(false);
-		rdbtnCrew3.setBounds(917, 683, 144, 23);
-		frame.getContentPane().add(rdbtnCrew3);
-		
-		JRadioButton rdbtnCrew4 = new JRadioButton("Choose");
-		rdbtnCrew4.setEnabled(false);
-		rdbtnCrew4.setBounds(1101, 683, 144, 23);
-		frame.getContentPane().add(rdbtnCrew4);
-		
-		JButton btnConfirmChoice = new JButton("Confirm Choice");
-		btnConfirmChoice.setBounds(596, 282, 161, 25);
-		frame.getContentPane().add(btnConfirmChoice);
 	}
-	
-	
-	
-	
-	private void CookieCount()
-	{
-		IOFile ioFile = new IOFile();
-		ArrayList<String> editFood = ioFile.fileRead("StoreGame/Inventory/List.txt");
-//		int cookies = Integer.parseInt(editFood.get(0))  - 1;
-		int cookies = Integer.parseInt(editFood.get(0));
-		editFood.set(0, "" + cookies);
-		System.out.println(cookies);
-		ioFile.fileWrite(editFood, "StoreGame/Inventory/List.txt");
-		lblCountcookie.setText(Integer.toString(cookies));
-	}
-	private void PizzaCount()
-	{
-		IOFile ioFile = new IOFile();
-		ArrayList<String> editFood = ioFile.fileRead("StoreGame/Inventory/List.txt");
-//		int cookies = Integer.parseInt(editFood.get(0))  - 1;
-		int pizza = Integer.parseInt(editFood.get(1));
-		editFood.set(1, "" + pizza);
-		System.out.println(pizza);
-		ioFile.fileWrite(editFood, "StoreGame/Inventory/List.txt");
-		lblCountPizza.setText(Integer.toString(pizza));
-	}
-	private void FullCount()
-	{
-		IOFile ioFile = new IOFile();
-		ArrayList<String> editFood = ioFile.fileRead("StoreGame/Inventory/List.txt");
-//		int cookies = Integer.parseInt(editFood.get(0))  - 1;
-		int full = Integer.parseInt(editFood.get(2));
-		editFood.set(2, "" + full);
-		System.out.println(full);
-		ioFile.fileWrite(editFood, "StoreGame/Inventory/List.txt");
-		lblCountFull.setText(Integer.toString(full));
-	}
-	private void BandageCount()
-	{
-		IOFile ioFile = new IOFile();
-		ArrayList<String> editFood = ioFile.fileRead("StoreGame/Inventory/List.txt");
-//		int cookies = Integer.parseInt(editFood.get(0))  - 1;
-		int bandage = Integer.parseInt(editFood.get(3));
-		editFood.set(3, "" + bandage);
-		System.out.println(bandage);
-		ioFile.fileWrite(editFood, "StoreGame/Inventory/List.txt");
-		lblCountBandages.setText(Integer.toString(bandage));
-	}
-	
-	private void MedkitCount()
-	{
-		IOFile ioFile = new IOFile();
-		ArrayList<String> editFood = ioFile.fileRead("StoreGame/Inventory/List.txt");
-//		int cookies = Integer.parseInt(editFood.get(0))  - 1;
-		int medkit = Integer.parseInt(editFood.get(4));
-		editFood.set(4, "" + medkit);
-		System.out.println(medkit);
-		ioFile.fileWrite(editFood, "StoreGame/Inventory/List.txt");
-		lblCountMedkit.setText(Integer.toString(medkit));
-	}
-	private void SurgicalCount()
-	{
-		IOFile ioFile = new IOFile();
-		ArrayList<String> editFood = ioFile.fileRead("StoreGame/Inventory/List.txt");
-//		int cookies = Integer.parseInt(editFood.get(0))  - 1;
-		int surgical = Integer.parseInt(editFood.get(5));
-		editFood.set(5, "" + surgical);
-		System.out.println(surgical);
-		ioFile.fileWrite(editFood, "StoreGame/Inventory/List.txt");
-		lblCountSurgical.setText(Integer.toString(surgical));
-	}
-	private void PotionCount()
-	{
-		IOFile ioFile = new IOFile();
-		ArrayList<String> editFood = ioFile.fileRead("StoreGame/Inventory/List.txt");
-//		int cookies = Integer.parseInt(editFood.get(0))  - 1;
-		int potion = Integer.parseInt(editFood.get(6));
-		editFood.set(6, "" + potion);
-		System.out.println(potion);
-		ioFile.fileWrite(editFood, "StoreGame/Inventory/List.txt");
-		lblCountPotion.setText(Integer.toString(potion));
-	}
-	
-	
 
 	
 	private void btnAccept()
@@ -481,6 +341,22 @@ public class ShipInventory
 			}
 		});
 		frame.getContentPane().add(btnApplyChanges);
+	}
+	
+	
+	
+	private void btnConfirm()
+	{
+		JButton btnConfirmChoice = new JButton("Confirm Choice");
+		btnConfirmChoice.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				lblCountcookie.setText(Integer.toString(cookies));
+			}
+		});
+		btnConfirmChoice.setBounds(596, 282, 161, 25);
+		frame.getContentPane().add(btnConfirmChoice);
 	}
 	
 	
@@ -596,7 +472,6 @@ public class ShipInventory
 		label.setBounds(370, 389, 81, 15);
 		label.setFont(new Font("Dialog", Font.PLAIN, 16));
 		frame.getContentPane().add(label);
-	
 
 		JLabel label0 = new JLabel("Hunger:");
 		label0.setBounds(370, 598, 81, 15);
@@ -607,7 +482,6 @@ public class ShipInventory
 		label1.setBounds(370, 541, 81, 15);
 		label1.setFont(new Font("Dialog", Font.PLAIN, 16));
 		frame.getContentPane().add(label1);
-	
 
 		JLabel label2 = new JLabel("Health:");
 		label2.setBounds(310, 353, 0, 0);
@@ -620,25 +494,20 @@ public class ShipInventory
 		label3.setFont(new Font("Dialog", Font.PLAIN, 16));
 		frame.getContentPane().add(label3);
 
-	
-
-	//////////
 		lblCountcookie = new JLabel("<dynamic>");
-		lblCountcookie.setBounds(120, 170, 66, 15);
+		lblCountcookie.setBounds(113, 170, 84, 15);
 		frame.getContentPane().add(lblCountcookie);
 		lblCountcookie.setText(Integer.toString(cookies));
-		
-		
-		///////////		
+			
 		lblCountPizza = new JLabel("New label");
-		lblCountPizza.setBounds(120, 210, 66, 15);
+		lblCountPizza.setBounds(113, 210, 84, 15);
 		frame.getContentPane().add(lblCountPizza);
 		lblCountPizza.setText(Integer.toString(pizzas));
 		
-		lblCountFull = new JLabel("New label");
-		lblCountFull.setBounds(120, 249, 66, 15);
-		frame.getContentPane().add(lblCountFull);
-		lblCountFull.setText(Integer.toString(pizzas));
+		lblCountFullMeal = new JLabel("New label");
+		lblCountFullMeal.setBounds(113, 249, 84, 15);
+		frame.getContentPane().add(lblCountFullMeal);
+		lblCountFullMeal.setText(Integer.toString(fullMeal));
 		
 		lblCountBandages = new JLabel("New label");
 		lblCountBandages.setBounds(434, 170, 66, 15);
@@ -679,6 +548,70 @@ public class ShipInventory
 		siType3.setBounds(934, 432, 129, 21);
 		siType3.setFont(new Font("Dialog", Font.PLAIN, 18));
 		frame.getContentPane().add(siType3);
+		
+		
+		JLabel lblFood = new JLabel("Food");
+		lblFood.setBounds(54, 129, 66, 15);
+		lblFood.setFont(new Font("Dialog", Font.BOLD, 16));
+		frame.getContentPane().add(lblFood);
+		
+		JLabel lblMedical = new JLabel("Medical");
+		lblMedical.setBounds(258, 129, 110, 15);
+		lblMedical.setFont(new Font("Dialog", Font.BOLD, 16));
+		frame.getContentPane().add(lblMedical);
+		
+		JLabel lblCookieX = new JLabel("Cookie");
+		lblCookieX.setBounds(24, 170, 66, 15);
+		frame.getContentPane().add(lblCookieX);
+		
+		JLabel lblPizzaX = new JLabel("Pizza");
+		lblPizzaX.setBounds(24, 210, 66, 15);
+		frame.getContentPane().add(lblPizzaX);
+		
+		JLabel lblFullMealX = new JLabel("Full meal");
+		lblFullMealX.setBounds(24, 249, 91, 15);
+		frame.getContentPane().add(lblFullMealX);
+		
+		JLabel lblBandages = new JLabel("Bandages");
+		lblBandages.setBounds(258, 170, 126, 15);
+		frame.getContentPane().add(lblBandages);
+		
+		JLabel lblMedKit = new JLabel("Med Kit");
+		lblMedKit.setBounds(258, 210, 66, 15);
+		frame.getContentPane().add(lblMedKit);
+		
+		JLabel lblSurgialSuite = new JLabel("Surgial Package");
+		lblSurgialSuite.setBounds(258, 249, 126, 15);
+		frame.getContentPane().add(lblSurgialSuite);
+		
+		JLabel lblSpacePlaguePotion = new JLabel("Space Plague Potion");
+		lblSpacePlaguePotion.setBounds(258, 287, 177, 15);
+		frame.getContentPane().add(lblSpacePlaguePotion);
+		
+	
+		
+		JRadioButton rdbtnCrew1 = new JRadioButton("Choose");
+		rdbtnCrew1.setEnabled(false);
+		rdbtnCrew1.setBounds(514, 683, 144, 23);
+		frame.getContentPane().add(rdbtnCrew1);
+		
+		JRadioButton rdbtnCrew2 = new JRadioButton("Choose");
+		rdbtnCrew2.setEnabled(false);
+		rdbtnCrew2.setBounds(731, 683, 144, 23);
+		frame.getContentPane().add(rdbtnCrew2);
+		
+		JRadioButton rdbtnCrew3 = new JRadioButton("Choose");
+		rdbtnCrew3.setEnabled(false);
+		rdbtnCrew3.setBounds(917, 683, 144, 23);
+		frame.getContentPane().add(rdbtnCrew3);
+		
+		JRadioButton rdbtnCrew4 = new JRadioButton("Choose");
+		rdbtnCrew4.setEnabled(false);
+		rdbtnCrew4.setBounds(1101, 683, 144, 23);
+		frame.getContentPane().add(rdbtnCrew4);
+		
+
+
 	
 
 		siType4 = new JLabel("...");
@@ -693,11 +626,12 @@ public class ShipInventory
 		siHealth();
 		siTired();
 		siHunger();
+		
 		// Back Actions
+		cBoxActions();
+		btnConfirm();
 		btnAccept();;
 		btnBack();
-		ItemChoice();
-		
 	}
 	
 	
@@ -708,14 +642,6 @@ public class ShipInventory
 	{
 		initialize();
 		organizeGameInfo();
-
-		CookieCount();
-		PizzaCount();
-		FullCount();
-		BandageCount();
-		MedkitCount();
-		SurgicalCount();
-		PotionCount();
 	}
 	
 	

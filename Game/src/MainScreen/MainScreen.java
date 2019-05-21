@@ -60,7 +60,6 @@ public class MainScreen
 	private int repair;
 	
 	// File locations
-	private String readCrew = "StoreGame/CrewRatings/";
 	private String writeHealth = "StoreGame/CrewSelected/";
 	
 	// stores the selection type
@@ -173,8 +172,9 @@ public class MainScreen
 	// Storing and displaying the characters health
 	private void memberOne(ArrayList<String> crewMember1, IOFile ioFile)
 	{
-		crewMember1 = ioFile.fileRead(readCrew + crewType.get(0) + ".txt");
+		crewMember1 = ioFile.fileRead("StoreGame/CrewSelected/MemberOne.txt");
 		
+		System.out.println(crewMember1);
 		pBarHealth1.setValue(Integer.valueOf(crewMember1.get(0)));
 		pBarTiredness1.setValue(Integer.valueOf(crewMember1.get(1)));
 		pBarHunger1.setValue(Integer.valueOf(crewMember1.get(2)));
@@ -182,7 +182,7 @@ public class MainScreen
 	
 	private void memberTwo(ArrayList<String> crewMember2, IOFile ioFile)
 	{
-		crewMember2 = ioFile.fileRead(readCrew + crewType.get(1) + ".txt");
+		crewMember2 = ioFile.fileRead("StoreGame/CrewSelected/MemberTwo.txt");
 		
 		pBarHealth2.setValue(Integer.valueOf(crewMember2.get(0)));
 		pBarTiredness2.setValue(Integer.valueOf(crewMember2.get(1)));
@@ -191,7 +191,7 @@ public class MainScreen
 	
 	private void memberThree(ArrayList<String> crewMember3, IOFile ioFile)
 	{
-		crewMember3 = ioFile.fileRead(readCrew + crewType.get(2) + ".txt");
+		crewMember3 = ioFile.fileRead("StoreGame/CrewSelected/MemberThree.txt");
 		
 		pBarHealth3.setValue(Integer.valueOf(crewMember3.get(0)));
 		pBarTiredness3.setValue(Integer.valueOf(crewMember3.get(1)));
@@ -200,7 +200,7 @@ public class MainScreen
 	
 	private void memberFour(ArrayList<String> crewMember4, IOFile ioFile)
 	{
-		crewMember4 = ioFile.fileRead(readCrew + crewType.get(3) + ".txt");
+		crewMember4 = ioFile.fileRead("StoreGame/CrewSelected/MemberFour.txt");
 		
 		pBarHealth4.setValue(Integer.valueOf(crewMember4.get(0)));
 		pBarTiredness4.setValue(Integer.valueOf(crewMember4.get(1)));
@@ -707,7 +707,7 @@ public class MainScreen
 		player3.setBounds(617, 310, 117, 28);
 		panelCrew.add(player3);
 		
-		player4 = new JLabel("0");
+		player4 = new JLabel("...");
 		player4.setFont(new Font("Dialog", Font.PLAIN, 18));
 		player4.setBounds(801, 310, 117, 28);
 		panelCrew.add(player4);
