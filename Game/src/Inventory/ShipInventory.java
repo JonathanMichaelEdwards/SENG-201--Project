@@ -29,26 +29,29 @@ public class ShipInventory
 	public JFrame frame;
 	
 	
-	private JLabel siType1, siType2, siType3, siType4;
+	private JLabel pBarType1, pBarType2, pBarType3, pBarType4;
 	private JLabel siName1, siName2, siName3, siName4;
 	
 	private JLabel lblCountcookie, lblCountPizza, lblCountFullMeal, lblCountBandages, lblCountMedkit, lblCountSurgical, lblCountPotion;
 
-	private JProgressBar siHealth1, siHealth2, siHealth3, siHealth4;
-	private JProgressBar siTired1, siTired2, siTired3, siTired4;
-	private JProgressBar siHunger1, siHunger2, siHunger3, siHunger4;
-	private JRadioButton rBCookie, rBPizza, rBFullMeal;
+	private JProgressBar pBarHealth1, pBarHealth2, pBarHealth3, pBarHealth4;
+	private JProgressBar pBarTired1, pBarTired2, pBarTired3, pBarTired4;
+	private JProgressBar pBarHunger1, pBarHunger2, pBarHunger3, pBarHunger4;
+	
+	private JRadioButton rBCookie, rBPizza, rBFullMeal, rBPlague, rBSurgical, rBMedkit, rBBandages;
+	private JRadioButton rdbtnCrew1, rdbtnCrew2, rdbtnCrew3, rdbtnCrew4;
+	private JButton btnConfirmChoice;
+	private boolean setectedState, setectedState2, btn3State, btn4State = false;
+	private ArrayList<String> crew = new ArrayList<String>();
 	
 	// stores the selection type
 	private ArrayList<String> crewType = new ArrayList<String>();
 	private ArrayList<String> crewName = new ArrayList<String>();
-	ArrayList<String> storedItems = new ArrayList<String>();
+
+	private boolean stateOne, stateTwo  = false;
 
 	private JLabel type[] = new JLabel[4];
 	private JLabel member[] = new JLabel[4];
-	
-	private JRadioButton rBPlague, rBSurgical, rBMedkit, rBBandages;
-	
 	
 	private JProgressBar health[] = new JProgressBar[4];
 	private JProgressBar tiredness[] = new JProgressBar[4];
@@ -59,38 +62,38 @@ public class ShipInventory
 
 	// Store all progress bar so it can be used easily
 	// Stores crew details in data arrays so it can be used easily
-	private void siHealth() 
+	private void pBarHealth() 
 	{
-		health[0] = siHealth1;
-		health[1] = siHealth2;
-		health[2] = siHealth3;
-		health[3] = siHealth4;
+		health[0] = pBarHealth1;
+		health[1] = pBarHealth2;
+		health[2] = pBarHealth3;
+		health[3] = pBarHealth4;
 	}
 	
-	private void siTired() 
+	private void pBarTired() 
 	{
-		tiredness[0] = siTired1;
-		tiredness[1] = siTired2;
-		tiredness[2] = siTired3;
-		tiredness[3] = siTired4;
+		tiredness[0] = pBarTired1;
+		tiredness[1] = pBarTired2;
+		tiredness[2] = pBarTired3;
+		tiredness[3] = pBarTired4;
 	}
 	
-	private void siHunger() 
+	private void pBarHunger() 
 	{
-		hunger[0] = siHunger1;
-		hunger[1] = siHunger2;
-		hunger[2] = siHunger3;
-		hunger[3] = siHunger4;
+		hunger[0] = pBarHunger1;
+		hunger[1] = pBarHunger2;
+		hunger[2] = pBarHunger3;
+		hunger[3] = pBarHunger4;
 	}
 	
 	
 	// Stores crew details in data arrays so it can be used easily
-	private void siType() 
+	private void pBarType() 
 	{
-		type[0] = siType1;
-		type[1] = siType2;
-		type[2] = siType3;
-		type[3] = siType4;
+		type[0] = pBarType1;
+		type[1] = pBarType2;
+		type[2] = pBarType3;
+		type[3] = pBarType4;
 	}
 	
 	private void siName() 
@@ -151,6 +154,69 @@ public class ShipInventory
 	}
 	
 	
+	
+	
+	// Storing and displaying the characters health
+	private void memberOne(ArrayList<String> crewMember1, IOFile ioFile)
+	{
+		crewMember1 = ioFile.fileRead("StoreGame/CrewSelected/MemberOne.txt");
+		
+		pBarHealth1.setValue(Integer.valueOf(crewMember1.get(0)));
+		pBarTired1.setValue(Integer.valueOf(crewMember1.get(1)));
+		pBarHunger1.setValue(Integer.valueOf(crewMember1.get(2)));
+	}
+	
+	private void memberTwo(ArrayList<String> crewMember2, IOFile ioFile)
+	{
+		crewMember2 = ioFile.fileRead("StoreGame/CrewSelected/MemberTwo.txt");
+		
+		pBarHealth2.setValue(Integer.valueOf(crewMember2.get(0)));
+		pBarTired2.setValue(Integer.valueOf(crewMember2.get(1)));
+		pBarHunger2.setValue(Integer.valueOf(crewMember2.get(2)));
+	}
+	
+	private void memberThree(ArrayList<String> crewMember3, IOFile ioFile)
+	{
+		crewMember3 = ioFile.fileRead("StoreGame/CrewSelected/MemberThree.txt");
+		
+		pBarHealth3.setValue(Integer.valueOf(crewMember3.get(0)));
+		pBarTired3.setValue(Integer.valueOf(crewMember3.get(1)));
+		pBarHunger3.setValue(Integer.valueOf(crewMember3.get(2)));
+	}
+	
+	private void memberFour(ArrayList<String> crewMember4, IOFile ioFile)
+	{
+		crewMember4 = ioFile.fileRead("StoreGame/CrewSelected/MemberFour.txt");
+		
+		pBarHealth4.setValue(Integer.valueOf(crewMember4.get(0)));
+		pBarTired4.setValue(Integer.valueOf(crewMember4.get(1)));
+		pBarHunger4.setValue(Integer.valueOf(crewMember4.get(2)));
+	}
+	
+	
+	private void readCrewRatings(IOFile ioFile)
+	{ 
+		ArrayList<String> crewMember1 = new ArrayList<String>();
+		ArrayList<String> crewMember2 = new ArrayList<String>();
+		ArrayList<String> crewMember3 = new ArrayList<String>();
+		ArrayList<String> crewMember4 = new ArrayList<String>();
+		
+		// Reading and storing the crew members health rating
+		for (int index = 0; index < crewType.size(); index++) {
+			// Storing the character types health rating
+			if (index == 0) {
+				memberOne(crewMember1, ioFile);
+			} else if (index == 1) {
+				memberTwo(crewMember2, ioFile);
+			} else if (index == 2) {
+				memberThree(crewMember3, ioFile);
+			} else if (index == 3) {
+				memberFour(crewMember4, ioFile);;
+			}
+		}
+	}
+	
+	
 	// organizing information from files
 	private void organizeGameInfo()
 	{
@@ -163,28 +229,31 @@ public class ShipInventory
 		
 		// unwrap information
 		decodeCrewInfo(crewInfo);
+		readCrewRatings(ioFile);  // Show levels
 		
 		for (int index = 0; index < crewType.size(); index++) {
 			type[index].setText(crewType.get(index));
 			member[index].setText(crewName.get(index));
 		}
 		
+		btnStates(); // check status of buttons
+		
 		// Find out how many of the same items the player has
 		for (int index = 0; index < storedItems.size(); index++) {
 			if (storedItems.get(index).equals("cookie"))
 				cookies++;
-			else if (storedItems.get(index).equals("pizza"))
+			if (storedItems.get(index).equals("pizza"))
 				pizzas++;
-			else if (storedItems.get(index).equals("fullMeal"))
+			if (storedItems.get(index).equals("fullMeal"))
 				fullMeal++;
-			else if (storedItems.get(index).equals("bandage"))
+			if (storedItems.get(index).equals("bandage"))
 				bandage++;
-			else if (storedItems.get(index).equals("medkit"))
+			if (storedItems.get(index).equals("medkit"))
 				medkit++;
-			else if (storedItems.get(index).equals("surgical"))
+			if (storedItems.get(index).equals("surgical"))
 				surgical++; 
-			else if (storedItems.get(index).equals("potion"))
-				potion++;
+			if (storedItems.get(index).equals("potion"))
+				potion++;	
 		}
 		
 		// Display the item amounts
@@ -195,6 +264,28 @@ public class ShipInventory
 		lblCountMedkit.setText("x" + Integer.toString(medkit));
 		lblCountSurgical.setText("x" + Integer.toString(surgical));
 		lblCountPotion.setText("x" + Integer.toString(potion));
+		
+		checkcount(); // check count to see whether to disable button
+	}
+	
+	
+	private void checkcount()
+	{
+		// determine whether or no the button should be on
+		if (cookies == 0)
+			rBCookie.setEnabled(false);
+		if (pizzas == 0) 
+			rBPizza.setEnabled(false);
+		if (fullMeal == 0)
+			rBFullMeal.setEnabled(false);
+		if (potion == 0) 
+			rBPlague.setEnabled(false);
+		if (bandage == 0)
+			rBBandages.setEnabled(false);
+		if (medkit == 0) 
+			rBMedkit.setEnabled(false);
+		if (surgical == 0) 
+			rBSurgical.setEnabled(false);
 	}
 	
 	
@@ -216,9 +307,14 @@ public class ShipInventory
 		if (button.isSelected()) {
 			rbEnableFalse(false);
 			button.setEnabled(true);
+			setectedState = true;
+			if (setectedState2)
+				btnConfirmChoice.setEnabled(true); // enable button
 		} else {
 			rbEnableFalse(true);
+			btnConfirmChoice.setEnabled(false);
 		}
+		checkcount();
 	}
 	
 	
@@ -328,35 +424,185 @@ public class ShipInventory
 	
 	private void btnAccept()
 	{
-		JButton btnApplyChanges = new JButton("Apply Changes");
-		btnApplyChanges.setEnabled(false);
-		btnApplyChanges.setBounds(1104, 868, 208, 101);
-		btnApplyChanges.addActionListener(new ActionListener() 
-		{
-			public void actionPerformed(ActionEvent arg0) 
-			{
-				MainScreen screen = new MainScreen();
-				screen.frame.setVisible(true);    // turn on screen
-				frame.setVisible(false);          // turn off screen
-			}
-		});
-		frame.getContentPane().add(btnApplyChanges);
 	}
 	
+	
+	private void crewWrite(String crewSelected)
+	{
+		IOFile ioFile = new IOFile();
+		crew = ioFile.fileRead("StoreGame/CrewSelected/" + crewSelected + ".txt");
+		int valueChange;
+		
+		if (rBCookie.isSelected()) {
+			valueChange = Integer.parseInt(crew.get(2)) + 20;
+			crew.set(2, ""+valueChange);
+		} else if (rBPizza.isSelected()) {
+			valueChange = Integer.parseInt(crew.get(2)) + 50;
+			crew.set(2, ""+valueChange);
+		} else if (rBFullMeal.isSelected()) {
+			valueChange = Integer.parseInt(crew.get(2)) + 100;
+			crew.set(2, ""+valueChange);
+		} else if (rBPlague.isSelected()) {
+			if (crew.get(4).equals("true"))
+				crew.set(4, "false");
+		} else if (rBSurgical.isSelected()) {
+			valueChange = Integer.parseInt(crew.get(0)) + 100;
+			crew.set(2, ""+valueChange);
+		} else if (rBMedkit.isSelected()) {
+			valueChange = Integer.parseInt(crew.get(0)) + 50;
+			crew.set(2, ""+valueChange);
+		} else if (rBBandages.isSelected()) {
+			valueChange = Integer.parseInt(crew.get(0)) + 20;
+			crew.set(2, ""+valueChange);
+		}
+		
+		if (setectedState)
+			btnConfirmChoice.setEnabled(true); // enable button
+		
+		ioFile.fileWrite(crew, "StoreGame/CrewSelected/" + crewSelected + ".txt");
+	}
 	
 	
 	private void btnConfirm()
 	{
-		JButton btnConfirmChoice = new JButton("Confirm Choice");
+		btnConfirmChoice = new JButton("Confirm Choice");
+		btnConfirmChoice.setEnabled(false);
 		btnConfirmChoice.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				lblCountcookie.setText(Integer.toString(cookies));
+				IOFile ioFile = new IOFile();
+				ArrayList<String> inventory = new ArrayList<String>();
+				
+				inventory = ioFile.fileRead("StoreGame/Inventory/Storage.txt");
+				
+		 		if (rdbtnCrew1.isSelected()) {
+		 			crewWrite("MemberOne");
+		 		} else if (rdbtnCrew2.isSelected()) {
+		 			crewWrite("MemberTwo");
+		 		} else if (rdbtnCrew3.isSelected()) {
+		 			crewWrite("MemberThree");
+		 		} else if (rdbtnCrew4.isSelected()) {
+		 			crewWrite("MemberFour");
+		 		}
+		 		
+		 		
+				if (rBCookie.isSelected()) {
+					inventory.remove("cookie");
+				} else if (rBPizza.isSelected())
+					inventory.remove("pizza");
+				else if (rBFullMeal.isSelected())
+					inventory.remove("fullMeal");
+				else if (rBPlague.isSelected())
+					inventory.remove("potion");
+				else if (rBSurgical.isSelected())
+					inventory.remove("surgical");
+				else if (rBMedkit.isSelected())
+					inventory.remove("medKit");
+				else if (rBBandages.isSelected())
+					inventory.remove("bandage");
+				
+				ioFile.fileWrite(inventory, "StoreGame/Inventory/Storage.txt");
+				
+				ShipInventory ship = new ShipInventory();
+				ship.frame.setVisible(true);    // turn on screen
+				frame.setVisible(false);        // turn off screen
 			}
 		});
-		btnConfirmChoice.setBounds(596, 282, 161, 25);
+		btnConfirmChoice.setBounds(113, 422, 198, 101);
 		frame.getContentPane().add(btnConfirmChoice);
+	}
+	
+	
+	private void rBClear()
+	{
+		rdbtnCrew1.setSelected(false);
+		rdbtnCrew2.setSelected(false);
+		rdbtnCrew3.setSelected(false);
+		rdbtnCrew4.setSelected(false);
+	}
+	
+	
+	private void btnStates()
+	{
+		for (int index = 0; index < crewType.size(); index++) {
+			if (index == 1) {
+				rdbtnCrew3.setEnabled(false);
+				rdbtnCrew4.setEnabled(false);
+				btn3State = true;
+				btn4State = true;
+			} else if (index == 2) {
+				rdbtnCrew4.setEnabled(false);
+				btn4State = true;
+			}
+		}
+	}
+	
+	
+	private void btnCrew()
+	{
+		 rdbtnCrew1 = new JRadioButton("Choose");
+		 rdbtnCrew1.addActionListener(new ActionListener() 
+		 {
+		 	public void actionPerformed(ActionEvent arg0) 
+		 	{
+		 		rBClear();
+		 		rdbtnCrew1.setSelected(true);
+		 		if (rdbtnCrew1.isSelected()) {
+		 			btnConfirmChoice.setEnabled(true); // enable button
+		 		}
+		 	}
+		 });
+		rdbtnCrew1.setBounds(514, 683, 144, 23);
+		frame.getContentPane().add(rdbtnCrew1);
+		
+		
+		rdbtnCrew2 = new JRadioButton("Choose");
+		rdbtnCrew2.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				rBClear();
+				rdbtnCrew2.setSelected(true);
+		 		if (rdbtnCrew2.isSelected()) {
+		 			btnConfirmChoice.setEnabled(true); // enable button
+		 		}
+			}
+		});
+		rdbtnCrew2.setBounds(731, 683, 144, 23);
+		frame.getContentPane().add(rdbtnCrew2);
+		
+	
+		rdbtnCrew3 = new JRadioButton("Choose");
+		rdbtnCrew3.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				rBClear();
+				rdbtnCrew3.setSelected(true);
+		 		if (rdbtnCrew3.isSelected()) {
+		 			btnConfirmChoice.setEnabled(true); // enable button
+		 		}
+			}
+		});
+		rdbtnCrew3.setBounds(917, 683, 144, 23);
+		frame.getContentPane().add(rdbtnCrew3);
+		
+
+		rdbtnCrew4 = new JRadioButton("Choose");
+		rdbtnCrew4.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				rBClear();
+	 			rdbtnCrew4.setSelected(true);
+		 		if (rdbtnCrew4.isSelected()) {
+		 			btnConfirmChoice.setEnabled(true); // enable button
+		 		}
+			}
+		});
+		rdbtnCrew4.setBounds(1101, 683, 144, 23);
+		frame.getContentPane().add(rdbtnCrew4);
 	}
 	
 	
@@ -390,63 +636,60 @@ public class ShipInventory
 		lblSelectOneOf.setBounds(581, 338, 188, 32);
 		frame.getContentPane().add(lblSelectOneOf);
 		
-		siHealth1 = new JProgressBar();
-		siHealth1.setBounds(514, 460, 146, 30);
-		frame.getContentPane().add(siHealth1);
+		pBarHealth1 = new JProgressBar();
+		pBarHealth1.setBounds(514, 460, 146, 30);
+		frame.getContentPane().add(pBarHealth1);
 
-		siTired1 = new JProgressBar();
-		siTired1.setBounds(514, 524, 146, 30);
-		frame.getContentPane().add(siTired1);
+		pBarTired1 = new JProgressBar();
+		pBarTired1.setBounds(514, 524, 146, 30);
+		frame.getContentPane().add(pBarTired1);
 	
 
-		siHunger1 = new JProgressBar();
-		siHunger1.setBounds(514, 594, 146, 30);
-		frame.getContentPane().add(siHunger1);
+		pBarHunger1 = new JProgressBar();
+		pBarHunger1.setBounds(514, 594, 146, 30);
+		frame.getContentPane().add(pBarHunger1);
 		
 	
-		siHealth2 = new JProgressBar();
-		siHealth2.setBounds(719, 460, 146, 36);
-		frame.getContentPane().add(siHealth2);
+		pBarHealth2 = new JProgressBar();
+		pBarHealth2.setBounds(719, 460, 146, 36);
+		frame.getContentPane().add(pBarHealth2);
 		
 
-		siTired2 = new JProgressBar();
-		siTired2.setBounds(731, 524, 134, 30);
-		frame.getContentPane().add(siTired2);
+		pBarTired2 = new JProgressBar();
+		pBarTired2.setBounds(731, 524, 134, 30);
+		frame.getContentPane().add(pBarTired2);
 		
 	
-		siHunger2 = new JProgressBar();
-		siHunger2.setBounds(739, 594, 126, 30);
-		frame.getContentPane().add(siHunger2);
+		pBarHunger2 = new JProgressBar();
+		pBarHunger2.setBounds(739, 594, 126, 30);
+		frame.getContentPane().add(pBarHunger2);
 	
 
-		siHealth3 = new JProgressBar();
-		siHealth3.setBounds(917, 454, 146, 52);
-		frame.getContentPane().add(siHealth3);
+		pBarHealth3 = new JProgressBar();
+		pBarHealth3.setBounds(917, 454, 146, 52);
+		frame.getContentPane().add(pBarHealth3);
 		
 	
-		siTired3 = new JProgressBar();
-		siTired3.setBounds(917, 518, 146, 52);
-		frame.getContentPane().add(siTired3);
+		pBarTired3 = new JProgressBar();
+		pBarTired3.setBounds(917, 518, 146, 52);
+		frame.getContentPane().add(pBarTired3);
 
-		siHunger3 = new JProgressBar();
-		siHunger3.setBounds(917, 582, 146, 52);
-		frame.getContentPane().add(siHunger3);
+		pBarHunger3 = new JProgressBar();
+		pBarHunger3.setBounds(917, 582, 146, 52);
+		frame.getContentPane().add(pBarHunger3);
 
-
-
-		siHealth4 = new JProgressBar();
-		siHealth4.setBounds(1101, 460, 146, 52);
-		frame.getContentPane().add(siHealth4);
+		pBarHealth4 = new JProgressBar();
+		pBarHealth4.setBounds(1101, 460, 146, 52);
+		frame.getContentPane().add(pBarHealth4);
+		
+		pBarTired4 = new JProgressBar();
+		pBarTired4.setBounds(1101, 524, 146, 52);
+		frame.getContentPane().add(pBarTired4);
 		
 	
-		siTired4 = new JProgressBar();
-		siTired4.setBounds(1101, 524, 146, 52);
-		frame.getContentPane().add(siTired4);
-		
-	
-		siHunger4 = new JProgressBar();
-		siHunger4.setBounds(1098, 582, 146, 52);
-		frame.getContentPane().add(siHunger4);
+		pBarHunger4 = new JProgressBar();
+		pBarHunger4.setBounds(1098, 582, 146, 52);
+		frame.getContentPane().add(pBarHunger4);
 
 		siName4 = new JLabel("...");
 		siName4.setBounds(1101, 628, 127, 23);
@@ -534,20 +777,20 @@ public class ShipInventory
 		label4.setFont(new Font("Dialog", Font.PLAIN, 16));
 		frame.getContentPane().add(label4);
 
-		siType1 = new JLabel("...");
-		siType1.setBounds(531, 422, 129, 30);
-		siType1.setFont(new Font("Dialog", Font.PLAIN, 18));
-		frame.getContentPane().add(siType1);
+		pBarType1 = new JLabel("...");
+		pBarType1.setBounds(531, 422, 129, 30);
+		pBarType1.setFont(new Font("Dialog", Font.PLAIN, 18));
+		frame.getContentPane().add(pBarType1);
 
-		siType2 = new JLabel("...");
-		siType2.setBounds(742, 429, 119, 23);
-		siType2.setFont(new Font("Dialog", Font.PLAIN, 18));
-		frame.getContentPane().add(siType2);
+		pBarType2 = new JLabel("...");
+		pBarType2.setBounds(742, 429, 119, 23);
+		pBarType2.setFont(new Font("Dialog", Font.PLAIN, 18));
+		frame.getContentPane().add(pBarType2);
 
-		siType3 = new JLabel("...");
-		siType3.setBounds(934, 432, 129, 21);
-		siType3.setFont(new Font("Dialog", Font.PLAIN, 18));
-		frame.getContentPane().add(siType3);
+		pBarType3 = new JLabel("...");
+		pBarType3.setBounds(934, 432, 129, 21);
+		pBarType3.setFont(new Font("Dialog", Font.PLAIN, 18));
+		frame.getContentPane().add(pBarType3);
 		
 		
 		JLabel lblFood = new JLabel("Food");
@@ -587,47 +830,23 @@ public class ShipInventory
 		JLabel lblSpacePlaguePotion = new JLabel("Space Plague Potion");
 		lblSpacePlaguePotion.setBounds(258, 287, 177, 15);
 		frame.getContentPane().add(lblSpacePlaguePotion);
-		
 	
 		
-		JRadioButton rdbtnCrew1 = new JRadioButton("Choose");
-		rdbtnCrew1.setEnabled(false);
-		rdbtnCrew1.setBounds(514, 683, 144, 23);
-		frame.getContentPane().add(rdbtnCrew1);
-		
-		JRadioButton rdbtnCrew2 = new JRadioButton("Choose");
-		rdbtnCrew2.setEnabled(false);
-		rdbtnCrew2.setBounds(731, 683, 144, 23);
-		frame.getContentPane().add(rdbtnCrew2);
-		
-		JRadioButton rdbtnCrew3 = new JRadioButton("Choose");
-		rdbtnCrew3.setEnabled(false);
-		rdbtnCrew3.setBounds(917, 683, 144, 23);
-		frame.getContentPane().add(rdbtnCrew3);
-		
-		JRadioButton rdbtnCrew4 = new JRadioButton("Choose");
-		rdbtnCrew4.setEnabled(false);
-		rdbtnCrew4.setBounds(1101, 683, 144, 23);
-		frame.getContentPane().add(rdbtnCrew4);
-		
-
-
-	
-
-		siType4 = new JLabel("...");
-		siType4.setBounds(1113, 432, 134, 22);
-		siType4.setFont(new Font("Dialog", Font.PLAIN, 18));
-		frame.getContentPane().add(siType4);
+		pBarType4 = new JLabel("...");
+		pBarType4.setBounds(1113, 432, 134, 22);
+		pBarType4.setFont(new Font("Dialog", Font.PLAIN, 18));
+		frame.getContentPane().add(pBarType4);
 		
 		frame.getContentPane().setLayout(null);
 
-		siType();
+		pBarType();
 		siName();
-		siHealth();
-		siTired();
-		siHunger();
+		pBarHealth();
+		pBarTired();
+		pBarHunger();
 		
 		// Back Actions
+		btnCrew();
 		cBoxActions();
 		btnConfirm();
 		btnAccept();;

@@ -276,11 +276,21 @@ public class NameShip {
 		
 		storeCash.add("200");
 		
+<<<<<<< Updated upstream
+=======
+		inventory.add("Bandages");
+		inventory.add("Bandages");
+		inventory.add("Bandages");
+		inventory.add("Bandages");
+		inventory.add("Cookie");
+		inventory.add("Cookie");
+		inventory.add("Cookie");
+		inventory.add("Cookie");
+>>>>>>> Stashed changes
 		
 		ioFile.fileWrite(storeCrew, "StoreGame/CrewInfo.txt");
 		ioFile.fileWrite(storeShip, "StoreGame/ShipInfo.txt");
 		ioFile.fileWrite(storeCash, "StoreGame/CashInfo.txt");
-		ioFile.fileWrite(inventory, "StoreGame/Inventory/Storage.txt");
 		
 		// Creating crew member each crew member there own information file
 		for (int index = 0; index < crewType.size(); index++) {

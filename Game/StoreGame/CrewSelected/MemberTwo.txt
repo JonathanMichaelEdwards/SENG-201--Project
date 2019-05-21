@@ -1,1 +1,5 @@
+<<<<<<< Updated upstream
 80, 50, 70, 2, false, adwad, Mechanic, 
+=======
+80, 50, 170, 2, 
+>>>>>>> Stashed changes

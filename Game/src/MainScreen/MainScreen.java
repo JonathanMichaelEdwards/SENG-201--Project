@@ -174,7 +174,6 @@ public class MainScreen
 	{
 		crewMember1 = ioFile.fileRead("StoreGame/CrewSelected/MemberOne.txt");
 		
-		System.out.println(crewMember1);
 		pBarHealth1.setValue(Integer.valueOf(crewMember1.get(0)));
 		pBarTiredness1.setValue(Integer.valueOf(crewMember1.get(1)));
 		pBarHunger1.setValue(Integer.valueOf(crewMember1.get(2)));
@@ -310,13 +309,7 @@ public class MainScreen
 		});
 		frame.getContentPane().add(btnSpaceOutpost);
 	}
-	
-//	private void asteroids()
-//			{
-//				asteroids outpost = new asteroids();
-//				outpost.frame.setVisible(true);  // turn on screen
-//				frame.setVisible(false);         // turn off screen
-//			}
+
 	
 	// Go to the newPlanet screen
 	private void newPlanet()
@@ -437,7 +430,11 @@ public class MainScreen
 				changeDays = ioFile.fileRead("StoreGame/DaysInfo.txt");
 				days = Integer.parseInt(changeDays.get(0)) - 1;
 				changeDays.set(0, "" + days);
-				ioFile.fileWrite(changeDays, "StoreGame/DaysInfo.txt");  // Writing in new days
+				
+				if (days < 0) {
+					System.out.println("Game Over");
+				} else 
+					ioFile.fileWrite(changeDays, "StoreGame/DaysInfo.txt");  // Writing in new days
 				
 				lblDaysLeft.setText("Day: "  + days);
 				
