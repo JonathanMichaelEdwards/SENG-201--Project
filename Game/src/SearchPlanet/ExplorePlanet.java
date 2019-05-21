@@ -4,8 +4,12 @@ package SearchPlanet;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
+import IOFile.IOFile;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 //Self implemented
@@ -16,11 +20,17 @@ import WindowSettings.Display;
 public class ExplorePlanet 
 {
 	public JFrame frame;
-
+	private JButton btnCheckLoot, btnRecallToShip;
+	private JLabel lblCrewMembersLoot;
+	
+	private String readFile = "StoreGame/ShipInfo"; //file helper string
+	private String readStorage = "StoreGame/Inventory/Storage";
+	
 	
 	private void btnBack()
 	{
-		JButton btnRecallToShip = new JButton("Re-call to ship");
+		btnRecallToShip = new JButton("Re-call to ship");
+		btnRecallToShip.setVisible(false);
 		btnRecallToShip.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
@@ -30,11 +40,111 @@ public class ExplorePlanet
 				frame.setVisible(false);          // turn off screen
 			}
 		});
-		btnRecallToShip.setBounds(444, 626, 193, 88);
+		btnRecallToShip.setBounds(370, 635, 193, 88);
 		frame.getContentPane().add(btnRecallToShip);
+		
+		lblCrewMembersLoot = new JLabel("What is found?");
+		lblCrewMembersLoot.setBounds(277, 735, 385, 61);
+		frame.getContentPane().add(lblCrewMembersLoot);
 	}
 	
-	
+	private void loot()
+	{
+		btnCheckLoot = new JButton("Show Uncovered Loot");
+		btnCheckLoot.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				btnCheckLoot.setVisible(false);
+				btnRecallToShip.setVisible(true);
+				IOFile ioFile = new IOFile();
+//				ArrayList<String> member = new ArrayList<String>();
+//				ArrayList<String> memberboth = new ArrayList<String>();
+//				ArrayList<String> member2 = new ArrayList<String>();
+//				String name;
+//				String nameboth;
+//				String name2;
+				//ArrayList<String> type = new ArrayList<String>();
+				ArrayList<String> shipInfo = new ArrayList<String>();
+				String findPart;
+				ArrayList<String> inventory = new ArrayList<String>();
+				ArrayList<String> bank = new ArrayList<String>();
+				
+				
+				// changes the member selected file
+//				if (character1.isSelected()) {
+//					member = ioFile.fileRead(readFile + "MemberOne.txt");
+//					tiredRate(member, ioFile, "MemberOne");
+//				} 
+				
+				shipInfo = ioFile.fileRead(readFile + ".txt");
+				findPart = shipInfo.get(3);
+				if (findPart.equals("false"))
+				{
+					int x = (int)(Math.random()*((100-0)+0))+0;
+					System.out.println(x);
+					if (x >= 25) {
+						shipInfo.set(3, "true");
+						System.out.println("found part");
+						ioFile.fileWrite(shipInfo, readFile + ".txt");
+						lblCrewMembersLoot.setText("Youve Found a part");
+					}
+					if(x < 25) {
+						inventory = ioFile.fileRead(readStorage + ".txt");
+						int y = (int)(Math.random()*((5-1)+1))+1;
+						for (int i = 0; i < y; i++) {
+							inventory.add("surgical");
+							inventory.add("fullMeal");
+						}
+						
+						ioFile.fileWrite(inventory, readStorage + ".txt");
+						lblCrewMembersLoot.setText("Youve Found " + y + "x Surgical Packages and Full Meals");
+						System.out.println("found some loot, the part is still out there");
+					}
+					
+				}
+				if (findPart.equals("true"))
+				{
+					int x = (int)(Math.random()*((2-0)+0))+0;
+					System.out.println(x);
+					if (x == 0) {
+						inventory = ioFile.fileRead(readStorage + ".txt");
+						int y = (int)(Math.random()*((10-5)+5))+5;
+						for (int i = 0; i < y; i++) {
+							inventory.add("medkit");
+							}
+						bank = ioFile.fileRead("StoreGame/CashInfo.txt");
+						int rand = (int)(Math.random()*((100-50)+50))+50;
+						int cash = Integer.parseInt(bank.get(0)) + rand;
+						bank.set(0, "" + cash);
+						ioFile.fileWrite(bank, "StoreGame/CashInfo.txt");
+						ioFile.fileWrite(inventory, readStorage + ".txt");
+						lblCrewMembersLoot.setText("Youve Found " + y + "x Medkits and $" + rand);
+					if(x == 1) {
+						inventory = ioFile.fileRead(readStorage + ".txt");
+						int z = (int)(Math.random()*((10-5)+5))+5;
+						for (int i = 0; i < z; i++) {
+							inventory.add("pizza");
+						}
+						bank = ioFile.fileRead("StoreGame/CashInfo.txt");
+						int rand2 = (int)(Math.random()*((100-50)+50))+50;
+						int cash2 = Integer.parseInt(bank.get(0)) + rand2;
+						bank.set(0, "" + cash2);
+						ioFile.fileWrite(bank, "StoreGame/CashInfo.txt");
+						lblCrewMembersLoot.setText("Youve Found " + z + "x Pizza and $" + rand2);
+						
+						ioFile.fileWrite(inventory, readStorage + ".txt");
+						System.out.println("found some loot, the part is still out there");
+					}
+
+				}
+			}
+				
+		}});
+		frame.getContentPane().setLayout(null);
+		btnCheckLoot.setBounds(336, 508, 307, 122);
+		frame.getContentPane().add(btnCheckLoot);
+	}
 	/*
 	 * Initialize the contents of the frame.
 	*/
@@ -106,6 +216,7 @@ public class ExplorePlanet
 		
 		// Back button
 		btnBack();
+		loot();
 	}
 	
 	

@@ -36,6 +36,7 @@ public class CrewPlanet {
 	
 	// File locations
 	private String readCrew = "StoreGame/CrewRatings/";
+	private String readFile = "StoreGame/CrewSelected/";	
 	
 	// stores the selection type
 	private ArrayList<String> crewType = new ArrayList<String>();
@@ -268,7 +269,24 @@ public class CrewPlanet {
 			rBChar4.setEnabled(false);
 		}
 	}
-	
+	private void tiredRate(ArrayList<String> member, IOFile ioFile, String name)
+	{
+		member.set(3, ""+(Integer.parseInt(member.get(3)) - 1));
+		int tired = Integer.parseInt(member.get(1));
+		if (tired <= 0)
+		{
+			int health = Integer.parseInt(member.get(0)) - 30;
+			member.set(0, "" + health);
+			member.set(1, "" + 0);
+			ioFile.fileWrite(member, readFile + name + ".txt");
+		}
+		else 
+		{
+			int tired1 = Integer.parseInt(member.get(1)) - 10; //this is the value in which a repair heals
+			member.set(1, "" + tired1);
+			ioFile.fileWrite(member, readFile + name + ".txt");
+		}
+	}	
 	
 	private void btnSearch()
 	{
@@ -286,32 +304,20 @@ public class CrewPlanet {
 				// changes the member selected file
 				if (rBChar1.isSelected()) {
 					member = ioFile.fileRead(readFile + "MemberOne.txt");
-					member.set(3, ""+(Integer.parseInt(member.get(3)) - 1));
-					int tired = Integer.parseInt(member.get(1)) + 10; //this is the value in which a repair heals
-					
-					member.set(1, "" + tired);
-					ioFile.fileWrite(member, readFile + "MemberOne.txt");
-				} else if (rBChar2.isSelected()) {
-					member = ioFile.fileRead(readFile + "MemberTwo.txt");
-					member.set(3, ""+(Integer.parseInt(member.get(3)) - 1));
-					int tired = Integer.parseInt(member.get(1)) + 10; //this is the value in which a repair heals
-					
-					member.set(1, "" + tired);
-					ioFile.fileWrite(member, readFile + "MemberTwo.txt");
-				} else if (rBChar3.isSelected()) {
-					member = ioFile.fileRead(readFile + "MemberThree.txt");
-					member.set(3, ""+(Integer.parseInt(member.get(3)) - 1));
-					int tired = Integer.parseInt(member.get(1)) + 10; //this is the value in which a repair heals
-					
-					member.set(1, "" + tired);
-					ioFile.fileWrite(member, readFile + "MemberThree.txt");
-				} else if (rBChar4.isSelected()) {
-					member = ioFile.fileRead(readFile + "MemberFour.txt");
-					member.set(3, ""+(Integer.parseInt(member.get(3)) - 1));
-					int tired = Integer.parseInt(member.get(1)) + 10; //this is the value in which a repair heals
-					member.set(1, "" + tired);
-					ioFile.fileWrite(member, readFile + "MemberFour.txt");
+					tiredRate(member, ioFile, "MemberOne");
 				} 
+				if (rBChar2.isSelected()) {
+					member = ioFile.fileRead(readFile + "MemberTwo.txt");
+					tiredRate(member, ioFile, "MemberTwo");
+				} 
+				if (rBChar3.isSelected()) {
+					member = ioFile.fileRead(readFile + "MemberThree.txt");
+					tiredRate(member, ioFile, "MemberThree");
+				} 
+				if (rBChar4.isSelected()) {
+					member = ioFile.fileRead(readFile + "MemberFour.txt");
+					tiredRate(member, ioFile, "MemberFour");
+				}
 				
 				ExplorePlanet screen = new ExplorePlanet();
 				screen.frame.setVisible(true);    // turn on screen

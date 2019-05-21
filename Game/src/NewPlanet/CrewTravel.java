@@ -42,6 +42,7 @@ public class CrewTravel {
 	private JLabel type[] = new JLabel[4];
 	private JLabel member[] = new JLabel[4];
 	
+	private String readFile = "StoreGame/CrewSelected/";	
 	
 	private JProgressBar health[] = new JProgressBar[4];
 	private JProgressBar tiredness[] = new JProgressBar[4];
@@ -282,7 +283,24 @@ public class CrewTravel {
 		}
 	}
 	
-	
+	private void tiredRate(ArrayList<String> member, IOFile ioFile, String name)
+	{
+		member.set(3, ""+(Integer.parseInt(member.get(3)) - 1));
+		int tired = Integer.parseInt(member.get(1));
+		if (tired <= 0) //are we zero on tired! if so, take hp and make sure tired is set to zero
+		{
+			int health = Integer.parseInt(member.get(0)) - 30;
+			member.set(0, "" + health);
+			member.set(1, "" + 0);
+			ioFile.fileWrite(member, readFile + name + ".txt");
+		}
+		else 
+		{
+			int tired1 = Integer.parseInt(member.get(1)) - 10; //above zero tired, so take some tired off
+			member.set(1, "" + tired1);
+			ioFile.fileWrite(member, readFile + name + ".txt");
+		}
+	}	
 	private void btnSearch()
 	{
 		btnSearchPlanet = new JButton("Search Planet");
@@ -294,41 +312,24 @@ public class CrewTravel {
 				IOFile ioFile = new IOFile();
 				ArrayList<String> member = new ArrayList<String>();
 				
-				String readFile = "StoreGame/CrewSelected/";
-				
 				// changes the member selected file
 				if (character1.isSelected()) {
 					member = ioFile.fileRead(readFile + "MemberOne.txt");
-					member.set(3, ""+(Integer.parseInt(member.get(3)) - 1));
-					int tired = Integer.parseInt(member.get(1)) + 10; //this is the value in which a repair heals
-					
-					member.set(1, "" + tired);
-					ioFile.fileWrite(member, readFile + "MemberOne.txt");
+					tiredRate(member, ioFile, "MemberOne");
 				} 
 				if (character2.isSelected()) {
 					member = ioFile.fileRead(readFile + "MemberTwo.txt");
-					member.set(3, ""+(Integer.parseInt(member.get(3)) - 1));
-					int tired = Integer.parseInt(member.get(1)) + 10; //this is the value in which a repair heals
-					
-					member.set(1, "" + tired);
-					ioFile.fileWrite(member, readFile + "MemberTwo.txt");
+					tiredRate(member, ioFile, "MemberTwo");
 				} 
 				if (character3.isSelected()) {
 					member = ioFile.fileRead(readFile + "MemberThree.txt");
-					member.set(3, ""+(Integer.parseInt(member.get(3)) - 1));
-					int tired = Integer.parseInt(member.get(1)) + 10; //this is the value in which a repair heals
-					
-					member.set(1, "" + tired);
-					ioFile.fileWrite(member, readFile + "MemberThree.txt");
+					tiredRate(member, ioFile, "MemberThree");
 				} 
 				if (character4.isSelected()) {
 					member = ioFile.fileRead(readFile + "MemberFour.txt");
-					member.set(3, ""+(Integer.parseInt(member.get(3)) - 1));
-					int tired = Integer.parseInt(member.get(1)) + 10; //this is the value in which a repair heals
-					
-					member.set(1, "" + tired);
-					ioFile.fileWrite(member, readFile + "MemberFour.txt");
+					tiredRate(member, ioFile, "MemberFour");
 				} 
+				
 				int x = (int)(Math.random()*((2-0)+0))+0;
 				System.out.println(x);
 				if (x == 1)

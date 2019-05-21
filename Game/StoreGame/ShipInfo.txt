@@ -1,1 +1,1 @@
-Invisible, jonny, 75, 
+Medical, aff, 75, true, 0, 

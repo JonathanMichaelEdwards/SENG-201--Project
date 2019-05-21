@@ -431,6 +431,7 @@ public class MainScreen
 				ArrayList<String> memberActions2 = new ArrayList<String>();
 				ArrayList<String> memberActions3 = new ArrayList<String>();
 				ArrayList<String> memberActions4 = new ArrayList<String>();
+				String boolPlague;
 
 				
 				changeDays = ioFile.fileRead("StoreGame/DaysInfo.txt");
@@ -446,18 +447,48 @@ public class MainScreen
 						memberActions1 = ioFile.fileRead("StoreGame/CrewSelected/MemberOne.txt");
 						memberActions1.set(3, "2");
 						ioFile.fileWrite(memberActions1, writeHealth + "MemberOne.txt");
+						memberActions1 = ioFile.fileRead("StoreGame/CrewSelected/MemberOne.txt");
+						boolPlague = memberActions1.get(4);			
+						if (boolPlague.equals("true")) {	
+							int health = Integer.parseInt(memberActions1.get(0)) - 30;
+							memberActions1.set(0, "" + health);
+							ioFile.fileWrite(memberActions1, writeHealth + "MemberOne.txt");
+						}
+						
+						
 					} else if (index == 1) {
 						memberActions2 = ioFile.fileRead("StoreGame/CrewSelected/MemberTwo.txt");
 						memberActions2.set(3, "2");
 						ioFile.fileWrite(memberActions2, writeHealth + "MemberTwo.txt");
+						boolPlague = memberActions2.get(4);
+						if (boolPlague.equals("true")) {
+							memberActions2 = ioFile.fileRead("StoreGame/CrewSelected/MemberTwo.txt");
+							int health = Integer.parseInt(memberActions2.get(0)) - 30;
+							memberActions2.set(0, "" + health);
+							ioFile.fileWrite(memberActions2, writeHealth + "MemberTwo.txt");
+						}
 					} else if (index == 2) {
 						memberActions3 = ioFile.fileRead("StoreGame/CrewSelected/MemberThree.txt");
 						memberActions3.set(3, "2");
 						ioFile.fileWrite(memberActions3, writeHealth + "MemberThree.txt");
+						boolPlague = memberActions3.get(4);
+						if (boolPlague.equals("true")) {
+							memberActions3 = ioFile.fileRead("StoreGame/CrewSelected/MemberThree.txt");
+							int health = Integer.parseInt(memberActions3.get(0)) - 30;
+							memberActions3.set(0, "" + health);
+							ioFile.fileWrite(memberActions3, writeHealth + "MemberThree.txt");
+						}
 					} else if (index == 3) {
 						memberActions4 = ioFile.fileRead("StoreGame/CrewSelected/MemberFour.txt");
 						memberActions4.set(3, "2");
 						ioFile.fileWrite(memberActions4, writeHealth + "MemberFour.txt");
+						boolPlague = memberActions4.get(4);
+						if (boolPlague.equals("true")) {
+							memberActions4 = ioFile.fileRead("StoreGame/CrewSelected/MemberFour.txt");
+							int health = Integer.parseInt(memberActions4.get(0)) - 30;
+							memberActions4.set(0, "" + health);
+							ioFile.fileWrite(memberActions4, writeHealth + "MemberFour.txt");
+						}
 					}
 				}
 				
@@ -556,6 +587,7 @@ public class MainScreen
 		lblHealth.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		
 		pBarShipHealth = new JProgressBar();
+		pBarShipHealth.setStringPainted(true);
 		pBarShipHealth.setBounds(259, 93, 223, 34);
 		panelShip.add(pBarShipHealth);
 		
@@ -575,42 +607,52 @@ public class MainScreen
 		panelCrew.setLayout(null);
 	
 		pBarHealth1 = new JProgressBar();
+		pBarHealth1.setStringPainted(true);
 		pBarHealth1.setBounds(204, 107, 146, 30);
 		panelCrew.add(pBarHealth1);
 		
 		pBarTiredness1 = new JProgressBar();
+		pBarTiredness1.setStringPainted(true);
 		pBarTiredness1.setBounds(204, 171, 146, 30);
 		panelCrew.add(pBarTiredness1);
 		
 		pBarTiredness3 = new JProgressBar();
+		pBarTiredness3.setStringPainted(true);
 		pBarTiredness3.setBounds(607, 165, 134, 36);
 		panelCrew.add(pBarTiredness3);
 		
 		pBarTiredness4 = new JProgressBar();
+		pBarTiredness4.setStringPainted(true);
 		pBarTiredness4.setBounds(791, 171, 134, 30);
 		panelCrew.add(pBarTiredness4);
 		
 		pBarHunger2 = new JProgressBar();
+		pBarHunger2.setStringPainted(true);
 		pBarHunger2.setBounds(429, 241, 126, 30);
 		panelCrew.add(pBarHunger2);
 		
 		pBarHunger1 = new JProgressBar();
+		pBarHunger1.setStringPainted(true);
 		pBarHunger1.setBounds(204, 241, 146, 30);
 		panelCrew.add(pBarHunger1);
 		
 		pBarTiredness2 = new JProgressBar();
+		pBarTiredness2.setStringPainted(true);
 		pBarTiredness2.setBounds(421, 171, 134, 30);
 		panelCrew.add(pBarTiredness2);
 		
 		pBarHealth2 = new JProgressBar();
+		pBarHealth2.setStringPainted(true);
 		pBarHealth2.setBounds(409, 107, 146, 36);
 		panelCrew.add(pBarHealth2);
 		
 		pBarHunger3 = new JProgressBar();
+		pBarHunger3.setStringPainted(true);
 		pBarHunger3.setBounds(607, 229, 146, 36);
 		panelCrew.add(pBarHunger3);
 		
 		pBarHunger4 = new JProgressBar();
+		pBarHunger4.setStringPainted(true);
 		pBarHunger4.setBounds(791, 235, 146, 36);
 		panelCrew.add(pBarHunger4);
 		
@@ -660,10 +702,12 @@ public class MainScreen
 		lblMember1.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
 		
 		pBarHealth3 = new JProgressBar();
+		pBarHealth3.setStringPainted(true);
 		pBarHealth3.setBounds(607, 101, 139, 36);
 		panelCrew.add(pBarHealth3);
 		
 		pBarHealth4 = new JProgressBar();
+		pBarHealth4.setStringPainted(true);
 		pBarHealth4.setBounds(791, 107, 139, 36);
 		panelCrew.add(pBarHealth4);
 		

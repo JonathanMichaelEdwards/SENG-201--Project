@@ -270,19 +270,12 @@ public class NameShip {
 		
 		storeShip.add(shipType);
 		storeShip.add(shipName);
-		
 		storeShip.add("75");
+		storeShip.add("false"); //true false for whether we've found this planets piece
+		storeShip.add("0"); //counter for how many planets we've been to
 		
 		storeCash.add("200");
 		
-		inventory.add("Bandages"); //tester stuff
-		inventory.add("Bandages");
-		inventory.add("Bandages");
-		inventory.add("Bandages");
-		inventory.add("Cookie");
-		inventory.add("Cookie");
-		inventory.add("Cookie");
-		inventory.add("Cookie");
 		
 		ioFile.fileWrite(storeCrew, "StoreGame/CrewInfo.txt");
 		ioFile.fileWrite(storeShip, "StoreGame/ShipInfo.txt");
@@ -294,18 +287,30 @@ public class NameShip {
 			if (index == 0) {
 				memberActions1 = ioFile.fileRead("StoreGame/CrewRatings/"+  crewType.get(0) + ".txt");
 				memberActions1.add("2");
+				memberActions1.add("false");
+				memberActions1.add(crewNames.get(0));
+				memberActions1.add(crewType.get(0));
 				ioFile.fileWrite(memberActions1, "StoreGame/CrewSelected/MemberOne.txt");
 			} else if (index == 1) {
 				memberActions2 = ioFile.fileRead("StoreGame/CrewRatings/"+  crewType.get(1) + ".txt");
 				memberActions2.add("2");
+				memberActions2.add("false");
+				memberActions2.add(crewNames.get(1));
+				memberActions2.add(crewType.get(1));
 				ioFile.fileWrite(memberActions2, "StoreGame/CrewSelected/MemberTwo.txt");
 			} else if (index == 2) {
 				memberActions3 = ioFile.fileRead("StoreGame/CrewRatings/"+  crewType.get(2) + ".txt");
 				memberActions3.add("2");
+				memberActions3.add("false");
+				memberActions3.add(crewNames.get(2));
+				memberActions3.add(crewType.get(2));
 				ioFile.fileWrite(memberActions3, "StoreGame/CrewSelected/MemberThree.txt");
 			} else if (index == 3) {
 				memberActions4 = ioFile.fileRead("StoreGame/CrewRatings/"+  crewType.get(3) + ".txt");
 				memberActions4.add("2");
+				memberActions4.add("false");
+				memberActions4.add(crewNames.get(3));
+				memberActions4.add(crewType.get(3));
 				ioFile.fileWrite(memberActions4, "StoreGame/CrewSelected/MemberFour.txt");
 			}
 		}
