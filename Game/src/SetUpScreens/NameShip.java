@@ -290,6 +290,7 @@ public class NameShip {
 				memberActions1.add("false");
 				memberActions1.add(crewNames.get(0));
 				memberActions1.add(crewType.get(0));
+				memberActions1.add("alive");
 				ioFile.fileWrite(memberActions1, "StoreGame/CrewSelected/MemberOne.txt");
 			} else if (index == 1) {
 				memberActions2 = ioFile.fileRead("StoreGame/CrewRatings/"+  crewType.get(1) + ".txt");
@@ -297,6 +298,7 @@ public class NameShip {
 				memberActions2.add("false");
 				memberActions2.add(crewNames.get(1));
 				memberActions2.add(crewType.get(1));
+				memberActions2.add("alive");
 				ioFile.fileWrite(memberActions2, "StoreGame/CrewSelected/MemberTwo.txt");
 			} else if (index == 2) {
 				memberActions3 = ioFile.fileRead("StoreGame/CrewRatings/"+  crewType.get(2) + ".txt");
@@ -304,6 +306,7 @@ public class NameShip {
 				memberActions3.add("false");
 				memberActions3.add(crewNames.get(2));
 				memberActions3.add(crewType.get(2));
+				memberActions3.add("alive");
 				ioFile.fileWrite(memberActions3, "StoreGame/CrewSelected/MemberThree.txt");
 			} else if (index == 3) {
 				memberActions4 = ioFile.fileRead("StoreGame/CrewRatings/"+  crewType.get(3) + ".txt");
@@ -311,6 +314,7 @@ public class NameShip {
 				memberActions4.add("false");
 				memberActions4.add(crewNames.get(3));
 				memberActions4.add(crewType.get(3));
+				memberActions4.add("alive");
 				ioFile.fileWrite(memberActions4, "StoreGame/CrewSelected/MemberFour.txt");
 			}
 		}

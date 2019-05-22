@@ -75,6 +75,17 @@ public class spacePlague {
 					
 					int health = Integer.parseInt(member.get(0)) - 30;
 					member.set(0, "" + health);
+					
+					if (health <= 0)
+					{
+						member.set(7, "dead");
+						member.set(0, "" + 0);
+						member.set(1, "" + 0);
+						member.set(2, "" + 0);
+						member.set(3, "" + 0); //if dead no more turns
+					}
+
+					
 					ioFile.fileWrite(member, readFile + "MemberOne.txt");
 					System.out.println("Member 1 infected");
 					btnCheckInfection.setEnabled(false);
@@ -95,6 +106,22 @@ public class spacePlague {
 					
 					int health = Integer.parseInt(member.get(0)) - 30;
 					int healthboth = Integer.parseInt(memberboth.get(0)) - 30;
+					if (health <= 0)
+					{
+						member.set(7, "dead");
+						member.set(0, "" + 0);
+						member.set(1, "" + 0);
+						member.set(2, "" + 0);
+						member.set(3, "" + 0); //if dead no more turns
+					}
+					if (healthboth <= 0)
+					{
+						memberboth.set(7, "dead");
+						memberboth.set(0, "" + 0);
+						memberboth.set(1, "" + 0);
+						memberboth.set(2, "" + 0);
+						memberboth.set(3, "" + 0); //if dead no more turns
+					}
 					member.set(0, "" + health);
 					memberboth.set(0, "" + healthboth);
 					ioFile.fileWrite(member, readFile + "MemberOne.txt");
@@ -113,6 +140,14 @@ public class spacePlague {
 					member2.set(4, "true");
 					int health = Integer.parseInt(member2.get(0)) - 30;
 					member2.set(0, "" + health);
+					if (health <= 0)
+					{
+						member2.set(7, "dead");
+						member2.set(0, "" + 0);
+						member.set(1, "" + 0);
+						member.set(2, "" + 0);
+						member2.set(3, "" + 0); //if dead no more turns
+					}
 					ioFile.fileWrite(member2, readFile + "MemberTwo.txt");
 					System.out.println("Member 2 infected");
 					btnCheckInfection.setEnabled(false);

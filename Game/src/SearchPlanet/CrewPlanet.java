@@ -278,6 +278,14 @@ public class CrewPlanet {
 			int health = Integer.parseInt(member.get(0)) - 30;
 			member.set(0, "" + health);
 			member.set(1, "" + 0);
+			if (health <= 0)
+			{
+				member.set(7, "dead");
+				member.set(0, "" + 0);
+				member.set(1, "" + 0);
+				member.set(2, "" + 0);
+				member.set(3, "" + 0); //if dead no more turns
+			}
 			ioFile.fileWrite(member, readFile + name + ".txt");
 		}
 		else 
@@ -334,6 +342,18 @@ public class CrewPlanet {
 	private void characterChoice()
 	{
 		rBChar1 = new JRadioButton("character 1");
+//		this part detects if we have enough turns left, if not the radio button is disabled
+		ArrayList<String> member = new ArrayList<String>();
+		String actionLeft;
+		String readFile = "StoreGame/CrewSelected/";
+		IOFile ioFile = new IOFile();
+		member = ioFile.fileRead(readFile + "MemberOne.txt");
+		actionLeft = member.get(3);
+		if (actionLeft.equals("0"))
+				{
+			rBChar1.setEnabled(false);
+				}
+		
 		rBChar1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				clearSearch();
@@ -346,6 +366,19 @@ public class CrewPlanet {
 		
 		
 		rBChar2 = new JRadioButton("character 2");
+		
+//		this part detects if we have enough turns left, if not the radio button is disabled
+		ArrayList<String> member2 = new ArrayList<String>();
+		String actionLeft2;
+		String readFile2 = "StoreGame/CrewSelected/";
+		IOFile ioFile2 = new IOFile();
+		member2 = ioFile2.fileRead(readFile2 + "MemberTwo.txt");
+		actionLeft2 = member2.get(3);
+		if (actionLeft2.equals("0"))
+				{
+			rBChar2.setEnabled(false);
+				}
+		
 		rBChar2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				clearSearch();
@@ -358,6 +391,19 @@ public class CrewPlanet {
 		
 		
 		rBChar3 = new JRadioButton("character 3");
+		
+//		this part detects if we have enough turns left, if not the radio button is disabled
+		ArrayList<String> member3 = new ArrayList<String>();
+		String actionLeft3;
+		String readFile3 = "StoreGame/CrewSelected/";
+		IOFile ioFile3 = new IOFile();
+		member3 = ioFile3.fileRead(readFile3 + "MemberThree.txt");
+		actionLeft3 = member3.get(3);
+		if (actionLeft3.equals("0"))
+				{
+			rBChar3.setEnabled(false);
+				}
+		
 		rBChar3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				clearSearch();
@@ -370,6 +416,18 @@ public class CrewPlanet {
 		
 		
 		rBChar4 = new JRadioButton("character 4");
+//		this part detects if we have enough turns left, if not the radio button is disabled
+		ArrayList<String> member4 = new ArrayList<String>();
+		String actionLeft4;
+		String readFile4 = "StoreGame/CrewSelected/";
+		IOFile ioFile4 = new IOFile();
+		member4 = ioFile4.fileRead(readFile4 + "MemberFour.txt");
+		actionLeft4 = member4.get(3);
+		if (actionLeft4.equals("0"))
+				{
+			rBChar4.setEnabled(false);
+				}
+		
 		rBChar4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				clearSearch();
@@ -397,56 +455,68 @@ public class CrewPlanet {
 //		frame.setUndecorated(true);  // Frame cannot be adjusted during game
 		
 		cBHealth1 = new JProgressBar();
+		cBHealth1.setStringPainted(true);
 		cBHealth1.setBounds(204, 107, 146, 30);
 		frame.getContentPane().add(cBHealth1);
 
 		cBTired1 = new JProgressBar();
+		cBTired1.setStringPainted(true);
 		cBTired1.setBounds(204, 171, 146, 30);
 		frame.getContentPane().add(cBTired1);
 	
 
 		cBHunger1 = new JProgressBar();
+		cBHunger1.setStringPainted(true);
 		cBHunger1.setBounds(204, 241, 146, 30);
 		frame.getContentPane().add(cBHunger1);
 		
 	
 		cBHealth2 = new JProgressBar();
+		cBHealth2.setStringPainted(true);
 		cBHealth2.setBounds(409, 107, 146, 30);
 		frame.getContentPane().add(cBHealth2);
 		
 
 		cBTired2 = new JProgressBar();
+		cBTired2.setStringPainted(true);
 		cBTired2.setBounds(409, 171, 146, 30);
 		frame.getContentPane().add(cBTired2);
 		
 	
 		cBHunger2 = new JProgressBar();
+		cBHunger2.setStringPainted(true);
 		cBHunger2.setBounds(409, 241, 146, 30);
 		frame.getContentPane().add(cBHunger2);
 	
 
 		cBHealth3 = new JProgressBar();
+		cBHealth3.setStringPainted(true);
 		cBHealth3.setBounds(607, 107, 146, 30);
 		frame.getContentPane().add(cBHealth3);
 		
 	
 		cBTired3 = new JProgressBar();
+		cBTired3.setStringPainted(true);
 		cBTired3.setBounds(607, 171, 146, 30);
 		frame.getContentPane().add(cBTired3);
 
 		cBHunger3 = new JProgressBar();
+		cBHunger3.setStringPainted(true);
 		cBHunger3.setBounds(607, 241, 146, 30);
 		frame.getContentPane().add(cBHunger3);
 
 		cBHealth4 = new JProgressBar();
+		cBHealth4.setStringPainted(true);
 		cBHealth4.setBounds(791, 107, 146, 30);
 		frame.getContentPane().add(cBHealth4);
 		
 		cBTired4 = new JProgressBar();
+		cBTired4.setStringPainted(true);
 		cBTired4.setBounds(791, 171, 146, 30);
 		frame.getContentPane().add(cBTired4);
 		
 		cBHunger4 = new JProgressBar();
+		cBHunger4.setStringPainted(true);
 		cBHunger4.setBounds(791, 241, 146, 30);
 		frame.getContentPane().add(cBHunger4);
 

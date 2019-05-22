@@ -562,6 +562,20 @@ public class ShipInventory
 	private void btnCrew()
 	{
 		 rdbtnCrew1 = new JRadioButton("Choose");
+		 
+//			this part detects if we have enough turns left, if not the radio button is disabled
+			ArrayList<String> member = new ArrayList<String>();
+			String actionLeft;
+			String readFile = "StoreGame/CrewSelected/";
+			IOFile ioFile = new IOFile();
+			member = ioFile.fileRead(readFile + "MemberOne.txt");
+			actionLeft = member.get(3);
+			if (actionLeft.equals("0"))
+					{
+				rdbtnCrew1.setEnabled(false);
+					}
+		 
+		 
 		 rdbtnCrew1.addActionListener(new ActionListener() 
 		 {
 		 	public void actionPerformed(ActionEvent arg0) 
@@ -578,6 +592,17 @@ public class ShipInventory
 		
 		
 		rdbtnCrew2 = new JRadioButton("Choose");
+//		this part detects if we have enough turns left, if not the radio button is disabled
+		ArrayList<String> member2 = new ArrayList<String>();
+		String actionLeft2;
+		String readFile2 = "StoreGame/CrewSelected/";
+		IOFile ioFile2 = new IOFile();
+		member2 = ioFile2.fileRead(readFile2 + "MemberTwo.txt");
+		actionLeft2 = member2.get(3);
+		if (actionLeft2.equals("0"))
+				{
+			rdbtnCrew2.setEnabled(false);
+				}
 		rdbtnCrew2.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent arg0) 
@@ -594,6 +619,17 @@ public class ShipInventory
 		
 	
 		rdbtnCrew3 = new JRadioButton("Choose");
+//		this part detects if we have enough turns left, if not the radio button is disabled
+		ArrayList<String> member3 = new ArrayList<String>();
+		String actionLeft3;
+		String readFile3 = "StoreGame/CrewSelected/";
+		IOFile ioFile3 = new IOFile();
+		member3 = ioFile3.fileRead(readFile3 + "MemberThree.txt");
+		actionLeft3 = member3.get(3);
+		if (actionLeft3.equals("0"))
+				{
+			rdbtnCrew3.setEnabled(false);
+				}
 		rdbtnCrew3.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent arg0) 
@@ -610,6 +646,17 @@ public class ShipInventory
 		
 
 		rdbtnCrew4 = new JRadioButton("Choose");
+//		this part detects if we have enough turns left, if not the radio button is disabled
+		ArrayList<String> member4 = new ArrayList<String>();
+		String actionLeft4;
+		String readFile4 = "StoreGame/CrewSelected/";
+		IOFile ioFile4 = new IOFile();
+		member4 = ioFile4.fileRead(readFile4 + "MemberFour.txt");
+		actionLeft4 = member4.get(3);
+		if (actionLeft4.equals("0"))
+				{
+			rdbtnCrew4.setEnabled(false);
+				}
 		rdbtnCrew4.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent arg0) 
@@ -657,57 +704,69 @@ public class ShipInventory
 		frame.getContentPane().add(lblSelectOneOf);
 		
 		pBarHealth1 = new JProgressBar();
+		pBarHealth1.setStringPainted(true);
 		pBarHealth1.setBounds(514, 460, 146, 30);
 		frame.getContentPane().add(pBarHealth1);
 
 		pBarTired1 = new JProgressBar();
+		pBarTired1.setStringPainted(true);
 		pBarTired1.setBounds(514, 524, 146, 30);
 		frame.getContentPane().add(pBarTired1);
 	
 
 		pBarHunger1 = new JProgressBar();
+		pBarHunger1.setStringPainted(true);
 		pBarHunger1.setBounds(514, 594, 146, 30);
 		frame.getContentPane().add(pBarHunger1);
 		
 	
 		pBarHealth2 = new JProgressBar();
+		pBarHealth2.setStringPainted(true);
 		pBarHealth2.setBounds(719, 460, 146, 36);
 		frame.getContentPane().add(pBarHealth2);
 		
 
 		pBarTired2 = new JProgressBar();
+		pBarTired2.setStringPainted(true);
 		pBarTired2.setBounds(731, 524, 134, 30);
 		frame.getContentPane().add(pBarTired2);
 		
 	
 		pBarHunger2 = new JProgressBar();
+		pBarHunger2.setStringPainted(true);
 		pBarHunger2.setBounds(739, 594, 126, 30);
 		frame.getContentPane().add(pBarHunger2);
 	
 
 		pBarHealth3 = new JProgressBar();
+		pBarHealth3.setStringPainted(true);
 		pBarHealth3.setBounds(917, 454, 146, 52);
 		frame.getContentPane().add(pBarHealth3);
 		
 	
 		pBarTired3 = new JProgressBar();
+		pBarTired3.setStringPainted(true);
 		pBarTired3.setBounds(917, 518, 146, 52);
 		frame.getContentPane().add(pBarTired3);
 
 		pBarHunger3 = new JProgressBar();
+		pBarHunger3.setStringPainted(true);
 		pBarHunger3.setBounds(917, 582, 146, 52);
 		frame.getContentPane().add(pBarHunger3);
 
 		pBarHealth4 = new JProgressBar();
+		pBarHealth4.setStringPainted(true);
 		pBarHealth4.setBounds(1101, 460, 146, 52);
 		frame.getContentPane().add(pBarHealth4);
 		
 		pBarTired4 = new JProgressBar();
+		pBarTired4.setStringPainted(true);
 		pBarTired4.setBounds(1101, 524, 146, 52);
 		frame.getContentPane().add(pBarTired4);
 		
 	
 		pBarHunger4 = new JProgressBar();
+		pBarHunger4.setStringPainted(true);
 		pBarHunger4.setBounds(1098, 582, 146, 52);
 		frame.getContentPane().add(pBarHunger4);
 
