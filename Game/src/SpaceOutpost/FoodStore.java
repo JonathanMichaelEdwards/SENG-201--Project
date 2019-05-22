@@ -41,6 +41,7 @@ public class FoodStore
 	// stores the selection type
 	private ArrayList<String> crewType = new ArrayList<String>();
 	private ArrayList<String> crewName = new ArrayList<String>();
+	private ArrayList<String> broughtItems = new ArrayList<String>();
 
 	private JLabel type[] = new JLabel[4];
 	private JLabel member[] = new JLabel[4];
@@ -218,11 +219,8 @@ public class FoodStore
 		ArrayList<String> crewInfo = ioFile.fileRead("StoreGame/CrewInfo.txt");
 		// unwrap information
 		decodeCrewInfo(crewInfo);
-//<<<<<<< HEAD
-//=======
 		readCrewRatings();
 		
-//>>>>>>> master
 		for (int index = 0; index < crewType.size(); index++) {
 			type[index].setText(crewType.get(index));
 			member[index].setText(crewName.get(index));
@@ -257,7 +255,6 @@ public class FoodStore
 		btnBackToOutpost.setBounds(526, 512, 183, 59);
 		frame.getContentPane().add(btnBackToOutpost);
 		
-
 	}
 	
 	
@@ -288,6 +285,15 @@ public class FoodStore
 		});
 		btnBuy.setBounds(719, 510, 205, 61);
 		frame.getContentPane().add(btnBuy);
+	}
+	
+	
+	// Add items to the inventory store
+	private void storeItems(String item, int amount, int factor)
+	{
+		for (int index = 0; index < (amount/factor); index++) {
+			broughtItems.add(item);
+		}
 	}
 	
 	
