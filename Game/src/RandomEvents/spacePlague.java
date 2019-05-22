@@ -58,18 +58,11 @@ public class spacePlague {
 				String name2;
 				ArrayList<String> type = new ArrayList<String>();
 				
-				// changes the member selected file
-//				if (character1.isSelected()) {
-//					member = ioFile.fileRead(readFile + "MemberOne.txt");
-//					tiredRate(member, ioFile, "MemberOne");
-//				} 
-
+//				((max - min)+min))+min
 				int x = (int)(Math.random()*((3-0)+0))+0;
-				System.out.println(x);
-				if (x == 1)
-				{
-//					string tired = Integer.parseInt(member.get(4));
-//					if (tired == 'false');
+	
+				if (x == 1) {
+
 					member = ioFile.fileRead(readFile + "MemberOne.txt");
 					member.set(4, "true");
 					
@@ -91,14 +84,8 @@ public class spacePlague {
 					btnCheckInfection.setEnabled(false);
 					name = member.get(5);
 					lblCrewMembersInfected.setText(name + " is Infected");
-
-					
-//					TravelPlanet screen = new TravelPlanet();
-//					screen.frame.setVisible(true);    // turn on screen
-//					frame.setVisible(false);          // turn off screen
 				}
-				if (x == 0)
-				{
+				if (x == 0) {
 					member = ioFile.fileRead(readFile + "MemberOne.txt");
 					memberboth = ioFile.fileRead(readFile + "MemberTwo.txt");
 					member.set(4, "true");
@@ -132,10 +119,7 @@ public class spacePlague {
 					nameboth = memberboth.get(5);
 					lblCrewMembersInfected.setText("Both" + name + " and " + nameboth + " are infected");
 				}
-				if (x == 2)
-				{
-//					string tired = Integer.parseInt(member.get(4));
-//					if (tired == 'false');
+				if (x == 2){
 					member2 = ioFile.fileRead(readFile + "MemberTwo.txt");
 					member2.set(4, "true");
 					int health = Integer.parseInt(member2.get(0)) - 30;
@@ -153,16 +137,15 @@ public class spacePlague {
 					btnCheckInfection.setEnabled(false);
 					name2 = member2.get(5);
 					lblCrewMembersInfected.setText(name2 + " is Infected");
-
-					
 				}
-
 			}
 		});
 		frame.getContentPane().setLayout(null);
 		btnCheckInfection.setBounds(336, 508, 307, 122);
 		frame.getContentPane().add(btnCheckInfection);
 	}
+	
+	
 	/**
 	 * Launch the application.
 	 */

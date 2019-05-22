@@ -66,22 +66,8 @@ public class asteroids {
 		btnSearchPlanet.setBounds(725, 580, 197, 97);
 		frame.getContentPane().add(btnSearchPlanet);
 	}
-//	private void btnBack()
-//	{
-//		JButton btnLetsGetGoing = new JButton("Back to Base");
-//		btnLetsGetGoing.addActionListener(new ActionListener() 
-//		{
-//			public void actionPerformed(ActionEvent e) 
-//			{
-//				MainScreen screen = new MainScreen();
-//				screen.frame.setVisible(true);    // turn on screen
-//				frame.setVisible(false);          // turn off screen
-//			}
-//		});
-//		frame.getContentPane().setLayout(null);
-//		btnLetsGetGoing.setBounds(655, 508, 210, 56);
-//		frame.getContentPane().add(btnLetsGetGoing);
-//	}
+
+	
 	/**
 	 * Launch the application.
 	 */

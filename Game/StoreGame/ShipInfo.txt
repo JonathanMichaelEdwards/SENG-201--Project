@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 Invisible, 100, 15, false, 0, 
+=======
+Attack, jim, 45, false, 0, 
+>>>>>>> master

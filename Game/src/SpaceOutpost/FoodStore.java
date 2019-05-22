@@ -5,7 +5,9 @@ import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
+import javax.swing.JRadioButton;
 
 import IOFile.IOFile;
 
@@ -18,6 +20,8 @@ import WindowSettings.Display;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.event.AncestorListener;
+import javax.swing.event.AncestorEvent;
 
 
 public class FoodStore 
@@ -25,27 +29,33 @@ public class FoodStore
 	public JFrame frame;
 	
 	private JLabel lblCurrentCash;
-	private JComboBox<?> cBox1, cBox2, cBox3, cBox4, cBox5;
-	private JLabel lbl1, lbl2, lbl3, lbl4, lbl5;
+	private JComboBox<?> cBox1, cBox2, cBox3;
+	private JLabel lbl1, lbl2, lbl3;
 	private JLabel lblAmount;
 	
-	private int cashSpent, totalAmount, cash1, cash2, cash3, cash4, cash5 = 0;
+	private int cashSpent, totalAmount, cash1, cash2, cash3 = 0;
 	private JLabel cBType1, cBType2, cBType3, cBType4;
 	private JLabel fsName1, fsName2, fsName3, fsName4;
+	private JLabel lblCountcookie, lblCountPizza, lblCountFullMeal;
+	private JRadioButton rBCookie, rBPizza, rBFullMeal;
 	
 	
 	private JProgressBar cBHealth1, cBHealth2, cBHealth3, cBHealth4;
 	private JProgressBar cBTired1, cBTired2, cBTired3, cBTired4;
 	private JProgressBar cBHunger1, cBHunger2, cBHunger3, cBHunger4;
+	private int cookies, pizzas, fullMeal;
+	private JButton btnBuy;
 	
 	// stores the selection type
 	private ArrayList<String> crewType = new ArrayList<String>();
 	private ArrayList<String> crewName = new ArrayList<String>();
-	private ArrayList<String> broughtItems = new ArrayList<String>();
+	private ArrayList<String> broughtItems1 = new ArrayList<String>();
+	private ArrayList<String> broughtItems2 = new ArrayList<String>();
+	private ArrayList<String> broughtItems3 = new ArrayList<String>();
+
 
 	private JLabel type[] = new JLabel[4];
 	private JLabel member[] = new JLabel[4];
-	
 	
 	private JProgressBar health[] = new JProgressBar[4];
 	private JProgressBar tiredness[] = new JProgressBar[4];
@@ -216,7 +226,9 @@ public class FoodStore
 		IOFile ioFile = new IOFile();
 		
 		// Reading files
+		ArrayList<String> storedItems= ioFile.fileRead("StoreGame/Inventory/Storage.txt");
 		ArrayList<String> crewInfo = ioFile.fileRead("StoreGame/CrewInfo.txt");
+		
 		// unwrap information
 		decodeCrewInfo(crewInfo);
 		readCrewRatings();
@@ -225,6 +237,22 @@ public class FoodStore
 			type[index].setText(crewType.get(index));
 			member[index].setText(crewName.get(index));
 		}
+		
+		
+		// Find out how many of the same items the player has
+		for (int index = 0; index < storedItems.size(); index++) {
+			if (storedItems.get(index).equals("cookie"))
+				cookies++;
+			if (storedItems.get(index).equals("pizza"))
+				pizzas++;
+			if (storedItems.get(index).equals("fullMeal"))
+				fullMeal++;	
+		}
+		
+		// Display the item amounts
+		lblCountcookie.setText("x" + Integer.toString(cookies));
+		lblCountPizza.setText("x" + Integer.toString(pizzas));
+		lblCountFullMeal.setText("x" + Integer.toString(fullMeal));
 	}
 		
 	
@@ -260,25 +288,33 @@ public class FoodStore
 	
 	private void btnBuy()
 	{
-		JButton btnBuy = new JButton("Buy");
+		btnBuy = new JButton("Buy");
 		btnBuy.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				ArrayList<String> totalCash = new ArrayList<String>();
+				ArrayList<String> inventory = new ArrayList<String>();
 				IOFile ioFile = new IOFile();
 				
-				cashSpent += cash1 + cash2 + cash3 + cash4 + cash5;
+				cashSpent += cash1 + cash2 + cash3;
+				// reading from storage file
 				totalCash = ioFile.fileRead("StoreGame/CashInfo.txt");
+				inventory = ioFile.fileRead("StoreGame/Inventory/Storage.txt");
+				
+				// Storing information
 				int bank = Integer.parseInt(totalCash.get(0)) - cashSpent;
 				totalCash.set(0, "" + bank);
+				inventory.addAll(broughtItems1);
+				inventory.addAll(broughtItems2);
+				inventory.addAll(broughtItems3);
 				
 				// store the new cash amount
 				ioFile.fileWrite(totalCash, "StoreGame/CashInfo.txt");  // Writing in new days
-				lblCurrentCash.setText("Current Cash = $ " + totalCash.get(0).toString());
+				ioFile.fileWrite(inventory, "StoreGame/Inventory/Storage.txt");  // Writing new items in inventory
 				
 				// Go back to outpost
-				SpaceOutpost screen = new SpaceOutpost();
+				FoodStore screen = new FoodStore();
 				screen.frame.setVisible(true);  // turn on screen
 				frame.setVisible(false);        // turn off screen
 			}
@@ -287,26 +323,39 @@ public class FoodStore
 		frame.getContentPane().add(btnBuy);
 	}
 	
-	
-	// Add items to the inventory store
-	private void storeItems(String item, int amount, int factor)
-	{
+
+	// Add and remove previous items to the inventory store
+	private void storeItems(String item, int amount, int factor, ArrayList<String> listClear)
+	{	
+		listClear.clear();
+		btnBuy.setEnabled(false);
+		
 		for (int index = 0; index < (amount/factor); index++) {
-			broughtItems.add(item);
+			if (item == "cookie") {
+				broughtItems1.add(item);
+				btnBuy.setEnabled(true);
+			} else if (item == "pizza") {
+				broughtItems2.add(item);
+				btnBuy.setEnabled(true);
+			} else if (item == "fullMeal") {
+				broughtItems3.add(item);
+				btnBuy.setEnabled(true);
+			}
 		}
 	}
 	
 	
 	private void cBoxActions()
 	{
-		
 		cBox1 = new JComboBox();
 		cBox1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				cash1 = Integer.valueOf(((String)cBox1.getSelectedItem()).replace("x", "")) * 5;
 				lbl1.setText("= $" + cash1);
-				totalAmount = cash1 + cash2 + cash3 + cash4 + cash5;
+				totalAmount = cash1 + cash2 + cash3;
 				lblAmount.setText("Selected Amount = $ " + totalAmount);
+				
+				storeItems("cookie", cash1, 5, broughtItems1);
 			}
 		});
 		cBox1.setModel(new DefaultComboBoxModel(new String[] {"0", "x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9"}));
@@ -321,8 +370,9 @@ public class FoodStore
 			public void actionPerformed(ActionEvent arg0) {
 				cash2 = Integer.valueOf(((String)cBox2.getSelectedItem()).replace("x", "")) * 8;
 				lbl2.setText("= $" + cash2);
-				totalAmount = cash1 + cash2 + cash3 + cash4 + cash5;
+				totalAmount = cash1 + cash2 + cash3;
 				lblAmount.setText("Selected Amount = $ " + totalAmount);
+				storeItems("pizza", cash2, 8, broughtItems2);
 			}
 		});
 		cBox2.setModel(new DefaultComboBoxModel(new String[] {"0", "x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9"}));
@@ -336,41 +386,14 @@ public class FoodStore
 			public void actionPerformed(ActionEvent arg0) {
 				cash3 = Integer.valueOf(((String)cBox3.getSelectedItem()).replace("x", "")) * 8;
 				lbl3.setText("= $" + cash3);
-				totalAmount = cash1 + cash2 + cash3 + cash4 + cash5;
+				totalAmount = cash1 + cash2 + cash3;
 				lblAmount.setText("Selected Amount = $ " + totalAmount);
+				storeItems("fullMeal", cash3, 8, broughtItems3);
 			}
 		});
 		cBox3.setModel(new DefaultComboBoxModel(new String[] {"0", "x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9"}));
 		cBox3.setBounds(342, 217, 90, 21);
 		frame.getContentPane().add(cBox3);
-		
-		
-		cBox4 = new JComboBox();
-		cBox4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				cash4 = Integer.valueOf(((String)cBox4.getSelectedItem()).replace("x", "")) * 50;
-				lbl4.setText("= $" + cash4);
-				totalAmount = cash1 + cash2 + cash3 + cash4 + cash5;
-				lblAmount.setText("Selected Amount = $ " + totalAmount);
-			}
-		});
-		cBox4.setModel(new DefaultComboBoxModel(new String[] {"0", "x1"}));
-		cBox4.setBounds(355, 318, 77, 21);
-		frame.getContentPane().add(cBox4);
-		
-		
-		cBox5 = new JComboBox();
-		cBox5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				cash5 = Integer.valueOf(((String)cBox5.getSelectedItem()).replace("x", "")) * 50;
-				lbl5.setText("= $" + cash5);
-				totalAmount = cash1 + cash2 + cash3 + cash4 + cash5;
-				lblAmount.setText("Selected Amount = $ " + totalAmount);
-			}
-		});
-		cBox5.setModel(new DefaultComboBoxModel(new String[] {"0", "x1"}));
-		cBox5.setBounds(355, 373, 77, 21);
-		frame.getContentPane().add(cBox5);
 	}
 	
 	
@@ -444,34 +467,6 @@ public class FoodStore
 		lbl3.setBounds(539, 221, 46, 13);
 		frame.getContentPane().add(lbl3);
 		
-		JLabel label_2 = new JLabel("Rare (Unlockable by exploring planets only)");
-		label_2.setBounds(72, 277, 296, 13);
-		frame.getContentPane().add(label_2);
-		
-		JLabel lblCrewDoNot = new JLabel("Crew do not get hungry for a day");
-		lblCrewDoNot.setBounds(72, 322, 218, 13);
-		frame.getContentPane().add(lblCrewDoNot);
-		
-		JLabel label_13 = new JLabel("$50");
-		label_13.setBounds(304, 322, 46, 13);
-		frame.getContentPane().add(label_13);
-		
-		lbl4 = new JLabel("=$ 0");
-		lbl4.setBounds(539, 322, 46, 13);
-		frame.getContentPane().add(lbl4);
-		
-		JLabel lblHungerDecreasesAt = new JLabel("Hunger decreases at half the rate permanently");
-		lblHungerDecreasesAt.setBounds(72, 377, 218, 13);
-		frame.getContentPane().add(lblHungerDecreasesAt);
-		
-		JLabel label_16 = new JLabel("$50");
-		label_16.setBounds(304, 377, 46, 13);
-		frame.getContentPane().add(label_16);
-		
-		lbl5 = new JLabel("=$ 0");
-		lbl5.setBounds(539, 377, 46, 13);
-		frame.getContentPane().add(lbl5);
-		
 		JLabel lblCurrentlyOwned = new JLabel("Currently Owned");
 		lblCurrentlyOwned.setBounds(689, 92, 138, 15);
 		frame.getContentPane().add(lblCurrentlyOwned);
@@ -482,52 +477,42 @@ public class FoodStore
 		cBTired1 = new JProgressBar();
 		cBTired1.setBounds(313, 797, 146, 30);
 		frame.getContentPane().add(cBTired1);
-	
 
 		cBHunger1 = new JProgressBar();
 		cBHunger1.setBounds(313, 867, 146, 30);
 		frame.getContentPane().add(cBHunger1);
 		
-	
 		cBHealth2 = new JProgressBar();
 		cBHealth2.setBounds(518, 733, 146, 36);
 		frame.getContentPane().add(cBHealth2);
-		
 
 		cBTired2 = new JProgressBar();
 		cBTired2.setBounds(530, 797, 134, 30);
 		frame.getContentPane().add(cBTired2);
 		
-	
 		cBHunger2 = new JProgressBar();
 		cBHunger2.setBounds(538, 867, 126, 30);
 		frame.getContentPane().add(cBHunger2);
-	
 
 		cBHealth3 = new JProgressBar();
 		cBHealth3.setBounds(716, 727, 146, 52);
 		frame.getContentPane().add(cBHealth3);
 		
-	
 		cBTired3 = new JProgressBar();
 		cBTired3.setBounds(716, 791, 146, 52);
 		frame.getContentPane().add(cBTired3);
-
+		
 		cBHunger3 = new JProgressBar();
 		cBHunger3.setBounds(716, 855, 146, 52);
 		frame.getContentPane().add(cBHunger3);
-
-
 
 		cBHealth4 = new JProgressBar();
 		cBHealth4.setBounds(900, 733, 146, 52);
 		frame.getContentPane().add(cBHealth4);
 		
-	
 		cBTired4 = new JProgressBar();
 		cBTired4.setBounds(900, 797, 146, 52);
 		frame.getContentPane().add(cBTired4);
-		
 	
 		cBHunger4 = new JProgressBar();
 		cBHunger4.setBounds(897, 855, 146, 52);
@@ -558,7 +543,6 @@ public class FoodStore
 		labell.setBounds(544, 648, 112, 23);
 		frame.getContentPane().add(labell);
 	
-
 		JLabel label0 = new JLabel("Hunger:");
 		label0.setFont(new Font("Dialog", Font.PLAIN, 16));
 		label0.setBounds(169, 871, 81, 15);
@@ -569,23 +553,31 @@ public class FoodStore
 		label1.setBounds(169, 814, 81, 15);
 		frame.getContentPane().add(label1);
 	
-
 		JLabel label2 = new JLabel("Health:");
 		label2.setLocation(109, 626);
 		label2.setFont(new Font("Dialog", Font.PLAIN, 16));
 		label.setBounds(60, 125, 81, 15);
 		frame.getContentPane().add(label2);
-		
-		
+
 		JLabel label3 = new JLabel("Name:");
 		label3.setFont(new Font("Dialog", Font.PLAIN, 16));
 		label3.setBounds(171, 904, 81, 15);
 		frame.getContentPane().add(label3);
-
-	
-
 		
-
+		lblCountcookie = new JLabel("<dynamic>");
+		lblCountcookie.setBounds(604, 125, 84, 15);
+		frame.getContentPane().add(lblCountcookie);
+		lblCountcookie.setText(Integer.toString(cookies));
+			
+		lblCountPizza = new JLabel("New label");
+		lblCountPizza.setBounds(604, 175, 84, 15);
+		frame.getContentPane().add(lblCountPizza);
+		lblCountPizza.setText(Integer.toString(pizzas));
+		
+		lblCountFullMeal = new JLabel("New label");
+		lblCountFullMeal.setBounds(604, 220, 84, 15);
+		frame.getContentPane().add(lblCountFullMeal);
+		lblCountFullMeal.setText(Integer.toString(fullMeal));
 
 		JLabel label4 = new JLabel("Type:");
 		label4.setFont(new Font("Dialog", Font.PLAIN, 16));
@@ -626,10 +618,9 @@ public class FoodStore
 		cBHunger();
 		
 		// Button Actions
+		btnBuy();
 		cBoxActions();
 		backToOutpost();
-		btnBuy();
-		organizeGameInfo();
 	}
 
 	
@@ -640,6 +631,7 @@ public class FoodStore
 	{
 		initialize();
 		totalCash();
+		organizeGameInfo();
 	}
 	
 	

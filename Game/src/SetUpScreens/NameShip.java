@@ -271,11 +271,21 @@ public class NameShip {
 		storeShip.add(shipType);
 		storeShip.add(shipName);
 		storeShip.add("75");
-		storeShip.add("false"); //true false for whether we've found this planets piece
-		storeShip.add("0"); //counter for how many planets we've been to
+		storeShip.add("false");  //true false for whether we've found this planets piece
+		storeShip.add("0");      //counter for how many planets we've been to
 		
-		storeCash.add("200");
+		storeCash.add("500");
 		
+		inventory.add("cookie");
+		inventory.add("cookie");
+		inventory.add("cookie");
+		inventory.add("cookie");
+		inventory.add("surgical");
+		inventory.add("surgical");
+		inventory.add("bandage");
+		inventory.add("bandage");
+		inventory.add("bandage");
+		inventory.add("medkit");
 		
 		ioFile.fileWrite(storeCrew, "StoreGame/CrewInfo.txt");
 		ioFile.fileWrite(storeShip, "StoreGame/ShipInfo.txt");

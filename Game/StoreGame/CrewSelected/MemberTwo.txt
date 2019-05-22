@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 -60, 0, 0, 0, true, afaf, Leader, dead, 
+=======
+-730, 20, 150, 2, true, jake, Mechanic, 
+>>>>>>> master
