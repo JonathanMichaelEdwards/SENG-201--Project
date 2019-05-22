@@ -303,7 +303,7 @@ public class CrewTravel {
 	}	
 	private void btnSearch()
 	{
-		btnSearchPlanet = new JButton("Search Planet");
+		btnSearchPlanet = new JButton("Search for a new Planet");
 		btnSearchPlanet.setEnabled(false);
 		btnSearchPlanet.addActionListener(new ActionListener() 
 		{
@@ -311,6 +311,7 @@ public class CrewTravel {
 			{
 				IOFile ioFile = new IOFile();
 				ArrayList<String> member = new ArrayList<String>();
+				ArrayList<String> updateFalse = new ArrayList<String>();
 				
 				// changes the member selected file
 				if (character1.isSelected()) {
@@ -329,7 +330,9 @@ public class CrewTravel {
 					member = ioFile.fileRead(readFile + "MemberFour.txt");
 					tiredRate(member, ioFile, "MemberFour");
 				} 
-				
+				updateFalse = ioFile.fileRead("StoreGame/ShipInfo.txt");
+				updateFalse.set(3, "false");
+				ioFile.fileWrite(updateFalse, "StoreGame/ShipInfo.txt");
 				int x = (int)(Math.random()*((2-0)+0))+0;
 				System.out.println(x);
 				if (x == 1)

@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 
 import IOFile.IOFile;
 import MainScreen.MainScreen;
+import MainScreen.loseGame;
 
 //import java.awt.BorderLayout;
 import java.awt.Font;
@@ -30,14 +31,31 @@ public class asteroids {
 				IOFile ioFile = new IOFile();
 				
 				ArrayList<String> changeShields = ioFile.fileRead("StoreGame/ShipInfo.txt");
-				int repair = Integer.parseInt(changeShields.get(2)) - 50; //this is the value in which a repair heals
+
+				Integer explosion;
 				
-				changeShields.set(2, "" + repair);
-				ioFile.fileWrite(changeShields, "StoreGame/ShipInfo.txt");  // Writing in new days
 				
-				MainScreen screen = new MainScreen();
-				screen.frame.setVisible(true);    // turn on screen
-				frame.setVisible(false);          // turn off screen
+				int dmg = Integer.parseInt(changeShields.get(2)) - 30; //this is the value in which a repair heals
+				changeShields.set(2, "" + dmg);
+				ioFile.fileWrite(changeShields, "StoreGame/ShipInfo.txt");
+				ArrayList<String> checkShields = ioFile.fileRead("StoreGame/ShipInfo.txt");				
+//				explosion = Integer.parseInt(checkShields.get(2));
+				
+				if (dmg < 0)
+				{
+
+					loseGame outpost = new loseGame();
+					outpost.frame.setVisible(true);
+					frame.setVisible(false);
+				}
+				
+				if (dmg > 0)
+				{
+					System.out.println("Check Damage");
+					MainScreen screen = new MainScreen();
+					screen.frame.setVisible(true);    // turn on screen
+					frame.setVisible(false);   
+				}// turn off screen
 			}
 		});
 		frame.getContentPane().setLayout(null);

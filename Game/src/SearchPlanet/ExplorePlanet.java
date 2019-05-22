@@ -14,7 +14,9 @@ import java.awt.event.ActionEvent;
 
 //Self implemented
 import MainScreen.MainScreen;
+import MainScreen.loseGame;
 import WindowSettings.Display;
+import MainScreen.winGame;
 
 
 public class ExplorePlanet 
@@ -69,6 +71,8 @@ public class ExplorePlanet
 				String findPart;
 				ArrayList<String> inventory = new ArrayList<String>();
 				ArrayList<String> bank = new ArrayList<String>();
+				ArrayList<String> updatePart = new ArrayList<String>();
+				String count;
 				
 				
 				// changes the member selected file
@@ -88,6 +92,21 @@ public class ExplorePlanet
 						System.out.println("found part");
 						ioFile.fileWrite(shipInfo, readFile + ".txt");
 						lblCrewMembersLoot.setText("Youve Found a part");
+						
+						updatePart = ioFile.fileRead("StoreGame/DaysInfo.txt");
+						int sub = Integer.parseInt(updatePart.get(1)) - 1;
+						updatePart.set(1, "" + sub);
+						count = updatePart.get(1);
+						ioFile.fileWrite(updatePart, "StoreGame/DaysInfo.txt");
+						if (count.equals("0"))
+						{
+							System.out.println("Congrats! youve found all the parts and ended the game, you WIN!");
+							winGame outpost = new winGame();
+							outpost.frame.setVisible(true);
+							frame.setVisible(false);
+						}
+						
+						
 					}
 					if(x < 25) {
 						inventory = ioFile.fileRead(readStorage + ".txt");
