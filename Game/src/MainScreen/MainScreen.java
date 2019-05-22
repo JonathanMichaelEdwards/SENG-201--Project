@@ -333,7 +333,7 @@ public class MainScreen
 		// Displaying crew info
 		lblShipType.setText(shipType);
 		lblShipName.setText(shipName);
-		lblDaysLeft.setText("Days Remaining: 0");
+		lblDaysLeft.setText("Days Remaining: " + days);
 		lblParts.setText("Parts to find: " + parts);
 		pBarShipHealth.setValue(repair);
 		
@@ -884,9 +884,6 @@ public class MainScreen
 		pBarHunger4.setBounds(791, 235, 146, 36);
 		panelCrew.add(pBarHunger4);
 		
-<<<<<<< HEAD
-
-=======
 		lblCashTotal = new JLabel("Current Cash = $ <dynamic>");
 		lblCashTotal.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblCashTotal.setBounds(66, 146, 326, 33);
@@ -906,7 +903,6 @@ public class MainScreen
 		lblMember2.setBounds(419, 279, 119, 22);
 		panelCrew.add(lblMember2);
 		lblMember2.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
->>>>>>> master
 		
 		JLabel lblCrew_1 = new JLabel("Crew Info");
 		lblCrew_1.setBounds(435, 22, 112, 23);

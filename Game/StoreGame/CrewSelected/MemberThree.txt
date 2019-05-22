@@ -1,1 +1,1 @@
-0, 0, 0, 0, false, qwdqd, Mechanic, dead, 
+0, 0, 0, 0, false, jim, Mechanic, dead, 

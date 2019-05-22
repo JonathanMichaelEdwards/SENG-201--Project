@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-, surgical, fullMeal, surgical, fullMeal, surgical, fullMeal, surgical, fullMeal, surgical, fullMeal, surgical, fullMeal, surgical, fullMeal, surgical, fullMeal, surgical, fullMeal, surgical, fullMeal, 
-=======
-medkit, medkit, medkit, medkit, medkit, medkit, medkit, medkit, medkit, medkit, medkit, medkit, medkit, medkit, medkit, medkit, medkit, medkit, medkit, surgical, fullMeal, surgical, fullMeal, surgical, fullMeal, surgical, fullMeal, bandage, medkit, surgical, potion, bandage, bandage, bandage, bandage, bandage, bandage, bandage, bandage, bandage, bandage, bandage, cookie, cookie, pizza, pizza, pizza, cookie, cookie, pizza, pizza, pizza, pizza, fullMeal, fullMeal, fullMeal, pizza, pizza, pizza, pizza, pizza, pizza, cookie, pizza, pizza, pizza, pizza, pizza, pizza, pizza, pizza, fullMeal, fullMeal, fullMeal, pizza, pizza, fullMeal, fullMeal, bandage, bandage, bandage, bandage, 
->>>>>>> master
+cookie, cookie, surgical, surgical, bandage, bandage, bandage, 
