@@ -44,7 +44,7 @@ public class ShipInventory
 	private ArrayList<String> crewType = new ArrayList<String>();
 	private ArrayList<String> crewName = new ArrayList<String>();
 
-	private boolean stateOne, stateTwo  = false;
+	private boolean btnRState, btnCrewState  = false;
 
 	private JLabel type[] = new JLabel[4];
 	private JLabel member[] = new JLabel[4];
@@ -303,11 +303,11 @@ public class ShipInventory
 		if (button.isSelected()) {
 			rbEnableFalse(false);
 			button.setEnabled(true);
-			setectedState = true;
-			if (setectedState2)
-				btnConfirmChoice.setEnabled(true); // enable button
+			btnRState = true;
+			if (btnCrewState) btnConfirmChoice.setEnabled(true);
 		} else {
 			rbEnableFalse(true);
+			btnRState = false;
 			btnConfirmChoice.setEnabled(false);
 		}
 		checkcount();
@@ -519,6 +519,7 @@ public class ShipInventory
 	}
 	
 	
+	// checks which players should be disabled
 	private void btnStates()
 	{
 		for (int index = 0; index < crewType.size(); index++) {
@@ -545,7 +546,11 @@ public class ShipInventory
 		 		rBClear();
 		 		rdbtnCrew1.setSelected(true);
 		 		if (rdbtnCrew1.isSelected()) {
-		 			btnConfirmChoice.setEnabled(true); // enable button
+		 			btnCrewState = true;
+		 			if (btnRState) btnConfirmChoice.setEnabled(true); // enable button
+		 		} else {
+		 			btnCrewState = false;
+		 			btnConfirmChoice.setEnabled(true);
 		 		}
 		 	}
 		 });
@@ -561,7 +566,11 @@ public class ShipInventory
 				rBClear();
 				rdbtnCrew2.setSelected(true);
 		 		if (rdbtnCrew2.isSelected()) {
-		 			btnConfirmChoice.setEnabled(true); // enable button
+		 			btnCrewState = true;
+		 			if (btnRState) btnConfirmChoice.setEnabled(true); // enable button
+		 		} else {
+		 			btnCrewState = false;
+		 			btnConfirmChoice.setEnabled(true);
 		 		}
 			}
 		});
@@ -577,7 +586,11 @@ public class ShipInventory
 				rBClear();
 				rdbtnCrew3.setSelected(true);
 		 		if (rdbtnCrew3.isSelected()) {
-		 			btnConfirmChoice.setEnabled(true); // enable button
+		 			btnCrewState = true;
+		 			if (btnRState) btnConfirmChoice.setEnabled(true); // enable button
+		 		} else {
+		 			btnCrewState = false;
+		 			btnConfirmChoice.setEnabled(true);
 		 		}
 			}
 		});
@@ -593,8 +606,9 @@ public class ShipInventory
 				rBClear();
 	 			rdbtnCrew4.setSelected(true);
 		 		if (rdbtnCrew4.isSelected()) {
-		 			btnConfirmChoice.setEnabled(true); // enable button
-		 		}
+		 			btnCrewState = true;
+		 			if (btnRState) btnConfirmChoice.setEnabled(true); // enable button
+		 		} else btnCrewState = false;
 			}
 		});
 		rdbtnCrew4.setBounds(1101, 683, 144, 23);

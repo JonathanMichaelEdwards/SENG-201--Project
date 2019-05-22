@@ -1,1 +1,1 @@
-Attack, jim, 75, false, 0, 
+Attack, jim, 45, false, 0, 

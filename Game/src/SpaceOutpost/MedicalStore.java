@@ -28,19 +28,24 @@ public class MedicalStore
 	private JLabel lbl1, lbl2, lbl3, lbl4;
 	private JLabel lblAmount;
 	
-	private int cashSpent, totalAmount, cash1, cash2, cash3, cash4, cash5 = 0;
+	private int cashSpent, totalAmount, cash1, cash2, cash3, cash4 = 0;
 	private JLabel cBType1, cBType2, cBType3, cBType4;
 	private JLabel msName1, msName2, msName3, msName4;
-	
+	private JButton btnBuy;
 	
 	private JProgressBar cBHealth1, cBHealth2, cBHealth3, cBHealth4;
 	private JProgressBar cBTired1, cBTired2, cBTired3, cBTired4;
 	private JProgressBar cBHunger1, cBHunger2, cBHunger3, cBHunger4;
-
+	private int bandage, medkit, surgical, potion;
+	private JLabel lblCountBandages, lblCountMedkit, lblCountSurgical, lblCountPotion;
 	
 	// stores the selection type
 	private ArrayList<String> crewType = new ArrayList<String>();
 	private ArrayList<String> crewName = new ArrayList<String>();
+	private ArrayList<String> broughtItems1 = new ArrayList<String>();
+	private ArrayList<String> broughtItems2 = new ArrayList<String>();
+	private ArrayList<String> broughtItems3 = new ArrayList<String>();
+	private ArrayList<String> broughtItems4 = new ArrayList<String>();
 
 	private JLabel type[] = new JLabel[4];
 	private JLabel member[] = new JLabel[4];
@@ -215,6 +220,7 @@ public class MedicalStore
 		IOFile ioFile = new IOFile();
 		
 		// Reading files
+		ArrayList<String> storedItems= ioFile.fileRead("StoreGame/Inventory/Storage.txt");
 		ArrayList<String> crewInfo = ioFile.fileRead("StoreGame/CrewInfo.txt");
 		
 		// unwrap information
@@ -225,6 +231,23 @@ public class MedicalStore
 			type[index].setText(crewType.get(index));
 			member[index].setText(crewName.get(index));
 		}
+		
+		
+		// Find out how many of the same items the player has
+		for (int index = 0; index < storedItems.size(); index++) {
+			if (storedItems.get(index).equals("bandage"))
+				bandage++;
+			if (storedItems.get(index).equals("medkit"))
+				medkit++;
+			if (storedItems.get(index).equals("surgical"))
+				surgical++; 
+			if (storedItems.get(index).equals("potion"))
+				potion++;	
+		}
+		lblCountBandages.setText("x" + Integer.toString(bandage));
+		lblCountMedkit.setText("x" + Integer.toString(medkit));
+		lblCountSurgical.setText("x" + Integer.toString(surgical));
+		lblCountPotion.setText("x" + Integer.toString(potion));
 	}
 	
 	// get the amount of cash the player has in his bank
@@ -258,31 +281,64 @@ public class MedicalStore
 	
 	private void btnBuy()
 	{
-		JButton btnBuy = new JButton("Buy");
+		btnBuy = new JButton("Buy");
 		btnBuy.setBounds(646, 441, 194, 53);
 		btnBuy.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent arg0) 
 			{		
 				ArrayList<String> totalCash = new ArrayList<String>();
+				ArrayList<String> inventory = new ArrayList<String>();
 				IOFile ioFile = new IOFile();
 				
-				cashSpent += cash1 + cash2 + cash3 + cash4 + cash5;
+				cashSpent += cash1 + cash2 + cash3 + cash4;
 				totalCash = ioFile.fileRead("StoreGame/CashInfo.txt");
+				inventory = ioFile.fileRead("StoreGame/Inventory/Storage.txt");
+				
+				// Storing information
 				int bank = Integer.parseInt(totalCash.get(0)) - cashSpent;
 				totalCash.set(0, "" + bank);
+				inventory.addAll(broughtItems1);
+				inventory.addAll(broughtItems2);
+				inventory.addAll(broughtItems3);
+				inventory.addAll(broughtItems4);
 				
 				// store the new cash amount
 				ioFile.fileWrite(totalCash, "StoreGame/CashInfo.txt");  // Writing in new days
-				lblCurrentCash.setText("Current Cash = $ " + totalCash.get(0).toString());
+				ioFile.fileWrite(inventory, "StoreGame/Inventory/Storage.txt");  // Writing new items in inventory
 				
-				// Go back to outpost
-				SpaceOutpost screen = new SpaceOutpost();
+				// Refresh screen
+				MedicalStore screen = new MedicalStore();
 				screen.frame.setVisible(true);  // turn on screen
 				frame.setVisible(false);        // turn off screen
 			}
 		});
 		frame.getContentPane().add(btnBuy);
+	}
+	
+	
+	
+	// Add and remove previous items to the inventory store
+	private void storeItems(String item, int amount, int factor, ArrayList<String> listClear)
+	{	
+		listClear.clear();
+		btnBuy.setEnabled(false);
+		
+		for (int index = 0; index < (amount/factor); index++) {
+			if (item == "bandage") {
+				broughtItems1.add(item);
+				btnBuy.setEnabled(true);
+			} else if (item == "medkit") {
+				broughtItems2.add(item);
+				btnBuy.setEnabled(true);
+			} else if (item == "surgical") {
+				broughtItems3.add(item);
+				btnBuy.setEnabled(true);
+			} else if (item == "potion") {
+				broughtItems4.add(item);
+				btnBuy.setEnabled(true);
+			}
+		}
 	}
 	
 	
@@ -294,8 +350,9 @@ public class MedicalStore
 			public void actionPerformed(ActionEvent arg0) {
 				cash1 = Integer.valueOf(((String)cBox1.getSelectedItem()).replace("x", "")) * 5;
 				lbl1.setText("= $" + cash1);
-				totalAmount = cash1 + cash2 + cash3 + cash4 + cash5;
+				totalAmount = cash1 + cash2 + cash3 + cash4;
 				lblAmount.setText("Selected Amount = $ " + totalAmount);
+				 storeItems("bandage", cash1, 5, broughtItems1);
 			}
 		});
 		cBox1.setModel(new DefaultComboBoxModel(new String[] {"0", "x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9"}));
@@ -310,8 +367,9 @@ public class MedicalStore
 			public void actionPerformed(ActionEvent arg0) {
 				cash2 = Integer.valueOf(((String)cBox2.getSelectedItem()).replace("x", "")) * 8;
 				lbl2.setText("= $" + cash2);
-				totalAmount = cash1 + cash2 + cash3 + cash4 + cash5;
+				totalAmount = cash1 + cash2 + cash3 + cash4;
 				lblAmount.setText("Selected Amount = $ " + totalAmount);
+				storeItems("medkit", cash2, 8, broughtItems2);
 			}
 		});
 		cBox2.setModel(new DefaultComboBoxModel(new String[] {"0", "x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9"}));
@@ -325,8 +383,9 @@ public class MedicalStore
 			public void actionPerformed(ActionEvent arg0) {
 				cash3 = Integer.valueOf(((String)cBox3.getSelectedItem()).replace("x", "")) * 14;
 				lbl3.setText("= $" + cash3);
-				totalAmount = cash1 + cash2 + cash3 + cash4 + cash5;
+				totalAmount = cash1 + cash2 + cash3 + cash4;
 				lblAmount.setText("Selected Amount = $ " + totalAmount);
+				storeItems("surgical", cash3, 14, broughtItems3);
 			}
 		});
 		cBox3.setModel(new DefaultComboBoxModel(new String[] {"0", "x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9"}));
@@ -340,8 +399,9 @@ public class MedicalStore
 			public void actionPerformed(ActionEvent arg0) {
 				cash4 = Integer.valueOf(((String)cBox4.getSelectedItem()).replace("x", "")) * 50;
 				lbl4.setText("= $" + cash4);
-				totalAmount = cash1 + cash2 + cash3 + cash4 + cash5;
+				totalAmount = cash1 + cash2 + cash3 + cash4;
 				lblAmount.setText("Selected Amount = $ " + totalAmount);
+				storeItems("potion", cash4, 50, broughtItems4);
 			}
 		});
 		cBox4.setModel(new DefaultComboBoxModel(new String[] {"0", "x1"}));
@@ -435,37 +495,51 @@ public class MedicalStore
 		cBHealth1 = new JProgressBar();
 		cBHealth1.setBounds(241, 609, 146, 30);
 		frame.getContentPane().add(cBHealth1);
+		
+		lblCountBandages = new JLabel("New label");
+		lblCountBandages.setBounds(586, 105, 112, 15);
+		frame.getContentPane().add(lblCountBandages);
+		lblCountBandages.setText(Integer.toString(bandage));
+		
+		lblCountMedkit = new JLabel("New label");
+		lblCountMedkit.setBounds(586, 135, 127, 15);
+		frame.getContentPane().add(lblCountMedkit);
+		lblCountMedkit.setText(Integer.toString(medkit));
+		
+		lblCountSurgical = new JLabel("New label");
+		lblCountSurgical.setBounds(586, 196, 112, 15);
+		frame.getContentPane().add(lblCountSurgical);
+		lblCountSurgical.setText(Integer.toString(surgical));
+		
+		lblCountPotion = new JLabel("New label");
+		lblCountPotion.setBounds(586, 279, 112, 15);
+		frame.getContentPane().add(lblCountPotion);
+		lblCountPotion.setText(Integer.toString(potion));
 
 		cBTired1 = new JProgressBar();
 		cBTired1.setBounds(241, 673, 146, 30);
 		frame.getContentPane().add(cBTired1);
 	
-
 		cBHunger1 = new JProgressBar();
 		cBHunger1.setBounds(241, 743, 146, 30);
 		frame.getContentPane().add(cBHunger1);
 		
-	
 		cBHealth2 = new JProgressBar();
 		cBHealth2.setBounds(446, 609, 146, 36);
 		frame.getContentPane().add(cBHealth2);
 		
-
 		cBTired2 = new JProgressBar();
 		cBTired2.setBounds(458, 673, 134, 30);
 		frame.getContentPane().add(cBTired2);
 		
-	
 		cBHunger2 = new JProgressBar();
 		cBHunger2.setBounds(466, 743, 126, 30);
 		frame.getContentPane().add(cBHunger2);
 	
-
 		cBHealth3 = new JProgressBar();
 		cBHealth3.setBounds(644, 603, 146, 52);
 		frame.getContentPane().add(cBHealth3);
 		
-	
 		cBTired3 = new JProgressBar();
 		cBTired3.setBounds(644, 667, 146, 52);
 		frame.getContentPane().add(cBTired3);
@@ -474,17 +548,13 @@ public class MedicalStore
 		cBHunger3.setBounds(644, 731, 146, 52);
 		frame.getContentPane().add(cBHunger3);
 
-
-
 		cBHealth4 = new JProgressBar();
 		cBHealth4.setBounds(828, 609, 146, 52);
 		frame.getContentPane().add(cBHealth4);
 		
-	
 		cBTired4 = new JProgressBar();
 		cBTired4.setBounds(828, 673, 146, 52);
 		frame.getContentPane().add(cBTired4);
-		
 	
 		cBHunger4 = new JProgressBar();
 		cBHunger4.setBounds(825, 731, 146, 52);
@@ -515,7 +585,6 @@ public class MedicalStore
 		labell.setFont(new Font("Dialog", Font.PLAIN, 16));
 		frame.getContentPane().add(labell);
 	
-
 		JLabel label0 = new JLabel("Hunger:");
 		label0.setBounds(97, 747, 81, 15);
 		label0.setFont(new Font("Dialog", Font.PLAIN, 16));
@@ -526,50 +595,21 @@ public class MedicalStore
 		label1.setFont(new Font("Dialog", Font.PLAIN, 16));
 		frame.getContentPane().add(label1);
 	
-
 		JLabel label2 = new JLabel("Health:");
 		label2.setBounds(37, 502, 0, 0);
 		label2.setFont(new Font("Dialog", Font.PLAIN, 16));
 		frame.getContentPane().add(label2);
-		
 		
 		JLabel label3 = new JLabel("Name:");
 		label3.setBounds(99, 780, 81, 15);
 		label3.setFont(new Font("Dialog", Font.PLAIN, 16));
 		frame.getContentPane().add(label3);
 
-	
-
-		
-
-
 		JLabel label4 = new JLabel("Type:");
 		label4.setBounds(97, 587, 81, 15);
 		label4.setFont(new Font("Dialog", Font.PLAIN, 16));
 		frame.getContentPane().add(label4);
 
-//<<<<<<< HEAD
-//		msType1 = new JLabel("...");
-//		msType1.setBounds(258, 571, 129, 30);
-//		msType1.setFont(new Font("Dialog", Font.PLAIN, 18));
-//		frame.getContentPane().add(msType1);
-//
-//		msType2 = new JLabel("...");
-//		msType2.setBounds(469, 578, 119, 23);
-//		msType2.setFont(new Font("Dialog", Font.PLAIN, 18));
-//		frame.getContentPane().add(msType2);
-//
-//		msType3 = new JLabel("...");
-//		msType3.setBounds(661, 581, 129, 21);
-//		msType3.setFont(new Font("Dialog", Font.PLAIN, 18));
-//		frame.getContentPane().add(msType3);
-//	
-//
-//		msType4 = new JLabel("...");
-//		msType4.setBounds(840, 581, 134, 22);
-//		msType4.setFont(new Font("Dialog", Font.PLAIN, 18));
-//		frame.getContentPane().add(msType4);
-//=======
 		cBType1 = new JLabel("...");
 		cBType1.setFont(new Font("Dialog", Font.PLAIN, 18));
 		cBType1.setBounds(258, 571, 129, 30);
@@ -585,12 +625,10 @@ public class MedicalStore
 		cBType3.setBounds(661, 581, 129, 21);
 		frame.getContentPane().add(cBType3);
 	
-
 		cBType4 = new JLabel("...");
 		cBType4.setFont(new Font("Dialog", Font.PLAIN, 18));
 		cBType4.setBounds(840, 581, 134, 22);
 		frame.getContentPane().add(cBType4);
-//>>>>>>> master
 		
 		frame.getContentPane().setLayout(null);
 		
@@ -605,8 +643,8 @@ public class MedicalStore
 		cBHunger();
 		
 		// Button Actions
-		cBoxActions();
 		btnBuy();
+		cBoxActions();
 		backToOutpost();
 	}
 	

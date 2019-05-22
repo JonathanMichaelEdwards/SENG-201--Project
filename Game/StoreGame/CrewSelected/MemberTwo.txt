@@ -1,1 +1,1 @@
-50, 20, 130, 1, true, jake, Mechanic, 
+-730, 20, 150, 2, true, jake, Mechanic, 

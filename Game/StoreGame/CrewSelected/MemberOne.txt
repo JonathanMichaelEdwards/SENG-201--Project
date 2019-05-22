@@ -1,1 +1,1 @@
-20, 20, 110, 1, true, jon, Leader, 
+-190, 30, 110, 2, false, jon, Leader, 

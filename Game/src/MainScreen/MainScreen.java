@@ -51,6 +51,7 @@ public class MainScreen
 	private JProgressBar pBarHunger1, pBarHunger2, pBarHunger3, pBarHunger4;
 	private JProgressBar pBarShipHealth;
 	private JLabel player1, player2, player3, player4;
+	private JLabel lblCashTotal;
 	
 	// Stored information that the user has chosen
 	private ArrayList<String> crewType = new ArrayList<String>();
@@ -60,6 +61,7 @@ public class MainScreen
 	private int days;
 	private int parts;
 	private int repair;
+	private JLabel lblptr;
 	
 	// File locations
 	private String writeHealth = "StoreGame/CrewSelected/";
@@ -73,6 +75,7 @@ public class MainScreen
 	private JProgressBar tiredness[] = new JProgressBar[4];
 	private JProgressBar hunger[] = new JProgressBar [4];
 	private JButton btnSleep;
+	private JLabel lblPlague;
 	
 	
 	// Store all progress bar so it can be used easily
@@ -233,6 +236,17 @@ public class MainScreen
 	}
 	
 	
+	private void bankStore()
+	{
+		ArrayList<String> totalCash = new ArrayList<String>();
+		IOFile ioFile = new IOFile();
+
+		// read how much cash the player has
+		totalCash = ioFile.fileRead("StoreGame/CashInfo.txt");
+		lblCashTotal.setText("Current Cash = $ " + totalCash.get(0).toString());
+	}
+	
+	
 	// organizing information from files
 	private void organizeGameInfo()
 	{
@@ -244,8 +258,9 @@ public class MainScreen
 		ArrayList<String> shipInfo = ioFile.fileRead("StoreGame/ShipInfo.txt");
 		ArrayList<String> daysInfo = ioFile.fileRead("StoreGame/DaysInfo.txt");
 		ArrayList<String> changeShields = ioFile.fileRead("StoreGame/ShipInfo.txt");
+		ArrayList<String> memberOne = ioFile.fileRead("StoreGame/CrewSelected/MemberOne.txt");
+		ArrayList<String> memberTwo = ioFile.fileRead("StoreGame/CrewSelected/MemberTwo.txt");
 
-		
 		// unwrap the crew information
 		decodeCrewInfo(crewInfo);
 		
@@ -260,10 +275,26 @@ public class MainScreen
 		// Displaying crew info
 		lblShipType.setText(shipType);
 		lblShipName.setText(shipName);
-		lblDaysLeft.setText("Day: " + days);
+		lblDaysLeft.setText("Days Remaining: 0");
 		lblParts.setText("Parts to find: " + parts);
 		pBarShipHealth.setValue(repair);
-
+		
+		// if true, part is found on this planet
+		if (changeShields.get(3).equals("true"))
+			lblptr.setText("Parts on this planet: " + 0 );
+		else 
+			lblptr.setText("Parts on this planet: " + 1 );
+		
+		
+		if (memberOne.get(4).equals("true") && memberTwo.get(4).equals("true")) 
+			lblPlague.setText(memberOne.get(5) + " and " + memberTwo.get(5) + " both have the plague");
+		else if (memberOne.get(4).equals("true"))
+			lblPlague.setText(memberOne.get(5) + " has the plague");
+		else if (memberTwo.get(4).equals("true")) 
+			lblPlague.setText(memberTwo.get(5) + " has the plague");
+		else 
+			lblPlague.setText("No body has the plague");
+		
 		// Output crew
 		for (int index = 0; index < crewType.size(); index++) {
 			type[index].setText(crewType.get(index));
@@ -272,7 +303,6 @@ public class MainScreen
 		
 		// Read and display the crew ratings
 		readCrewRatings(ioFile);
-		
 		
 		ArrayList<String> membersActions = new ArrayList<String>();
 		
@@ -395,6 +425,16 @@ public class MainScreen
 		btnSleep.setBounds(127, 239, 230, 101);
 		frame.getContentPane().add(btnSleep);
 		
+		lblptr = new JLabel("Parts on this planet: ...");
+		lblptr.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblptr.setBounds(112, 667, 256, 40);
+		frame.getContentPane().add(lblptr);
+		
+		lblPlague = new JLabel("... has the plague");
+		lblPlague.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblPlague.setBounds(81, 404, 488, 62);
+		frame.getContentPane().add(lblPlague);
+		
 
 	}
 	
@@ -450,7 +490,7 @@ public class MainScreen
 				if (days != -1)
 				{
 				//ioFile.fileWrite(changeDays, "StoreGame/DaysInfo.txt");  // Writing in new days
-				lblDaysLeft.setText("Day: "  + days);
+				lblDaysLeft.setText("Days Remaining: "  + days);
 				
 				// reading from file &Changing file & Writing back to file
 				for (int index = 0; index < crewType.size(); index++) {
@@ -590,8 +630,8 @@ public class MainScreen
 		lblShipType.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		
 		lblParts = new JLabel("Parts: ...");
-		lblParts.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		lblParts.setBounds(308, 75, 155, 33);
+		lblParts.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblParts.setBounds(308, 75, 168, 33);
 		frame.getContentPane().add(lblParts);
 		
 		JLabel lblHealth = new JLabel("Health");
@@ -668,6 +708,11 @@ public class MainScreen
 		pBarHunger4.setStringPainted(true);
 		pBarHunger4.setBounds(791, 235, 146, 36);
 		panelCrew.add(pBarHunger4);
+		
+		lblCashTotal = new JLabel("Current Cash = $ <dynamic>");
+		lblCashTotal.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblCashTotal.setBounds(66, 146, 326, 33);
+		frame.getContentPane().add(lblCashTotal);
 		
 		lblMember4 = new JLabel("...");
 		lblMember4.setBounds(791, 273, 134, 25);
@@ -776,8 +821,8 @@ public class MainScreen
 		
 		
 		lblDaysLeft = new JLabel("Day: ...");
-		lblDaysLeft.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		lblDaysLeft.setBounds(133, 75, 76, 33);
+		lblDaysLeft.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblDaysLeft.setBounds(66, 75, 230, 33);
 		
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(lblDaysLeft);
@@ -810,6 +855,7 @@ public class MainScreen
 	public MainScreen() 
 	{
 		initialize();
+		bankStore();
 		organizeGameInfo();
 	}
 

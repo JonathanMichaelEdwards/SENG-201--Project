@@ -277,7 +277,7 @@ public class CrewTravel {
 		
 		if ((crewMembers.size()/2) == 2) {
 			character3.setEnabled(false);
-			character3.setEnabled(false);
+			character4.setEnabled(false);
 		} else if ((crewMembers.size()/2) == 3) {
 			character4.setEnabled(false);
 		}
@@ -334,7 +334,6 @@ public class CrewTravel {
 				updateFalse.set(3, "false");
 				ioFile.fileWrite(updateFalse, "StoreGame/ShipInfo.txt");
 				int x = (int)(Math.random()*((2-0)+0))+0;
-				System.out.println(x);
 				if (x == 1)
 				{
 					TravelPlanet screen = new TravelPlanet();
