@@ -74,6 +74,7 @@ public class MainScreen
 	private JProgressBar hunger[] = new JProgressBar [4];
 	private JButton btnSleep;
 	
+	private String readFile = "StoreGame/CrewSelected/";	
 	
 	// Store all progress bar so it can be used easily
 	// Stores crew details in data arrays so it can be used easily
@@ -130,6 +131,24 @@ public class MainScreen
 		disableStatus(size);
 	}
 	
+	private void tiredRate(ArrayList<String> member, IOFile ioFile, String name)
+	{
+		member.set(3, ""+(Integer.parseInt(member.get(3)) - 1));
+		int tired = Integer.parseInt(member.get(1));
+		if (tired <= 0)
+		{
+			int health = Integer.parseInt(member.get(0)) - 30;
+			member.set(0, "" + health);
+			member.set(1, "" + 0);
+			ioFile.fileWrite(member, readFile + name + ".txt");
+		}
+		else 
+		{
+			int tired1 = Integer.parseInt(member.get(1)) - 10; //this is the value in which a repair heals
+			member.set(1, "" + tired1);
+			ioFile.fileWrite(member, readFile + name + ".txt");
+		}
+	}	
 	
 	// items to be disabled
 	private void disableInfo(int index) 
@@ -457,9 +476,21 @@ public class MainScreen
 					if (index == 0) {
 						memberActions1 = ioFile.fileRead("StoreGame/CrewSelected/MemberOne.txt");
 						memberActions1.set(3, "2");
+						int tired = Integer.parseInt(memberActions1.get(1)) - 20;
+						memberActions1.set(1, "" + tired);
 						ioFile.fileWrite(memberActions1, writeHealth + "MemberOne.txt");
 						memberActions1 = ioFile.fileRead("StoreGame/CrewSelected/MemberOne.txt");
-						boolPlague = memberActions1.get(4);			
+						int tiredHp = Integer.parseInt(memberActions1.get(1));
+						if (tiredHp <=0)
+						{
+							memberActions1.set(1, "0");
+							memberActions1 = ioFile.fileRead("StoreGame/CrewSelected/MemberOne.txt");
+							int health = Integer.parseInt(memberActions2.get(0)) - 30;
+							memberActions1.set(0, "" + health);
+							ioFile.fileWrite(memberActions2, writeHealth + "MemberOne.txt");
+						}
+						
+						boolPlague = memberActions1.get(4);		
 						if (boolPlague.equals("true")) {	
 							int health = Integer.parseInt(memberActions1.get(0)) - 30;
 							memberActions1.set(0, "" + health);
@@ -470,7 +501,18 @@ public class MainScreen
 					} else if (index == 1) {
 						memberActions2 = ioFile.fileRead("StoreGame/CrewSelected/MemberTwo.txt");
 						memberActions2.set(3, "2");
+						int tired = Integer.parseInt(memberActions2.get(1)) - 20;
+						memberActions2.set(1, "" + tired);
 						ioFile.fileWrite(memberActions2, writeHealth + "MemberTwo.txt");
+						int tiredHp = Integer.parseInt(memberActions2.get(1));
+						if (tiredHp <=0)
+						{
+							memberActions2.set(1, "0");
+							memberActions2 = ioFile.fileRead("StoreGame/CrewSelected/MemberTwo.txt");
+							int health = Integer.parseInt(memberActions2.get(0)) - 30;
+							memberActions2.set(0, "" + health);
+							ioFile.fileWrite(memberActions2, writeHealth + "MemberTwo.txt");
+						}
 						boolPlague = memberActions2.get(4);
 						if (boolPlague.equals("true")) {
 							memberActions2 = ioFile.fileRead("StoreGame/CrewSelected/MemberTwo.txt");
@@ -481,7 +523,19 @@ public class MainScreen
 					} else if (index == 2) {
 						memberActions3 = ioFile.fileRead("StoreGame/CrewSelected/MemberThree.txt");
 						memberActions3.set(3, "2");
+						int tired = Integer.parseInt(memberActions3.get(1)) - 20;
+						memberActions3.set(1, "" + tired);
 						ioFile.fileWrite(memberActions3, writeHealth + "MemberThree.txt");
+						
+						int tiredHp = Integer.parseInt(memberActions3.get(1));
+						if (tiredHp <=0)
+						{
+							memberActions3.set(1, "0");
+							memberActions3 = ioFile.fileRead("StoreGame/CrewSelected/MemberThree.txt");
+							int health = Integer.parseInt(memberActions3.get(0)) - 30;
+							memberActions3.set(0, "" + health);
+							ioFile.fileWrite(memberActions3, writeHealth + "MemberThree.txt");
+						}
 						boolPlague = memberActions3.get(4);
 						if (boolPlague.equals("true")) {
 							memberActions3 = ioFile.fileRead("StoreGame/CrewSelected/MemberThree.txt");
@@ -492,7 +546,18 @@ public class MainScreen
 					} else if (index == 3) {
 						memberActions4 = ioFile.fileRead("StoreGame/CrewSelected/MemberFour.txt");
 						memberActions4.set(3, "2");
+						int tired = Integer.parseInt(memberActions4.get(1)) - 20;
+						memberActions4.set(1, "" + tired);
 						ioFile.fileWrite(memberActions4, writeHealth + "MemberFour.txt");
+						int tiredHp = Integer.parseInt(memberActions4.get(1));
+						if (tiredHp <=0)
+						{
+							memberActions2.set(1, "0");
+							memberActions2 = ioFile.fileRead("StoreGame/CrewSelected/MemberFour.txt");
+							int health = Integer.parseInt(memberActions2.get(0)) - 30;
+							memberActions2.set(0, "" + health);
+							ioFile.fileWrite(memberActions2, writeHealth + "MemberFour.txt");
+						}
 						boolPlague = memberActions4.get(4);
 						if (boolPlague.equals("true")) {
 							memberActions4 = ioFile.fileRead("StoreGame/CrewSelected/MemberFour.txt");

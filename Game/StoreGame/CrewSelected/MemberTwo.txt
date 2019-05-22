@@ -1,1 +1,1 @@
-50, 20, 130, 1, true, jake, Mechanic, 
+13, 108, 70, 1, true, gg, Mechanic, 

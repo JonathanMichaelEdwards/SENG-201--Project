@@ -41,7 +41,7 @@ public class asteroids {
 				ArrayList<String> checkShields = ioFile.fileRead("StoreGame/ShipInfo.txt");				
 //				explosion = Integer.parseInt(checkShields.get(2));
 				
-				if (dmg < 0)
+				if (dmg <= 0)
 				{
 
 					loseGame outpost = new loseGame();

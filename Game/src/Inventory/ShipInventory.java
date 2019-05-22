@@ -431,24 +431,48 @@ public class ShipInventory
 		
 		if (rBCookie.isSelected()) {
 			valueChange = Integer.parseInt(crew.get(2)) + 20;
+			if (valueChange > 100)
+			{
+				valueChange = 100;
+			}
 			crew.set(2, ""+valueChange);
 		} else if (rBPizza.isSelected()) {
 			valueChange = Integer.parseInt(crew.get(2)) + 50;
+			if (valueChange > 100)
+			{
+				valueChange = 100;
+			}
 			crew.set(2, ""+valueChange);
 		} else if (rBFullMeal.isSelected()) {
 			valueChange = Integer.parseInt(crew.get(2)) + 100;
+			if (valueChange > 100)
+			{
+				valueChange = 100;
+			}
 			crew.set(2, ""+valueChange);
 		} else if (rBPlague.isSelected()) {
 			if (crew.get(4).equals("true"))
 				crew.set(4, "false");
 		} else if (rBSurgical.isSelected()) {
 			valueChange = Integer.parseInt(crew.get(0)) + 100;
+			if (valueChange > 100)
+			{
+				valueChange = 100;
+			}
 			crew.set(0, ""+valueChange);
 		} else if (rBMedkit.isSelected()) {
 			valueChange = Integer.parseInt(crew.get(0)) + 50;
+			if (valueChange > 100)
+			{
+				valueChange = 100;
+			}
 			crew.set(0, ""+valueChange);
 		} else if (rBBandages.isSelected()) {
 			valueChange = Integer.parseInt(crew.get(0)) + 20;
+			if (valueChange > 100)
+			{
+				valueChange = 100;
+			}
 			crew.set(0, ""+valueChange);
 		}
 		

@@ -266,6 +266,10 @@ public JFrame frame;
 					int repair = Integer.parseInt(member.get(1)) + 30; //this is the value in which a repair heals
 					
 					member.set(1, "" + repair);
+					if (repair >= 100)
+					{
+						member.set(1, "100");
+					}
 					ioFile.fileWrite(member, readFile + "MemberOne.txt");
 				} else if (rBChar2.isSelected()) {
 					member = ioFile.fileRead(readFile + "MemberTwo.txt");
@@ -273,6 +277,10 @@ public JFrame frame;
 					int repair = Integer.parseInt(member.get(1)) + 30; //this is the value in which a repair heals
 					
 					member.set(1, "" + repair);
+					if (repair >= 100)
+					{
+						member.set(1, "100");
+					}
 					ioFile.fileWrite(member, readFile + "MemberTwo.txt");
 				} else if (rBChar3.isSelected()) {
 					member = ioFile.fileRead(readFile + "MemberThree.txt");
@@ -280,6 +288,10 @@ public JFrame frame;
 					int repair = Integer.parseInt(member.get(1)) + 30; //this is the value in which a repair heals
 					
 					member.set(1, "" + repair);
+					if (repair >= 100)
+					{
+						member.set(1, "100");
+					}
 					ioFile.fileWrite(member, readFile + "MemberThree.txt");
 				} else if (rBChar4.isSelected()) {
 					member = ioFile.fileRead(readFile + "MemberFour.txt");
@@ -287,6 +299,10 @@ public JFrame frame;
 					int repair = Integer.parseInt(member.get(1)) + 30; //this is the value in which a repair heals
 					
 					member.set(1, "" + repair);
+					if (repair >= 100)
+					{
+						member.set(1, "100");
+					}
 					ioFile.fileWrite(member, readFile + "MemberFour.txt");
 				} 
 				
@@ -395,50 +411,62 @@ public JFrame frame;
 		
 		
 		cBHealth1 = new JProgressBar();
+		cBHealth1.setStringPainted(true);
 		cBHealth1.setBounds(204, 107, 146, 30);
 		frame.getContentPane().add(cBHealth1);
 
 		cBTired1 = new JProgressBar();
+		cBTired1.setStringPainted(true);
 		cBTired1.setBounds(204, 171, 146, 30);
 		frame.getContentPane().add(cBTired1);
 	
 		cBHunger1 = new JProgressBar();
+		cBHunger1.setStringPainted(true);
 		cBHunger1.setBounds(204, 241, 146, 30);
 		frame.getContentPane().add(cBHunger1);
 		
 		cBHealth2 = new JProgressBar();
+		cBHealth2.setStringPainted(true);
 		cBHealth2.setBounds(409, 107, 146, 36);
 		frame.getContentPane().add(cBHealth2);
 		
 		cBTired2 = new JProgressBar();
+		cBTired2.setStringPainted(true);
 		cBTired2.setBounds(421, 171, 134, 30);
 		frame.getContentPane().add(cBTired2);
 		
 		cBHunger2 = new JProgressBar();
+		cBHunger2.setStringPainted(true);
 		cBHunger2.setBounds(429, 241, 126, 30);
 		frame.getContentPane().add(cBHunger2);
 
 		cBHealth3 = new JProgressBar();
+		cBHealth3.setStringPainted(true);
 		cBHealth3.setBounds(607, 101, 146, 52);
 		frame.getContentPane().add(cBHealth3);
 		
 		cBTired3 = new JProgressBar();
+		cBTired3.setStringPainted(true);
 		cBTired3.setBounds(607, 165, 146, 52);
 		frame.getContentPane().add(cBTired3);
 
 		cBHunger3 = new JProgressBar();
+		cBHunger3.setStringPainted(true);
 		cBHunger3.setBounds(607, 229, 146, 52);
 		frame.getContentPane().add(cBHunger3);
 
 		cBHealth4 = new JProgressBar();
+		cBHealth4.setStringPainted(true);
 		cBHealth4.setBounds(791, 107, 146, 52);
 		frame.getContentPane().add(cBHealth4);
 		
 		cBTired4 = new JProgressBar();
+		cBTired4.setStringPainted(true);
 		cBTired4.setBounds(791, 171, 146, 52);
 		frame.getContentPane().add(cBTired4);
 	
 		cBHunger4 = new JProgressBar();
+		cBHunger4.setStringPainted(true);
 		cBHunger4.setBounds(788, 229, 146, 52);
 		frame.getContentPane().add(cBHunger4);
 

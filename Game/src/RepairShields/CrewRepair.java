@@ -242,6 +242,7 @@ public class CrewRepair {
 		int tired = Integer.parseInt(member.get(1));
 		if (tired <= 0)
 		{
+			
 			int health = Integer.parseInt(member.get(0)) - 30;
 			member.set(0, "" + health);
 			member.set(1, "" + 0);
@@ -269,6 +270,10 @@ public class CrewRepair {
 				int repair = Integer.parseInt(changeShields.get(2)) + 30; //this is the value in which a repair heals
 				
 				changeShields.set(2, "" + repair);
+				if (repair >= 100)
+				{
+					changeShields.set(1, "100");
+				}
 				ioFile.fileWrite(changeShields, "StoreGame/ShipInfo.txt");  // Writing in new days
 				
 				String readFile = "StoreGame/CrewSelected/";

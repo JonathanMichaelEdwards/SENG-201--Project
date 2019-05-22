@@ -1,1 +1,1 @@
-Attack, jim, 75, false, 0, 
+Medical, ggrrg, 105, false, 0, 
