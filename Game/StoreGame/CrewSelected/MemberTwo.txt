@@ -1,1 +1,1 @@
-0, 0, 0, 0, false, awda, Mechanic, dead, 
+40, 60, 100, 2, false, ssgdsg, Leader, alive, 

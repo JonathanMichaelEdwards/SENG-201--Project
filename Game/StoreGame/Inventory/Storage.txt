@@ -1,1 +1,1 @@
-bandage, medkit, surgical, surgical, surgical, surgical, surgical, surgical, 
+cookie, cookie, cookie, cookie, surgical, surgical, bandage, bandage, bandage, medkit, 

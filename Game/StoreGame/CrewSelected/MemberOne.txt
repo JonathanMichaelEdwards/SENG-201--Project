@@ -1,1 +1,1 @@
-0, 0, 0, 0, false, adad, Leader, dead, 
+80, 50, 70, 2, false, shrdxh, Mechanic, alive, 

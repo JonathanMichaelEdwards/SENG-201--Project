@@ -46,6 +46,9 @@ public class ShipInventory
 
 	private boolean btnRState, btnCrewState  = false;
 
+	String actionLeft3, actionLeft4;
+	
+	
 	private JLabel type[] = new JLabel[4];
 	private JLabel member[] = new JLabel[4];
 	
@@ -547,13 +550,13 @@ public class ShipInventory
 	private void btnStates()
 	{
 		for (int index = 0; index < crewType.size(); index++) {
-			if (index == 1) {
+			if (index == 1 && (actionLeft3.equals("dead")))  {
 				rdbtnCrew3.setEnabled(false);
 				rdbtnCrew4.setEnabled(false);
 				btn3State = true;
 				btn4State = true;
 				
-			} else if (index == 2) {
+			} else if (index == 2 && (actionLeft4.equals("dead"))) {
 				rdbtnCrew4.setEnabled(false);
 				btn4State = true;
 			}
@@ -666,7 +669,7 @@ public class ShipInventory
 		rdbtnCrew3 = new JRadioButton("Choose");
 //		this part detects if we have enough turns left, if not the radio button is disabled
 		ArrayList<String> member3 = new ArrayList<String>();
-		String actionLeft3;
+//		String actionLeft3;
 		String readFile3 = "StoreGame/CrewSelected/";
 		IOFile ioFile3 = new IOFile();
 		member3 = ioFile3.fileRead(readFile3 + "MemberThree.txt");
@@ -697,7 +700,7 @@ public class ShipInventory
 		rdbtnCrew4 = new JRadioButton("Choose");
 //		this part detects if we have enough turns left, if not the radio button is disabled
 		ArrayList<String> member4 = new ArrayList<String>();
-		String actionLeft4;
+//		String actionLeft4;
 		String readFile4 = "StoreGame/CrewSelected/";
 		IOFile ioFile4 = new IOFile();
 		member4 = ioFile4.fileRead(readFile4 + "MemberFour.txt");

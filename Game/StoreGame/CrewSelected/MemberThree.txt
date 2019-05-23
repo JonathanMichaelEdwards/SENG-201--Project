@@ -1,1 +1,1 @@
-0, 0, 0, 0, false, adwad, Pilot, dead, 
+100, 50, 50, 2, false, sgsgd, Medic, alive, 
