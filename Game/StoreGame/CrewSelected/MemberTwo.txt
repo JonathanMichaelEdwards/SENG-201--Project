@@ -1,1 +1,5 @@
+<<<<<<< Updated upstream
 40, 60, 100, 2, false, ssgdsg, Leader, alive, 
+=======
+80, 50, 70, 2, false, fgf, Mechanic, 
+>>>>>>> Stashed changes
