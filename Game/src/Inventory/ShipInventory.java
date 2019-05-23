@@ -543,7 +543,7 @@ public class ShipInventory
 	}
 	
 	
-	// checks which players should be disabled
+//	 checks which players should be disabled
 	private void btnStates()
 	{
 		for (int index = 0; index < crewType.size(); index++) {
@@ -552,13 +552,47 @@ public class ShipInventory
 				rdbtnCrew4.setEnabled(false);
 				btn3State = true;
 				btn4State = true;
+				
 			} else if (index == 2) {
 				rdbtnCrew4.setEnabled(false);
 				btn4State = true;
 			}
 		}
 	}
-	
+
+//	private void btnStates()
+//	{
+//		for (int index = 0; index < crewType.size(); index++) {
+//			if (index == 1) {
+//				System.out.println("pass1");
+//				rdbtnCrew1.setEnabled(true);
+//				rdbtnCrew2.setEnabled(true);
+//				rdbtnCrew3.setEnabled(false);
+//				rdbtnCrew4.setEnabled(false);
+//				btn3State = true;
+//				btn4State = true;
+//				
+//			} 
+//			if (index == 2) {
+//				System.out.println("pass2");
+//				rdbtnCrew1.setEnabled(true);
+//				rdbtnCrew2.setEnabled(true);
+//				rdbtnCrew3.setEnabled(true);
+//				rdbtnCrew4.setEnabled(false);
+//				btn4State = true;
+//			}
+//			if (index == 3) {
+//				System.out.println("pass3");
+//				rdbtnCrew1.setEnabled(true);
+//				rdbtnCrew2.setEnabled(true);
+//				rdbtnCrew3.setEnabled(true);
+//				rdbtnCrew4.setEnabled(true);
+//				btn4State = true;
+//			}
+//
+//			
+//		}
+//	}
 	
 	private void btnCrew()
 	{
@@ -570,8 +604,8 @@ public class ShipInventory
 			String readFile = "StoreGame/CrewSelected/";
 			IOFile ioFile = new IOFile();
 			member = ioFile.fileRead(readFile + "MemberOne.txt");
-			actionLeft = member.get(3);
-			if (actionLeft.equals("0"))
+			actionLeft = member.get(7);
+			if (actionLeft.equals("dead"))
 					{
 				rdbtnCrew1.setEnabled(false);
 					}
@@ -603,9 +637,10 @@ public class ShipInventory
 		String readFile2 = "StoreGame/CrewSelected/";
 		IOFile ioFile2 = new IOFile();
 		member2 = ioFile2.fileRead(readFile2 + "MemberTwo.txt");
-		actionLeft2 = member2.get(3);
-		if (actionLeft2.equals("0"))
+		actionLeft2 = member2.get(7);
+		if (actionLeft2.equals("dead"))
 				{
+			System.out.println("should be off");
 			rdbtnCrew2.setEnabled(false);
 				}
 		rdbtnCrew2.addActionListener(new ActionListener() 
@@ -614,6 +649,7 @@ public class ShipInventory
 			{
 				rBClear();
 				rdbtnCrew2.setSelected(true);
+				System.out.println("should be on");
 		 		if (rdbtnCrew2.isSelected()) {
 		 			btnCrewState = true;
 		 			if (btnRState) btnConfirmChoice.setEnabled(true); // enable button
@@ -634,8 +670,8 @@ public class ShipInventory
 		String readFile3 = "StoreGame/CrewSelected/";
 		IOFile ioFile3 = new IOFile();
 		member3 = ioFile3.fileRead(readFile3 + "MemberThree.txt");
-		actionLeft3 = member3.get(3);
-		if (actionLeft3.equals("0"))
+		actionLeft3 = member3.get(7);
+		if (actionLeft3.equals("dead"))
 				{
 			rdbtnCrew3.setEnabled(false);
 				}
@@ -665,8 +701,8 @@ public class ShipInventory
 		String readFile4 = "StoreGame/CrewSelected/";
 		IOFile ioFile4 = new IOFile();
 		member4 = ioFile4.fileRead(readFile4 + "MemberFour.txt");
-		actionLeft4 = member4.get(3);
-		if (actionLeft4.equals("0"))
+		actionLeft4 = member4.get(7);
+		if (actionLeft4.equals("dead"))
 				{
 			rdbtnCrew4.setEnabled(false);
 				}

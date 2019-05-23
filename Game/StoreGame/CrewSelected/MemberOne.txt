@@ -1,1 +1,1 @@
--30, 0, 0, 0, true, jono, Medic, dead, 
+0, 0, 0, 0, false, adad, Leader, dead, 

@@ -110,9 +110,6 @@ public class MainScreen
 	private void dispCrewType() 
 	{
 		type[0] = lblCrewType1;
-		System.out.println(lblCrewType1);
-		System.out.println(type[0]);
-		System.out.println("hello");
 		type[1] = lblCrewType2;
 		type[2] = lblCrewType3;
 		type[3] = lblCrewType4;
@@ -613,9 +610,10 @@ public class MainScreen
 						memberActions2.set(1, "" + tired);
 						ioFile.fileWrite(memberActions2, writeHealth + "MemberTwo.txt");
 						int tiredHp = Integer.parseInt(memberActions2.get(1));
-						if (tiredHp <=0)
+						if (tiredHp <= 0)
 						{
 							memberActions2.set(1, "0");
+							ioFile.fileWrite(memberActions2, "StoreGame/CrewSelected/MemberTwo.txt");
 							memberActions2 = ioFile.fileRead("StoreGame/CrewSelected/MemberTwo.txt");
 							int health = Integer.parseInt(memberActions2.get(0)) - 30;
 							memberActions2.set(0, "" + health);
@@ -655,6 +653,7 @@ public class MainScreen
 						if (tiredHp <=0)
 						{
 							memberActions3.set(1, "0");
+							ioFile.fileWrite(memberActions3, "StoreGame/CrewSelected/MemberThree.txt");
 							memberActions3 = ioFile.fileRead("StoreGame/CrewSelected/MemberThree.txt");
 							int health = Integer.parseInt(memberActions3.get(0)) - 30;
 							memberActions3.set(0, "" + health);
@@ -694,6 +693,7 @@ public class MainScreen
 						if (tiredHp <=0)
 						{
 							memberActions4.set(1, "0");
+							ioFile.fileWrite(memberActions4, "StoreGame/CrewSelected/MemberFour.txt");
 							memberActions4 = ioFile.fileRead("StoreGame/CrewSelected/MemberFour.txt");
 							int health = Integer.parseInt(memberActions4.get(0)) - 30;
 							memberActions4.set(0, "" + health);
@@ -729,7 +729,65 @@ public class MainScreen
 					frame.setVisible(false);         // turn off screen
 			}
 			if (x == 0)
-			{
+			{ //to make the game a little easier, if anyone is dead, the plague will not happen, asteroids will though
+
+				int makeNormal = 0;
+				int curChar = 0;
+				memberActions4 = ioFile.fileRead("StoreGame/CrewSelected/MemberFour.txt");
+				check = memberActions4.get(7);
+				if (check.equals("dead"))
+				{
+
+					curChar ++;
+				}
+				if (check.equals("alive"))
+				{
+					makeNormal++;
+					curChar ++;
+				}
+				
+				memberActions3 = ioFile.fileRead("StoreGame/CrewSelected/MemberThree.txt");
+				check = memberActions3.get(7);
+				if (check.equals("dead"))
+				{
+
+					curChar ++;
+				}
+				if (check.equals("alive"))
+				{
+					makeNormal++;
+					curChar ++;
+
+				}
+				memberActions2 = ioFile.fileRead("StoreGame/CrewSelected/MemberTwo.txt");
+				check = memberActions2.get(7);
+				if (check.equals("dead"))
+				{
+
+					curChar ++;
+				}
+				if (check.equals("alive"))
+				{
+					makeNormal++;
+					curChar ++;
+
+				}
+				
+				memberActions1 = ioFile.fileRead("StoreGame/CrewSelected/MemberOne.txt");
+				check = memberActions1.get(7);
+				if (check.equals("dead"))
+				{
+
+					curChar ++;
+				}
+				if (check.equals("alive"))
+				{
+					makeNormal++;
+					curChar ++;
+
+				}
+				
+				if (curChar == makeNormal ) //if the number of characters = number of alive characters, plague is possible
 				System.out.println("plague");
 //					SpaceOutpost outpost = new SpaceOutpost();
 //					outpost.frame.setVisible(true);  // turn on screen
@@ -738,6 +796,13 @@ public class MainScreen
 					spacePlague outpost = new spacePlague();
 					outpost.frame.setVisible(true);  // turn on screen
 					frame.setVisible(false);         // turn off screen
+				if (curChar != makeNormal)  //if the number is different, eg. 1 or more is dead. only asteroids hit
+				{
+					System.out.println("asteroids");
+					asteroids outpost2 = new asteroids();
+					outpost2.frame.setVisible(true);
+					frame.setVisible(false);
+				}
 			}
 			if (x == 2)
 			{

@@ -46,7 +46,7 @@ public class ExplorePlanet
 		frame.getContentPane().add(btnRecallToShip);
 		
 		lblCrewMembersLoot = new JLabel("What is found?");
-		lblCrewMembersLoot.setBounds(277, 735, 385, 61);
+		lblCrewMembersLoot.setBounds(336, 410, 385, 61);
 		frame.getContentPane().add(lblCrewMembersLoot);
 	}
 	
@@ -91,7 +91,7 @@ public class ExplorePlanet
 						shipInfo.set(3, "true");
 						System.out.println("found part");
 						ioFile.fileWrite(shipInfo, readFile + ".txt");
-						lblCrewMembersLoot.setText("Youve Found a part");
+						lblCrewMembersLoot.setText("You've Found this planets part!");
 						
 						updatePart = ioFile.fileRead("StoreGame/DaysInfo.txt");
 						int sub = Integer.parseInt(updatePart.get(1)) - 1;
@@ -117,7 +117,7 @@ public class ExplorePlanet
 						}
 						
 						ioFile.fileWrite(inventory, readStorage + ".txt");
-						lblCrewMembersLoot.setText("Youve Found " + y + "x Surgical Packages and Full Meals");
+						lblCrewMembersLoot.setText("Youve Found " + y + "x Surgical Packages and Full Meals, these will completely fill up the health/hunger bars respectively");
 						System.out.println("found some loot, the part is still out there");
 					}
 					
@@ -138,7 +138,7 @@ public class ExplorePlanet
 						bank.set(0, "" + cash);
 						ioFile.fileWrite(bank, "StoreGame/CashInfo.txt");
 						ioFile.fileWrite(inventory, readStorage + ".txt");
-						lblCrewMembersLoot.setText("Youve Found " + y + "x Medkits and $" + rand);
+						lblCrewMembersLoot.setText("Youve Found " + y + "x Medkits, this will partially restore health and $" + rand);
 					if(x == 1) {
 						inventory = ioFile.fileRead(readStorage + ".txt");
 						int z = (int)(Math.random()*((10-5)+5))+5;
@@ -150,7 +150,7 @@ public class ExplorePlanet
 						int cash2 = Integer.parseInt(bank.get(0)) + rand2;
 						bank.set(0, "" + cash2);
 						ioFile.fileWrite(bank, "StoreGame/CashInfo.txt");
-						lblCrewMembersLoot.setText("Youve Found " + z + "x Pizza and $" + rand2);
+						lblCrewMembersLoot.setText("Youve Found " + z + "x Pizza, this will partially restore hunger and $" + rand2);
 						
 						ioFile.fileWrite(inventory, readStorage + ".txt");
 						System.out.println("found some loot, the part is still out there");
@@ -167,6 +167,8 @@ public class ExplorePlanet
 	/*
 	 * Initialize the contents of the frame.
 	*/
+	String transport;
+	String terrain;
 	private void initialize() 
 	{
 		// Setting Layout dimensions
@@ -179,12 +181,48 @@ public class ExplorePlanet
 		frame.setResizable(false);
 		frame.getContentPane().setLayout(null);
 //		frame.setUndecorated(true);  // Frame cannot be adjusted during game
-		
+
 		// Initialize displays
-		JLabel lblXLaunchesDown = new JLabel("X launches down from the spaceship in the ships rider/glider/shuttle/teleporter.");
+		int x1 = (int)(Math.random()*((4-0)+0))+0;
+		System.out.println(x1);
+		if (x1 == 0)
+		{
+			transport = "rider.";
+		}
+		if (x1 == 1)
+		{
+			transport = "glider.";
+		}
+		if (x1 == 2)
+		{
+			transport = "shuttle.";
+		}
+		if (x1 == 3)
+		{
+			transport = "teleporter.";
+		}
+			
+		JLabel lblXLaunchesDown = new JLabel("X launches down from the spaceship in the ships " + transport);
 		lblXLaunchesDown.setBounds(41, 27, 787, 15);
 		frame.getContentPane().add(lblXLaunchesDown);
-		
+		int x2 = (int)(Math.random()*((4-0)+0))+0;
+		System.out.println(x2);
+		if (x2 == 0)
+		{
+			terrain = " dusty ";
+		}
+		if (x2 == 1)
+		{
+			terrain = " murky ";
+		}
+		if (x2 == 2)
+		{
+			terrain = " clear ";
+		}
+		if (x2 == 3)
+		{
+			terrain = " mountainous";
+		}
 		JLabel lblTheLandscapeIs = new JLabel("The landscape is dusty/murky/clear/mountainous and seems safe for the meantime");
 		lblTheLandscapeIs.setBounds(41, 81, 787, 15);
 		frame.getContentPane().add(lblTheLandscapeIs);
@@ -220,10 +258,6 @@ public class ExplorePlanet
 		JLabel lblHavingLocatedThe = new JLabel("Having located the loot locker, X finds");
 		lblHavingLocatedThe.setBounds(41, 433, 787, 15);
 		frame.getContentPane().add(lblHavingLocatedThe);
-		
-		JLabel lblHeaapsOfStufff = new JLabel("HEAAPS OF STUFFF :)))))");
-		lblHeaapsOfStufff.setBounds(205, 460, 465, 75);
-		frame.getContentPane().add(lblHeaapsOfStufff);
 		
 		JLabel lblBagYou = new JLabel("Bag - You lost your only camo net/sentry/air support beacon in the trip down");
 		lblBagYou.setBounds(41, 250, 787, 15);

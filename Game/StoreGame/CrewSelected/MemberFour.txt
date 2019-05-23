@@ -1,1 +1,1 @@
-70, 60, 70, 2, false, qfqfqf, Thief, alive, 
+80, 50, 70, 2, false, vsvv, Mechanic, alive, 

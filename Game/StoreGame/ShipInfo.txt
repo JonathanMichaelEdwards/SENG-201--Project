@@ -1,1 +1,1 @@
-Attack, jono, 75, false, 0, 
+Storage, 100, 45, true, 0, 

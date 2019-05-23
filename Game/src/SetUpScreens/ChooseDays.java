@@ -21,7 +21,11 @@ import javax.swing.JProgressBar;
 // Self implemented
 import WindowSettings.Display;
 
-
+/**
+ * description of class
+ * @author jmy39
+ *
+ */
 
 public class ChooseDays 
 {
@@ -33,7 +37,10 @@ public class ChooseDays
 	private int piecesToCollect = 2;  // Pieces player selected
 	
 	
-	// Retrieving the number of days, selected from the slider
+	/**
+	 *  Retrieving the number of days, selected from the slider
+	 *  @param name <-name description
+	 */
 	void getDays()
 	{
 		lblSliderDays = new JLabel("Number of Spaceship parts: " + piecesToCollect);
