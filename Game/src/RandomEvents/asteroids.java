@@ -17,6 +17,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.SwingConstants;
 
 public class asteroids {
 
@@ -62,7 +63,7 @@ public class asteroids {
 		
 		
 	
-		btnSearchPlanet.setBounds(725, 580, 197, 97);
+		btnSearchPlanet.setBounds(940, 700, 250, 100);
 		frame.getContentPane().add(btnSearchPlanet);
 	}
 
@@ -104,13 +105,15 @@ public class asteroids {
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblFdf = new JLabel("<html>The shields have taken a hit from high speed asteroids we had no chance of detecting, let alone avoiding. See to it that the shields be repaired quickly, as too much damage will result in the ship exploding, killing our crew inside and ending the game!</html>");
-		lblFdf.setFont(new Font("Dialog", Font.BOLD, 23));
-		lblFdf.setBounds(201, 131, 905, 463);
+		lblFdf.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFdf.setFont(new Font("Dialog", Font.BOLD, 19));
+		lblFdf.setBounds(500, 297, 905, 294);
 		frame.getContentPane().add(lblFdf);
 		
 		JLabel lblAsteroids = new JLabel("ASTEROIDS!");
-		lblAsteroids.setFont(new Font("Dialog", Font.BOLD, 39));
-		lblAsteroids.setBounds(304, 37, 533, 82);
+		lblAsteroids.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAsteroids.setFont(new Font("Dialog", Font.BOLD, 24));
+		lblAsteroids.setBounds(650, 50, 600, 100);
 		frame.getContentPane().add(lblAsteroids);
 		btnBack();
 	}

@@ -19,6 +19,7 @@ import WindowSettings.Display;
 import MainScreen.MainScreen;
 import javax.swing.JCheckBox;
 import javax.swing.JRadioButton;
+import javax.swing.SwingConstants;
 
 
 public class CrewSleep {
@@ -239,14 +240,14 @@ public JFrame frame;
 				frame.setVisible(false);          // turn off screen
 			}
 		});
-		btnBack.setBounds(1054, 594, 207, 69);
+		btnBack.setBounds(940, 700, 250, 100);
 		frame.getContentPane().add(btnBack);
 	}
 	
 	
 	private void btnSleep()
 	{
-		btnSleep = new JButton("SLEEPTHIS");
+		btnSleep = new JButton("Send to sleep");
 		btnSleep.setEnabled(false);
 		btnSleep.addActionListener(new ActionListener() 
 		{
@@ -318,7 +319,7 @@ public JFrame frame;
 					
 			}
 		});
-		btnSleep.setBounds(154, 580, 309, 77);
+		btnSleep.setBounds(1200, 700, 250, 100);
 		frame.getContentPane().add(btnSleep);
 	}
 	
@@ -375,7 +376,7 @@ public JFrame frame;
 				btnSleep.setEnabled(true);
 			}
 		});
-		rBChar1.setBounds(214, 327, 144, 23);
+		rBChar1.setBounds(661, 530, 126, 23);
 		frame.getContentPane().add(rBChar1);
 		
 		
@@ -399,7 +400,7 @@ public JFrame frame;
 				btnSleep.setEnabled(true);
 			}
 		});
-		rBChar2.setBounds(428, 327, 144, 23);
+		rBChar2.setBounds(848, 530, 126, 23);
 		frame.getContentPane().add(rBChar2);
 		
 		
@@ -423,7 +424,7 @@ public JFrame frame;
 				btnSleep.setEnabled(true);
 			}
 		});
-		rBChar3.setBounds(607, 327, 144, 23);
+		rBChar3.setBounds(1039, 530, 126, 23);
 		frame.getContentPane().add(rBChar3);
 		
 		
@@ -447,7 +448,7 @@ public JFrame frame;
 				btnSleep.setEnabled(true);
 			}
 		});
-		rBChar4.setBounds(791, 327, 144, 23);
+		rBChar4.setBounds(1248, 530, 126, 23);
 		frame.getContentPane().add(rBChar4);
 	}
 	
@@ -467,133 +468,263 @@ public JFrame frame;
 //		frame.setUndecorated(true);  // Frame cannot be adjusted during game
 		
 		
+//		cBHealth1 = new JProgressBar();
+//		cBHealth1.setStringPainted(true);
+//		cBHealth1.setBounds(204, 107, 146, 30);
+//		frame.getContentPane().add(cBHealth1);
+//
+//		cBTired1 = new JProgressBar();
+//		cBTired1.setStringPainted(true);
+//		cBTired1.setBounds(204, 171, 146, 30);
+//		frame.getContentPane().add(cBTired1);
+//	
+//		cBHunger1 = new JProgressBar();
+//		cBHunger1.setStringPainted(true);
+//		cBHunger1.setBounds(204, 241, 146, 30);
+//		frame.getContentPane().add(cBHunger1);
+//		
+//		cBHealth2 = new JProgressBar();
+//		cBHealth2.setStringPainted(true);
+//		cBHealth2.setBounds(409, 107, 146, 36);
+//		frame.getContentPane().add(cBHealth2);
+//		
+//		cBTired2 = new JProgressBar();
+//		cBTired2.setStringPainted(true);
+//		cBTired2.setBounds(421, 171, 134, 30);
+//		frame.getContentPane().add(cBTired2);
+//		
+//		cBHunger2 = new JProgressBar();
+//		cBHunger2.setStringPainted(true);
+//		cBHunger2.setBounds(429, 241, 126, 30);
+//		frame.getContentPane().add(cBHunger2);
+//
+//		cBHealth3 = new JProgressBar();
+//		cBHealth3.setStringPainted(true);
+//		cBHealth3.setBounds(607, 101, 146, 52);
+//		frame.getContentPane().add(cBHealth3);
+//		
+//		cBTired3 = new JProgressBar();
+//		cBTired3.setStringPainted(true);
+//		cBTired3.setBounds(607, 165, 146, 52);
+//		frame.getContentPane().add(cBTired3);
+//
+//		cBHunger3 = new JProgressBar();
+//		cBHunger3.setStringPainted(true);
+//		cBHunger3.setBounds(607, 229, 146, 52);
+//		frame.getContentPane().add(cBHunger3);
+//
+//		cBHealth4 = new JProgressBar();
+//		cBHealth4.setStringPainted(true);
+//		cBHealth4.setBounds(791, 107, 146, 52);
+//		frame.getContentPane().add(cBHealth4);
+//		
+//		cBTired4 = new JProgressBar();
+//		cBTired4.setStringPainted(true);
+//		cBTired4.setBounds(791, 171, 146, 52);
+//		frame.getContentPane().add(cBTired4);
+//	
+//		cBHunger4 = new JProgressBar();
+//		cBHunger4.setStringPainted(true);
+//		cBHunger4.setBounds(788, 229, 146, 52);
+//		frame.getContentPane().add(cBHunger4);
+//
+//		cBName4 = new JLabel("...");
+//		cBName4.setFont(new Font("Dialog", Font.PLAIN, 18));
+//		cBName4.setBounds(791, 275, 127, 23);
+//		frame.getContentPane().add(cBName4);
+//
+//		cBName3 = new JLabel("...");
+//		cBName3.setFont(new Font("Dialog", Font.PLAIN, 18));
+//		cBName3.setBounds(607, 275, 126, 23);
+//		frame.getContentPane().add(cBName3);
+//
+//		cBName2 = new JLabel("...");
+//		cBName2.setFont(new Font("Dialog", Font.PLAIN, 18));
+//		cBName2.setBounds(419, 279, 119, 22);
+//		frame.getContentPane().add(cBName2);
+//		
+//		cBName1 = new JLabel("...");
+//		cBName1.setFont(new Font("Dialog", Font.PLAIN, 18));
+//		cBName1.setBounds(214, 273, 117, 28);
+//		frame.getContentPane().add(cBName1);
+//		
+//		JLabel label = new JLabel("Crew Info");
+//		label.setFont(new Font("Dialog", Font.PLAIN, 16));
+//		label.setBounds(435, 22, 112, 23);
+//		frame.getContentPane().add(label);
+//	
+//		JLabel label0 = new JLabel("Hunger:");
+//		label0.setFont(new Font("Dialog", Font.PLAIN, 16));
+//		label0.setBounds(60, 245, 81, 15);
+//		frame.getContentPane().add(label0);
+//		JLabel label1 = new JLabel("Tiredness:");
+//		label1.setFont(new Font("Dialog", Font.PLAIN, 16));
+//		label1.setBounds(60, 188, 81, 15);
+//		frame.getContentPane().add(label1);
+//
+//		JLabel label2 = new JLabel("Health:");
+//		label2.setFont(new Font("Dialog", Font.PLAIN, 16));
+//		label.setBounds(60, 125, 81, 15);
+//		frame.getContentPane().add(label2);
+//		
+//		JLabel label3 = new JLabel("Name:");
+//		label3.setFont(new Font("Dialog", Font.PLAIN, 16));
+//		label3.setBounds(62, 278, 81, 15);
+//		frame.getContentPane().add(label3);
+//
+//		JLabel label4 = new JLabel("Type:");
+//		label4.setFont(new Font("Dialog", Font.PLAIN, 16));
+//		label4.setBounds(60, 85, 81, 15);
+//		frame.getContentPane().add(label4);
+//
+//		cBType1 = new JLabel("...");
+//		cBType1.setFont(new Font("Dialog", Font.PLAIN, 18));
+//		cBType1.setBounds(221, 69, 129, 30);
+//		frame.getContentPane().add(cBType1);
+//
+//		cBType2 = new JLabel("...");
+//		cBType2.setFont(new Font("Dialog", Font.PLAIN, 18));
+//		cBType2.setBounds(432, 76, 119, 23);
+//		frame.getContentPane().add(cBType2);
+//
+//		cBType3 = new JLabel("...");
+//		cBType3.setFont(new Font("Dialog", Font.PLAIN, 18));
+//		cBType3.setBounds(624, 79, 129, 21);
+//		frame.getContentPane().add(cBType3);
+//
+//		cBType4 = new JLabel("...");
+//		cBType4.setFont(new Font("Dialog", Font.PLAIN, 18));
+//		cBType4.setBounds(803, 79, 134, 22);
+//		frame.getContentPane().add(cBType4);
 		cBHealth1 = new JProgressBar();
+		cBHealth1.setBounds(661, 326, 150, 30);
 		cBHealth1.setStringPainted(true);
-		cBHealth1.setBounds(204, 107, 146, 30);
 		frame.getContentPane().add(cBHealth1);
 
 		cBTired1 = new JProgressBar();
+		cBTired1.setBounds(661, 363, 150, 30);
 		cBTired1.setStringPainted(true);
-		cBTired1.setBounds(204, 171, 146, 30);
 		frame.getContentPane().add(cBTired1);
 	
 		cBHunger1 = new JProgressBar();
+		cBHunger1.setBounds(661, 405, 150, 30);
 		cBHunger1.setStringPainted(true);
-		cBHunger1.setBounds(204, 241, 146, 30);
 		frame.getContentPane().add(cBHunger1);
-		
+	
 		cBHealth2 = new JProgressBar();
+		cBHealth2.setBounds(848, 326, 150, 30);
 		cBHealth2.setStringPainted(true);
-		cBHealth2.setBounds(409, 107, 146, 36);
 		frame.getContentPane().add(cBHealth2);
 		
 		cBTired2 = new JProgressBar();
+		cBTired2.setBounds(848, 363, 150, 30);
 		cBTired2.setStringPainted(true);
-		cBTired2.setBounds(421, 171, 134, 30);
 		frame.getContentPane().add(cBTired2);
 		
 		cBHunger2 = new JProgressBar();
+		cBHunger2.setBounds(848, 403, 150, 30);
 		cBHunger2.setStringPainted(true);
-		cBHunger2.setBounds(429, 241, 126, 30);
 		frame.getContentPane().add(cBHunger2);
 
 		cBHealth3 = new JProgressBar();
+		cBHealth3.setBounds(1039, 326, 150, 30);
 		cBHealth3.setStringPainted(true);
-		cBHealth3.setBounds(607, 101, 146, 52);
 		frame.getContentPane().add(cBHealth3);
 		
 		cBTired3 = new JProgressBar();
+		cBTired3.setBounds(1039, 363, 150, 30);
 		cBTired3.setStringPainted(true);
-		cBTired3.setBounds(607, 165, 146, 52);
 		frame.getContentPane().add(cBTired3);
 
 		cBHunger3 = new JProgressBar();
+		cBHunger3.setBounds(1039, 403, 150, 30);
 		cBHunger3.setStringPainted(true);
-		cBHunger3.setBounds(607, 229, 146, 52);
 		frame.getContentPane().add(cBHunger3);
 
 		cBHealth4 = new JProgressBar();
+		cBHealth4.setBounds(1237, 326, 150, 30);
 		cBHealth4.setStringPainted(true);
-		cBHealth4.setBounds(791, 107, 146, 52);
 		frame.getContentPane().add(cBHealth4);
 		
 		cBTired4 = new JProgressBar();
+		cBTired4.setBounds(1237, 363, 150, 30);
 		cBTired4.setStringPainted(true);
-		cBTired4.setBounds(791, 171, 146, 52);
 		frame.getContentPane().add(cBTired4);
-	
+		
 		cBHunger4 = new JProgressBar();
+		cBHunger4.setBounds(1237, 403, 150, 30);
 		cBHunger4.setStringPainted(true);
-		cBHunger4.setBounds(788, 229, 146, 52);
 		frame.getContentPane().add(cBHunger4);
 
 		cBName4 = new JLabel("...");
+		cBName4.setBounds(1237, 445, 150, 30);
 		cBName4.setFont(new Font("Dialog", Font.PLAIN, 18));
-		cBName4.setBounds(791, 275, 127, 23);
 		frame.getContentPane().add(cBName4);
 
 		cBName3 = new JLabel("...");
+		cBName3.setBounds(1039, 445, 150, 30);
 		cBName3.setFont(new Font("Dialog", Font.PLAIN, 18));
-		cBName3.setBounds(607, 275, 126, 23);
 		frame.getContentPane().add(cBName3);
 
 		cBName2 = new JLabel("...");
+		cBName2.setBounds(848, 445, 150, 30);
 		cBName2.setFont(new Font("Dialog", Font.PLAIN, 18));
-		cBName2.setBounds(419, 279, 119, 22);
 		frame.getContentPane().add(cBName2);
 		
 		cBName1 = new JLabel("...");
+		cBName1.setBounds(661, 447, 150, 30);
 		cBName1.setFont(new Font("Dialog", Font.PLAIN, 18));
-		cBName1.setBounds(214, 273, 117, 28);
 		frame.getContentPane().add(cBName1);
 		
 		JLabel label = new JLabel("Crew Info");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setBounds(909, 238, 150, 30);
 		label.setFont(new Font("Dialog", Font.PLAIN, 16));
-		label.setBounds(435, 22, 112, 23);
 		frame.getContentPane().add(label);
 	
 		JLabel label0 = new JLabel("Hunger:");
+		label0.setBounds(517, 403, 150, 30);
 		label0.setFont(new Font("Dialog", Font.PLAIN, 16));
-		label0.setBounds(60, 245, 81, 15);
 		frame.getContentPane().add(label0);
-		JLabel label1 = new JLabel("Tiredness:");
-		label1.setFont(new Font("Dialog", Font.PLAIN, 16));
-		label1.setBounds(60, 188, 81, 15);
-		frame.getContentPane().add(label1);
 
+		JLabel label1 = new JLabel("Tiredness:");
+		label1.setBounds(517, 361, 150, 30);
+		label1.setFont(new Font("Dialog", Font.PLAIN, 16));
+		frame.getContentPane().add(label1);
+	
 		JLabel label2 = new JLabel("Health:");
+		label2.setBounds(517, 324, 150, 30);
 		label2.setFont(new Font("Dialog", Font.PLAIN, 16));
-		label.setBounds(60, 125, 81, 15);
 		frame.getContentPane().add(label2);
 		
 		JLabel label3 = new JLabel("Name:");
+		label3.setBounds(517, 445, 150, 30);
 		label3.setFont(new Font("Dialog", Font.PLAIN, 16));
-		label3.setBounds(62, 278, 81, 15);
 		frame.getContentPane().add(label3);
 
 		JLabel label4 = new JLabel("Type:");
+		label4.setBounds(517, 284, 150, 30);
 		label4.setFont(new Font("Dialog", Font.PLAIN, 16));
-		label4.setBounds(60, 85, 81, 15);
 		frame.getContentPane().add(label4);
 
 		cBType1 = new JLabel("...");
+		cBType1.setBounds(671, 284, 150, 30);
 		cBType1.setFont(new Font("Dialog", Font.PLAIN, 18));
-		cBType1.setBounds(221, 69, 129, 30);
 		frame.getContentPane().add(cBType1);
 
 		cBType2 = new JLabel("...");
+		cBType2.setBounds(886, 288, 119, 23);
 		cBType2.setFont(new Font("Dialog", Font.PLAIN, 18));
-		cBType2.setBounds(432, 76, 119, 23);
 		frame.getContentPane().add(cBType2);
 
 		cBType3 = new JLabel("...");
+		cBType3.setBounds(1064, 284, 150, 30);
 		cBType3.setFont(new Font("Dialog", Font.PLAIN, 18));
-		cBType3.setBounds(624, 79, 129, 21);
 		frame.getContentPane().add(cBType3);
 
 		cBType4 = new JLabel("...");
+		cBType4.setBounds(1248, 284, 150, 30);
 		cBType4.setFont(new Font("Dialog", Font.PLAIN, 18));
-		cBType4.setBounds(803, 79, 134, 22);
 		frame.getContentPane().add(cBType4);
 		frame.getContentPane().setLayout(null);
 		

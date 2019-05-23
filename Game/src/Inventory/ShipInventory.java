@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 import javax.swing.JRadioButton;
+import javax.swing.SwingConstants;
 
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -329,7 +330,7 @@ public class ShipInventory
 				setradioButtons(rBCookie);
 			}
 		});
-		rBCookie.setBounds(206, 166, 38, 23);
+		rBCookie.setBounds(848, 208, 38, 23);
 		frame.getContentPane().add(rBCookie);
 		
 		
@@ -341,7 +342,7 @@ public class ShipInventory
 				setradioButtons(rBPizza);
 			}
 		});
-		rBPizza.setBounds(200, 206, 38, 23);
+		rBPizza.setBounds(842, 248, 38, 23);
 		frame.getContentPane().add(rBPizza);
 		
 		
@@ -353,7 +354,7 @@ public class ShipInventory
 				setradioButtons(rBFullMeal);
 			}
 		});
-		rBFullMeal.setBounds(200, 245, 38, 23);
+		rBFullMeal.setBounds(842, 287, 38, 23);
 		frame.getContentPane().add(rBFullMeal);
 		
 		
@@ -365,7 +366,7 @@ public class ShipInventory
 				setradioButtons(rBPlague);
 			}
 		});
-		rBPlague.setBounds(514, 284, 38, 23);
+		rBPlague.setBounds(1350, 313, 38, 23);
 		frame.getContentPane().add(rBPlague);
 		
 		
@@ -377,7 +378,7 @@ public class ShipInventory
 				setradioButtons(rBSurgical);
 			}
 		});
-		rBSurgical.setBounds(514, 246, 38, 23);
+		rBSurgical.setBounds(1350, 275, 38, 23);
 		frame.getContentPane().add(rBSurgical);
 		
 		
@@ -389,7 +390,7 @@ public class ShipInventory
 				setradioButtons(rBMedkit);
 			}
 		});
-		rBMedkit.setBounds(514, 207, 38, 23);
+		rBMedkit.setBounds(1350, 236, 38, 23);
 		frame.getContentPane().add(rBMedkit);
 		
 		
@@ -401,7 +402,7 @@ public class ShipInventory
 				setradioButtons(rBBandages);
 			}
 		});
-		rBBandages.setBounds(514, 167, 38, 23);
+		rBBandages.setBounds(1350, 196, 38, 23);
 		frame.getContentPane().add(rBBandages);
 	}
 
@@ -409,7 +410,7 @@ public class ShipInventory
 	private void btnBack()
 	{
 		JButton btnBack = new JButton("Back");
-		btnBack.setBounds(845, 862, 198, 112);
+		btnBack.setBounds(940, 700, 250, 100);
 		btnBack.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent arg0)
@@ -532,7 +533,7 @@ public class ShipInventory
 				frame.setVisible(false);        // turn off screen
 			}
 		});
-		btnConfirmChoice.setBounds(113, 422, 198, 101);
+		btnConfirmChoice.setBounds(1200, 700, 250, 100);
 		frame.getContentPane().add(btnConfirmChoice);
 	}
 	
@@ -577,7 +578,7 @@ public class ShipInventory
 		 		}
 		 	}
 		 });
-		rdbtnCrew1.setBounds(514, 683, 144, 23);
+		rdbtnCrew1.setBounds(666, 641, 150, 23);
 		frame.getContentPane().add(rdbtnCrew1);
 		
 		
@@ -609,7 +610,7 @@ public class ShipInventory
 		 		}
 			}
 		});
-		rdbtnCrew2.setBounds(731, 683, 144, 23);
+		rdbtnCrew2.setBounds(853, 641, 150, 23);
 		frame.getContentPane().add(rdbtnCrew2);
 		
 	
@@ -639,7 +640,7 @@ public class ShipInventory
 		 		}
 			}
 		});
-		rdbtnCrew3.setBounds(917, 683, 144, 23);
+		rdbtnCrew3.setBounds(1044, 641, 150, 23);
 		frame.getContentPane().add(rdbtnCrew3);
 		
 
@@ -667,7 +668,7 @@ public class ShipInventory
 		 		} else btnCrewState = false;
 			}
 		});
-		rdbtnCrew4.setBounds(1101, 683, 144, 23);
+		rdbtnCrew4.setBounds(1242, 641, 150, 23);
 		frame.getContentPane().add(rdbtnCrew4);
 	}
 	
@@ -691,231 +692,369 @@ public class ShipInventory
 		
 		// Initialize displays
 		JLabel lblShipsInventory = new JLabel("Ships inventory");
-		lblShipsInventory.setBounds(503, 37, 188, 38);
+		lblShipsInventory.setHorizontalAlignment(SwingConstants.CENTER);
+		lblShipsInventory.setFont(new Font("Dialog", Font.BOLD, 24));
+		lblShipsInventory.setBounds(650, 50, 600, 100);
 		frame.getContentPane().add(lblShipsInventory);
 		
 		JLabel lblSelectAnItem = new JLabel("Select an Item to use");
 		lblSelectAnItem.setBounds(133, 37, 177, 38);
 		frame.getContentPane().add(lblSelectAnItem);
 		
-		JLabel lblSelectOneOf = new JLabel("Select one of your crew ");
-		lblSelectOneOf.setBounds(581, 338, 188, 32);
+		JLabel lblSelectOneOf = new JLabel("Select an item and a crew member to apply");
+		lblSelectOneOf.setBounds(797, 118, 356, 32);
 		frame.getContentPane().add(lblSelectOneOf);
 		
+//		pBarHealth1 = new JProgressBar();
+//		pBarHealth1.setStringPainted(true);
+//		pBarHealth1.setBounds(514, 460, 146, 30);
+//		frame.getContentPane().add(pBarHealth1);
+//
+//		pBarTired1 = new JProgressBar();
+//		pBarTired1.setStringPainted(true);
+//		pBarTired1.setBounds(514, 524, 146, 30);
+//		frame.getContentPane().add(pBarTired1);
+//	
+//
+//		pBarHunger1 = new JProgressBar();
+//		pBarHunger1.setStringPainted(true);
+//		pBarHunger1.setBounds(514, 594, 146, 30);
+//		frame.getContentPane().add(pBarHunger1);
+//		
+//	
+//		pBarHealth2 = new JProgressBar();
+//		pBarHealth2.setStringPainted(true);
+//		pBarHealth2.setBounds(719, 460, 146, 36);
+//		frame.getContentPane().add(pBarHealth2);
+//		
+//
+//		pBarTired2 = new JProgressBar();
+//		pBarTired2.setStringPainted(true);
+//		pBarTired2.setBounds(731, 524, 134, 30);
+//		frame.getContentPane().add(pBarTired2);
+//		
+//	
+//		pBarHunger2 = new JProgressBar();
+//		pBarHunger2.setStringPainted(true);
+//		pBarHunger2.setBounds(739, 594, 126, 30);
+//		frame.getContentPane().add(pBarHunger2);
+//	
+//
+//		pBarHealth3 = new JProgressBar();
+//		pBarHealth3.setStringPainted(true);
+//		pBarHealth3.setBounds(917, 454, 146, 52);
+//		frame.getContentPane().add(pBarHealth3);
+//		
+//	
+//		pBarTired3 = new JProgressBar();
+//		pBarTired3.setStringPainted(true);
+//		pBarTired3.setBounds(917, 518, 146, 52);
+//		frame.getContentPane().add(pBarTired3);
+//
+//		pBarHunger3 = new JProgressBar();
+//		pBarHunger3.setStringPainted(true);
+//		pBarHunger3.setBounds(917, 582, 146, 52);
+//		frame.getContentPane().add(pBarHunger3);
+//
+//		pBarHealth4 = new JProgressBar();
+//		pBarHealth4.setStringPainted(true);
+//		pBarHealth4.setBounds(1101, 460, 146, 52);
+//		frame.getContentPane().add(pBarHealth4);
+//		
+//		pBarTired4 = new JProgressBar();
+//		pBarTired4.setStringPainted(true);
+//		pBarTired4.setBounds(1101, 524, 146, 52);
+//		frame.getContentPane().add(pBarTired4);
+//		
+//	
+//		pBarHunger4 = new JProgressBar();
+//		pBarHunger4.setStringPainted(true);
+//		pBarHunger4.setBounds(1098, 582, 146, 52);
+//		frame.getContentPane().add(pBarHunger4);
+//
+//		siName4 = new JLabel("...");
+//		siName4.setBounds(1101, 628, 127, 23);
+//		siName4.setFont(new Font("Dialog", Font.PLAIN, 18));
+//		frame.getContentPane().add(siName4);
+//
+//		siName3 = new JLabel("...");
+//		siName3.setBounds(917, 628, 126, 23);
+//		siName3.setFont(new Font("Dialog", Font.PLAIN, 18));
+//		frame.getContentPane().add(siName3);
+//
+//		siName2 = new JLabel("...");
+//		siName2.setBounds(729, 632, 119, 22);
+//		siName2.setFont(new Font("Dialog", Font.PLAIN, 18));
+//		frame.getContentPane().add(siName2);
+//		
+//		siName1 = new JLabel("...");
+//		siName1.setBounds(524, 626, 117, 28);
+//		siName1.setFont(new Font("Dialog", Font.PLAIN, 18));
+//		frame.getContentPane().add(siName1);
+//		
+//		JLabel label = new JLabel("Crew Info");
+//		label.setBounds(370, 389, 81, 15);
+//		label.setFont(new Font("Dialog", Font.PLAIN, 16));
+//		frame.getContentPane().add(label);
+//
+//		JLabel label0 = new JLabel("Hunger:");
+//		label0.setBounds(370, 598, 81, 15);
+//		label0.setFont(new Font("Dialog", Font.PLAIN, 16));
+//		frame.getContentPane().add(label0);
+//
+//		JLabel label1 = new JLabel("Tiredness:");
+//		label1.setBounds(370, 541, 81, 15);
+//		label1.setFont(new Font("Dialog", Font.PLAIN, 16));
+//		frame.getContentPane().add(label1);
+//
+//		JLabel label2 = new JLabel("Health:");
+//		label2.setBounds(310, 353, 0, 0);
+//		label2.setFont(new Font("Dialog", Font.PLAIN, 16));
+//		frame.getContentPane().add(label2);
+//		
+//		
+//		JLabel label3 = new JLabel("Name:");
+//		label3.setBounds(372, 631, 81, 15);
+//		label3.setFont(new Font("Dialog", Font.PLAIN, 16));
+//		frame.getContentPane().add(label3);
+//		
+//		JLabel label4 = new JLabel("Type:");
+//		label4.setBounds(370, 438, 81, 15);
+//		label4.setFont(new Font("Dialog", Font.PLAIN, 16));
+//		frame.getContentPane().add(label4);
+//
+//		pBarType1 = new JLabel("...");
+//		pBarType1.setBounds(531, 422, 129, 30);
+//		pBarType1.setFont(new Font("Dialog", Font.PLAIN, 18));
+//		frame.getContentPane().add(pBarType1);
+//
+//		pBarType2 = new JLabel("...");
+//		pBarType2.setBounds(742, 429, 119, 23);
+//		pBarType2.setFont(new Font("Dialog", Font.PLAIN, 18));
+//		frame.getContentPane().add(pBarType2);
+//
+//		pBarType3 = new JLabel("...");
+//		pBarType3.setBounds(934, 432, 129, 21);
+//		pBarType3.setFont(new Font("Dialog", Font.PLAIN, 18));
+//		frame.getContentPane().add(pBarType3);
+//		
+//		pBarType4 = new JLabel("...");
+//		pBarType4.setBounds(1113, 432, 134, 22);
+//		pBarType4.setFont(new Font("Dialog", Font.PLAIN, 18));
+//		frame.getContentPane().add(pBarType4);
+		
+		
 		pBarHealth1 = new JProgressBar();
+		pBarHealth1.setBounds(666, 466, 150, 30);
 		pBarHealth1.setStringPainted(true);
-		pBarHealth1.setBounds(514, 460, 146, 30);
 		frame.getContentPane().add(pBarHealth1);
 
 		pBarTired1 = new JProgressBar();
+		pBarTired1.setBounds(666, 503, 150, 30);
 		pBarTired1.setStringPainted(true);
-		pBarTired1.setBounds(514, 524, 146, 30);
 		frame.getContentPane().add(pBarTired1);
 	
-
 		pBarHunger1 = new JProgressBar();
+		pBarHunger1.setBounds(666, 545, 150, 30);
 		pBarHunger1.setStringPainted(true);
-		pBarHunger1.setBounds(514, 594, 146, 30);
 		frame.getContentPane().add(pBarHunger1);
-		
 	
 		pBarHealth2 = new JProgressBar();
+		pBarHealth2.setBounds(853, 466, 150, 30);
 		pBarHealth2.setStringPainted(true);
-		pBarHealth2.setBounds(719, 460, 146, 36);
 		frame.getContentPane().add(pBarHealth2);
 		
-
 		pBarTired2 = new JProgressBar();
+		pBarTired2.setBounds(853, 503, 150, 30);
 		pBarTired2.setStringPainted(true);
-		pBarTired2.setBounds(731, 524, 134, 30);
 		frame.getContentPane().add(pBarTired2);
 		
-	
 		pBarHunger2 = new JProgressBar();
+		pBarHunger2.setBounds(853, 543, 150, 30);
 		pBarHunger2.setStringPainted(true);
-		pBarHunger2.setBounds(739, 594, 126, 30);
 		frame.getContentPane().add(pBarHunger2);
-	
 
 		pBarHealth3 = new JProgressBar();
+		pBarHealth3.setBounds(1044, 466, 150, 30);
 		pBarHealth3.setStringPainted(true);
-		pBarHealth3.setBounds(917, 454, 146, 52);
 		frame.getContentPane().add(pBarHealth3);
 		
-	
 		pBarTired3 = new JProgressBar();
+		pBarTired3.setBounds(1044, 503, 150, 30);
 		pBarTired3.setStringPainted(true);
-		pBarTired3.setBounds(917, 518, 146, 52);
 		frame.getContentPane().add(pBarTired3);
 
 		pBarHunger3 = new JProgressBar();
+		pBarHunger3.setBounds(1044, 543, 150, 30);
 		pBarHunger3.setStringPainted(true);
-		pBarHunger3.setBounds(917, 582, 146, 52);
 		frame.getContentPane().add(pBarHunger3);
 
 		pBarHealth4 = new JProgressBar();
+		pBarHealth4.setBounds(1242, 466, 150, 30);
 		pBarHealth4.setStringPainted(true);
-		pBarHealth4.setBounds(1101, 460, 146, 52);
 		frame.getContentPane().add(pBarHealth4);
 		
 		pBarTired4 = new JProgressBar();
+		pBarTired4.setBounds(1242, 503, 150, 30);
 		pBarTired4.setStringPainted(true);
-		pBarTired4.setBounds(1101, 524, 146, 52);
 		frame.getContentPane().add(pBarTired4);
 		
-	
 		pBarHunger4 = new JProgressBar();
+		pBarHunger4.setBounds(1242, 543, 150, 30);
 		pBarHunger4.setStringPainted(true);
-		pBarHunger4.setBounds(1098, 582, 146, 52);
 		frame.getContentPane().add(pBarHunger4);
 
 		siName4 = new JLabel("...");
-		siName4.setBounds(1101, 628, 127, 23);
 		siName4.setFont(new Font("Dialog", Font.PLAIN, 18));
+		siName4.setBounds(1242, 585, 150, 30);
 		frame.getContentPane().add(siName4);
 
 		siName3 = new JLabel("...");
-		siName3.setBounds(917, 628, 126, 23);
 		siName3.setFont(new Font("Dialog", Font.PLAIN, 18));
+		siName3.setBounds(1044, 585, 150, 30);
 		frame.getContentPane().add(siName3);
 
 		siName2 = new JLabel("...");
-		siName2.setBounds(729, 632, 119, 22);
 		siName2.setFont(new Font("Dialog", Font.PLAIN, 18));
+		siName2.setBounds(853, 585, 150, 30);
 		frame.getContentPane().add(siName2);
 		
 		siName1 = new JLabel("...");
-		siName1.setBounds(524, 626, 117, 28);
 		siName1.setFont(new Font("Dialog", Font.PLAIN, 18));
+		siName1.setBounds(666, 587, 150, 30);
 		frame.getContentPane().add(siName1);
 		
 		JLabel label = new JLabel("Crew Info");
-		label.setBounds(370, 389, 81, 15);
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setBounds(914, 378, 150, 30);
 		label.setFont(new Font("Dialog", Font.PLAIN, 16));
 		frame.getContentPane().add(label);
-
+	
 		JLabel label0 = new JLabel("Hunger:");
-		label0.setBounds(370, 598, 81, 15);
+		label0.setBounds(522, 543, 150, 30);
 		label0.setFont(new Font("Dialog", Font.PLAIN, 16));
 		frame.getContentPane().add(label0);
 
 		JLabel label1 = new JLabel("Tiredness:");
-		label1.setBounds(370, 541, 81, 15);
+		label1.setBounds(522, 501, 150, 30);
 		label1.setFont(new Font("Dialog", Font.PLAIN, 16));
 		frame.getContentPane().add(label1);
-
+	
 		JLabel label2 = new JLabel("Health:");
-		label2.setBounds(310, 353, 0, 0);
+		label2.setBounds(522, 464, 150, 30);
 		label2.setFont(new Font("Dialog", Font.PLAIN, 16));
 		frame.getContentPane().add(label2);
 		
-		
 		JLabel label3 = new JLabel("Name:");
-		label3.setBounds(372, 631, 81, 15);
+		label3.setBounds(522, 585, 150, 30);
 		label3.setFont(new Font("Dialog", Font.PLAIN, 16));
 		frame.getContentPane().add(label3);
 
-		lblCountcookie = new JLabel("<dynamic>");
-		lblCountcookie.setBounds(113, 170, 84, 15);
-		frame.getContentPane().add(lblCountcookie);
-		lblCountcookie.setText(Integer.toString(cookies));
-			
-		lblCountPizza = new JLabel("New label");
-		lblCountPizza.setBounds(113, 210, 84, 15);
-		frame.getContentPane().add(lblCountPizza);
-		lblCountPizza.setText(Integer.toString(pizzas));
-		
-		lblCountFullMeal = new JLabel("New label");
-		lblCountFullMeal.setBounds(113, 249, 84, 15);
-		frame.getContentPane().add(lblCountFullMeal);
-		lblCountFullMeal.setText(Integer.toString(fullMeal));
-		
-		lblCountBandages = new JLabel("New label");
-		lblCountBandages.setBounds(434, 170, 66, 15);
-		frame.getContentPane().add(lblCountBandages);
-		lblCountBandages.setText(Integer.toString(bandage));
-		
-		lblCountMedkit = new JLabel("New label");
-		lblCountMedkit.setBounds(434, 210, 66, 15);
-		frame.getContentPane().add(lblCountMedkit);
-		lblCountMedkit.setText(Integer.toString(medkit));
-		
-		lblCountSurgical = new JLabel("New label");
-		lblCountSurgical.setBounds(434, 249, 66, 15);
-		frame.getContentPane().add(lblCountSurgical);
-		lblCountSurgical.setText(Integer.toString(surgical));
-		
-		lblCountPotion = new JLabel("New label");
-		lblCountPotion.setBounds(434, 287, 66, 15);
-		frame.getContentPane().add(lblCountPotion);
-		lblCountPotion.setText(Integer.toString(potion));
-
 		JLabel label4 = new JLabel("Type:");
-		label4.setBounds(370, 438, 81, 15);
+		label4.setBounds(522, 424, 150, 30);
 		label4.setFont(new Font("Dialog", Font.PLAIN, 16));
 		frame.getContentPane().add(label4);
 
 		pBarType1 = new JLabel("...");
-		pBarType1.setBounds(531, 422, 129, 30);
+		pBarType1.setBounds(666, 424, 150, 30);
 		pBarType1.setFont(new Font("Dialog", Font.PLAIN, 18));
 		frame.getContentPane().add(pBarType1);
 
 		pBarType2 = new JLabel("...");
-		pBarType2.setBounds(742, 429, 119, 23);
+		pBarType2.setBounds(853, 424, 150, 30);
 		pBarType2.setFont(new Font("Dialog", Font.PLAIN, 18));
 		frame.getContentPane().add(pBarType2);
 
 		pBarType3 = new JLabel("...");
-		pBarType3.setBounds(934, 432, 129, 21);
+		pBarType3.setBounds(1044, 424, 150, 30);
 		pBarType3.setFont(new Font("Dialog", Font.PLAIN, 18));
 		frame.getContentPane().add(pBarType3);
+
+		pBarType4 = new JLabel("...");
+		pBarType4.setBounds(1242, 424, 150, 30);
+		pBarType4.setFont(new Font("Dialog", Font.PLAIN, 18));
+		frame.getContentPane().add(pBarType4);
+		frame.getContentPane().setLayout(null);
+		
+		frame.getContentPane().setLayout(null);
+		lblCountcookie = new JLabel("<dynamic>");
+		lblCountcookie.setBounds(755, 212, 84, 15);
+		frame.getContentPane().add(lblCountcookie);
+		lblCountcookie.setText(Integer.toString(cookies));
+			
+		lblCountPizza = new JLabel("New label");
+		lblCountPizza.setBounds(755, 252, 84, 15);
+		frame.getContentPane().add(lblCountPizza);
+		lblCountPizza.setText(Integer.toString(pizzas));
+		
+		lblCountFullMeal = new JLabel("New label");
+		lblCountFullMeal.setBounds(755, 291, 84, 15);
+		frame.getContentPane().add(lblCountFullMeal);
+		lblCountFullMeal.setText(Integer.toString(fullMeal));
+		
+		lblCountBandages = new JLabel("New label");
+		lblCountBandages.setBounds(1270, 199, 66, 15);
+		frame.getContentPane().add(lblCountBandages);
+		lblCountBandages.setText(Integer.toString(bandage));
+		
+		lblCountMedkit = new JLabel("New label");
+		lblCountMedkit.setBounds(1270, 239, 66, 15);
+		frame.getContentPane().add(lblCountMedkit);
+		lblCountMedkit.setText(Integer.toString(medkit));
+		
+		lblCountSurgical = new JLabel("New label");
+		lblCountSurgical.setBounds(1270, 278, 66, 15);
+		frame.getContentPane().add(lblCountSurgical);
+		lblCountSurgical.setText(Integer.toString(surgical));
+		
+		lblCountPotion = new JLabel("New label");
+		lblCountPotion.setBounds(1270, 316, 66, 15);
+		frame.getContentPane().add(lblCountPotion);
+		lblCountPotion.setText(Integer.toString(potion));
+
+
 		
 		
 		JLabel lblFood = new JLabel("Food");
-		lblFood.setBounds(54, 129, 66, 15);
+		lblFood.setBounds(696, 171, 66, 15);
 		lblFood.setFont(new Font("Dialog", Font.BOLD, 16));
 		frame.getContentPane().add(lblFood);
 		
 		JLabel lblMedical = new JLabel("Medical");
-		lblMedical.setBounds(258, 129, 110, 15);
+		lblMedical.setBounds(1094, 158, 110, 15);
 		lblMedical.setFont(new Font("Dialog", Font.BOLD, 16));
 		frame.getContentPane().add(lblMedical);
 		
 		JLabel lblCookieX = new JLabel("Cookie");
-		lblCookieX.setBounds(24, 170, 66, 15);
+		lblCookieX.setBounds(666, 212, 66, 15);
 		frame.getContentPane().add(lblCookieX);
 		
 		JLabel lblPizzaX = new JLabel("Pizza");
-		lblPizzaX.setBounds(24, 210, 66, 15);
+		lblPizzaX.setBounds(666, 252, 66, 15);
 		frame.getContentPane().add(lblPizzaX);
 		
 		JLabel lblFullMealX = new JLabel("Full meal");
-		lblFullMealX.setBounds(24, 249, 91, 15);
+		lblFullMealX.setBounds(666, 291, 91, 15);
 		frame.getContentPane().add(lblFullMealX);
 		
 		JLabel lblBandages = new JLabel("Bandages");
-		lblBandages.setBounds(258, 170, 126, 15);
+		lblBandages.setBounds(1094, 199, 126, 15);
 		frame.getContentPane().add(lblBandages);
 		
 		JLabel lblMedKit = new JLabel("Med Kit");
-		lblMedKit.setBounds(258, 210, 66, 15);
+		lblMedKit.setBounds(1094, 239, 66, 15);
 		frame.getContentPane().add(lblMedKit);
 		
 		JLabel lblSurgialSuite = new JLabel("Surgial Package");
-		lblSurgialSuite.setBounds(258, 249, 126, 15);
+		lblSurgialSuite.setBounds(1094, 278, 126, 15);
 		frame.getContentPane().add(lblSurgialSuite);
 		
 		JLabel lblSpacePlaguePotion = new JLabel("Space Plague Potion");
-		lblSpacePlaguePotion.setBounds(258, 287, 177, 15);
+		lblSpacePlaguePotion.setBounds(1094, 316, 177, 15);
 		frame.getContentPane().add(lblSpacePlaguePotion);
 	
 		
-		pBarType4 = new JLabel("...");
-		pBarType4.setBounds(1113, 432, 134, 22);
-		pBarType4.setFont(new Font("Dialog", Font.PLAIN, 18));
-		frame.getContentPane().add(pBarType4);
-		
-		frame.getContentPane().setLayout(null);
+
 
 		pBarType();
 		siName();

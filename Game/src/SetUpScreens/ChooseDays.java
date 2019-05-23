@@ -20,6 +20,7 @@ import javax.swing.JProgressBar;
 
 // Self implemented
 import WindowSettings.Display;
+import javax.swing.SwingConstants;
 
 /**
  * description of class
@@ -56,7 +57,7 @@ public class ChooseDays
 	        }
 		});
 		
-		lblSliderDays.setBounds(156, 494, 266, 25);
+		lblSliderDays.setBounds(836, 471, 266, 25);
 		frame.getContentPane().add(lblSliderDays);
 	}
 	
@@ -89,7 +90,7 @@ public class ChooseDays
 				ioFile.fileWrite(storeDays, "src/StoreGame/DaysInfo.txt");
 			}
 		});
-		btnAccept.setBounds(779, 494, 151, 103);
+		btnAccept.setBounds(1200, 700, 250, 100);
 		frame.getContentPane().add(btnAccept);
 	}
 	
@@ -107,24 +108,27 @@ public class ChooseDays
 		frame.setBounds(display.x, display.y, display.width, display.height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		frame.setUndecorated(false);  // Frame cannot be adjusted during game
 		frame.setResizable(false);
+//		frame.setUndecorated(false);  // Frame cannot be adjusted during game
+
 		
 		
 		// Initializing displays
 		JLabel lblWelcomeToThe = new JLabel("Welcome to the game");
+		lblWelcomeToThe.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWelcomeToThe.setFont(new Font("Dialog", Font.BOLD, 24));
-		lblWelcomeToThe.setBounds(351, 41, 310, 111);
+		lblWelcomeToThe.setBounds(650, 50, 600, 100);
 		frame.getContentPane().add(lblWelcomeToThe);
 		
 		JProgressBar progressBar = new JProgressBar();
 		progressBar.setMaximum(3);
 		progressBar.setStringPainted(true);
-		progressBar.setBounds(40, 53, 148, 25);
+		progressBar.setBounds(230, 170, 150, 30);
 		frame.getContentPane().add(progressBar);
 		
 		JLabel lblSetupProgress = new JLabel("Setup progress");
-		lblSetupProgress.setBounds(52, 23, 116, 18);
+		lblSetupProgress.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSetupProgress.setBounds(230, 125, 150, 30);
 		frame.getContentPane().add(lblSetupProgress);
 		
 		// Initializing a new slider to choose days
@@ -135,7 +139,7 @@ public class ChooseDays
 		slider.setFont(new Font("Dialog", Font.BOLD, 17));
 		slider.setMinimum(3);
 		slider.setMaximum(10);
-		slider.setBounds(278, 246, 406, 135);
+		slider.setBounds(735, 304, 406, 135);
 		slider.setMajorTickSpacing(1);
 		         
 		// Add positions label in the slider

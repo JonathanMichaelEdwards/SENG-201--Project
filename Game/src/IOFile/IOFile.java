@@ -11,10 +11,10 @@ public class IOFile
 	
 	private static HashMap<String, ArrayList<String>> init() {
 		HashMap<String, ArrayList<String>> files = new HashMap<>();
-		files.put("src/StoreGame/CrewSelected/MemberOne.txt", arrayOf("0", "0", "0", "0", "false", "jono", "Pilot", "dead", ""));
-		files.put("src/StoreGame/CrewSelected/MemberTwo.txt", arrayOf("0", "0", "0", "0", "false", "jono", "Pilot", "dead", ""));
-		files.put("src/StoreGame/CrewSelected/MemberThree.txt", arrayOf("0", "0", "0", "0", "false", "jono", "Pilot", "dead", ""));
-		files.put("src/StoreGame/CrewSelected/MemberFour.txt", arrayOf("0", "0", "0", "0", "false", "jono", "Pilot", "dead", ""));
+		files.put("src/StoreGame/CrewSelected/MemberOne.txt", arrayOf("0", "0", "0", "0", "false", "josh", "Pilot", "alive", ""));
+		files.put("src/StoreGame/CrewSelected/MemberTwo.txt", arrayOf("0", "0", "0", "0", "false", "jono", "Pilot", "alive", ""));
+		files.put("src/StoreGame/CrewSelected/MemberThree.txt", arrayOf("0", "0", "0", "0", "false", "jono", "Pilot", "alive", ""));
+		files.put("src/StoreGame/CrewSelected/MemberFour.txt", arrayOf("0", "0", "0", "0", "false", "jono", "Pilot", "alive", ""));
 		return files;
 	}
 	

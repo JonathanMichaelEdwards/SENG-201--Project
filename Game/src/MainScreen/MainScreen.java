@@ -26,6 +26,7 @@ import MainScreen.winGame;
 import RandomEvents.asteroids;
 import RandomEvents.alienPirates;
 import RandomEvents.spacePlague;
+import javax.swing.SwingConstants;
 
 
 
@@ -371,8 +372,8 @@ public class MainScreen
 	private void spaceOutpost()
 	{
 		btnSpaceOutpost = new JButton("Space Outpost");
-		btnSpaceOutpost.setBounds(521, 478, 249, 101);
-		btnSpaceOutpost.setFont(new Font("Lucida Grande", Font.PLAIN, 23));
+		btnSpaceOutpost.setBounds(773, 132, 300, 50);
+		btnSpaceOutpost.setFont(new Font("Dialog", Font.PLAIN, 19));
 		btnSpaceOutpost.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
@@ -390,8 +391,8 @@ public class MainScreen
 	private void newPlanet()
 	{
 		btnNewPlanet = new JButton("Travel to a new planet");
-		btnNewPlanet.setFont(new Font("Lucida Grande", Font.PLAIN, 23));
-		btnNewPlanet.setBounds(457, 726, 313, 113);
+		btnNewPlanet.setFont(new Font("Dialog", Font.PLAIN, 19));
+		btnNewPlanet.setBounds(1555, 146, 300, 50);
 		btnNewPlanet.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
@@ -410,8 +411,8 @@ public class MainScreen
 	private void explorePlanet()
 	{
 		JButton btnExplorePlanet = new JButton("Explore current planet");
-		btnExplorePlanet.setFont(new Font("Lucida Grande", Font.PLAIN, 23));
-		btnExplorePlanet.setBounds(60, 731, 313, 108);
+		btnExplorePlanet.setFont(new Font("Dialog", Font.PLAIN, 19));
+		btnExplorePlanet.setBounds(1555, 325, 300, 50);
 		btnExplorePlanet.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
@@ -428,47 +429,22 @@ public class MainScreen
 	// repair shields
 	private void repairShields()
 	{
-		btnRepairShields = new JButton("Repair Shields!");
-		btnRepairShields.setFont(new Font("Lucida Grande", Font.PLAIN, 23));
-		btnRepairShields.setBounds(540, 241, 230, 96);
-		btnRepairShields.addActionListener(new ActionListener() 
-		{
-			public void actionPerformed(ActionEvent e) 
-			{	
-				CrewRepair screen = new CrewRepair();
-				screen.frame.setVisible(true);    // turn on screen
-				frame.setVisible(false);          // turn off screen
-			}
-		});
-		frame.getContentPane().add(btnRepairShields);
 	}
 	
 	
 	// Go to sleep screen
 	private void btnSleep()
 	{
-		btnSleep = new JButton("Sleep");
-		btnSleep.addActionListener(new ActionListener() 
-		{
-			public void actionPerformed(ActionEvent arg0) 
-			{
-				CrewSleep sleep = new CrewSleep();
-				sleep.frame.setVisible(true);     // turn on screen
-				frame.setVisible(false);          // turn off screen
-			}
-		});
-		btnSleep.setFont(new Font("Lucida Grande", Font.PLAIN, 23));
-		btnSleep.setBounds(127, 239, 230, 101);
-		frame.getContentPane().add(btnSleep);
 		
 		lblptr = new JLabel("Parts on this planet: ...");
-		lblptr.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblptr.setBounds(112, 667, 256, 40);
+		lblptr.setHorizontalAlignment(SwingConstants.CENTER);
+		lblptr.setFont(new Font("Dialog", Font.BOLD, 12));
+		lblptr.setBounds(1555, 387, 300, 40);
 		frame.getContentPane().add(lblptr);
 		
 		lblPlague = new JLabel("... has the plague");
-		lblPlague.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblPlague.setBounds(81, 404, 488, 62);
+		lblPlague.setFont(new Font("Dialog", Font.BOLD, 12));
+		lblPlague.setBounds(76, 487, 488, 62);
 		frame.getContentPane().add(lblPlague);
 		
 		btnAbandonShip = new JButton("Abandon Ship");
@@ -482,6 +458,19 @@ public class MainScreen
 		});
 		btnAbandonShip.setBounds(1314, 959, 208, 62);
 		frame.getContentPane().add(btnAbandonShip);
+		btnSleep = new JButton("Sleep");
+		btnSleep.setBounds(76, 346, 300, 50);
+		frame.getContentPane().add(btnSleep);
+		btnSleep.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				CrewSleep sleep = new CrewSleep();
+				sleep.frame.setVisible(true);     // turn on screen
+				frame.setVisible(false);          // turn off screen
+			}
+		});
+		btnSleep.setFont(new Font("Dialog", Font.PLAIN, 19));
 		
 
 	}
@@ -498,8 +487,8 @@ public class MainScreen
 				frame.setVisible(false);         // turn off screen
 			}
 		});
-		btnInventory.setFont(new Font("Dialog", Font.PLAIN, 23));
-		btnInventory.setBounds(127, 478, 230, 101);
+		btnInventory.setFont(new Font("Dialog", Font.PLAIN, 19));
+		btnInventory.setBounds(76, 417, 300, 50);
 		frame.getContentPane().add(btnInventory);
 	}
 	
@@ -728,9 +717,9 @@ public class MainScreen
 				int curChar = 0;
 				memberActions4 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberFour.txt");
 				check = memberActions4.get(7);
+				System.out.println(check);
 				if (check.equals("dead"))
 				{
-
 					curChar ++;
 				}
 				if (check.equals("alive"))
@@ -780,8 +769,10 @@ public class MainScreen
 
 				}
 				
-				if (curChar == makeNormal ) //if the number of characters = number of alive characters, plague is possible
+				if (curChar == makeNormal )
+				{//if the number of characters = number of alive characters, plague is possible
 				System.out.println("plague");
+				
 //					SpaceOutpost outpost = new SpaceOutpost();
 //					outpost.frame.setVisible(true);  // turn on screen
 //					frame.setVisible(false);         // turn off screen
@@ -789,6 +780,7 @@ public class MainScreen
 					spacePlague outpost = new spacePlague();
 					outpost.frame.setVisible(true);  // turn on screen
 					frame.setVisible(false);         // turn off screen
+				}
 				if (curChar != makeNormal)  //if the number is different, eg. 1 or more is dead. only asteroids hit
 				{
 					System.out.println("asteroids");
@@ -810,8 +802,8 @@ public class MainScreen
 		}
 		);
 	
-		btnNextDay.setFont(new Font("Lucida Grande", Font.PLAIN, 23));
-		btnNextDay.setBounds(561, 51, 249, 101);
+		btnNextDay.setFont(new Font("Dialog", Font.PLAIN, 19));
+		btnNextDay.setBounds(76, 270, 300, 50);
 		frame.getContentPane().add(btnNextDay);
 	}
 	
@@ -833,48 +825,49 @@ public class MainScreen
 
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(884, 23, 1012, 646);
+		panel.setBounds(420, 339, 1012, 494);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JPanel panelShip = new JPanel();
-		panelShip.setBounds(23, 42, 530, 170);
+		panelShip.setBounds(23, 42, 530, 140);
 		panel.add(panelShip);
 		panelShip.setLayout(null);
 		
 		JLabel label = new JLabel("Name:");
-		label.setBounds(60, 112, 55, 15);
+		label.setBounds(60, 112, 55, 30);
 		panelShip.add(label);
 		label.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		
 		JLabel label_4 = new JLabel("Type:");
-		label_4.setBounds(60, 74, 55, 15);
+		label_4.setBounds(60, 70, 55, 30);
 		panelShip.add(label_4);
 		label_4.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		
 		lblShipName = new JLabel("...");
-		lblShipName.setBounds(127, 101, 132, 26);
+		lblShipName.setBounds(127, 101, 132, 30);
 		panelShip.add(lblShipName);
 		lblShipName.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		
 		lblShipType = new JLabel("...");
-		lblShipType.setBounds(127, 66, 132, 23);
+		lblShipType.setBounds(127, 66, 132, 30);
 		panelShip.add(lblShipType);
 		lblShipType.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		
 		lblParts = new JLabel("Parts: ...");
+		lblParts.setHorizontalAlignment(SwingConstants.CENTER);
 		lblParts.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblParts.setBounds(308, 75, 168, 33);
+		lblParts.setBounds(1555, 427, 300, 33);
 		frame.getContentPane().add(lblParts);
 		
-		JLabel lblHealth = new JLabel("Health");
-		lblHealth.setBounds(326, 36, 112, 23);
+		JLabel lblHealth = new JLabel("Shield health");
+		lblHealth.setBounds(259, 51, 250, 30);
 		panelShip.add(lblHealth);
 		lblHealth.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		
 		pBarShipHealth = new JProgressBar();
 		pBarShipHealth.setStringPainted(true);
-		pBarShipHealth.setBounds(259, 93, 223, 34);
+		pBarShipHealth.setBounds(259, 93, 250, 30);
 		panelShip.add(pBarShipHealth);
 		
 		JLabel lblSp = new JLabel("Ship Info");
@@ -883,112 +876,109 @@ public class MainScreen
 		lblSp.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		
 		JLabel lblStatus = new JLabel("Status");
-		lblStatus.setBounds(497, 6, 81, 33);
+		lblStatus.setHorizontalAlignment(SwingConstants.CENTER);
+		lblStatus.setBounds(450, 12, 112, 33);
 		panel.add(lblStatus);
 		lblStatus.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
 		
 		JPanel panelCrew = new JPanel();
-		panelCrew.setBounds(23, 230, 965, 376);
+		panelCrew.setBounds(23, 194, 965, 291);
 		panel.add(panelCrew);
 		panelCrew.setLayout(null);
 	
 		pBarHealth1 = new JProgressBar();
 		pBarHealth1.setStringPainted(true);
-		pBarHealth1.setBounds(204, 107, 146, 30);
+		pBarHealth1.setBounds(204, 81, 150, 30);
 		panelCrew.add(pBarHealth1);
 		
 		pBarTiredness1 = new JProgressBar();
 		pBarTiredness1.setStringPainted(true);
-		pBarTiredness1.setBounds(204, 171, 146, 30);
+		pBarTiredness1.setBounds(204, 118, 150, 30);
 		panelCrew.add(pBarTiredness1);
 		
 		pBarTiredness3 = new JProgressBar();
 		pBarTiredness3.setStringPainted(true);
-		pBarTiredness3.setBounds(607, 165, 134, 36);
+		pBarTiredness3.setBounds(582, 118, 150, 30);
 		panelCrew.add(pBarTiredness3);
 		
 		pBarTiredness4 = new JProgressBar();
 		pBarTiredness4.setStringPainted(true);
-		pBarTiredness4.setBounds(791, 171, 134, 30);
+		pBarTiredness4.setBounds(780, 118, 150, 30);
 		panelCrew.add(pBarTiredness4);
 		
 		pBarHunger2 = new JProgressBar();
 		pBarHunger2.setStringPainted(true);
-		pBarHunger2.setBounds(429, 241, 126, 30);
+		pBarHunger2.setBounds(391, 158, 150, 30);
 		panelCrew.add(pBarHunger2);
 		
 		pBarHunger1 = new JProgressBar();
 		pBarHunger1.setStringPainted(true);
-		pBarHunger1.setBounds(204, 241, 146, 30);
+		pBarHunger1.setBounds(204, 160, 150, 30);
 		panelCrew.add(pBarHunger1);
 		
 		pBarTiredness2 = new JProgressBar();
 		pBarTiredness2.setStringPainted(true);
-		pBarTiredness2.setBounds(421, 171, 134, 30);
+		pBarTiredness2.setBounds(391, 118, 150, 30);
 		panelCrew.add(pBarTiredness2);
 		
 		pBarHealth2 = new JProgressBar();
 		pBarHealth2.setStringPainted(true);
-		pBarHealth2.setBounds(409, 107, 146, 36);
+		pBarHealth2.setBounds(391, 81, 150, 30);
 		panelCrew.add(pBarHealth2);
 		
 		pBarHunger3 = new JProgressBar();
 		pBarHunger3.setStringPainted(true);
-		pBarHunger3.setBounds(607, 229, 146, 36);
+		pBarHunger3.setBounds(582, 158, 150, 30);
 		panelCrew.add(pBarHunger3);
 		
 		pBarHunger4 = new JProgressBar();
 		pBarHunger4.setStringPainted(true);
-		pBarHunger4.setBounds(791, 235, 146, 36);
+		pBarHunger4.setBounds(780, 158, 150, 30);
 		panelCrew.add(pBarHunger4);
 		
 		lblCashTotal = new JLabel("Current Cash = $ <dynamic>");
 		lblCashTotal.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblCashTotal.setBounds(66, 146, 326, 33);
+		lblCashTotal.setBounds(76, 170, 326, 33);
 		frame.getContentPane().add(lblCashTotal);
 		
 		lblMember4 = new JLabel("...");
-		lblMember4.setBounds(791, 273, 134, 25);
+		lblMember4.setBounds(780, 200, 150, 30);
 		panelCrew.add(lblMember4);
 		lblMember4.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
 		
 		lblMember3 = new JLabel("...");
-		lblMember3.setBounds(615, 273, 138, 25);
+		lblMember3.setBounds(582, 200, 150, 30);
 		panelCrew.add(lblMember3);
 		lblMember3.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
 		
-		lblMember2 = new JLabel("...");
-		lblMember2.setBounds(419, 279, 119, 22);
-		panelCrew.add(lblMember2);
-		lblMember2.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		
 		JLabel lblCrew_1 = new JLabel("Crew Info");
-		lblCrew_1.setBounds(435, 22, 112, 23);
+		lblCrew_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCrew_1.setBounds(429, 12, 112, 23);
 		panelCrew.add(lblCrew_1);
 		lblCrew_1.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		
 		JLabel lblHunger_2 = new JLabel("Hunger:");
 		lblHunger_2.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		lblHunger_2.setBounds(60, 245, 81, 15);
+		lblHunger_2.setBounds(60, 158, 150, 30);
 		panelCrew.add(lblHunger_2);
 		
 		JLabel lblHunger_1 = new JLabel("Tiredness:");
-		lblHunger_1.setBounds(60, 188, 81, 15);
+		lblHunger_1.setBounds(60, 116, 150, 30);
 		panelCrew.add(lblHunger_1);
 		lblHunger_1.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		
 		JLabel lblHunger = new JLabel("Health:");
-		lblHunger.setBounds(60, 125, 81, 15);
+		lblHunger.setBounds(60, 79, 150, 30);
 		panelCrew.add(lblHunger);
 		lblHunger.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		
 		JLabel lblNames = new JLabel("Name:");
-		lblNames.setBounds(62, 278, 81, 15);
+		lblNames.setBounds(60, 200, 150, 30);
 		panelCrew.add(lblNames);
 		lblNames.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		
 		lblMember2 = new JLabel("...");
-		lblMember2.setBounds(419, 279, 119, 22);
+		lblMember2.setBounds(391, 200, 150, 30);
 		panelCrew.add(lblMember2);
 		lblMember2.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
 //		ArrayList<String> crewMember2 = new ArrayList<String>(); // if this fella is dead, hide name :D
@@ -1002,7 +992,7 @@ public class MainScreen
 //		}
 		
 		lblMember1 = new JLabel("...");
-		lblMember1.setBounds(214, 273, 117, 28);
+		lblMember1.setBounds(204, 202, 150, 30);
 		panelCrew.add(lblMember1);
 		lblMember1.setFont(new Font("Lucida Grande", Font.PLAIN, 18)); 
 //		ArrayList<String> crewMember1 = new ArrayList<String>(); // if this fella is dead, hide name :D
@@ -1017,68 +1007,81 @@ public class MainScreen
 		
 		pBarHealth3 = new JProgressBar();
 		pBarHealth3.setStringPainted(true);
-		pBarHealth3.setBounds(607, 101, 139, 36);
+		pBarHealth3.setBounds(582, 81, 150, 30);
 		panelCrew.add(pBarHealth3);
 		
 		pBarHealth4 = new JProgressBar();
 		pBarHealth4.setStringPainted(true);
-		pBarHealth4.setBounds(791, 107, 139, 36);
+		pBarHealth4.setBounds(780, 81, 150, 30);
 		panelCrew.add(pBarHealth4);
 		
 		JLabel lblType = new JLabel("Type:");
 		lblType.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		lblType.setBounds(60, 85, 81, 15);
+		lblType.setBounds(60, 39, 150, 30);
 		panelCrew.add(lblType);
 		
 		lblCrewType1 = new JLabel("...");
 		lblCrewType1.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		lblCrewType1.setBounds(221, 69, 129, 30);
+		lblCrewType1.setBounds(214, 39, 150, 30);
 		panelCrew.add(lblCrewType1);
 		
 		lblCrewType2 = new JLabel("...");
 		lblCrewType2.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		lblCrewType2.setBounds(432, 76, 119, 23);
+		lblCrewType2.setBounds(429, 43, 119, 23);
 		panelCrew.add(lblCrewType2);
 		
 		lblCrewType3 = new JLabel("...");
 		lblCrewType3.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		lblCrewType3.setBounds(624, 79, 129, 21);
+		lblCrewType3.setBounds(607, 39, 150, 30);
 		panelCrew.add(lblCrewType3);
 		
 		lblCrewType4 = new JLabel("...");
 		lblCrewType4.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		lblCrewType4.setBounds(803, 79, 134, 22);
+		lblCrewType4.setBounds(791, 39, 150, 30);
 		panelCrew.add(lblCrewType4);
 		
 		player1 = new JLabel("...");
 		player1.setFont(new Font("Dialog", Font.PLAIN, 18));
-		player1.setBounds(214, 313, 117, 28);
+		player1.setBounds(204, 244, 150, 30);
 		panelCrew.add(player1);
 		
 		player2 = new JLabel("...");
 		player2.setFont(new Font("Dialog", Font.PLAIN, 18));
-		player2.setBounds(429, 313, 117, 28);
+		player2.setBounds(391, 242, 150, 30);
 		panelCrew.add(player2);
 		
 		player3 = new JLabel("...");
 		player3.setFont(new Font("Dialog", Font.PLAIN, 18));
-		player3.setBounds(617, 310, 117, 28);
+		player3.setBounds(582, 242, 117, 28);
 		panelCrew.add(player3);
 		
 		player4 = new JLabel("...");
 		player4.setFont(new Font("Dialog", Font.PLAIN, 18));
-		player4.setBounds(801, 310, 117, 28);
+		player4.setBounds(780, 242, 150, 30);
 		panelCrew.add(player4);
 		
 		JLabel lblactions = new JLabel("Actions Left:");
 		lblactions.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblactions.setBounds(44, 312, 126, 31);
+		lblactions.setBounds(60, 242, 150, 30);
 		panelCrew.add(lblactions);
+		btnRepairShields = new JButton("Repair Shields!");
+		btnRepairShields.setBounds(644, 76, 300, 50);
+		panel.add(btnRepairShields);
+		btnRepairShields.setFont(new Font("Dialog", Font.PLAIN, 19));
+		btnRepairShields.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{	
+				CrewRepair screen = new CrewRepair();
+				screen.frame.setVisible(true);    // turn on screen
+				frame.setVisible(false);          // turn off screen
+			}
+		});
 		
 		
 		lblDaysLeft = new JLabel("Day: ...");
 		lblDaysLeft.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblDaysLeft.setBounds(66, 75, 230, 33);
+		lblDaysLeft.setBounds(76, 225, 230, 33);
 		
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(lblDaysLeft);

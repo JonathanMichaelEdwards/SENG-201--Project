@@ -1,1 +1,0 @@
-80, 40, 70, 1, false, dgdhs, Soldier, alive, 

@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
+import javax.swing.SwingConstants;
 
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -265,7 +266,7 @@ public class MedicalStore
 	private void backToOutpost()
 	{
 		JButton btnBackToOutpost = new JButton("Back to Outpost");
-		btnBackToOutpost.setBounds(437, 441, 199, 53);
+		btnBackToOutpost.setBounds(940, 700, 250, 100);
 		btnBackToOutpost.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
@@ -282,7 +283,7 @@ public class MedicalStore
 	private void btnBuy()
 	{
 		btnBuy = new JButton("Buy");
-		btnBuy.setBounds(646, 441, 194, 53);
+		btnBuy.setBounds(1200, 700, 250, 100);
 		btnBuy.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent arg0) 
@@ -345,7 +346,7 @@ public class MedicalStore
 	private void cBoxActions()
 	{
 		cBox1 = new JComboBox();
-		cBox1.setBounds(342, 102, 90, 21);
+		cBox1.setBounds(867, 197, 90, 30);
 		cBox1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				cash1 = Integer.valueOf(((String)cBox1.getSelectedItem()).replace("x", "")) * 5;
@@ -362,7 +363,7 @@ public class MedicalStore
 		
 		
 		cBox2 = new JComboBox();
-		cBox2.setBounds(342, 143, 90, 21);
+		cBox2.setBounds(867, 244, 90, 30);
 		cBox2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				cash2 = Integer.valueOf(((String)cBox2.getSelectedItem()).replace("x", "")) * 8;
@@ -378,7 +379,7 @@ public class MedicalStore
 		frame.getContentPane().add(cBox2);
 		
 		cBox3 = new JComboBox();
-		cBox3.setBounds(342, 193, 90, 21);
+		cBox3.setBounds(867, 286, 90, 30);
 		cBox3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				cash3 = Integer.valueOf(((String)cBox3.getSelectedItem()).replace("x", "")) * 14;
@@ -394,7 +395,7 @@ public class MedicalStore
 		frame.getContentPane().add(cBox3);
 		
 		cBox4 = new JComboBox();
-		cBox4.setBounds(342, 276, 77, 21);
+		cBox4.setBounds(867, 328, 77, 30);
 		cBox4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				cash4 = Integer.valueOf(((String)cBox4.getSelectedItem()).replace("x", "")) * 50;
@@ -430,207 +431,338 @@ public class MedicalStore
 		
 		// Initializing displays
 		JLabel lblMedicalStore = new JLabel("Medical Store");
-		lblMedicalStore.setBounds(350, 31, 158, 30);
+		lblMedicalStore.setFont(new Font("Dialog", Font.BOLD, 24));
+		lblMedicalStore.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMedicalStore.setBounds(662, 49, 600, 100);
 		frame.getContentPane().add(lblMedicalStore);
 		
 		JLabel lblBandages = new JLabel("Bandages - 2 health restored");
-		lblBandages.setBounds(59, 106, 205, 13);
+		lblBandages.setBounds(576, 197, 205, 30);
 		frame.getContentPane().add(lblBandages);
 		
 		JLabel lblMedKit = new JLabel("Med Kit - 5 health restored");
-		lblMedKit.setBounds(59, 147, 205, 13);
+		lblMedKit.setBounds(576, 244, 205, 30);
 		frame.getContentPane().add(lblMedKit);
 		
 		JLabel lblSurgicalPackage = new JLabel("Surgical Package - Max health restored");
-		lblSurgicalPackage.setBounds(59, 197, 205, 13);
+		lblSurgicalPackage.setBounds(576, 286, 205, 30);
 		frame.getContentPane().add(lblSurgicalPackage);
 		
-		JLabel lblCommon = new JLabel("Common (Found by exploring planets)");
-		lblCommon.setBounds(59, 72, 283, 13);
-		frame.getContentPane().add(lblCommon);
-		
 		JLabel lblPlaguePotion = new JLabel("Space Plague Potion");
-		lblPlaguePotion.setBounds(59, 280, 218, 13);
+		lblPlaguePotion.setBounds(576, 328, 218, 30);
 		frame.getContentPane().add(lblPlaguePotion);
 		
 		JLabel label = new JLabel("$5");
-		label.setBounds(287, 105, 46, 15);
+		label.setBounds(806, 197, 46, 30);
 		frame.getContentPane().add(label);
 		
 		JLabel label_1 = new JLabel("$8");
-		label_1.setBounds(291, 147, 46, 13);
+		label_1.setBounds(806, 244, 46, 30);
 		frame.getContentPane().add(label_1);
 		
 		JLabel label_2 = new JLabel("$14");
-		label_2.setBounds(291, 197, 46, 13);
+		label_2.setBounds(804, 286, 46, 30);
 		frame.getContentPane().add(label_2);
 		
 		JLabel label_6 = new JLabel("$50");
-		label_6.setBounds(291, 280, 46, 13);
+		label_6.setBounds(806, 328, 46, 30);
 		frame.getContentPane().add(label_6);
 		
 		lblCurrentCash = new JLabel("Current Cash = $");
-		lblCurrentCash.setBounds(401, 63, 220, 21);
+		lblCurrentCash.setBounds(1306, 328, 220, 30);
 		frame.getContentPane().add(lblCurrentCash);
 		
 		lbl1 = new JLabel("= $ 0");
-		lbl1.setBounds(494, 102, 127, 21);
+		lbl1.setBounds(980, 197, 127, 30);
 		frame.getContentPane().add(lbl1);
 		
 		lbl2 = new JLabel("= $ 0");
-		lbl2.setBounds(494, 131, 158, 31);
+		lbl2.setBounds(980, 245, 158, 30);
 		frame.getContentPane().add(lbl2);
 		
 		lbl3 = new JLabel("= $ 0");
-		lbl3.setBounds(494, 188, 112, 30);
+		lbl3.setBounds(979, 286, 112, 30);
 		frame.getContentPane().add(lbl3);
 		
 		lbl4 = new JLabel("= $ 0");
-		lbl4.setBounds(483, 271, 138, 30);
+		lbl4.setBounds(979, 328, 138, 30);
 		frame.getContentPane().add(lbl4);
 		
 		lblAmount = new JLabel("Selected Amount = $ 0");
-		lblAmount.setBounds(416, 364, 220, 21);
+		lblAmount.setBounds(1306, 370, 220, 30);
 		frame.getContentPane().add(lblAmount);
-		cBHealth1 = new JProgressBar();
-		cBHealth1.setBounds(241, 609, 146, 30);
-		frame.getContentPane().add(cBHealth1);
+
 		
 		lblCountBandages = new JLabel("New label");
-		lblCountBandages.setBounds(586, 105, 112, 15);
+		lblCountBandages.setBounds(1177, 197, 84, 30);
 		frame.getContentPane().add(lblCountBandages);
 		lblCountBandages.setText(Integer.toString(bandage));
 		
 		lblCountMedkit = new JLabel("New label");
-		lblCountMedkit.setBounds(586, 135, 127, 15);
+		lblCountMedkit.setBounds(1177, 244, 84, 30);
 		frame.getContentPane().add(lblCountMedkit);
 		lblCountMedkit.setText(Integer.toString(medkit));
 		
 		lblCountSurgical = new JLabel("New label");
-		lblCountSurgical.setBounds(586, 196, 112, 15);
+		lblCountSurgical.setBounds(1177, 286, 84, 30);
 		frame.getContentPane().add(lblCountSurgical);
 		lblCountSurgical.setText(Integer.toString(surgical));
 		
 		lblCountPotion = new JLabel("New label");
-		lblCountPotion.setBounds(586, 279, 112, 15);
+		lblCountPotion.setBounds(1177, 328, 112, 30);
 		frame.getContentPane().add(lblCountPotion);
 		lblCountPotion.setText(Integer.toString(potion));
+		cBHealth1 = new JProgressBar();
+		cBHealth1.setBounds(662, 459, 150, 30);
+		cBHealth1.setStringPainted(true);
+		frame.getContentPane().add(cBHealth1);
 
 		cBTired1 = new JProgressBar();
-		cBTired1.setBounds(241, 673, 146, 30);
+		cBTired1.setBounds(662, 496, 150, 30);
+		cBTired1.setStringPainted(true);
 		frame.getContentPane().add(cBTired1);
 	
 		cBHunger1 = new JProgressBar();
-		cBHunger1.setBounds(241, 743, 146, 30);
+		cBHunger1.setBounds(662, 538, 150, 30);
+		cBHunger1.setStringPainted(true);
 		frame.getContentPane().add(cBHunger1);
-		
+	
 		cBHealth2 = new JProgressBar();
-		cBHealth2.setBounds(446, 609, 146, 36);
+		cBHealth2.setBounds(849, 459, 150, 30);
+		cBHealth2.setStringPainted(true);
 		frame.getContentPane().add(cBHealth2);
 		
 		cBTired2 = new JProgressBar();
-		cBTired2.setBounds(458, 673, 134, 30);
+		cBTired2.setBounds(849, 496, 150, 30);
+		cBTired2.setStringPainted(true);
 		frame.getContentPane().add(cBTired2);
 		
 		cBHunger2 = new JProgressBar();
-		cBHunger2.setBounds(466, 743, 126, 30);
+		cBHunger2.setBounds(849, 536, 150, 30);
+		cBHunger2.setStringPainted(true);
 		frame.getContentPane().add(cBHunger2);
-	
+
 		cBHealth3 = new JProgressBar();
-		cBHealth3.setBounds(644, 603, 146, 52);
+		cBHealth3.setBounds(1040, 459, 150, 30);
+		cBHealth3.setStringPainted(true);
 		frame.getContentPane().add(cBHealth3);
 		
 		cBTired3 = new JProgressBar();
-		cBTired3.setBounds(644, 667, 146, 52);
+		cBTired3.setBounds(1040, 496, 150, 30);
+		cBTired3.setStringPainted(true);
 		frame.getContentPane().add(cBTired3);
 
 		cBHunger3 = new JProgressBar();
-		cBHunger3.setBounds(644, 731, 146, 52);
+		cBHunger3.setBounds(1040, 536, 150, 30);
+		cBHunger3.setStringPainted(true);
 		frame.getContentPane().add(cBHunger3);
 
 		cBHealth4 = new JProgressBar();
-		cBHealth4.setBounds(828, 609, 146, 52);
+		cBHealth4.setBounds(1238, 459, 150, 30);
+		cBHealth4.setStringPainted(true);
 		frame.getContentPane().add(cBHealth4);
 		
 		cBTired4 = new JProgressBar();
-		cBTired4.setBounds(828, 673, 146, 52);
+		cBTired4.setBounds(1238, 496, 150, 30);
+		cBTired4.setStringPainted(true);
 		frame.getContentPane().add(cBTired4);
-	
+		
 		cBHunger4 = new JProgressBar();
-		cBHunger4.setBounds(825, 731, 146, 52);
+		cBHunger4.setBounds(1238, 536, 150, 30);
+		cBHunger4.setStringPainted(true);
 		frame.getContentPane().add(cBHunger4);
 
 		msName4 = new JLabel("...");
-		msName4.setBounds(828, 777, 127, 23);
 		msName4.setFont(new Font("Dialog", Font.PLAIN, 18));
+		msName4.setBounds(1238, 578, 150, 30);
 		frame.getContentPane().add(msName4);
 
 		msName3 = new JLabel("...");
-		msName3.setBounds(644, 777, 126, 23);
 		msName3.setFont(new Font("Dialog", Font.PLAIN, 18));
+		msName3.setBounds(1040, 578, 150, 30);
 		frame.getContentPane().add(msName3);
 
 		msName2 = new JLabel("...");
-		msName2.setBounds(456, 781, 119, 22);
 		msName2.setFont(new Font("Dialog", Font.PLAIN, 18));
+		msName2.setBounds(849, 578, 150, 30);
 		frame.getContentPane().add(msName2);
 		
 		msName1 = new JLabel("...");
-		msName1.setBounds(251, 775, 117, 28);
 		msName1.setFont(new Font("Dialog", Font.PLAIN, 18));
+		msName1.setBounds(662, 580, 150, 30);
 		frame.getContentPane().add(msName1);
 		
 		JLabel labell = new JLabel("Crew Info");
-		labell.setBounds(472, 524, 112, 23);
+		labell.setHorizontalAlignment(SwingConstants.CENTER);
+		labell.setBounds(910, 371, 150, 30);
 		labell.setFont(new Font("Dialog", Font.PLAIN, 16));
 		frame.getContentPane().add(labell);
 	
 		JLabel label0 = new JLabel("Hunger:");
-		label0.setBounds(97, 747, 81, 15);
+		label0.setBounds(518, 536, 150, 30);
 		label0.setFont(new Font("Dialog", Font.PLAIN, 16));
 		frame.getContentPane().add(label0);
 
 		JLabel label1 = new JLabel("Tiredness:");
-		label1.setBounds(97, 690, 81, 15);
+		label1.setBounds(518, 494, 150, 30);
 		label1.setFont(new Font("Dialog", Font.PLAIN, 16));
 		frame.getContentPane().add(label1);
 	
 		JLabel label2 = new JLabel("Health:");
-		label2.setBounds(37, 502, 0, 0);
+		label2.setBounds(518, 457, 150, 30);
 		label2.setFont(new Font("Dialog", Font.PLAIN, 16));
 		frame.getContentPane().add(label2);
 		
 		JLabel label3 = new JLabel("Name:");
-		label3.setBounds(99, 780, 81, 15);
+		label3.setBounds(518, 578, 150, 30);
 		label3.setFont(new Font("Dialog", Font.PLAIN, 16));
 		frame.getContentPane().add(label3);
 
 		JLabel label4 = new JLabel("Type:");
-		label4.setBounds(97, 587, 81, 15);
+		label4.setBounds(518, 417, 150, 30);
 		label4.setFont(new Font("Dialog", Font.PLAIN, 16));
 		frame.getContentPane().add(label4);
 
 		cBType1 = new JLabel("...");
+		cBType1.setBounds(662, 417, 150, 30);
 		cBType1.setFont(new Font("Dialog", Font.PLAIN, 18));
-		cBType1.setBounds(258, 571, 129, 30);
 		frame.getContentPane().add(cBType1);
 
 		cBType2 = new JLabel("...");
+		cBType2.setBounds(849, 417, 150, 30);
 		cBType2.setFont(new Font("Dialog", Font.PLAIN, 18));
-		cBType2.setBounds(469, 578, 119, 23);
 		frame.getContentPane().add(cBType2);
 
 		cBType3 = new JLabel("...");
+		cBType3.setBounds(1040, 417, 150, 30);
 		cBType3.setFont(new Font("Dialog", Font.PLAIN, 18));
-		cBType3.setBounds(661, 581, 129, 21);
 		frame.getContentPane().add(cBType3);
-	
+
 		cBType4 = new JLabel("...");
+		cBType4.setBounds(1238, 417, 150, 30);
 		cBType4.setFont(new Font("Dialog", Font.PLAIN, 18));
-		cBType4.setBounds(840, 581, 134, 22);
 		frame.getContentPane().add(cBType4);
-		
 		frame.getContentPane().setLayout(null);
+//		
+//		cBHealth1 = new JProgressBar();
+//		cBHealth1.setBounds(241, 609, 146, 30);
+//		frame.getContentPane().add(cBHealth1);
+//
+//		cBTired1 = new JProgressBar();
+//		cBTired1.setBounds(241, 673, 146, 30);
+//		frame.getContentPane().add(cBTired1);
+//	
+//		cBHunger1 = new JProgressBar();
+//		cBHunger1.setBounds(241, 743, 146, 30);
+//		frame.getContentPane().add(cBHunger1);
+//		
+//		cBHealth2 = new JProgressBar();
+//		cBHealth2.setBounds(446, 609, 146, 36);
+//		frame.getContentPane().add(cBHealth2);
+//		
+//		cBTired2 = new JProgressBar();
+//		cBTired2.setBounds(458, 673, 134, 30);
+//		frame.getContentPane().add(cBTired2);
+//		
+//		cBHunger2 = new JProgressBar();
+//		cBHunger2.setBounds(466, 743, 126, 30);
+//		frame.getContentPane().add(cBHunger2);
+//	
+//		cBHealth3 = new JProgressBar();
+//		cBHealth3.setBounds(644, 603, 146, 52);
+//		frame.getContentPane().add(cBHealth3);
+//		
+//		cBTired3 = new JProgressBar();
+//		cBTired3.setBounds(644, 667, 146, 52);
+//		frame.getContentPane().add(cBTired3);
+//
+//		cBHunger3 = new JProgressBar();
+//		cBHunger3.setBounds(644, 731, 146, 52);
+//		frame.getContentPane().add(cBHunger3);
+//
+//		cBHealth4 = new JProgressBar();
+//		cBHealth4.setBounds(828, 609, 146, 52);
+//		frame.getContentPane().add(cBHealth4);
+//		
+//		cBTired4 = new JProgressBar();
+//		cBTired4.setBounds(828, 673, 146, 52);
+//		frame.getContentPane().add(cBTired4);
+//	
+//		cBHunger4 = new JProgressBar();
+//		cBHunger4.setBounds(825, 731, 146, 52);
+//		frame.getContentPane().add(cBHunger4);
+//
+//		msName4 = new JLabel("...");
+//		msName4.setBounds(828, 777, 127, 23);
+//		msName4.setFont(new Font("Dialog", Font.PLAIN, 18));
+//		frame.getContentPane().add(msName4);
+//
+//		msName3 = new JLabel("...");
+//		msName3.setBounds(644, 777, 126, 23);
+//		msName3.setFont(new Font("Dialog", Font.PLAIN, 18));
+//		frame.getContentPane().add(msName3);
+//
+//		msName2 = new JLabel("...");
+//		msName2.setBounds(456, 781, 119, 22);
+//		msName2.setFont(new Font("Dialog", Font.PLAIN, 18));
+//		frame.getContentPane().add(msName2);
+//		
+//		msName1 = new JLabel("...");
+//		msName1.setBounds(251, 775, 117, 28);
+//		msName1.setFont(new Font("Dialog", Font.PLAIN, 18));
+//		frame.getContentPane().add(msName1);
+//		
+//		JLabel labell = new JLabel("Crew Info");
+//		labell.setBounds(472, 524, 112, 23);
+//		labell.setFont(new Font("Dialog", Font.PLAIN, 16));
+//		frame.getContentPane().add(labell);
+//	
+//		JLabel label0 = new JLabel("Hunger:");
+//		label0.setBounds(97, 747, 81, 15);
+//		label0.setFont(new Font("Dialog", Font.PLAIN, 16));
+//		frame.getContentPane().add(label0);
+//
+//		JLabel label1 = new JLabel("Tiredness:");
+//		label1.setBounds(97, 690, 81, 15);
+//		label1.setFont(new Font("Dialog", Font.PLAIN, 16));
+//		frame.getContentPane().add(label1);
+//	
+//		JLabel label2 = new JLabel("Health:");
+//		label2.setBounds(37, 502, 0, 0);
+//		label2.setFont(new Font("Dialog", Font.PLAIN, 16));
+//		frame.getContentPane().add(label2);
+//		
+//		JLabel label3 = new JLabel("Name:");
+//		label3.setBounds(99, 780, 81, 15);
+//		label3.setFont(new Font("Dialog", Font.PLAIN, 16));
+//		frame.getContentPane().add(label3);
+//
+//		JLabel label4 = new JLabel("Type:");
+//		label4.setBounds(97, 587, 81, 15);
+//		label4.setFont(new Font("Dialog", Font.PLAIN, 16));
+//		frame.getContentPane().add(label4);
+//
+//		cBType1 = new JLabel("...");
+//		cBType1.setFont(new Font("Dialog", Font.PLAIN, 18));
+//		cBType1.setBounds(258, 571, 129, 30);
+//		frame.getContentPane().add(cBType1);
+//
+//		cBType2 = new JLabel("...");
+//		cBType2.setFont(new Font("Dialog", Font.PLAIN, 18));
+//		cBType2.setBounds(469, 578, 119, 23);
+//		frame.getContentPane().add(cBType2);
+//
+//		cBType3 = new JLabel("...");
+//		cBType3.setFont(new Font("Dialog", Font.PLAIN, 18));
+//		cBType3.setBounds(661, 581, 129, 21);
+//		frame.getContentPane().add(cBType3);
+//	
+//		cBType4 = new JLabel("...");
+//		cBType4.setFont(new Font("Dialog", Font.PLAIN, 18));
+//		cBType4.setBounds(840, 581, 134, 22);
+//		frame.getContentPane().add(cBType4);
+//		
+//		frame.getContentPane().setLayout(null);
 		
 		
 

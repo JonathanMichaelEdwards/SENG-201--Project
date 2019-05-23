@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import SetUpScreens.CrewSelection;
+import WindowSettings.Display;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -42,8 +43,10 @@ public class Mechanic
 	private void initialize() 
 	{
 		frame = new JFrame();
-		frame.setBounds(100, 100, 1016, 664);
+		Display display = new Display(); 
+		frame.setBounds(display.x, display.y, display.width, display.height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblAbility = new JLabel("<html>Mechanic: \r\n" + 

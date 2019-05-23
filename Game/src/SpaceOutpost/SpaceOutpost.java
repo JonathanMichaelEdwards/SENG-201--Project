@@ -6,6 +6,7 @@ import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
+import javax.swing.SwingConstants;
 
 import IOFile.IOFile;
 
@@ -241,7 +242,7 @@ public class SpaceOutpost
 	private void medicalShop()
 	{
 		JButton btnClickHereTo = new JButton("Medical Shop");
-		btnClickHereTo.setBounds(137, 131, 183, 188);
+		btnClickHereTo.setBounds(512, 445, 300, 200);
 		btnClickHereTo.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
@@ -255,29 +256,14 @@ public class SpaceOutpost
 	}
 	
 	
-	// Go to the Convenience Store
-	private void convenienceStore()
-	{
-		JButton btnConvenienceStore = new JButton("Convenience Store");
-		btnConvenienceStore.setBounds(867, 131, 183, 188);
-		btnConvenienceStore.addActionListener(new ActionListener() 
-		{
-			public void actionPerformed(ActionEvent e) 
-			{
-				ConvenienceStore convenienceStore = new ConvenienceStore();
-				convenienceStore.frame.setVisible(true);  // turn on screen
-				frame.setVisible(false);                  // turn off screen
-			}
-		});
-		frame.getContentPane().add(btnConvenienceStore);
-	}
+	
 	
 	
 	// Go to the food shop
 	private void foodShop()
 	{
 		JButton btnFoodShop = new JButton("Food Shop");
-		btnFoodShop.setBounds(495, 131, 183, 188);
+		btnFoodShop.setBounds(1249, 445, 300, 200);
 		btnFoodShop.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
@@ -295,7 +281,7 @@ public class SpaceOutpost
 	private void goBack()
 	{
 		JButton btnBackToYour = new JButton("Back to your ship");
-		btnBackToYour.setBounds(1057, 850, 160, 55);
+		btnBackToYour.setBounds(910, 693, 250, 100);
 		btnBackToYour.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e) 
@@ -329,164 +315,157 @@ public class SpaceOutpost
 		
 		// Initializing displays
 		JLabel lblWelcomeToYour = new JLabel("Welcome to your local Space Station");
-		lblWelcomeToYour.setBounds(348, 47, 444, 45);
+		lblWelcomeToYour.setFont(new Font("Dialog", Font.BOLD, 24));
+		lblWelcomeToYour.setHorizontalAlignment(SwingConstants.CENTER);
+		lblWelcomeToYour.setBounds(650, 50, 600, 100);
 		frame.getContentPane().add(lblWelcomeToYour);
 		
 		JLabel lblMedicalShop = new JLabel("Purchase items to heal/boost your crew");
-		lblMedicalShop.setBounds(96, 331, 301, 55);
+		lblMedicalShop.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMedicalShop.setBounds(512, 667, 300, 50);
 		frame.getContentPane().add(lblMedicalShop);
 		
 		JLabel lblFoodShop = new JLabel("Purchase items to replenish Hunger");
-		lblFoodShop.setBounds(470, 341, 316, 34);
+		lblFoodShop.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFoodShop.setBounds(1249, 655, 300, 50);
 		frame.getContentPane().add(lblFoodShop);
 		
-		JLabel lblConvenienceStore = new JLabel("Purchase items to aid your quest");
-		lblConvenienceStore.setBounds(847, 365, 271, 34);
-		frame.getContentPane().add(lblConvenienceStore);
-		
 		lblCashTotal = new JLabel("Current Cash = $ <dynamic>");
-		lblCashTotal.setBounds(764, 62, 220, 21);
+		lblCashTotal.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCashTotal.setBounds(942, 571, 220, 21);
 		frame.getContentPane().add(lblCashTotal);
 	
 		cBHealth1 = new JProgressBar();
-		cBHealth1.setBounds(244, 494, 146, 30);
+		cBHealth1.setBounds(662, 260, 150, 30);
+		cBHealth1.setStringPainted(true);
 		frame.getContentPane().add(cBHealth1);
 
 		cBTired1 = new JProgressBar();
-		cBTired1.setBounds(244, 558, 146, 30);
+		cBTired1.setBounds(662, 297, 150, 30);
+		cBTired1.setStringPainted(true);
 		frame.getContentPane().add(cBTired1);
 	
-
 		cBHunger1 = new JProgressBar();
-		cBHunger1.setBounds(244, 628, 146, 30);
+		cBHunger1.setBounds(662, 339, 150, 30);
+		cBHunger1.setStringPainted(true);
 		frame.getContentPane().add(cBHunger1);
-		
 	
 		cBHealth2 = new JProgressBar();
-		cBHealth2.setBounds(449, 494, 146, 36);
+		cBHealth2.setBounds(849, 260, 150, 30);
+		cBHealth2.setStringPainted(true);
 		frame.getContentPane().add(cBHealth2);
 		
-
 		cBTired2 = new JProgressBar();
-		cBTired2.setBounds(461, 558, 134, 30);
+		cBTired2.setBounds(849, 297, 150, 30);
+		cBTired2.setStringPainted(true);
 		frame.getContentPane().add(cBTired2);
 		
-	
 		cBHunger2 = new JProgressBar();
-		cBHunger2.setBounds(469, 628, 126, 30);
+		cBHunger2.setBounds(849, 337, 150, 30);
+		cBHunger2.setStringPainted(true);
 		frame.getContentPane().add(cBHunger2);
-	
 
 		cBHealth3 = new JProgressBar();
-		cBHealth3.setBounds(646, 494, 146, 34);
+		cBHealth3.setBounds(1040, 260, 150, 30);
+		cBHealth3.setStringPainted(true);
 		frame.getContentPane().add(cBHealth3);
 		
-	
 		cBTired3 = new JProgressBar();
-		cBTired3.setBounds(647, 552, 146, 52);
+		cBTired3.setBounds(1040, 297, 150, 30);
+		cBTired3.setStringPainted(true);
 		frame.getContentPane().add(cBTired3);
 
 		cBHunger3 = new JProgressBar();
-		cBHunger3.setBounds(647, 616, 146, 52);
+		cBHunger3.setBounds(1040, 337, 150, 30);
+		cBHunger3.setStringPainted(true);
 		frame.getContentPane().add(cBHunger3);
 
-
-
 		cBHealth4 = new JProgressBar();
-		cBHealth4.setBounds(831, 494, 146, 52);
+		cBHealth4.setBounds(1238, 260, 150, 30);
+		cBHealth4.setStringPainted(true);
 		frame.getContentPane().add(cBHealth4);
 		
-	
 		cBTired4 = new JProgressBar();
-		cBTired4.setBounds(831, 558, 146, 52);
+		cBTired4.setBounds(1238, 297, 150, 30);
+		cBTired4.setStringPainted(true);
 		frame.getContentPane().add(cBTired4);
 		
-	
 		cBHunger4 = new JProgressBar();
-		cBHunger4.setBounds(828, 616, 146, 52);
+		cBHunger4.setBounds(1238, 337, 150, 30);
+		cBHunger4.setStringPainted(true);
 		frame.getContentPane().add(cBHunger4);
 
 		cBName4 = new JLabel("...");
-		cBName4.setBounds(831, 662, 127, 23);
 		cBName4.setFont(new Font("Dialog", Font.PLAIN, 18));
+		cBName4.setBounds(1238, 379, 150, 30);
 		frame.getContentPane().add(cBName4);
 
 		cBName3 = new JLabel("...");
-		cBName3.setBounds(647, 662, 126, 23);
 		cBName3.setFont(new Font("Dialog", Font.PLAIN, 18));
+		cBName3.setBounds(1040, 379, 150, 30);
 		frame.getContentPane().add(cBName3);
 
 		cBName2 = new JLabel("...");
-		cBName2.setBounds(459, 666, 119, 22);
 		cBName2.setFont(new Font("Dialog", Font.PLAIN, 18));
+		cBName2.setBounds(849, 379, 150, 30);
 		frame.getContentPane().add(cBName2);
 		
 		cBName1 = new JLabel("...");
-		cBName1.setBounds(254, 660, 117, 28);
 		cBName1.setFont(new Font("Dialog", Font.PLAIN, 18));
+		cBName1.setBounds(662, 381, 150, 30);
 		frame.getContentPane().add(cBName1);
 		
 		JLabel label = new JLabel("Crew Info");
-		label.setBounds(102, 429, 81, 15);
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setBounds(910, 172, 150, 30);
 		label.setFont(new Font("Dialog", Font.PLAIN, 16));
 		frame.getContentPane().add(label);
 	
-
 		JLabel label0 = new JLabel("Hunger:");
-		label0.setBounds(100, 632, 81, 15);
+		label0.setBounds(518, 337, 150, 30);
 		label0.setFont(new Font("Dialog", Font.PLAIN, 16));
 		frame.getContentPane().add(label0);
 
 		JLabel label1 = new JLabel("Tiredness:");
-		label1.setBounds(100, 575, 81, 15);
+		label1.setBounds(518, 295, 150, 30);
 		label1.setFont(new Font("Dialog", Font.PLAIN, 16));
 		frame.getContentPane().add(label1);
 	
-
 		JLabel label2 = new JLabel("Health:");
-		label2.setBounds(40, 387, 0, 0);
+		label2.setBounds(518, 258, 150, 30);
 		label2.setFont(new Font("Dialog", Font.PLAIN, 16));
 		frame.getContentPane().add(label2);
 		
-		
 		JLabel label3 = new JLabel("Name:");
-		label3.setBounds(102, 665, 81, 15);
+		label3.setBounds(518, 379, 150, 30);
 		label3.setFont(new Font("Dialog", Font.PLAIN, 16));
 		frame.getContentPane().add(label3);
 
-	
-
-		
-
-
 		JLabel label4 = new JLabel("Type:");
-		label4.setBounds(100, 472, 81, 15);
+		label4.setBounds(518, 218, 150, 30);
 		label4.setFont(new Font("Dialog", Font.PLAIN, 16));
 		frame.getContentPane().add(label4);
 
 		cBType1 = new JLabel("...");
-		cBType1.setBounds(261, 456, 129, 30);
+		cBType1.setBounds(672, 218, 150, 30);
 		cBType1.setFont(new Font("Dialog", Font.PLAIN, 18));
 		frame.getContentPane().add(cBType1);
 
 		cBType2 = new JLabel("...");
-		cBType2.setBounds(472, 463, 119, 23);
+		cBType2.setBounds(887, 222, 119, 23);
 		cBType2.setFont(new Font("Dialog", Font.PLAIN, 18));
 		frame.getContentPane().add(cBType2);
 
 		cBType3 = new JLabel("...");
-		cBType3.setBounds(664, 466, 129, 21);
+		cBType3.setBounds(1065, 218, 150, 30);
 		cBType3.setFont(new Font("Dialog", Font.PLAIN, 18));
 		frame.getContentPane().add(cBType3);
-	
 
 		cBType4 = new JLabel("...");
-		cBType4.setBounds(843, 466, 134, 22);
+		cBType4.setBounds(1249, 218, 150, 30);
 		cBType4.setFont(new Font("Dialog", Font.PLAIN, 18));
 		frame.getContentPane().add(cBType4);
-		
 		frame.getContentPane().setLayout(null);
-		
 		
 
 		//initialize storage arrays
@@ -501,7 +480,6 @@ public class SpaceOutpost
 		// Button Actions
 		foodShop();
 		medicalShop();
-		convenienceStore();
 		goBack();
 	}
 	

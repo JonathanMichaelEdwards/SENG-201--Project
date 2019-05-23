@@ -14,17 +14,16 @@ import IOFile.IOFile;
 import MainScreen.MainScreen;
 import NewPlanet.TravelPlanet;
 import WindowSettings.Display;
+import javax.swing.SwingConstants;
 
 public class spacePlague {
 
 	public JFrame frame;
-<<<<<<< HEAD
+
 	private JButton btnCheckInfection, btnLetsGetGoing;
-	private String readFile = "StoreGame/CrewSelected/";	
-=======
-	private JButton btnCheckInfection;
 	private String readFile = "src/StoreGame/CrewSelected/";	
->>>>>>> master
+
+	
 	private JLabel lblCrewMembersInfected;
 	private void btnBack()
 	{
@@ -40,11 +39,12 @@ public class spacePlague {
 			}
 		});
 		frame.getContentPane().setLayout(null);
-		btnLetsGetGoing.setBounds(655, 508, 210, 56);
+		btnLetsGetGoing.setBounds(940, 700, 250, 100);
 		frame.getContentPane().add(btnLetsGetGoing);
 		
 		lblCrewMembersInfected = new JLabel("Crew Members infected :");
-		lblCrewMembersInfected.setBounds(277, 735, 385, 61);
+		lblCrewMembersInfected.setFont(new Font("Dialog", Font.BOLD, 19));
+		lblCrewMembersInfected.setBounds(940, 615, 855, 61);
 		frame.getContentPane().add(lblCrewMembersInfected);
 	}
 
@@ -68,7 +68,7 @@ public class spacePlague {
 				int x = (int)(Math.random()*((3-0)+0))+0;
 	
 				if (x == 1) {
-
+					System.out.println("selects 1 fella");
 					member = ioFile.fileRead(readFile + "MemberOne.txt");
 					member.set(4, "true");
 					
@@ -93,6 +93,8 @@ public class spacePlague {
 					btnLetsGetGoing.setVisible(true);
 				}
 				if (x == 0) {
+					System.out.println("selects both fella");
+
 					member = ioFile.fileRead(readFile + "MemberOne.txt");
 					memberboth = ioFile.fileRead(readFile + "MemberTwo.txt");
 					member.set(4, "true");
@@ -129,6 +131,8 @@ public class spacePlague {
 					
 				}
 				if (x == 2){
+					System.out.println("selects 2nd fella");
+
 					member2 = ioFile.fileRead(readFile + "MemberTwo.txt");
 					member2.set(4, "true");
 					int health = Integer.parseInt(member2.get(0)) - 30;
@@ -151,7 +155,7 @@ public class spacePlague {
 			}
 		});
 		frame.getContentPane().setLayout(null);
-		btnCheckInfection.setBounds(336, 508, 307, 122);
+		btnCheckInfection.setBounds(1200, 700, 250, 100);
 		frame.getContentPane().add(btnCheckInfection);
 	}
 	
@@ -191,13 +195,14 @@ public class spacePlague {
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblFdf = new JLabel("<html>The re-emergence of the Space Plague took the craft while we were sleeping! I'll scan the crew members quickly, one or more of your crew has been infected and must be treated immediately! Use Plague Potion in your inventory or if you don't have it,  purchase Plague Potion from the Outpost. We must contain the spread before it gets worse, each crew member will lose 30hp every new day they are infected.</html>");
-		lblFdf.setFont(new Font("Dialog", Font.BOLD, 23));
-		lblFdf.setBounds(76, 131, 905, 400);
+		lblFdf.setFont(new Font("Dialog", Font.BOLD, 19));
+		lblFdf.setBounds(526, 136, 905, 400);
 		frame.getContentPane().add(lblFdf);
 		
 		JLabel lblSpacePlague = new JLabel("Space Plague");
-		lblSpacePlague.setFont(new Font("Dialog", Font.BOLD, 39));
-		lblSpacePlague.setBounds(304, 37, 533, 82);
+		lblSpacePlague.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSpacePlague.setFont(new Font("Dialog", Font.BOLD, 24));
+		lblSpacePlague.setBounds(650, 50, 600, 100);
 		frame.getContentPane().add(lblSpacePlague);
 		
 		

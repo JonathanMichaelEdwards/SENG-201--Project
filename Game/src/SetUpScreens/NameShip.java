@@ -18,6 +18,7 @@ import javax.swing.JProgressBar;
 import WindowSettings.Display;
 import MainScreen.MainScreen;
 import IOFile.IOFile;
+import javax.swing.SwingConstants;
 
 
 public class NameShip {
@@ -105,7 +106,7 @@ public class NameShip {
 			}
 		});
 		rdbtnRepairShip.setActionCommand("Repair");
-		rdbtnRepairShip.setBounds(244, 197, 144, 23);
+		rdbtnRepairShip.setBounds(716, 250, 144, 23);
 		frame.getContentPane().add(rdbtnRepairShip);
 	}
 	
@@ -122,7 +123,7 @@ public class NameShip {
 			}
 		});
 		rdbtnAttackShip.setActionCommand("Attack");
-		rdbtnAttackShip.setBounds(244, 231, 144, 23);
+		rdbtnAttackShip.setBounds(716, 284, 144, 23);
 		frame.getContentPane().add(rdbtnAttackShip);
 	}
 
@@ -139,7 +140,7 @@ public class NameShip {
 			}
 		});
 		rdbtnInvisibleShip.setActionCommand("Invisible");
-		rdbtnInvisibleShip.setBounds(244, 266, 144, 23);
+		rdbtnInvisibleShip.setBounds(716, 319, 144, 23);
 		frame.getContentPane().add(rdbtnInvisibleShip);
 	}
 	
@@ -156,7 +157,7 @@ public class NameShip {
 			}
 		});
 		rdbtnStorageShip.setActionCommand("Storage");
-		rdbtnStorageShip.setBounds(244, 306, 144, 23);
+		rdbtnStorageShip.setBounds(716, 359, 144, 23);
 		frame.getContentPane().add(rdbtnStorageShip);
 	}
 	
@@ -173,7 +174,7 @@ public class NameShip {
 			}
 		});
 		rdbtnMedicalShip.setActionCommand("Medical");
-		rdbtnMedicalShip.setBounds(244, 344, 144, 23);
+		rdbtnMedicalShip.setBounds(716, 397, 144, 23);
 		frame.getContentPane().add(rdbtnMedicalShip);
 	}
 
@@ -235,7 +236,7 @@ public class NameShip {
 	    		txtShipsName.setText("");
 	    	}
 	    });
-	    btnSetYourShips.setBounds(560, 305, 218, 45);
+	    btnSetYourShips.setBounds(904, 352, 250, 30);
 	    frame.getContentPane().add(btnSetYourShips);
 	}
 	
@@ -355,7 +356,7 @@ public class NameShip {
 				}
 			}
 		});
-		btnStart.setBounds(618, 374, 125, 77);
+		btnStart.setBounds(1200, 700, 250, 100);
 		frame.getContentPane().add(btnStart);
 	}
 	
@@ -379,113 +380,118 @@ public class NameShip {
 		
 		// Initializing displays
 		JLabel lblNameYourShip = new JLabel("Choose & Name Your ship");
-		lblNameYourShip.setFont(new Font("Dialog", Font.BOLD, 25));
-		lblNameYourShip.setBounds(223, 12, 430, 107);
+		lblNameYourShip.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNameYourShip.setFont(new Font("Dialog", Font.BOLD, 24));
+		lblNameYourShip.setBounds(650, 50, 600, 100);
 		frame.getContentPane().add(lblNameYourShip);
 		
 		txtShipsName = new JTextField();
-		txtShipsName.setBounds(504, 246, 186, 31);
+		txtShipsName.setBounds(904, 298, 250, 30);
 		frame.getContentPane().add(txtShipsName);
 		txtShipsName.setColumns(10);
 		
 		JLabel lblShipType = new JLabel("Ship Type");
 		lblShipType.setFont(new Font("Dialog", Font.BOLD, 19));
-		lblShipType.setBounds(250, 105, 125, 94);
+		lblShipType.setBounds(722, 158, 125, 94);
 		frame.getContentPane().add(lblShipType);
 		
 		JLabel lblNameShip = new JLabel("Name Ship");
 		lblNameShip.setFont(new Font("Dialog", Font.BOLD, 19));
-		lblNameShip.setBounds(560, 126, 134, 94);
+		lblNameShip.setBounds(961, 213, 134, 30);
 		frame.getContentPane().add(lblNameShip);
 		
 	    lblShipChosen = new JLabel("...");
-	    lblShipChosen.setBounds(75, 393, 212, 15);
+	    lblShipChosen.setBounds(970, 505, 212, 15);
 	    frame.getContentPane().add(lblShipChosen);
 	    
 	    lblNameOfShip = new JLabel("...");
-	    lblNameOfShip.setBounds(75, 436, 212, 15);
+	    lblNameOfShip.setBounds(970, 548, 212, 15);
 	    frame.getContentPane().add(lblNameOfShip);
 	    
 	    JLabel lblShipType_1 = new JLabel("Type:");
-	    lblShipType_1.setBounds(9, 393, 54, 15);
+	    lblShipType_1.setBounds(904, 505, 54, 15);
 	    frame.getContentPane().add(lblShipType_1);
 	    
 	    JLabel lblShipsName = new JLabel("Name:");
-	    lblShipsName.setBounds(9, 436, 47, 15);
+	    lblShipsName.setBounds(904, 548, 47, 15);
 	    frame.getContentPane().add(lblShipsName);
 	    
 	    JLabel lblShipStatus = new JLabel("Ship Status");
 	    lblShipStatus.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-	    lblShipStatus.setBounds(28, 343, 112, 23);
+	    lblShipStatus.setBounds(923, 455, 112, 23);
 	    frame.getContentPane().add(lblShipStatus);
 	    
 	    JLabel label = new JLabel("Setup progress");
-	    label.setBounds(28, 12, 116, 18);
+	    label.setHorizontalAlignment(SwingConstants.CENTER);
+	    label.setBounds(230, 125, 150, 30);
 	    frame.getContentPane().add(label);
 	    
 	    JProgressBar progressBar = new JProgressBar();
 	    progressBar.setValue(2);
 	    progressBar.setStringPainted(true);
 	    progressBar.setMaximum(3);
-	    progressBar.setBounds(9, 42, 148, 25);
+	    progressBar.setBounds(230, 170, 150, 30);
 	    frame.getContentPane().add(progressBar);
 	   
 	    lblMember1 = new JLabel("1. ...");
-	    lblMember1.setBounds(12, 198, 109, 15);
+	    lblMember1.setBounds(230, 386, 109, 15);
 	    frame.getContentPane().add(lblMember1);
 	    
 	    lblMember2 = new JLabel("2. ...");
-	    lblMember2.setBounds(12, 225, 117, 15);
+	    lblMember2.setBounds(230, 413, 117, 15);
 	    frame.getContentPane().add(lblMember2);
 	    
 	    lblMember3 = new JLabel("3. ...");
-	    lblMember3.setBounds(12, 252, 117, 15);
+	    lblMember3.setBounds(230, 440, 117, 15);
 	    frame.getContentPane().add(lblMember3);
 	    
 	    lblMember4 = new JLabel("4. ...");
-	    lblMember4.setBounds(12, 279, 117, 15);
+	    lblMember4.setBounds(230, 467, 117, 15);
 	    frame.getContentPane().add(lblMember4);
 	    
 	    lblName1 = new JLabel("...");
-	    lblName1.setBounds(134, 197, 109, 15);
+	    lblName1.setBounds(352, 385, 109, 15);
 	    frame.getContentPane().add(lblName1);
 	    
 	    lblName2 = new JLabel("...");
-	    lblName2.setBounds(134, 225, 109, 15);
+	    lblName2.setBounds(352, 413, 109, 15);
 	    frame.getContentPane().add(lblName2);
 	    
 	    lblName3 = new JLabel("...");
-	    lblName3.setBounds(134, 251, 109, 15);
+	    lblName3.setBounds(352, 439, 109, 15);
 	    frame.getContentPane().add(lblName3);
 	    
 	    lblName4 = new JLabel("...");
-	    lblName4.setBounds(134, 278, 109, 15);
+	    lblName4.setBounds(352, 466, 109, 15);
 	    frame.getContentPane().add(lblName4);
 	    
 	    JLabel lblCrewStatus = new JLabel("Crew");
+	    lblCrewStatus.setHorizontalAlignment(SwingConstants.CENTER);
 	    lblCrewStatus.setFont(new Font("Dialog", Font.PLAIN, 16));
-	    lblCrewStatus.setBounds(66, 142, 74, 23);
+	    lblCrewStatus.setBounds(230, 324, 150, 23);
 	    frame.getContentPane().add(lblCrewStatus);
 	    
 	    JLabel lblPiecesToCollect = new JLabel("Pieces to Collect");
+	    lblPiecesToCollect.setHorizontalAlignment(SwingConstants.CENTER);
 	    lblPiecesToCollect.setFont(new Font("Dialog", Font.PLAIN, 16));
-	    lblPiecesToCollect.setBounds(28, 79, 144, 23);
+	    lblPiecesToCollect.setBounds(230, 247, 150, 23);
 	    frame.getContentPane().add(lblPiecesToCollect);
 	    
 	    lblPieces = new JLabel("...");
-	    lblPieces.setBounds(67, 105, 54, 15);
+	    lblPieces.setHorizontalAlignment(SwingConstants.CENTER);
+	    lblPieces.setBounds(230, 279, 150, 15);
 	    frame.getContentPane().add(lblPieces);
 	    
 	    JLabel label_9 = new JLabel("Current Team");
-	    label_9.setBounds(12, 171, 109, 15);
+	    label_9.setBounds(230, 359, 109, 15);
 	    frame.getContentPane().add(label_9);
 	    
 	    JLabel label_10 = new JLabel("Names");
-	    label_10.setBounds(144, 171, 66, 15);
+	    label_10.setBounds(362, 359, 66, 15);
 	    frame.getContentPane().add(label_10);
 		
 		JLabel lblName = new JLabel("Please enter the name of your ship:");
-		lblName.setBounds(464, 216, 257, 15);
+		lblName.setBounds(904, 256, 250, 30);
 		frame.getContentPane().add(lblName);
 		
 	

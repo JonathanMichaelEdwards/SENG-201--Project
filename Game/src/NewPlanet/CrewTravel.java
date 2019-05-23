@@ -19,6 +19,8 @@ import SearchPlanet.ExplorePlanet;
 //Self implemented
 import WindowSettings.Display;
 import javax.swing.JCheckBox;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 
 public class CrewTravel {
@@ -170,6 +172,7 @@ public class CrewTravel {
 	private void btnBack()
 	{
 		JButton btnBack = new JButton("Back");
+		btnBack.setBounds(940, 700, 250, 100);
 		btnBack.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent arg0) 
@@ -179,7 +182,6 @@ public class CrewTravel {
 				frame.setVisible(false);          // turn off screen
 			}
 		});
-		btnBack.setBounds(1054, 594, 207, 69);
 		frame.getContentPane().add(btnBack);
 	}
 	
@@ -188,6 +190,7 @@ public class CrewTravel {
 	private void characterChoice()
 	{
 		character1 = new JCheckBox("Character 1");
+		character1.setBounds(661, 530, 126, 23);
 //		this part detects if we have enough turns left, if not the radio button is disabled
 		ArrayList<String> member = new ArrayList<String>();
 		String actionLeft;
@@ -214,11 +217,11 @@ public class CrewTravel {
 				}
 			}
 		});
-		character1.setBounds(221, 372, 126, 23);
 		frame.getContentPane().add(character1);
 		
 		
 		character2 = new JCheckBox("Character 2");
+		character2.setBounds(848, 530, 126, 23);
 		
 //		this part detects if we have enough turns left, if not the radio button is disabled
 		ArrayList<String> member2 = new ArrayList<String>();
@@ -246,12 +249,11 @@ public class CrewTravel {
 				}
 			}
 		});
-	
-		character2.setBounds(429, 372, 126, 23);
 		frame.getContentPane().add(character2);
 		
 		
 		character3 = new JCheckBox("Character 3");
+		character3.setBounds(1039, 530, 126, 23);
 //		this part detects if we have enough turns left, if not the radio button is disabled
 		ArrayList<String> member3 = new ArrayList<String>();
 		String actionLeft3;
@@ -279,11 +281,11 @@ public class CrewTravel {
 				}
 			}
 		});
-		character3.setBounds(624, 372, 126, 23);
 		frame.getContentPane().add(character3);
 		
 		
 		character4 = new JCheckBox("Character 4");
+		character4.setBounds(1248, 530, 126, 23);
 //		this part detects if we have enough turns left, if not the radio button is disabled
 		ArrayList<String> member4 = new ArrayList<String>();
 		String actionLeft4;
@@ -310,7 +312,6 @@ public class CrewTravel {
 				}
 			}
 		});
-		character4.setBounds(803, 372, 126, 23);
 		frame.getContentPane().add(character4);
 	}
 		
@@ -359,6 +360,7 @@ public class CrewTravel {
 	private void btnSearch()
 	{
 		btnSearchPlanet = new JButton("Search for a new Planet");
+		btnSearchPlanet.setBounds(1200, 700, 250, 100);
 		btnSearchPlanet.setEnabled(false);
 		btnSearchPlanet.addActionListener(new ActionListener() 
 		{
@@ -405,7 +407,6 @@ public class CrewTravel {
 			}
 		});
 		frame.getContentPane().setLayout(null);
-		btnSearchPlanet.setBounds(392, 514, 307, 122);
 		frame.getContentPane().add(btnSearchPlanet);
 	}
 	
@@ -484,140 +485,146 @@ public class CrewTravel {
 		frame.setBounds(display.x, display.y, display.width, display.height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
+		frame.getContentPane().setLayout(null);
 //		frame.setUndecorated(true);  // Frame cannot be adjusted during game
 		
 		
 		cpHealth1 = new JProgressBar();
+		cpHealth1.setBounds(661, 326, 150, 30);
 		cpHealth1.setStringPainted(true);
-		cpHealth1.setBounds(204, 107, 146, 30);
 		frame.getContentPane().add(cpHealth1);
 
 		cpTired1 = new JProgressBar();
+		cpTired1.setBounds(661, 363, 150, 30);
 		cpTired1.setStringPainted(true);
-		cpTired1.setBounds(204, 171, 146, 30);
 		frame.getContentPane().add(cpTired1);
 	
 		cpHunger1 = new JProgressBar();
+		cpHunger1.setBounds(661, 405, 150, 30);
 		cpHunger1.setStringPainted(true);
-		cpHunger1.setBounds(204, 241, 146, 30);
 		frame.getContentPane().add(cpHunger1);
 	
 		cpHealth2 = new JProgressBar();
+		cpHealth2.setBounds(848, 326, 150, 30);
 		cpHealth2.setStringPainted(true);
-		cpHealth2.setBounds(409, 107, 146, 30);
 		frame.getContentPane().add(cpHealth2);
 		
 		cpTired2 = new JProgressBar();
+		cpTired2.setBounds(848, 363, 150, 30);
 		cpTired2.setStringPainted(true);
-		cpTired2.setBounds(409, 171, 146, 30);
 		frame.getContentPane().add(cpTired2);
 		
 		cpHunger2 = new JProgressBar();
+		cpHunger2.setBounds(848, 403, 150, 30);
 		cpHunger2.setStringPainted(true);
-		cpHunger2.setBounds(409, 241, 146, 30);
 		frame.getContentPane().add(cpHunger2);
 
 		cpHealth3 = new JProgressBar();
+		cpHealth3.setBounds(1039, 326, 150, 30);
 		cpHealth3.setStringPainted(true);
-		cpHealth3.setBounds(607, 107, 146, 30);
 		frame.getContentPane().add(cpHealth3);
 		
 		cpTired3 = new JProgressBar();
+		cpTired3.setBounds(1039, 363, 150, 30);
 		cpTired3.setStringPainted(true);
-		cpTired3.setBounds(607, 171, 146, 30);
 		frame.getContentPane().add(cpTired3);
 
 		cpHunger3 = new JProgressBar();
+		cpHunger3.setBounds(1039, 403, 150, 30);
 		cpHunger3.setStringPainted(true);
-		cpHunger3.setBounds(607, 241, 146, 30);
 		frame.getContentPane().add(cpHunger3);
 
 		cpHealth4 = new JProgressBar();
+		cpHealth4.setBounds(1237, 326, 150, 30);
 		cpHealth4.setStringPainted(true);
-		cpHealth4.setBounds(791, 107, 146, 30);
 		frame.getContentPane().add(cpHealth4);
 		
 		cpTired4 = new JProgressBar();
+		cpTired4.setBounds(1237, 363, 150, 30);
 		cpTired4.setStringPainted(true);
-		cpTired4.setBounds(791, 171, 146, 30);
 		frame.getContentPane().add(cpTired4);
 		
 		cpHunger4 = new JProgressBar();
+		cpHunger4.setBounds(1237, 403, 150, 30);
 		cpHunger4.setStringPainted(true);
-		cpHunger4.setBounds(791, 241, 146, 30);
 		frame.getContentPane().add(cpHunger4);
 
 		cpName4 = new JLabel("...");
+		cpName4.setBounds(1237, 445, 150, 30);
 		cpName4.setFont(new Font("Dialog", Font.PLAIN, 18));
-		cpName4.setBounds(791, 275, 127, 23);
 		frame.getContentPane().add(cpName4);
 
 		cpName3 = new JLabel("...");
+		cpName3.setBounds(1039, 445, 150, 30);
 		cpName3.setFont(new Font("Dialog", Font.PLAIN, 18));
-		cpName3.setBounds(607, 275, 126, 23);
 		frame.getContentPane().add(cpName3);
 
 		cpName2 = new JLabel("...");
+		cpName2.setBounds(848, 445, 150, 30);
 		cpName2.setFont(new Font("Dialog", Font.PLAIN, 18));
-		cpName2.setBounds(419, 279, 119, 22);
 		frame.getContentPane().add(cpName2);
 		
 		cpName1 = new JLabel("...");
+		cpName1.setBounds(661, 447, 150, 30);
 		cpName1.setFont(new Font("Dialog", Font.PLAIN, 18));
-		cpName1.setBounds(214, 273, 117, 28);
 		frame.getContentPane().add(cpName1);
 		
 		JLabel label = new JLabel("Crew Info");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setBounds(909, 238, 150, 30);
 		label.setFont(new Font("Dialog", Font.PLAIN, 16));
-		label.setBounds(435, 22, 112, 23);
 		frame.getContentPane().add(label);
 	
 		JLabel label0 = new JLabel("Hunger:");
+		label0.setBounds(517, 403, 150, 30);
 		label0.setFont(new Font("Dialog", Font.PLAIN, 16));
-		label0.setBounds(60, 245, 81, 15);
 		frame.getContentPane().add(label0);
 
 		JLabel label1 = new JLabel("Tiredness:");
+		label1.setBounds(517, 361, 150, 30);
 		label1.setFont(new Font("Dialog", Font.PLAIN, 16));
-		label1.setBounds(60, 188, 81, 15);
 		frame.getContentPane().add(label1);
 	
 		JLabel label2 = new JLabel("Health:");
+		label2.setBounds(517, 324, 150, 30);
 		label2.setFont(new Font("Dialog", Font.PLAIN, 16));
-		label.setBounds(60, 125, 81, 15);
 		frame.getContentPane().add(label2);
 		
 		JLabel label3 = new JLabel("Name:");
+		label3.setBounds(517, 445, 150, 30);
 		label3.setFont(new Font("Dialog", Font.PLAIN, 16));
-		label3.setBounds(62, 278, 81, 15);
 		frame.getContentPane().add(label3);
 
 		JLabel label4 = new JLabel("Type:");
+		label4.setBounds(517, 284, 150, 30);
 		label4.setFont(new Font("Dialog", Font.PLAIN, 16));
-		label4.setBounds(60, 85, 81, 15);
 		frame.getContentPane().add(label4);
 
 		cpType1 = new JLabel("...");
+		cpType1.setBounds(671, 284, 150, 30);
 		cpType1.setFont(new Font("Dialog", Font.PLAIN, 18));
-		cpType1.setBounds(221, 69, 129, 30);
 		frame.getContentPane().add(cpType1);
 
 		cpType2 = new JLabel("...");
+		cpType2.setBounds(886, 288, 119, 23);
 		cpType2.setFont(new Font("Dialog", Font.PLAIN, 18));
-		cpType2.setBounds(432, 76, 119, 23);
 		frame.getContentPane().add(cpType2);
 
 		cpType3 = new JLabel("...");
+		cpType3.setBounds(1064, 284, 150, 30);
 		cpType3.setFont(new Font("Dialog", Font.PLAIN, 18));
-		cpType3.setBounds(624, 79, 129, 21);
 		frame.getContentPane().add(cpType3);
 
 		cpType4 = new JLabel("...");
+		cpType4.setBounds(1248, 284, 150, 30);
 		cpType4.setFont(new Font("Dialog", Font.PLAIN, 18));
-		cpType4.setBounds(803, 79, 134, 22);
 		frame.getContentPane().add(cpType4);
-		frame.getContentPane().setLayout(null);
 			
+
+		
+		
+		
+		
 
 		//initialize storage arrays
 		cpType();

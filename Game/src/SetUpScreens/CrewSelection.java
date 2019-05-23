@@ -27,6 +27,7 @@ import CrewTypes.Pilot;
 import CrewTypes.Soldier;
 import CrewTypes.Thief;
 import IOFile.IOFile;
+import javax.swing.SwingConstants;
 
 
 public class CrewSelection {
@@ -204,6 +205,7 @@ public class CrewSelection {
 	private void checkSoldier() 
 	{
 		selectSoldier = new JCheckBox("select");
+		selectSoldier.setHorizontalAlignment(SwingConstants.CENTER);
 		selectSoldier.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent arg0) 
@@ -215,13 +217,14 @@ public class CrewSelection {
 				addMember(charSelect[0], charNumber[0], "Soldier");
 			}
 		});
-		selectSoldier.setBounds(58, 506, 126, 23);
+		selectSoldier.setBounds(276, 474, 150, 23);
 		frame.getContentPane().add(selectSoldier);
 	}
 	
 	private void checkMedic() 
 	{
 		selectMedic = new JCheckBox("select");
+		selectMedic.setHorizontalAlignment(SwingConstants.CENTER);
 		selectMedic.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent arg0) 
@@ -233,13 +236,14 @@ public class CrewSelection {
 				addMember(charSelect[1], charNumber[1], "Medic");
 			}
 		});
-		selectMedic.setBounds(311, 506, 126, 23);
+		selectMedic.setBounds(506, 474, 150, 23);
 		frame.getContentPane().add(selectMedic);
 	}
 	
 	private void checkLeader() 
 	{
 		selectLeader = new JCheckBox("select");
+		selectLeader.setHorizontalAlignment(SwingConstants.CENTER);
 		selectLeader.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent arg0) 
@@ -252,13 +256,14 @@ public class CrewSelection {
 
 			}
 		});
-		selectLeader.setBounds(574, 506, 126, 23);
+		selectLeader.setBounds(771, 474, 150, 23);
 		frame.getContentPane().add(selectLeader);
 	}
 	
 	private void checkMechanic() 
 	{
 		selectMechanic = new JCheckBox("select");
+		selectMechanic.setHorizontalAlignment(SwingConstants.CENTER);
 		selectMechanic.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent arg0) 
@@ -270,13 +275,14 @@ public class CrewSelection {
 				addMember(charSelect[3], charNumber[3], "Mechanic");
 			}
 		});
-		selectMechanic.setBounds(851, 506, 126, 23);
+		selectMechanic.setBounds(1044, 474, 150, 23);
 		frame.getContentPane().add(selectMechanic);
 	}
 	
 	private void checkPilot() 
 	{
 		selectPilot = new JCheckBox("select");
+		selectPilot.setHorizontalAlignment(SwingConstants.CENTER);
 		selectPilot.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent arg0) 
@@ -288,13 +294,14 @@ public class CrewSelection {
 				addMember(charSelect[4], charNumber[4], "Pilot");
 			}
 		});
-		selectPilot.setBounds(1073, 509, 126, 23);
+		selectPilot.setBounds(1279, 474, 150, 23);
 		frame.getContentPane().add(selectPilot);
 	}
 	
 	private void checkThief() 
 	{
 		selectThief = new JCheckBox("select");
+		selectThief.setHorizontalAlignment(SwingConstants.CENTER);
 		selectThief.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent arg0) 
@@ -306,7 +313,7 @@ public class CrewSelection {
 				addMember(charSelect[5], charNumber[5], "Thief");
 			}
 		});
-		selectThief.setBounds(1313, 512, 126, 23);
+		selectThief.setBounds(1520, 474, 150, 23);
 		frame.getContentPane().add(selectThief);
 	}
 	
@@ -347,7 +354,7 @@ public class CrewSelection {
 		comboBoxSoldier.setToolTipText("");
 		comboBoxSoldier.setModel(new DefaultComboBoxModel<Object>(new String[] {"x1", "x2", "x3", "x4"}));
 		comboBoxSoldier.setMaximumRowCount(4);
-		comboBoxSoldier.setBounds(58, 561, 72, 36);
+		comboBoxSoldier.setBounds(276, 509, 150, 36);
 		frame.getContentPane().add(comboBoxSoldier);
 	}
 	
@@ -368,7 +375,7 @@ public class CrewSelection {
 		comboBoxMedic.setVisible(false);
 		comboBoxMedic.setModel(new DefaultComboBoxModel<Object>(new String[] {"x1", "x2", "x3", "x4"}));
 		comboBoxMedic.setMaximumRowCount(4);
-		comboBoxMedic.setBounds(320, 561, 72, 36);
+		comboBoxMedic.setBounds(506, 509, 150, 36);
 		frame.getContentPane().add(comboBoxMedic);
 	}
 	
@@ -390,7 +397,7 @@ public class CrewSelection {
 		comboBoxLeader.setVisible(false);
 		comboBoxLeader.setModel(new DefaultComboBoxModel<Object>(new String[] {"x1", "x2", "x3", "x4"}));
 		comboBoxLeader.setMaximumRowCount(4);
-		comboBoxLeader.setBounds(574, 561, 72, 36);
+		comboBoxLeader.setBounds(771, 509, 150, 36);
 		frame.getContentPane().add(comboBoxLeader);
 	}
 	
@@ -413,7 +420,7 @@ public class CrewSelection {
 		comboBoxMechanic.setVisible(false);
 		comboBoxMechanic.setModel(new DefaultComboBoxModel<Object>(new String[] {"x1", "x2", "x3", "x4"}));
 		comboBoxMechanic.setMaximumRowCount(4);
-		comboBoxMechanic.setBounds(837, 561, 72, 36);
+		comboBoxMechanic.setBounds(1034, 509, 150, 36);
 		frame.getContentPane().add(comboBoxMechanic);
 	}
 	
@@ -436,7 +443,7 @@ public class CrewSelection {
 		comboBoxPilot.setVisible(false);
 		comboBoxPilot.setModel(new DefaultComboBoxModel<Object>(new String[] {"x1", "x2", "x3", "x4"}));
 		comboBoxPilot.setMaximumRowCount(4);
-		comboBoxPilot.setBounds(1073, 561, 72, 36);
+		comboBoxPilot.setBounds(1279, 509, 150, 36);
 		frame.getContentPane().add(comboBoxPilot);
 	}
 	
@@ -460,7 +467,7 @@ public class CrewSelection {
 		comboBoxThief.setModel(new DefaultComboBoxModel<Object>(new String[] {"x1", "x2", "x3", "x4"}));
 		comboBoxThief.setSelectedIndex(0);
 		comboBoxThief.setMaximumRowCount(4);
-		comboBoxThief.setBounds(1313, 559, 72, 41);
+		comboBoxThief.setBounds(1510, 509, 150, 36);
 		frame.getContentPane().add(comboBoxThief);
 	}
 	
@@ -504,7 +511,7 @@ public class CrewSelection {
 				}
 			}
 		});
-		btnAcceptChars.setBounds(741, 663, 157, 54);
+		btnAcceptChars.setBounds(799, 569, 250, 100);
 		frame.getContentPane().add(btnAcceptChars);
 	}
 
@@ -533,7 +540,7 @@ public class CrewSelection {
 				} else JOptionPane.showMessageDialog(null, "Please complete the fields");  // Error message
 			}
 		});
-		btnNext.setBounds(1376, 778, 136, 47);
+		btnNext.setBounds(1200, 700, 250, 100);
 		frame.getContentPane().add(btnNext);
 	}
 
@@ -550,7 +557,7 @@ public class CrewSelection {
 				resetScreen();
 			}
 		});
-		btnReset.setBounds(1238, 774, 109, 54);
+		btnReset.setBounds(940, 700, 250, 100);
 		frame.getContentPane().add(btnReset);
 	}
 
@@ -584,7 +591,7 @@ public class CrewSelection {
 		
 			}
 		});
-		btnAcceptName.setBounds(482, 750, 157, 59);
+		btnAcceptName.setBounds(482, 700, 250, 100);
 		frame.getContentPane().add(btnAcceptName);
 	}
 	
@@ -602,8 +609,14 @@ public class CrewSelection {
 				frame.setVisible(false);          // turn off screen
 			}
 		});
-		thiefInfo.setBounds(1313, 402, 85, 21);
+		thiefInfo.setBounds(1510, 385, 150, 21);
 		frame.getContentPane().add(thiefInfo);
+		
+		JLabel lblCharacterSelection = new JLabel("Character Selection");
+		lblCharacterSelection.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCharacterSelection.setFont(new Font("Dialog", Font.BOLD, 24));
+		lblCharacterSelection.setBounds(650, 50, 600, 100);
+		frame.getContentPane().add(lblCharacterSelection);
 	}
 	
 	
@@ -620,7 +633,7 @@ public class CrewSelection {
 				frame.setVisible(false);          // turn off screen
 			}
 		});
-		pilotInfo.setBounds(1082, 402, 85, 21);
+		pilotInfo.setBounds(1279, 385, 150, 21);
 		frame.getContentPane().add(pilotInfo);
 	}
 	
@@ -638,7 +651,7 @@ public class CrewSelection {
 				frame.setVisible(false);          // turn off screen
 			}
 		});
-		mechanicInfo.setBounds(837, 402, 85, 21);
+		mechanicInfo.setBounds(1034, 385, 150, 21);
 		frame.getContentPane().add(mechanicInfo);
 	}
 	
@@ -656,7 +669,7 @@ public class CrewSelection {
 				frame.setVisible(false);          // turn off screen
 			}
 		});
-		leaderInfo.setBounds(574, 402, 85, 21);
+		leaderInfo.setBounds(771, 385, 150, 21);
 		frame.getContentPane().add(leaderInfo);
 	}
 	
@@ -674,7 +687,7 @@ public class CrewSelection {
 				frame.setVisible(false); 
 			}
 		});
-		soldierInfo.setBounds(58, 402, 85, 21);
+		soldierInfo.setBounds(276, 385, 150, 21);
 		frame.getContentPane().add(soldierInfo);
 	}
 	
@@ -692,7 +705,7 @@ public class CrewSelection {
 				frame.setVisible(false);          // turn off screen
 			}
 		});
-		medicInfo.setBounds(320, 403, 85, 21);
+		medicInfo.setBounds(510, 385, 146, 21);
 		frame.getContentPane().add(medicInfo);
 	}	
 	
@@ -732,17 +745,17 @@ public class CrewSelection {
 		
 		// Initializing displays
 		JLabel lblCurrentTeam = new JLabel("Current Team");
-		lblCurrentTeam.setBounds(43, 683, 109, 15);
+		lblCurrentTeam.setBounds(38, 664, 109, 30);
 		frame.getContentPane().add(lblCurrentTeam);
 		
 		txtFdName = new JTextField();
 		txtFdName.setEnabled(false);
-		txtFdName.setBounds(251, 748, 183, 36);
+		txtFdName.setBounds(276, 760, 183, 30);
 		frame.getContentPane().add(txtFdName);
 		txtFdName.setColumns(10);
 		
 		JLabel lblEntername = new JLabel("Names");
-		lblEntername.setBounds(175, 683, 66, 15);
+		lblEntername.setBounds(159, 664, 81, 30);
 		frame.getContentPane().add(lblEntername);
 	
 		lblMember1 = new JLabel("1. ...");
@@ -782,196 +795,199 @@ public class CrewSelection {
 		progressBar.setValue(1);
 		progressBar.setStringPainted(true);
 		progressBar.setMaximum(3);
-		progressBar.setBounds(12, 52, 148, 25);
+		progressBar.setBounds(230, 170, 150, 30);
 		frame.getContentPane().add(progressBar);
 		
 		label = new JLabel("Setup progress");
-		label.setBounds(18, 22, 116, 18);
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setBounds(230, 126, 150, 30);
 		frame.getContentPane().add(label);
 		
-		JLabel lblNewLabel = new JLabel("Character selection, you can choose VARIABLE characters in any combination to form your astronaut team");
-		lblNewLabel.setBounds(213, 65, 820, 27);
+		JLabel lblNewLabel = new JLabel("Character selection, you can choose 2-4 characters in any combination to form your astronaut team");
+		lblNewLabel.setBounds(602, 138, 820, 27);
 		frame.getContentPane().add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Click on any to view information");
-		lblNewLabel_1.setBounds(357, 158, 415, 16);
-		frame.getContentPane().add(lblNewLabel_1);
-		
 		JLabel lblSoldier = new JLabel("Soldier");
+		lblSoldier.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSoldier.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblSoldier.setBounds(58, 434, 117, 54);
+		lblSoldier.setBounds(276, 423, 150, 54);
 		frame.getContentPane().add(lblSoldier);
 		
 		JLabel lblMedic = new JLabel("Medic");
+		lblMedic.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMedic.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblMedic.setBounds(320, 434, 117, 54);
+		lblMedic.setBounds(506, 423, 150, 54);
 		frame.getContentPane().add(lblMedic);
 		
 		JLabel lblLeader = new JLabel("Leader");
+		lblLeader.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLeader.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblLeader.setBounds(574, 434, 117, 54);
+		lblLeader.setBounds(771, 423, 150, 54);
 		frame.getContentPane().add(lblLeader);
 		
 		JLabel lblMechanic = new JLabel("Mechanic");
+		lblMechanic.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMechanic.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblMechanic.setBounds(837, 434, 117, 54);
+		lblMechanic.setBounds(1034, 423, 150, 54);
 		frame.getContentPane().add(lblMechanic);
 		
 		JLabel lblPilot = new JLabel("Pilot");
+		lblPilot.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPilot.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblPilot.setBounds(1082, 427, 117, 47);
+		lblPilot.setBounds(1279, 427, 150, 47);
 		frame.getContentPane().add(lblPilot);
 		
 		JLabel lblThief = new JLabel("Thief");
+		lblThief.setHorizontalAlignment(SwingConstants.CENTER);
 		lblThief.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblThief.setBounds(1313, 428, 150, 47);
+		lblThief.setBounds(1510, 427, 150, 47);
 		frame.getContentPane().add(lblThief);
 		
 		JLabel lblPleaseInputA = new JLabel("Please input a name for:");
-		lblPleaseInputA.setBounds(251, 689, 157, 15);
+		lblPleaseInputA.setBounds(276, 664, 244, 30);
 		frame.getContentPane().add(lblPleaseInputA);
 		
 		comBoxCharChosen = new JComboBox<Object>();
 		comBoxCharChosen.setEnabled(false);
-		comBoxCharChosen.setBounds(251, 716, 142, 27);
+		comBoxCharChosen.setBounds(276, 715, 183, 30);
 		frame.getContentPane().add(comBoxCharChosen);
 		
 		JProgressBar soldierHealth = new JProgressBar();
 		soldierHealth.setStringPainted(true);
 		soldierHealth.setForeground(Color.black);
 		soldierHealth.setValue(80);
-		soldierHealth.setBounds(79, 259, 146, 11);
+		soldierHealth.setBounds(276, 259, 150, 30);
 		frame.getContentPane().add(soldierHealth);
 		
 		JProgressBar soldierTired = new JProgressBar();
 		soldierTired.setStringPainted(true);
 		soldierTired.setForeground(Color.black);
 		soldierTired.setValue(50);
-		soldierTired.setBounds(79, 282, 146, 11);
+		soldierTired.setBounds(276, 301, 150, 30);
 		frame.getContentPane().add(soldierTired);
 		
 		JProgressBar soldierHunger = new JProgressBar();
 		soldierHunger.setStringPainted(true);
 		soldierHunger.setForeground(Color.black);
 		soldierHunger.setValue(70);
-		soldierHunger.setBounds(79, 319, 146, 11);
+		soldierHunger.setBounds(276, 343, 150, 30);
 		frame.getContentPane().add(soldierHunger);
 		
 		JProgressBar medicHealth = new JProgressBar();
 		medicHealth.setStringPainted(true);
 		medicHealth.setForeground(Color.black);
 		medicHealth.setValue(100);
-		medicHealth.setBounds(309, 259, 146, 11);
+		medicHealth.setBounds(506, 259, 150, 30);
 		frame.getContentPane().add(medicHealth);
 		
 		JProgressBar medicTired = new JProgressBar();
 		medicTired.setStringPainted(true);
 		medicTired.setForeground(Color.black);
 		medicTired.setValue(50);
-		medicTired.setBounds(309, 286, 146, 11);
+		medicTired.setBounds(506, 301, 150, 30);
 		frame.getContentPane().add(medicTired);
 		
 		JProgressBar medicHunger = new JProgressBar();
 		medicHunger.setStringPainted(true);
 		medicHunger.setForeground(Color.black);
 		medicHunger.setValue(50);
-		medicHunger.setBounds(309, 319, 146, 11);
+		medicHunger.setBounds(506, 343, 150, 30);
 		frame.getContentPane().add(medicHunger);
 		
 		JLabel lblHealth = new JLabel("Health");
-		lblHealth.setBounds(12, 259, 46, 13);
+		lblHealth.setBounds(122, 259, 100, 30);
 		frame.getContentPane().add(lblHealth);
 		
 		JLabel lblTiredness = new JLabel("Tiredness");
-		lblTiredness.setBounds(12, 284, 66, 13);
+		lblTiredness.setBounds(122, 301, 100, 30);
 		frame.getContentPane().add(lblTiredness);
 		
 		JLabel lblHunger = new JLabel("Hunger");
-		lblHunger.setBounds(12, 317, 46, 13);
+		lblHunger.setBounds(122, 344, 100, 30);
 		frame.getContentPane().add(lblHunger);
 		
 		JProgressBar leaderHealth = new JProgressBar();
 		leaderHealth.setStringPainted(true);
 		leaderHealth.setForeground(Color.black);
 		leaderHealth.setValue(40);
-		leaderHealth.setBounds(574, 259, 146, 11);
+		leaderHealth.setBounds(771, 259, 150, 30);
 		frame.getContentPane().add(leaderHealth);
 		
 		JProgressBar leaderTired = new JProgressBar();
 		leaderTired.setStringPainted(true);
 		leaderTired.setForeground(Color.black);
 		leaderTired.setValue(60);
-		leaderTired.setBounds(574, 286, 146, 11);
+		leaderTired.setBounds(771, 301, 150, 30);
 		frame.getContentPane().add(leaderTired);
 		
 		JProgressBar leaderHunger = new JProgressBar();
 		leaderHunger.setStringPainted(true);
 		leaderHunger.setForeground(Color.black);
 		leaderHunger.setValue(100);
-		leaderHunger.setBounds(574, 319, 146, 11);
+		leaderHunger.setBounds(771, 343, 150, 30);
 		frame.getContentPane().add(leaderHunger);
 		
 		JProgressBar mechanicHealth = new JProgressBar();
 		mechanicHealth.setStringPainted(true);
 		mechanicHealth.setForeground(Color.black);
 		mechanicHealth.setValue(80);
-		mechanicHealth.setBounds(837, 259, 146, 11);
+		mechanicHealth.setBounds(1034, 259, 150, 30);
 		frame.getContentPane().add(mechanicHealth);
 		
 		JProgressBar mechanicTired = new JProgressBar();
 		mechanicTired.setStringPainted(true);
 		mechanicTired.setForeground(Color.black);
 		mechanicTired.setValue(50);
-		mechanicTired.setBounds(837, 286, 146, 11);
+		mechanicTired.setBounds(1034, 301, 150, 30);
 		frame.getContentPane().add(mechanicTired);
 		
 		JProgressBar mechanicHunger = new JProgressBar();
 		mechanicHunger.setStringPainted(true);
 		mechanicHunger.setForeground(Color.black);
 		mechanicHunger.setValue(70);
-		mechanicHunger.setBounds(837, 319, 146, 11);
+		mechanicHunger.setBounds(1034, 343, 150, 30);
 		frame.getContentPane().add(mechanicHunger);
 		
 		JProgressBar pilotHealth = new JProgressBar();
 		pilotHealth.setStringPainted(true);
 		pilotHealth.setForeground(Color.black);
 		pilotHealth.setValue(50);
-		pilotHealth.setBounds(1082, 259, 146, 11);
+		pilotHealth.setBounds(1279, 259, 150, 30);
 		frame.getContentPane().add(pilotHealth);
 		
 		JProgressBar pilotTired = new JProgressBar();
 		pilotTired.setStringPainted(true);
 		pilotTired.setForeground(Color.black);
 		pilotTired.setValue(100);
-		pilotTired.setBounds(1082, 286, 146, 11);
+		pilotTired.setBounds(1279, 301, 150, 30);
 		frame.getContentPane().add(pilotTired);
 		
 		JProgressBar pilotHunger = new JProgressBar();
 		pilotHunger.setStringPainted(true);
 		pilotHunger.setForeground(Color.black);
 		pilotHunger.setValue(50);
-		pilotHunger.setBounds(1082, 319, 146, 11);
+		pilotHunger.setBounds(1279, 343, 150, 30);
 		frame.getContentPane().add(pilotHunger);
 		
 		JProgressBar thiefHealth = new JProgressBar();
 		thiefHealth.setStringPainted(true);
 		thiefHealth.setForeground(Color.black);
 		thiefHealth.setValue(70);
-		thiefHealth.setBounds(1313, 259, 146, 11);
+		thiefHealth.setBounds(1510, 259, 150, 30);
 		frame.getContentPane().add(thiefHealth);
 		
 		JProgressBar thiefTired = new JProgressBar();
 		thiefTired.setStringPainted(true);
 		thiefTired.setForeground(Color.black);
 		thiefTired.setValue(60);
-		thiefTired.setBounds(1313, 286, 146, 11);
+		thiefTired.setBounds(1510, 301, 150, 30);
 		frame.getContentPane().add(thiefTired);
 		
 		JProgressBar thiefHunger = new JProgressBar();
 		thiefHunger.setStringPainted(true);
 		thiefHunger.setForeground(Color.black);
 		thiefHunger.setValue(70);
-		thiefHunger.setBounds(1313, 319, 146, 11);
+		thiefHunger.setBounds(1510, 343, 150, 30);
 		frame.getContentPane().add(thiefHunger);
 		
 		

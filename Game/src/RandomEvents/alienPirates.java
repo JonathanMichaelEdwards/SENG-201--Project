@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import IOFile.IOFile;
 import MainScreen.MainScreen;
 import WindowSettings.Display;
+import javax.swing.SwingConstants;
 
 public class alienPirates 
 {
@@ -33,7 +34,7 @@ public class alienPirates
 			}
 		});
 		frame.getContentPane().setLayout(null);
-		btnLetsGetGoing.setBounds(655, 508, 210, 56);
+		btnLetsGetGoing.setBounds(940, 700, 250, 100);
 		frame.getContentPane().add(btnLetsGetGoing);
 	}
 
@@ -53,8 +54,8 @@ public class alienPirates
 		JLabel lblFdf = new JLabel("<html>Your team has awoken to the screeching sound of boarding Alien Pirates, "
 				+ "raiding your ship for the supplies you carry, your team puts up a strong fight, and were lucky to have lost only &emsp;" + taken 
 				+ "  &emsp; from the inventory</html>");
-		lblFdf.setFont(new Font("Dialog", Font.BOLD, 23));
-		lblFdf.setBounds(201, 194, 905, 400);
+		lblFdf.setFont(new Font("Dialog", Font.BOLD, 19));
+		lblFdf.setBounds(521, 190, 905, 297);
 		frame.getContentPane().add(lblFdf);
 		
 		ioFile.fileWrite(inventory, "src/StoreGame/Inventory/Storage.txt");
@@ -75,8 +76,9 @@ public class alienPirates
 		randSelect();
 
 		JLabel lblPirates = new JLabel("PIRATES!");
-		lblPirates.setFont(new Font("Dialog", Font.BOLD, 39));
-		lblPirates.setBounds(304, 37, 533, 82);
+		lblPirates.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPirates.setFont(new Font("Dialog", Font.BOLD, 24));
+		lblPirates.setBounds(650, 50, 600, 100);
 		frame.getContentPane().add(lblPirates);
 		btnBack();
 	}

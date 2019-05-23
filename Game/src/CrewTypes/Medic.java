@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import SetUpScreens.CrewSelection;
+import WindowSettings.Display;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -40,8 +41,12 @@ public class Medic {
 	private void initialize() 
 	{
 		frame = new JFrame();
-		frame.setBounds(100, 100, 924, 681);
+		Display display = new Display();  // Retrieving game window size
+		
+		// Setting frame of window
+		frame.setBounds(display.x, display.y, display.width, display.height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
 		frame.getContentPane().setLayout(null);
 		
 		

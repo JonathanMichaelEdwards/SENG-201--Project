@@ -8,6 +8,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 
 import SetUpScreens.CrewSelection;
+import WindowSettings.Display;
 
 import java.awt.Font;
 import javax.swing.JButton;
@@ -33,7 +34,7 @@ public class Leader
 				frame.setVisible(false);          // turn off screen
 			}
 		});
-		btnBackToCrew.setBounds(681, 432, 171, 49);
+		btnBackToCrew.setBounds(424, 658, 317, 96);
 		frame.getContentPane().add(btnBackToCrew);
 	}
 	
@@ -43,10 +44,16 @@ public class Leader
 	*/
 	private void initialize() 
 	{
+		// Setting Layout dimensions
 		frame = new JFrame();
-		frame.setBounds(100, 100, 903, 543);
+		Display display = new Display();  // Retrieving game window size
+		
+		// Setting frame of window
+		frame.setBounds(display.x, display.y, display.width, display.height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
 		frame.getContentPane().setLayout(null);
+//		frame.setUndecorated(true);  // Frame cannot be adjusted during game
 		
 		JLabel lblAbility = new JLabel("<html>Leader: \r\n" + 
 				"ABILITY: The leader never gets hungry </html>");

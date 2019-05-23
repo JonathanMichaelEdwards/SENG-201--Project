@@ -11,12 +11,14 @@ import java.awt.event.ActionEvent;
 import MainScreen.MainScreen;
 import WindowSettings.Display;
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import java.awt.Font;
 
 
 public class TravelPlanet 
 {
 	public JFrame frame;
-	private final JLabel lblLookAtThis = new JLabel("look at this nice ass planet lol");
+	private final JLabel lblLookAtThis = new JLabel("Welcome to the next planet on your journey!");
 
 
 	private void btnBack()
@@ -32,9 +34,11 @@ public class TravelPlanet
 			}
 		});
 		frame.getContentPane().setLayout(null);
-		btnLetsGetGoing.setBounds(655, 508, 210, 56);
+		btnLetsGetGoing.setBounds(940, 700, 250, 100);
 		frame.getContentPane().add(btnLetsGetGoing);
-		lblLookAtThis.setBounds(460, 104, 800, 250);
+		lblLookAtThis.setFont(new Font("Dialog", Font.BOLD, 24));
+		lblLookAtThis.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLookAtThis.setBounds(650, 50, 600, 100);
 		frame.getContentPane().add(lblLookAtThis);
 	}
 	

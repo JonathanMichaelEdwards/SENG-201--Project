@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - ShipInventory",
+            "request": "launch",
+            "mainClass": "Inventory.ShipInventory"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - TravelPlanet",
+            "request": "launch",
+            "mainClass": "NewPlanet.TravelPlanet"
+        }
+    ]
+}

@@ -17,6 +17,7 @@ import MainScreen.MainScreen;
 import MainScreen.loseGame;
 import WindowSettings.Display;
 import MainScreen.winGame;
+import javax.swing.SwingConstants;
 
 
 public class ExplorePlanet 
@@ -47,7 +48,7 @@ public class ExplorePlanet
 		
 		lblCrewMembersLoot = new JLabel("What is found?");
 		lblCrewMembersLoot.setVisible(false);
-		lblCrewMembersLoot.setBounds(336, 440, 654, 25);
+		lblCrewMembersLoot.setBounds(674, 436, 654, 30);
 		frame.getContentPane().add(lblCrewMembersLoot);
 	}
 	
@@ -154,20 +155,13 @@ public class ExplorePlanet
 						for (int i = 0; i < z; i++) {
 							inventory2.add("pizza");
 						}
-<<<<<<< HEAD
-						bank1 = ioFile1.fileRead("StoreGame/CashInfo.txt");
-						int rand2 = (int)(Math.random()*((100-50)+50))+50;
-						int cash2 = Integer.parseInt(bank1.get(0)) + rand2;
-						bank1.set(0, "" + cash2);
-						ioFile1.fileWrite(bank1, "StoreGame/CashInfo.txt");
-						ioFile1.fileWrite(inventory2, readStorage + ".txt");
-=======
+
 						bank = ioFile.fileRead("src/StoreGame/CashInfo.txt");
 						int rand2 = (int)(Math.random()*((100-50)+50))+50;
 						int cash2 = Integer.parseInt(bank.get(0)) + rand2;
 						bank.set(0, "" + cash2);
 						ioFile.fileWrite(bank, "src/StoreGame/CashInfo.txt");
->>>>>>> master
+
 						lblCrewMembersLoot.setText("Youve Found " + z + "x Pizza, this will partially restore hunger and $" + rand2);
 						ioFile1.fileWrite(inventory2, readStorage + ".txt");
 					}
@@ -224,7 +218,8 @@ public class ExplorePlanet
 		}
 			
 		JLabel lblXLaunchesDown = new JLabel("<html>X launches down from the spaceship in the ships " + transport + "</html>");
-		lblXLaunchesDown.setBounds(41, 27, 787, 15);
+		lblXLaunchesDown.setHorizontalAlignment(SwingConstants.CENTER);
+		lblXLaunchesDown.setBounds(429, 28, 787, 30);
 		frame.getContentPane().add(lblXLaunchesDown);
 		int x2 = (int)(Math.random()*((4-0)+0))+0;
 		if (x2 == 0)
@@ -244,7 +239,8 @@ public class ExplorePlanet
 			terrain = " mountainous ";
 		}
 		JLabel lblTheLandscapeIs = new JLabel("<html>The landscape is" + terrain + "and seems safe for the meantime</html>");
-		lblTheLandscapeIs.setBounds(41, 81, 787, 15);
+		lblTheLandscapeIs.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTheLandscapeIs.setBounds(429, 82, 787, 30);
 		frame.getContentPane().add(lblTheLandscapeIs);
 		
 		int x3 = (int)(Math.random()*((4-0)+0))+0;
@@ -282,7 +278,8 @@ public class ExplorePlanet
 			sound = " pattering ";
 		}
 		JLabel lblHoweverThisSoon = new JLabel("<html>However this soon changes when X hears the" + sound + "of the deadly" + hunter + "closing in</html>");
-		lblHoweverThisSoon.setBounds(41, 128, 856, 15);
+		lblHoweverThisSoon.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHoweverThisSoon.setBounds(429, 129, 856, 30);
 		frame.getContentPane().add(lblHoweverThisSoon);
 		
 		
@@ -310,7 +307,7 @@ public class ExplorePlanet
 			}
 		});
 		
-		btnBag.setBounds(200, 155, 114, 25);
+		btnBag.setBounds(863, 171, 114, 30);
 		frame.getContentPane().add(btnBag);
 		
 
@@ -322,7 +319,7 @@ public class ExplorePlanet
 				lblCrewYou.setText("<html>Crew - You have no backup, the rest of the crew is off world</html>");
 			}
 		});
-		btnCrew.setBounds(41, 192, 114, 25);
+		btnCrew.setBounds(704, 208, 114, 30);
 		frame.getContentPane().add(btnCrew);
 		
 		
@@ -352,7 +349,7 @@ public class ExplorePlanet
 
 			}
 		});
-		btnFight.setBounds(41, 155, 114, 25);
+		btnFight.setBounds(704, 171, 114, 30);
 		frame.getContentPane().add(btnFight);
 		
 
@@ -383,7 +380,7 @@ public class ExplorePlanet
 				btnContinue.setVisible(true);
 			}
 		});
-		btnRun.setBounds(200, 192, 114, 25);
+		btnRun.setBounds(863, 208, 114, 30);
 		frame.getContentPane().add(btnRun);
 		
 		btnContinue = new JButton("Continue");
@@ -396,29 +393,29 @@ public class ExplorePlanet
 				btnContinue.setVisible(false);
 			}
 		});
-		btnContinue.setBounds(440, 410, 114, 25);
+		btnContinue.setBounds(440, 401, 114, 30);
 		frame.getContentPane().add(btnContinue);
 		
 		
 		
 		lblFightXDraws = new JLabel("");
-		lblFightXDraws.setBounds(41, 270, 423, 47);
+		lblFightXDraws.setBounds(370, 244, 423, 47);
 		frame.getContentPane().add(lblFightXDraws);
 		
 		lblRunXHides = new JLabel("");
-		lblRunXHides.setBounds(503, 356, 423, 47);
+		lblRunXHides.setBounds(832, 330, 423, 47);
 		frame.getContentPane().add(lblRunXHides);
 		
 		lblHavingLocatedThe = new JLabel("");
-		lblHavingLocatedThe.setBounds(41, 440, 300, 15);
+		lblHavingLocatedThe.setBounds(362, 436, 300, 30);
 		frame.getContentPane().add(lblHavingLocatedThe);
 		
 		lblBagYou = new JLabel("");
-		lblBagYou.setBounds(503, 270, 423, 47);
+		lblBagYou.setBounds(832, 244, 423, 47);
 		frame.getContentPane().add(lblBagYou);
 		
 		lblCrewYou = new JLabel("");
-		lblCrewYou.setBounds(41, 356, 423, 47);
+		lblCrewYou.setBounds(370, 330, 423, 47);
 		frame.getContentPane().add(lblCrewYou);
 		
 		// Back button

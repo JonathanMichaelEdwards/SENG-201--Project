@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import SetUpScreens.CrewSelection;
+import WindowSettings.Display;
 
 public class Thief 
 {
@@ -39,8 +40,12 @@ public class Thief
 	private void initialize() 
 	{
 		frame = new JFrame();
-		frame.setBounds(100, 100, 996, 665);
+		Display display = new Display();  // Retrieving game window size
+		
+		// Setting frame of window
+		frame.setBounds(display.x, display.y, display.width, display.height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
 		frame.getContentPane().setLayout(null);
 		
 		
