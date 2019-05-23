@@ -1,5 +1,1 @@
-<<<<<<< Updated upstream
-80, 50, 70, 2, false, vsvv, Mechanic, alive, 
-=======
-70, 60, 70, 2, false, fs, Thief, 
->>>>>>> Stashed changes
+0, 0, 0, 0, false, jono, Pilot, dead, 

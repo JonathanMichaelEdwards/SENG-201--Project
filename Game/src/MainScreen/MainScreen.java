@@ -77,8 +77,11 @@ public class MainScreen
 	private JButton btnSleep;
 	private JLabel lblPlague;
 	
+<<<<<<< HEAD
 	private String readFile = "StoreGame/CrewSelected/";	
 	private JButton btnAbandonShip;
+=======
+>>>>>>> master
 	
 	// Store all progress bar so it can be used easily
 	// Stores crew details in data arrays so it can be used easily
@@ -134,25 +137,7 @@ public class MainScreen
 		}
 		disableStatus(size);
 	}
-	
-	private void tiredRate(ArrayList<String> member, IOFile ioFile, String name)
-	{
-		member.set(3, ""+(Integer.parseInt(member.get(3)) - 1));
-		int tired = Integer.parseInt(member.get(1));
-		if (tired <= 0)
-		{
-			int health = Integer.parseInt(member.get(0)) - 30;
-			member.set(0, "" + health);
-			member.set(1, "" + 0);
-			ioFile.fileWrite(member, readFile + name + ".txt");
-		}
-		else 
-		{
-			int tired1 = Integer.parseInt(member.get(1)) - 10; //this is the value in which a repair heals
-			member.set(1, "" + tired1);
-			ioFile.fileWrite(member, readFile + name + ".txt");
-		}
-	}	
+		
 	
 	// items to be disabled
 	private void disableInfo(int index) 
@@ -164,6 +149,7 @@ public class MainScreen
 		tiredness[index].setEnabled(false);
 	}
 	
+	
 	// helper function to disable/(grey out) unused status information areas
 	private void disableStatus(int size)
 	{
@@ -171,7 +157,7 @@ public class MainScreen
 		
 		// disable/(grey out) unused status information areas
 		for (int index = 0; index < lsSize; index++) {
-			if ((lsSize-size) == 2 && (index == 2)) {
+			if ((lsSize-size) == 2 && (index >= 2)) {
 				disableInfo(index);
 				player3.setEnabled(false);
 				player4.setEnabled(false);
@@ -399,12 +385,6 @@ public class MainScreen
 		frame.getContentPane().add(btnSpaceOutpost);
 	}
 	
-//	private void asteroids()
-//			{
-//				asteroids outpost = new asteroids();
-//				outpost.frame.setVisible(true);  // turn on screen
-//				frame.setVisible(false);         // turn off screen
-//			}
 	
 	// Go to the newPlanet screen
 	private void newPlanet()
@@ -1006,34 +986,6 @@ public class MainScreen
 		lblNames.setBounds(62, 278, 81, 15);
 		panelCrew.add(lblNames);
 		lblNames.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		
-		lblMember4 = new JLabel("...");
-		lblMember4.setBounds(791, 273, 134, 25);
-		panelCrew.add(lblMember4);
-		lblMember4.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-//		ArrayList<String> crewMember4 = new ArrayList<String>(); // if this fella is dead, hide name :D
-//		IOFile ioFile4 = new IOFile();
-//		crewMember4 = ioFile4.fileRead("StoreGame/CrewSelected/MemberFour.txt");
-//		String deadAlive4;
-//		deadAlive4 = crewMember4.get(7);
-//		if (deadAlive4.equals("dead"))
-//		{
-//			lblMember4.setVisible(false);
-//		}
-		
-		lblMember3 = new JLabel("...");
-		lblMember3.setBounds(615, 273, 138, 25);
-		panelCrew.add(lblMember3);
-		lblMember3.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-//		ArrayList<String> crewMember3 = new ArrayList<String>(); // if this fella is dead, hide name :D
-//		IOFile ioFile3 = new IOFile();
-//		crewMember3 = ioFile3.fileRead("StoreGame/CrewSelected/MemberThree.txt");
-//		String deadAlive3;
-//		deadAlive3 = crewMember3.get(7);
-//		if (deadAlive3.equals("dead"))
-//		{
-//			lblMember3.setVisible(false);
-//		}
 		
 		lblMember2 = new JLabel("...");
 		lblMember2.setBounds(419, 279, 119, 22);

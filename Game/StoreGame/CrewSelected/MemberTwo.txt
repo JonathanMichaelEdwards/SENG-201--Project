@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 30, 60, 100, 2, true, ssgdsg, Leader, alive, 
 =======
 <<<<<<< Updated upstream
@@ -6,4 +7,7 @@
 =======
 80, 50, 70, 2, false, fgf, Mechanic, 
 >>>>>>> Stashed changes
+>>>>>>> master
+=======
+0, 0, 0, 0, false, fgf, Leader, dead, 
 >>>>>>> master

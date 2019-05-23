@@ -128,9 +128,10 @@ public class CrewTravel {
 		for (int index = 0; index < lsSize; index++) {
 			if ((lsSize-size) == 2 && (index >= 2)) {
 				disableInfo(index);
-			} else if ((lsSize-size) == 3 && (index == 3)) {
+			} else if ((lsSize-size) == 1 && (index == 3)) {
 				disableInfo(index);
 			}
+			System.out.println((lsSize-size));
 		}
 	}
 
@@ -159,7 +160,7 @@ public class CrewTravel {
 		decodeCrewInfo(crewInfo);
 		
 		readCrewRatings();
-		
+
 		for (int index = 0; index < crewType.size(); index++) {
 			type[index].setText(crewType.get(index));
 			member[index].setText(crewName.get(index));
