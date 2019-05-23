@@ -1,1 +1,1 @@
-0, 0, 0, 0, false, jono, Pilot, dead, 
+40, 60, 100, 2, false, qfqf, Leader, alive, 

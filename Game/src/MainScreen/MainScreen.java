@@ -77,11 +77,10 @@ public class MainScreen
 	private JButton btnSleep;
 	private JLabel lblPlague;
 	
-<<<<<<< HEAD
+
 	private String readFile = "StoreGame/CrewSelected/";	
 	private JButton btnAbandonShip;
-=======
->>>>>>> master
+
 	
 	// Store all progress bar so it can be used easily
 	// Stores crew details in data arrays so it can be used easily
@@ -218,6 +217,7 @@ public class MainScreen
 		pBarHunger2.setValue(Integer.valueOf(crewMember2.get(2)));
 	}
 	
+
 	private void memberThree(ArrayList<String> crewMember3, IOFile ioFile)
 	{
 		crewMember3 = ioFile.fileRead("StoreGame/CrewSelected/MemberThree.txt");

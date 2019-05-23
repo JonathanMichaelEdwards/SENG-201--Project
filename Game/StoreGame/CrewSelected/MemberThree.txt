@@ -1,13 +1,1 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-100, 50, 100, 2, false, sgsgd, Medic, alive, 
-=======
-<<<<<<< Updated upstream
-100, 50, 50, 2, false, sgsgd, Medic, alive, 
-=======
-50, 100, 50, 2, false, fgf, Pilot, 
->>>>>>> Stashed changes
->>>>>>> master
-=======
-0, 0, 0, 0, false, fgf, Mechanic, dead, 
->>>>>>> master
+70, 50, 70, 1, false, qwqdw, Thief, alive, 

@@ -280,7 +280,7 @@ public class CrewRepair {
 				changeShields.set(2, "" + repair);
 				if (repair >= 100)
 				{
-					changeShields.set(1, "100");
+					changeShields.set(2, "100");
 				}
 				ioFile.fileWrite(changeShields, "StoreGame/ShipInfo.txt");  // Writing in new days
 				
