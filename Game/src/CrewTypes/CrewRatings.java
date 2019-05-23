@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class CrewRatings 
 {
-	// Store crew ratings
+	// Storing crew ratings
 	public ArrayList<String> soldier = new ArrayList<String>();
 	public ArrayList<String> medic = new ArrayList<String>();
 	public ArrayList<String> leader = new ArrayList<String>();
@@ -14,10 +14,12 @@ public class CrewRatings
 	public ArrayList<String> thief = new ArrayList<String>();
 	
 	
-	// Adds the crew ratings to there allocated lists
+	/**
+	 * The crew's ratings are stored in the order of (Health, Tiredness, Hunger)
+	 * in a list
+	 */
 	public void crewRatings()
 	{
-		// Ratings (Health, Tiredness, Hunger)
 		// Soldier ratings
 		soldier.add("80");
 		soldier.add("50");

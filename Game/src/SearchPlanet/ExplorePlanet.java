@@ -25,8 +25,8 @@ public class ExplorePlanet
 	private JButton btnCheckLoot, btnRecallToShip, btnFight, btnBag, btnRun, btnCrew, btnContinue;
 	private JLabel lblCrewMembersLoot, lblCrewYou, lblBagYou, lblRunXHides, lblFightXDraws, lblHavingLocatedThe;
 	
-	private String readFile = "StoreGame/ShipInfo"; //file helper string
-	private String readStorage = "StoreGame/Inventory/Storage";
+	private String readFile = "src/StoreGame/ShipInfo"; //file helper string
+	private String readStorage = "src/StoreGame/Inventory/Storage";
 	
 	
 	private void btnBack()
@@ -98,11 +98,11 @@ public class ExplorePlanet
 						ioFile.fileWrite(shipInfo, readFile + ".txt");
 						lblCrewMembersLoot.setText("You've Found this planets part!");
 						
-						updatePart = ioFile.fileRead("StoreGame/DaysInfo.txt");
+						updatePart = ioFile.fileRead("src/StoreGame/DaysInfo.txt");
 						int sub = Integer.parseInt(updatePart.get(1)) - 1;
 						updatePart.set(1, "" + sub);
 						count = updatePart.get(1);
-						ioFile.fileWrite(updatePart, "StoreGame/DaysInfo.txt");
+						ioFile.fileWrite(updatePart, "src/StoreGame/DaysInfo.txt");
 						if (count.equals("0"))
 						{
 							System.out.println("Congrats! youve found all the parts and ended the game, you WIN!");
@@ -138,11 +138,11 @@ public class ExplorePlanet
 						for (int i = 0; i < y; i++) {
 							inventory.add("medkit");
 							}
-						bank = ioFile.fileRead("StoreGame/CashInfo.txt");
+						bank = ioFile.fileRead("src/StoreGame/CashInfo.txt");
 						int rand = (int)(Math.random()*((100-50)+50))+50;
 						int cash = Integer.parseInt(bank.get(0)) + rand;
 						bank.set(0, "" + cash);
-						ioFile.fileWrite(bank, "StoreGame/CashInfo.txt");
+						ioFile.fileWrite(bank, "src/StoreGame/CashInfo.txt");
 						ioFile.fileWrite(inventory, readStorage + ".txt");
 						lblCrewMembersLoot.setText("Youve Found " + y + "x Medkits, this will partially restore health and $" + rand);
 					}
@@ -154,12 +154,20 @@ public class ExplorePlanet
 						for (int i = 0; i < z; i++) {
 							inventory2.add("pizza");
 						}
+<<<<<<< HEAD
 						bank1 = ioFile1.fileRead("StoreGame/CashInfo.txt");
 						int rand2 = (int)(Math.random()*((100-50)+50))+50;
 						int cash2 = Integer.parseInt(bank1.get(0)) + rand2;
 						bank1.set(0, "" + cash2);
 						ioFile1.fileWrite(bank1, "StoreGame/CashInfo.txt");
 						ioFile1.fileWrite(inventory2, readStorage + ".txt");
+=======
+						bank = ioFile.fileRead("src/StoreGame/CashInfo.txt");
+						int rand2 = (int)(Math.random()*((100-50)+50))+50;
+						int cash2 = Integer.parseInt(bank.get(0)) + rand2;
+						bank.set(0, "" + cash2);
+						ioFile.fileWrite(bank, "src/StoreGame/CashInfo.txt");
+>>>>>>> master
 						lblCrewMembersLoot.setText("Youve Found " + z + "x Pizza, this will partially restore hunger and $" + rand2);
 						ioFile1.fileWrite(inventory2, readStorage + ".txt");
 					}

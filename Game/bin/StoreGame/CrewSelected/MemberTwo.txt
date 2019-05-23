@@ -1,0 +1,1 @@
+80, 50, 70, 2, false, fgf, Soldier, alive, 

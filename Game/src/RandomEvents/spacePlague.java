@@ -18,8 +18,13 @@ import WindowSettings.Display;
 public class spacePlague {
 
 	public JFrame frame;
+<<<<<<< HEAD
 	private JButton btnCheckInfection, btnLetsGetGoing;
 	private String readFile = "StoreGame/CrewSelected/";	
+=======
+	private JButton btnCheckInfection;
+	private String readFile = "src/StoreGame/CrewSelected/";	
+>>>>>>> master
 	private JLabel lblCrewMembersInfected;
 	private void btnBack()
 	{

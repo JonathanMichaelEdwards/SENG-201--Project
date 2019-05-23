@@ -64,7 +64,7 @@ public class MainScreen
 	private JLabel lblptr;
 	
 	// File locations
-	private String writeHealth = "StoreGame/CrewSelected/";
+	private String writeHealth = "src/StoreGame/CrewSelected/";
 	
 	// stores the selection type
 	private JLabel type[] = new JLabel[4];
@@ -185,7 +185,7 @@ public class MainScreen
 
 	{
 
-		crewMember1 = ioFile.fileRead("StoreGame/CrewSelected/MemberOne.txt");
+		crewMember1 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberOne.txt");
 //		String deadAlive;
 //		deadAlive = crewMember1.get(7);
 //		if (deadAlive.equals("dead"))
@@ -202,7 +202,7 @@ public class MainScreen
 	
 	private void memberTwo(ArrayList<String> crewMember2, IOFile ioFile)
 	{
-		crewMember2 = ioFile.fileRead("StoreGame/CrewSelected/MemberTwo.txt");
+		crewMember2 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberTwo.txt");
 //		String deadAlive;
 //		deadAlive = crewMember2.get(7);
 //		if (deadAlive.equals("dead"))
@@ -220,7 +220,7 @@ public class MainScreen
 
 	private void memberThree(ArrayList<String> crewMember3, IOFile ioFile)
 	{
-		crewMember3 = ioFile.fileRead("StoreGame/CrewSelected/MemberThree.txt");
+		crewMember3 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberThree.txt");
 //		String deadAlive;
 //		deadAlive = crewMember3.get(7);
 //		if (deadAlive.equals("dead"))
@@ -237,7 +237,7 @@ public class MainScreen
 	
 	private void memberFour(ArrayList<String> crewMember4, IOFile ioFile)
 	{
-		crewMember4 = ioFile.fileRead("StoreGame/CrewSelected/MemberFour.txt");
+		crewMember4 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberFour.txt");
 		
 //		String deadAlive;
 //		deadAlive = crewMember4.get(7);
@@ -284,7 +284,7 @@ public class MainScreen
 		IOFile ioFile = new IOFile();
 
 		// read how much cash the player has
-		totalCash = ioFile.fileRead("StoreGame/CashInfo.txt");
+		totalCash = ioFile.fileRead("src/StoreGame/CashInfo.txt");
 		lblCashTotal.setText("Current Cash = $ " + totalCash.get(0).toString());
 	}
 	
@@ -296,12 +296,12 @@ public class MainScreen
 		IOFile ioFile = new IOFile();
 		
 		// Reading files
-		ArrayList<String> crewInfo = ioFile.fileRead("StoreGame/CrewInfo.txt");
-		ArrayList<String> shipInfo = ioFile.fileRead("StoreGame/ShipInfo.txt");
-		ArrayList<String> daysInfo = ioFile.fileRead("StoreGame/DaysInfo.txt");
-		ArrayList<String> changeShields = ioFile.fileRead("StoreGame/ShipInfo.txt");
-		ArrayList<String> memberOne = ioFile.fileRead("StoreGame/CrewSelected/MemberOne.txt");
-		ArrayList<String> memberTwo = ioFile.fileRead("StoreGame/CrewSelected/MemberTwo.txt");
+		ArrayList<String> crewInfo = ioFile.fileRead("src/StoreGame/CrewInfo.txt");
+		ArrayList<String> shipInfo = ioFile.fileRead("src/StoreGame/ShipInfo.txt");
+		ArrayList<String> daysInfo = ioFile.fileRead("src/StoreGame/DaysInfo.txt");
+		ArrayList<String> changeShields = ioFile.fileRead("src/StoreGame/ShipInfo.txt");
+		ArrayList<String> memberOne = ioFile.fileRead("src/StoreGame/CrewSelected/MemberOne.txt");
+		ArrayList<String> memberTwo = ioFile.fileRead("src/StoreGame/CrewSelected/MemberTwo.txt");
 
 		// unwrap the crew information
 		decodeCrewInfo(crewInfo);
@@ -351,16 +351,16 @@ public class MainScreen
 		// Display the crew Members action count
 		for (int index = 0; index < crewType.size(); index++) {
 			if (index == 0) {
-				membersActions = ioFile.fileRead("StoreGame/CrewSelected/MemberOne.txt");
+				membersActions = ioFile.fileRead("src/StoreGame/CrewSelected/MemberOne.txt");
 				player1.setText(membersActions.get(3));
 			} else if (index == 1) {
-				membersActions = ioFile.fileRead("StoreGame/CrewSelected/MemberTwo.txt");
+				membersActions = ioFile.fileRead("src/StoreGame/CrewSelected/MemberTwo.txt");
 				player2.setText(membersActions.get(3));
 			} else if (index == 2) {
-				membersActions = ioFile.fileRead("StoreGame/CrewSelected/MemberThree.txt");
+				membersActions = ioFile.fileRead("src/StoreGame/CrewSelected/MemberThree.txt");
 				player3.setText(membersActions.get(3));
 			} else if (index == 3) {
-				membersActions = ioFile.fileRead("StoreGame/CrewSelected/MemberFour.txt");
+				membersActions = ioFile.fileRead("src/StoreGame/CrewSelected/MemberFour.txt");
 				player4.setText(membersActions.get(3));
 			}
 		}
@@ -525,10 +525,10 @@ public class MainScreen
 				String check;
 
 				
-				changeDays = ioFile.fileRead("StoreGame/DaysInfo.txt");
+				changeDays = ioFile.fileRead("src/StoreGame/DaysInfo.txt");
 				days = Integer.parseInt(changeDays.get(0)) - 1;
 				changeDays.set(0, "" + days);
-				ioFile.fileWrite(changeDays, "StoreGame/DaysInfo.txt");  // Writing in new days
+				ioFile.fileWrite(changeDays, "src/StoreGame/DaysInfo.txt");  // Writing in new days
 				if (days == -1)
 				{
 					System.out.println("GAME OVER XDDD OUTA DAYS");
@@ -538,13 +538,13 @@ public class MainScreen
 				}
 				if (days != -1)
 				{
-				//ioFile.fileWrite(changeDays, "StoreGame/DaysInfo.txt");  // Writing in new days
+				//ioFile.fileWrite(changeDays, "src/StoreGame/DaysInfo.txt");  // Writing in new days
 				lblDaysLeft.setText("Days Remaining: "  + days);
 				
 				// reading from file &Changing file & Writing back to file
 				for (int index = 0; index < crewType.size(); index++) {
 					if (index == 0) {
-						memberActions1 = ioFile.fileRead("StoreGame/CrewSelected/MemberOne.txt");
+						memberActions1 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberOne.txt");
 						memberActions1.set(3, "2");
 						check = memberActions1.get(7);
 						if (check.equals("dead"))
@@ -556,7 +556,7 @@ public class MainScreen
 						int tired = Integer.parseInt(memberActions1.get(1)) - 20;
 						memberActions1.set(1, "" + tired);
 						ioFile.fileWrite(memberActions1, writeHealth + "MemberOne.txt");
-						memberActions1 = ioFile.fileRead("StoreGame/CrewSelected/MemberOne.txt");
+						memberActions1 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberOne.txt");
 						int tiredHp = Integer.parseInt(memberActions1.get(1));
 						System.out.println(tiredHp);
 						if (tiredHp <= 0)
@@ -564,8 +564,8 @@ public class MainScreen
 						{
 							memberActions1.set(1, "" + 0);
 
-							ioFile.fileWrite(memberActions1, "StoreGame/CrewSelected/MemberOne.txt");
-							memberActions1 = ioFile.fileRead("StoreGame/CrewSelected/MemberOne.txt");
+							ioFile.fileWrite(memberActions1, "src/StoreGame/CrewSelected/MemberOne.txt");
+							memberActions1 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberOne.txt");
 							int health = Integer.parseInt(memberActions1.get(0)) - 30;
 							memberActions1.set(0, "" + health);
 							System.out.println(health);
@@ -590,7 +590,7 @@ public class MainScreen
 						}
 						
 					} else if (index == 1) {
-						memberActions2 = ioFile.fileRead("StoreGame/CrewSelected/MemberTwo.txt");
+						memberActions2 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberTwo.txt");
 						memberActions2.set(3, "2");
 						check = memberActions2.get(7);
 						if (check.equals("dead"))
@@ -606,8 +606,8 @@ public class MainScreen
 						if (tiredHp <= 0)
 						{
 							memberActions2.set(1, "0");
-							ioFile.fileWrite(memberActions2, "StoreGame/CrewSelected/MemberTwo.txt");
-							memberActions2 = ioFile.fileRead("StoreGame/CrewSelected/MemberTwo.txt");
+							ioFile.fileWrite(memberActions2, "src/StoreGame/CrewSelected/MemberTwo.txt");
+							memberActions2 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberTwo.txt");
 							int health = Integer.parseInt(memberActions2.get(0)) - 30;
 							memberActions2.set(0, "" + health);
 							if (health <= 0)
@@ -622,14 +622,14 @@ public class MainScreen
 						}
 						boolPlague = memberActions2.get(4);
 						if (boolPlague.equals("true")) {
-							memberActions2 = ioFile.fileRead("StoreGame/CrewSelected/MemberTwo.txt");
+							memberActions2 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberTwo.txt");
 							int health = Integer.parseInt(memberActions2.get(0)) - 30;
 							memberActions2.set(0, "" + health);
 							ioFile.fileWrite(memberActions2, writeHealth + "MemberTwo.txt");
 						}
 						}
 					} else if (index == 2) {
-						memberActions3 = ioFile.fileRead("StoreGame/CrewSelected/MemberThree.txt");
+						memberActions3 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberThree.txt");
 						memberActions3.set(3, "2");
 						check = memberActions3.get(7);
 						if (check.equals("dead"))
@@ -646,8 +646,8 @@ public class MainScreen
 						if (tiredHp <=0)
 						{
 							memberActions3.set(1, "0");
-							ioFile.fileWrite(memberActions3, "StoreGame/CrewSelected/MemberThree.txt");
-							memberActions3 = ioFile.fileRead("StoreGame/CrewSelected/MemberThree.txt");
+							ioFile.fileWrite(memberActions3, "src/StoreGame/CrewSelected/MemberThree.txt");
+							memberActions3 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberThree.txt");
 							int health = Integer.parseInt(memberActions3.get(0)) - 30;
 							memberActions3.set(0, "" + health);
 							if (health <= 0)
@@ -662,7 +662,7 @@ public class MainScreen
 						}
 						boolPlague = memberActions3.get(4);
 						if (boolPlague.equals("true")) {
-							memberActions3 = ioFile.fileRead("StoreGame/CrewSelected/MemberThree.txt");
+							memberActions3 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberThree.txt");
 							int health = Integer.parseInt(memberActions3.get(0)) - 30;
 							memberActions3.set(0, "" + health);
 							ioFile.fileWrite(memberActions3, writeHealth + "MemberThree.txt");
@@ -670,7 +670,7 @@ public class MainScreen
 						}
 						
 					} else if (index == 3) {
-						memberActions4 = ioFile.fileRead("StoreGame/CrewSelected/MemberFour.txt");
+						memberActions4 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberFour.txt");
 						memberActions4.set(3, "2");
 						check = memberActions4.get(7);
 						if (check.equals("dead"))
@@ -686,8 +686,8 @@ public class MainScreen
 						if (tiredHp <=0)
 						{
 							memberActions4.set(1, "0");
-							ioFile.fileWrite(memberActions4, "StoreGame/CrewSelected/MemberFour.txt");
-							memberActions4 = ioFile.fileRead("StoreGame/CrewSelected/MemberFour.txt");
+							ioFile.fileWrite(memberActions4, "src/StoreGame/CrewSelected/MemberFour.txt");
+							memberActions4 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberFour.txt");
 							int health = Integer.parseInt(memberActions4.get(0)) - 30;
 							memberActions4.set(0, "" + health);
 							if (health <= 0)
@@ -702,7 +702,7 @@ public class MainScreen
 						}
 						boolPlague = memberActions4.get(4);
 						if (boolPlague.equals("true")) {
-							memberActions4 = ioFile.fileRead("StoreGame/CrewSelected/MemberFour.txt");
+							memberActions4 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberFour.txt");
 							int health = Integer.parseInt(memberActions4.get(0)) - 30;
 							memberActions4.set(0, "" + health);
 							ioFile.fileWrite(memberActions4, writeHealth + "MemberFour.txt");
@@ -726,7 +726,7 @@ public class MainScreen
 
 				int makeNormal = 0;
 				int curChar = 0;
-				memberActions4 = ioFile.fileRead("StoreGame/CrewSelected/MemberFour.txt");
+				memberActions4 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberFour.txt");
 				check = memberActions4.get(7);
 				if (check.equals("dead"))
 				{
@@ -739,7 +739,7 @@ public class MainScreen
 					curChar ++;
 				}
 				
-				memberActions3 = ioFile.fileRead("StoreGame/CrewSelected/MemberThree.txt");
+				memberActions3 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberThree.txt");
 				check = memberActions3.get(7);
 				if (check.equals("dead"))
 				{
@@ -752,7 +752,7 @@ public class MainScreen
 					curChar ++;
 
 				}
-				memberActions2 = ioFile.fileRead("StoreGame/CrewSelected/MemberTwo.txt");
+				memberActions2 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberTwo.txt");
 				check = memberActions2.get(7);
 				if (check.equals("dead"))
 				{
@@ -766,7 +766,7 @@ public class MainScreen
 
 				}
 				
-				memberActions1 = ioFile.fileRead("StoreGame/CrewSelected/MemberOne.txt");
+				memberActions1 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberOne.txt");
 				check = memberActions1.get(7);
 				if (check.equals("dead"))
 				{
@@ -993,7 +993,7 @@ public class MainScreen
 		lblMember2.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
 //		ArrayList<String> crewMember2 = new ArrayList<String>(); // if this fella is dead, hide name :D
 //		IOFile ioFile2 = new IOFile();
-//		crewMember2 = ioFile2.fileRead("StoreGame/CrewSelected/MemberTwo.txt");
+//		crewMember2 = ioFile2.fileRead("src/StoreGame/CrewSelected/MemberTwo.txt");
 //		String deadAlive2;
 //		deadAlive2 = crewMember2.get(7);
 //		if (deadAlive2.equals("dead"))
@@ -1007,7 +1007,7 @@ public class MainScreen
 		lblMember1.setFont(new Font("Lucida Grande", Font.PLAIN, 18)); 
 //		ArrayList<String> crewMember1 = new ArrayList<String>(); // if this fella is dead, hide name :D
 //		IOFile ioFile = new IOFile();
-//		crewMember1 = ioFile.fileRead("StoreGame/CrewSelected/MemberOne.txt");
+//		crewMember1 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberOne.txt");
 //		String deadAlive;
 //		deadAlive = crewMember1.get(7);
 //		if (deadAlive.equals("dead"))

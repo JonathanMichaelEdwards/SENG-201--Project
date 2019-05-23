@@ -704,12 +704,12 @@ public class CrewSelection {
 		crew.crewRatings();  // Each rating stored in list
 		
 		// Storing number of pieces needed to be collected
-		ioFile.fileWrite(crew.soldier, "StoreGame/CrewRatings/Soldier.txt");
-		ioFile.fileWrite(crew.medic, "StoreGame/CrewRatings/Medic.txt");
-		ioFile.fileWrite(crew.leader, "StoreGame/CrewRatings/Leader.txt");
-		ioFile.fileWrite(crew.mechanic, "StoreGame/CrewRatings/Mechanic.txt");
-		ioFile.fileWrite(crew.pilot, "StoreGame/CrewRatings/Pilot.txt");
-		ioFile.fileWrite(crew.thief, "StoreGame/CrewRatings/Thief.txt");
+		ioFile.fileWrite(crew.soldier, "src/StoreGame/CrewRatings/Soldier.txt");
+		ioFile.fileWrite(crew.medic, "src/StoreGame/CrewRatings/Medic.txt");
+		ioFile.fileWrite(crew.leader, "src/StoreGame/CrewRatings/Leader.txt");
+		ioFile.fileWrite(crew.mechanic, "src/StoreGame/CrewRatings/Mechanic.txt");
+		ioFile.fileWrite(crew.pilot, "src/StoreGame/CrewRatings/Pilot.txt");
+		ioFile.fileWrite(crew.thief, "src/StoreGame/CrewRatings/Thief.txt");
 	}
 	
 	

@@ -43,12 +43,12 @@ public class alienPirates
 		IOFile ioFile = new IOFile();
 		ArrayList<String> inventory = new ArrayList<String>();
 		
-		inventory = ioFile.fileRead("StoreGame/Inventory/Storage.txt");
+		inventory = ioFile.fileRead("src/StoreGame/Inventory/Storage.txt");
 		int x = (int)((Math.random()*(3-0)+0)+0);
 		String taken = inventory.get(x);
 		inventory.remove(taken);
 		
-		ioFile.fileWrite(inventory, "StoreGame/Inventory/Storage.txt");
+		ioFile.fileWrite(inventory, "src/StoreGame/Inventory/Storage.txt");
 	
 		JLabel lblFdf = new JLabel("<html>Your team has awoken to the screeching sound of boarding Alien Pirates, "
 				+ "raiding your ship for the supplies you carry, your team puts up a strong fight, and were lucky to have lost only &emsp;" + taken 
@@ -57,7 +57,7 @@ public class alienPirates
 		lblFdf.setBounds(201, 194, 905, 400);
 		frame.getContentPane().add(lblFdf);
 		
-		ioFile.fileWrite(inventory, "StoreGame/Inventory/Storage.txt");
+		ioFile.fileWrite(inventory, "src/StoreGame/Inventory/Storage.txt");
 	}
 	
 	
