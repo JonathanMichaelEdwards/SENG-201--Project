@@ -18,12 +18,13 @@ import WindowSettings.Display;
 public class spacePlague {
 
 	public JFrame frame;
-	private JButton btnCheckInfection;
+	private JButton btnCheckInfection, btnLetsGetGoing;
 	private String readFile = "StoreGame/CrewSelected/";	
 	private JLabel lblCrewMembersInfected;
 	private void btnBack()
 	{
-		JButton btnLetsGetGoing = new JButton("Back to Base");
+		btnLetsGetGoing = new JButton("Back to Base");
+		btnLetsGetGoing.setVisible(false);
 		btnLetsGetGoing.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
@@ -84,6 +85,7 @@ public class spacePlague {
 					btnCheckInfection.setEnabled(false);
 					name = member.get(5);
 					lblCrewMembersInfected.setText(name + " is Infected");
+					btnLetsGetGoing.setVisible(true);
 				}
 				if (x == 0) {
 					member = ioFile.fileRead(readFile + "MemberOne.txt");
@@ -117,7 +119,9 @@ public class spacePlague {
 					btnCheckInfection.setEnabled(false);
 					name = member.get(5);
 					nameboth = memberboth.get(5);
-					lblCrewMembersInfected.setText("Both" + name + " and " + nameboth + " are infected");
+					lblCrewMembersInfected.setText("Both " + name + " and " + nameboth + " are infected");
+					btnLetsGetGoing.setVisible(true);
+					
 				}
 				if (x == 2){
 					member2 = ioFile.fileRead(readFile + "MemberTwo.txt");
@@ -137,6 +141,7 @@ public class spacePlague {
 					btnCheckInfection.setEnabled(false);
 					name2 = member2.get(5);
 					lblCrewMembersInfected.setText(name2 + " is Infected");
+					btnLetsGetGoing.setVisible(true);
 				}
 			}
 		});

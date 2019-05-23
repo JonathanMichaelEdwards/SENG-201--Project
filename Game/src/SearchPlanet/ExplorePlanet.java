@@ -22,8 +22,8 @@ import MainScreen.winGame;
 public class ExplorePlanet 
 {
 	public JFrame frame;
-	private JButton btnCheckLoot, btnRecallToShip;
-	private JLabel lblCrewMembersLoot;
+	private JButton btnCheckLoot, btnRecallToShip, btnFight, btnBag, btnRun, btnCrew, btnContinue;
+	private JLabel lblCrewMembersLoot, lblCrewYou, lblBagYou, lblRunXHides, lblFightXDraws, lblHavingLocatedThe;
 	
 	private String readFile = "StoreGame/ShipInfo"; //file helper string
 	private String readStorage = "StoreGame/Inventory/Storage";
@@ -42,17 +42,19 @@ public class ExplorePlanet
 				frame.setVisible(false);          // turn off screen
 			}
 		});
-		btnRecallToShip.setBounds(370, 635, 193, 88);
+		btnRecallToShip.setBounds(1037, 537, 193, 88);
 		frame.getContentPane().add(btnRecallToShip);
 		
 		lblCrewMembersLoot = new JLabel("What is found?");
-		lblCrewMembersLoot.setBounds(336, 410, 385, 61);
+		lblCrewMembersLoot.setVisible(false);
+		lblCrewMembersLoot.setBounds(336, 440, 654, 25);
 		frame.getContentPane().add(lblCrewMembersLoot);
 	}
 	
 	private void loot()
 	{
 		btnCheckLoot = new JButton("Show Uncovered Loot");
+		btnCheckLoot.setVisible(false);
 		btnCheckLoot.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
@@ -60,6 +62,7 @@ public class ExplorePlanet
 				btnCheckLoot.setVisible(false);
 				btnRecallToShip.setVisible(true);
 				IOFile ioFile = new IOFile();
+				IOFile ioFile1 = new IOFile();
 //				ArrayList<String> member = new ArrayList<String>();
 //				ArrayList<String> memberboth = new ArrayList<String>();
 //				ArrayList<String> member2 = new ArrayList<String>();
@@ -70,7 +73,9 @@ public class ExplorePlanet
 				ArrayList<String> shipInfo = new ArrayList<String>();
 				String findPart;
 				ArrayList<String> inventory = new ArrayList<String>();
+				ArrayList<String> inventory2 = new ArrayList<String>();
 				ArrayList<String> bank = new ArrayList<String>();
+				ArrayList<String> bank1 = new ArrayList<String>();
 				ArrayList<String> updatePart = new ArrayList<String>();
 				String count;
 				
@@ -125,8 +130,9 @@ public class ExplorePlanet
 				if (findPart.equals("true"))
 				{
 					int x = (int)(Math.random()*((2-0)+0))+0;
-					System.out.println(x);
+					System.out.println("You already have this planets piece");
 					if (x == 0) {
+
 						inventory = ioFile.fileRead(readStorage + ".txt");
 						int y = (int)(Math.random()*((10-5)+5))+5;
 						for (int i = 0; i < y; i++) {
@@ -139,36 +145,44 @@ public class ExplorePlanet
 						ioFile.fileWrite(bank, "StoreGame/CashInfo.txt");
 						ioFile.fileWrite(inventory, readStorage + ".txt");
 						lblCrewMembersLoot.setText("Youve Found " + y + "x Medkits, this will partially restore health and $" + rand);
-					if(x == 1) {
-						inventory = ioFile.fileRead(readStorage + ".txt");
+					}
+					
+					else if (x == 1) {
+
+						inventory2 = ioFile1.fileRead(readStorage + ".txt");
 						int z = (int)(Math.random()*((10-5)+5))+5;
 						for (int i = 0; i < z; i++) {
-							inventory.add("pizza");
+							inventory2.add("pizza");
 						}
-						bank = ioFile.fileRead("StoreGame/CashInfo.txt");
+						bank1 = ioFile1.fileRead("StoreGame/CashInfo.txt");
 						int rand2 = (int)(Math.random()*((100-50)+50))+50;
-						int cash2 = Integer.parseInt(bank.get(0)) + rand2;
-						bank.set(0, "" + cash2);
-						ioFile.fileWrite(bank, "StoreGame/CashInfo.txt");
+						int cash2 = Integer.parseInt(bank1.get(0)) + rand2;
+						bank1.set(0, "" + cash2);
+						ioFile1.fileWrite(bank1, "StoreGame/CashInfo.txt");
+						ioFile1.fileWrite(inventory2, readStorage + ".txt");
 						lblCrewMembersLoot.setText("Youve Found " + z + "x Pizza, this will partially restore hunger and $" + rand2);
-						
-						ioFile.fileWrite(inventory, readStorage + ".txt");
-						System.out.println("found some loot, the part is still out there");
+						ioFile1.fileWrite(inventory2, readStorage + ".txt");
 					}
 
 				}
 			}
 				
-		}});
+		});
 		frame.getContentPane().setLayout(null);
 		btnCheckLoot.setBounds(336, 508, 307, 122);
 		frame.getContentPane().add(btnCheckLoot);
+		
 	}
 	/*
 	 * Initialize the contents of the frame.
 	*/
 	String transport;
 	String terrain;
+	String weapon;
+	String sound;
+	String hunter;
+	String hide;
+	String item;
 	private void initialize() 
 	{
 		// Setting Layout dimensions
@@ -184,7 +198,6 @@ public class ExplorePlanet
 
 		// Initialize displays
 		int x1 = (int)(Math.random()*((4-0)+0))+0;
-		System.out.println(x1);
 		if (x1 == 0)
 		{
 			transport = "rider.";
@@ -202,11 +215,10 @@ public class ExplorePlanet
 			transport = "teleporter.";
 		}
 			
-		JLabel lblXLaunchesDown = new JLabel("X launches down from the spaceship in the ships " + transport);
+		JLabel lblXLaunchesDown = new JLabel("<html>X launches down from the spaceship in the ships " + transport + "</html>");
 		lblXLaunchesDown.setBounds(41, 27, 787, 15);
 		frame.getContentPane().add(lblXLaunchesDown);
 		int x2 = (int)(Math.random()*((4-0)+0))+0;
-		System.out.println(x2);
 		if (x2 == 0)
 		{
 			terrain = " dusty ";
@@ -221,50 +233,184 @@ public class ExplorePlanet
 		}
 		if (x2 == 3)
 		{
-			terrain = " mountainous";
+			terrain = " mountainous ";
 		}
-		JLabel lblTheLandscapeIs = new JLabel("The landscape is dusty/murky/clear/mountainous and seems safe for the meantime");
+		JLabel lblTheLandscapeIs = new JLabel("<html>The landscape is" + terrain + "and seems safe for the meantime</html>");
 		lblTheLandscapeIs.setBounds(41, 81, 787, 15);
 		frame.getContentPane().add(lblTheLandscapeIs);
 		
-		JLabel lblHoweverThisSoon = new JLabel("However this soon changes when X hears the scratches/howl/rattle of the deadly thresher/goliath/spiderants closing in");
+		int x3 = (int)(Math.random()*((4-0)+0))+0;
+		if (x3 == 0)
+		{
+			hunter = " thresher";
+		}
+		if (x3 == 1)
+		{
+			hunter = " goliath";
+		}
+		if (x3 == 2)
+		{
+			hunter = " spiderant";
+		}
+		if (x3 == 3)
+		{
+			hunter = " varkids";
+		}
+		int x4 = (int)(Math.random()*((4-0)+0))+0;
+		if (x4 == 0)
+		{
+			sound = " scratches ";
+		}
+		if (x4 == 1)
+		{
+			sound = " howl ";
+		}
+		if (x4 == 2)
+		{
+			sound = " rattle ";
+		}
+		if (x4 == 3)
+		{
+			sound = " pattering ";
+		}
+		JLabel lblHoweverThisSoon = new JLabel("<html>However this soon changes when X hears the" + sound + "of the deadly" + hunter + "closing in</html>");
 		lblHoweverThisSoon.setBounds(41, 128, 856, 15);
 		frame.getContentPane().add(lblHoweverThisSoon);
 		
-		JButton btnFight = new JButton("Fight");
-		btnFight.setBounds(41, 155, 114, 25);
-		frame.getContentPane().add(btnFight);
 		
-		JButton btnBag = new JButton("Bag");
+		
+		btnBag = new JButton("Bag");
+		btnBag.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnBag.setEnabled(false);
+				int x = (int)(Math.random()*((4-0)+0))+0;
+				if (x == 0){
+					item = " a bunch of wrinkly wrappers... ";
+				}
+				if (x == 1){
+					item = " a handful of rusty screws... ";
+				}
+				if (x == 2){
+					item = " a dirty hat... ";
+				}
+				if (x == 3){
+					item = " a broken invisi-net... ";
+				}
+				
+				
+				lblBagYou.setText("<html>Bag - X didnt expect this sort of hostility, reaching into the bag, X finds" + item + "how useless!</html>");
+			}
+		});
+		
 		btnBag.setBounds(200, 155, 114, 25);
 		frame.getContentPane().add(btnBag);
 		
-		JButton btnCrew = new JButton("Crew");
+
+
+		btnCrew = new JButton("Crew");
+		btnCrew.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnCrew.setEnabled(false);
+				lblCrewYou.setText("<html>Crew - You have no backup, the rest of the crew is off world</html>");
+			}
+		});
 		btnCrew.setBounds(41, 192, 114, 25);
 		frame.getContentPane().add(btnCrew);
 		
-		JButton btnRun = new JButton("Run");
+		
+
+		btnFight = new JButton("Fight");
+		btnFight.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnBag.setEnabled(false);
+				btnCrew.setEnabled(false);
+				btnRun.setEnabled(false);
+				btnFight.setEnabled(false);
+				int x = (int)(Math.random()*((4-0)+0))+0;
+				if (x == 0){
+					weapon = " repeater ";
+				}
+				if (x == 1){
+					weapon = " thumper ";
+				}
+				if (x == 2){
+					weapon = " scattergun ";
+				}
+				if (x == 3){
+					weapon = " helix ";
+				}
+				lblFightXDraws.setText("<html>Fight: X draws their" + weapon + "and unloads into the"+ hunter + ". Emerging victorious</html>");
+				btnContinue.setVisible(true);
+
+			}
+		});
+		btnFight.setBounds(41, 155, 114, 25);
+		frame.getContentPane().add(btnFight);
+		
+
+		btnRun = new JButton("Run");
+		btnRun.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnBag.setEnabled(false);
+				btnCrew.setEnabled(false);
+				btnFight.setEnabled(false);
+				btnRun.setEnabled(false);
+				
+				int x = (int)(Math.random()*((4-0)+0))+0;
+				if (x == 0){
+					hide = " bush ";
+				}
+				if (x == 1){
+					hide = " rock ";
+				}
+				if (x == 2){
+					hide = " crevasse ";
+				}
+				if (x == 3){
+					hide = " cave ";
+				}
+				
+				
+				lblRunXHides.setText("<html>Run: X quickly hides by the nearby" + hide + ". Emerging later unscathed</html>");
+				btnContinue.setVisible(true);
+			}
+		});
 		btnRun.setBounds(200, 192, 114, 25);
 		frame.getContentPane().add(btnRun);
 		
-		JLabel lblFightXDraws = new JLabel("Fight: X draws their reapeater/thumper/scattergun and unloads. Emerging victorious");
-		lblFightXDraws.setBounds(41, 309, 787, 15);
+		btnContinue = new JButton("Continue");
+		btnContinue.setVisible(false);
+		btnContinue.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				lblCrewMembersLoot.setVisible(true);
+				btnCheckLoot.setVisible(true);
+				lblHavingLocatedThe.setText("<html>Having located the loot locker, X finds</html>");
+				btnContinue.setVisible(false);
+			}
+		});
+		btnContinue.setBounds(440, 410, 114, 25);
+		frame.getContentPane().add(btnContinue);
+		
+		
+		
+		lblFightXDraws = new JLabel("");
+		lblFightXDraws.setBounds(41, 270, 423, 47);
 		frame.getContentPane().add(lblFightXDraws);
 		
-		JLabel lblRunXHides = new JLabel("Run: X hides under/in the nearby bush/rock/tree. Emerging unscathed");
-		lblRunXHides.setBounds(41, 344, 787, 15);
+		lblRunXHides = new JLabel("");
+		lblRunXHides.setBounds(503, 356, 423, 47);
 		frame.getContentPane().add(lblRunXHides);
 		
-		JLabel lblHavingLocatedThe = new JLabel("Having located the loot locker, X finds");
-		lblHavingLocatedThe.setBounds(41, 433, 787, 15);
+		lblHavingLocatedThe = new JLabel("");
+		lblHavingLocatedThe.setBounds(41, 440, 300, 15);
 		frame.getContentPane().add(lblHavingLocatedThe);
 		
-		JLabel lblBagYou = new JLabel("Bag - You lost your only camo net/sentry/air support beacon in the trip down");
-		lblBagYou.setBounds(41, 250, 787, 15);
+		lblBagYou = new JLabel("");
+		lblBagYou.setBounds(503, 270, 423, 47);
 		frame.getContentPane().add(lblBagYou);
 		
-		JLabel lblCrewYou = new JLabel("Crew - You have no backup, the rest of the crew is off world");
-		lblCrewYou.setBounds(41, 371, 414, 15);
+		lblCrewYou = new JLabel("");
+		lblCrewYou.setBounds(41, 356, 423, 47);
 		frame.getContentPane().add(lblCrewYou);
 		
 		// Back button
@@ -296,5 +442,4 @@ public class ExplorePlanet
 			}
 		});
 	}
-
 }

@@ -1,1 +1,1 @@
-80, 50, 70, 2, false, shrdxh, Mechanic, alive, 
+20, 50, 70, 2, true, shrdxh, Mechanic, alive, 

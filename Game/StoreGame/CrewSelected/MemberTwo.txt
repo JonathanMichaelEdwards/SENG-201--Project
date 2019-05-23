@@ -1,1 +1,1 @@
-40, 60, 100, 2, false, ssgdsg, Leader, alive, 
+30, 60, 100, 2, true, ssgdsg, Leader, alive, 

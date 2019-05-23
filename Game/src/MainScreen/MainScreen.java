@@ -78,6 +78,7 @@ public class MainScreen
 	private JLabel lblPlague;
 	
 	private String readFile = "StoreGame/CrewSelected/";	
+	private JButton btnAbandonShip;
 	
 	// Store all progress bar so it can be used easily
 	// Stores crew details in data arrays so it can be used easily
@@ -489,6 +490,18 @@ public class MainScreen
 		lblPlague.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblPlague.setBounds(81, 404, 488, 62);
 		frame.getContentPane().add(lblPlague);
+		
+		btnAbandonShip = new JButton("Abandon Ship");
+		btnAbandonShip.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("GAME OVER");
+				loseGame outpost = new loseGame();
+				outpost.frame.setVisible(true);
+				frame.setVisible(false);
+			}
+		});
+		btnAbandonShip.setBounds(1314, 959, 208, 62);
+		frame.getContentPane().add(btnAbandonShip);
 		
 
 	}

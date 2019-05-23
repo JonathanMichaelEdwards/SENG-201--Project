@@ -1,1 +1,1 @@
-Storage, ssdsg, 75, false, 0, 
+Storage, ssdsg, 75, true, 0, 
