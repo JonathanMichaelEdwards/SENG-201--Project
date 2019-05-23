@@ -1,1 +1,9 @@
+<<<<<<< HEAD
 20, 50, 70, 2, true, shrdxh, Mechanic, alive, 
+=======
+<<<<<<< Updated upstream
+80, 50, 70, 2, false, shrdxh, Mechanic, alive, 
+=======
+40, 60, 100, 2, false, fgf, Leader, 
+>>>>>>> Stashed changes
+>>>>>>> master

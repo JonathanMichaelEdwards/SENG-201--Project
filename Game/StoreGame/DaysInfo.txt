@@ -1,1 +1,9 @@
+<<<<<<< HEAD
 7, 3, 
+=======
+<<<<<<< Updated upstream
+7, 4, 
+=======
+6, 4, 
+>>>>>>> Stashed changes
+>>>>>>> master

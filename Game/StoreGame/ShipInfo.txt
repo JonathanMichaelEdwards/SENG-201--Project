@@ -1,1 +1,9 @@
+<<<<<<< HEAD
 Storage, ssdsg, 75, true, 0, 
+=======
+<<<<<<< Updated upstream
+Storage, ssdsg, 75, false, 0, 
+=======
+Attack, fgf, 75, false, 0, 
+>>>>>>> Stashed changes
+>>>>>>> master
