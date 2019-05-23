@@ -154,7 +154,7 @@ public class MedicalStore
 	// Storing and displaying the characters health
 	private void memberOne(ArrayList<String> crewMember1, IOFile ioFile)
 	{
-		crewMember1 = ioFile.fileRead("StoreGame/CrewSelected/MemberOne.txt");
+		crewMember1 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberOne.txt");
 		
 		cBHealth1.setValue(Integer.valueOf(crewMember1.get(0)));
 		cBTired1.setValue(Integer.valueOf(crewMember1.get(1)));
@@ -163,7 +163,7 @@ public class MedicalStore
 	
 	private void memberTwo(ArrayList<String> crewMember2, IOFile ioFile)
 	{
-		crewMember2 = ioFile.fileRead("StoreGame/CrewSelected/MemberTwo.txt");
+		crewMember2 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberTwo.txt");
 		
 		cBHealth2.setValue(Integer.valueOf(crewMember2.get(0)));
 		cBTired2.setValue(Integer.valueOf(crewMember2.get(1)));
@@ -172,7 +172,7 @@ public class MedicalStore
 	
 	private void memberThree(ArrayList<String> crewMember3, IOFile ioFile)
 	{
-		crewMember3 = ioFile.fileRead("StoreGame/CrewSelected/MemberThree.txt");
+		crewMember3 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberThree.txt");
 		
 		cBHealth3.setValue(Integer.valueOf(crewMember3.get(0)));
 		cBTired3.setValue(Integer.valueOf(crewMember3.get(1)));
@@ -181,7 +181,7 @@ public class MedicalStore
 	
 	private void memberFour(ArrayList<String> crewMember4, IOFile ioFile)
 	{
-		crewMember4 = ioFile.fileRead("StoreGame/CrewSelected/MemberFour.txt");
+		crewMember4 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberFour.txt");
 		
 		cBHealth4.setValue(Integer.valueOf(crewMember4.get(0)));
 		cBTired4.setValue(Integer.valueOf(crewMember4.get(1)));
@@ -220,8 +220,8 @@ public class MedicalStore
 		IOFile ioFile = new IOFile();
 		
 		// Reading files
-		ArrayList<String> storedItems= ioFile.fileRead("StoreGame/Inventory/Storage.txt");
-		ArrayList<String> crewInfo = ioFile.fileRead("StoreGame/CrewInfo.txt");
+		ArrayList<String> storedItems= ioFile.fileRead("src/StoreGame/Inventory/Storage.txt");
+		ArrayList<String> crewInfo = ioFile.fileRead("src/StoreGame/CrewInfo.txt");
 		
 		// unwrap information
 		decodeCrewInfo(crewInfo);
@@ -256,7 +256,7 @@ public class MedicalStore
 		ArrayList<String> bank = new ArrayList<String>();
 		IOFile ioFile = new IOFile();
 		
-		bank = ioFile.fileRead("StoreGame/CashInfo.txt");
+		bank = ioFile.fileRead("src/StoreGame/CashInfo.txt");
 		lblCurrentCash.setText("Current Cash = $ " + bank.get(0).toString());
 	}
 	
@@ -292,8 +292,8 @@ public class MedicalStore
 				IOFile ioFile = new IOFile();
 				
 				cashSpent += cash1 + cash2 + cash3 + cash4;
-				totalCash = ioFile.fileRead("StoreGame/CashInfo.txt");
-				inventory = ioFile.fileRead("StoreGame/Inventory/Storage.txt");
+				totalCash = ioFile.fileRead("src/StoreGame/CashInfo.txt");
+				inventory = ioFile.fileRead("src/StoreGame/Inventory/Storage.txt");
 				
 				// Storing information
 				int bank = Integer.parseInt(totalCash.get(0)) - cashSpent;
@@ -304,8 +304,8 @@ public class MedicalStore
 				inventory.addAll(broughtItems4);
 				
 				// store the new cash amount
-				ioFile.fileWrite(totalCash, "StoreGame/CashInfo.txt");  // Writing in new days
-				ioFile.fileWrite(inventory, "StoreGame/Inventory/Storage.txt");  // Writing new items in inventory
+				ioFile.fileWrite(totalCash, "src/StoreGame/CashInfo.txt");  // Writing in new days
+				ioFile.fileWrite(inventory, "src/StoreGame/Inventory/Storage.txt");  // Writing new items in inventory
 				
 				// Refresh screen
 				MedicalStore screen = new MedicalStore();

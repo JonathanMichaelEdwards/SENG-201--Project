@@ -86,7 +86,7 @@ public class ChooseDays
 				storeDays.add(""+days);
 				storeDays.add(""+piecesToCollect);
 				
-				ioFile.fileWrite(storeDays, "StoreGame/DaysInfo.txt");
+				ioFile.fileWrite(storeDays, "src/StoreGame/DaysInfo.txt");
 			}
 		});
 		btnAccept.setBounds(779, 494, 151, 103);

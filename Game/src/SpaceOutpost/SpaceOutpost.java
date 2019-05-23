@@ -146,7 +146,7 @@ public class SpaceOutpost
 	// Storing and displaying the characters health
 	private void memberOne(ArrayList<String> crewMember1, IOFile ioFile)
 	{
-		crewMember1 = ioFile.fileRead("StoreGame/CrewSelected/MemberOne.txt");
+		crewMember1 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberOne.txt");
 		
 		cBHealth1.setValue(Integer.valueOf(crewMember1.get(0)));
 		cBTired1.setValue(Integer.valueOf(crewMember1.get(1)));
@@ -155,7 +155,7 @@ public class SpaceOutpost
 	
 	private void memberTwo(ArrayList<String> crewMember2, IOFile ioFile)
 	{
-		crewMember2 = ioFile.fileRead("StoreGame/CrewSelected/MemberTwo.txt");
+		crewMember2 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberTwo.txt");
 		
 		cBHealth2.setValue(Integer.valueOf(crewMember2.get(0)));
 		cBTired2.setValue(Integer.valueOf(crewMember2.get(1)));
@@ -164,7 +164,7 @@ public class SpaceOutpost
 	
 	private void memberThree(ArrayList<String> crewMember3, IOFile ioFile)
 	{
-		crewMember3 = ioFile.fileRead("StoreGame/CrewSelected/MemberThree.txt");
+		crewMember3 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberThree.txt");
 		
 		cBHealth3.setValue(Integer.valueOf(crewMember3.get(0)));
 		cBTired3.setValue(Integer.valueOf(crewMember3.get(1)));
@@ -173,7 +173,7 @@ public class SpaceOutpost
 	
 	private void memberFour(ArrayList<String> crewMember4, IOFile ioFile)
 	{
-		crewMember4 = ioFile.fileRead("StoreGame/CrewSelected/MemberFour.txt");
+		crewMember4 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberFour.txt");
 		
 		cBHealth4.setValue(Integer.valueOf(crewMember4.get(0)));
 		cBTired4.setValue(Integer.valueOf(crewMember4.get(1)));
@@ -212,7 +212,7 @@ public class SpaceOutpost
 		IOFile ioFile = new IOFile();
 		
 		// Reading files
-		ArrayList<String> crewInfo = ioFile.fileRead("StoreGame/CrewInfo.txt");
+		ArrayList<String> crewInfo = ioFile.fileRead("src/StoreGame/CrewInfo.txt");
 		
 		// unwrap information
 		decodeCrewInfo(crewInfo);
@@ -232,7 +232,7 @@ public class SpaceOutpost
 		IOFile ioFile = new IOFile();
 
 		// read how much cash the player has
-		totalCash = ioFile.fileRead("StoreGame/CashInfo.txt");
+		totalCash = ioFile.fileRead("src/StoreGame/CashInfo.txt");
 		lblCashTotal.setText("Current Cash = $ " + totalCash.get(0).toString());
 	}
 	

@@ -30,15 +30,15 @@ public class asteroids {
 			{
 				IOFile ioFile = new IOFile();
 				
-				ArrayList<String> changeShields = ioFile.fileRead("StoreGame/ShipInfo.txt");
+				ArrayList<String> changeShields = ioFile.fileRead("src/StoreGame/ShipInfo.txt");
 
 				Integer explosion;
 				
 				
 				int dmg = Integer.parseInt(changeShields.get(2)) - 30; //this is the value in which a repair heals
 				changeShields.set(2, "" + dmg);
-				ioFile.fileWrite(changeShields, "StoreGame/ShipInfo.txt");
-				ArrayList<String> checkShields = ioFile.fileRead("StoreGame/ShipInfo.txt");				
+				ioFile.fileWrite(changeShields, "src/StoreGame/ShipInfo.txt");
+				ArrayList<String> checkShields = ioFile.fileRead("src/StoreGame/ShipInfo.txt");				
 //				explosion = Integer.parseInt(checkShields.get(2));
 				
 				if (dmg <= 0)

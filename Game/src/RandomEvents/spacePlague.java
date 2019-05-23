@@ -19,7 +19,7 @@ public class spacePlague {
 
 	public JFrame frame;
 	private JButton btnCheckInfection;
-	private String readFile = "StoreGame/CrewSelected/";	
+	private String readFile = "src/StoreGame/CrewSelected/";	
 	private JLabel lblCrewMembersInfected;
 	private void btnBack()
 	{

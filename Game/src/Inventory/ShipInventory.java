@@ -161,7 +161,7 @@ public class ShipInventory
 	// Storing and displaying the characters health
 	private void memberOne(ArrayList<String> crewMember1, IOFile ioFile)
 	{
-		crewMember1 = ioFile.fileRead("StoreGame/CrewSelected/MemberOne.txt");
+		crewMember1 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberOne.txt");
 		
 		pBarHealth1.setValue(Integer.valueOf(crewMember1.get(0)));
 		pBarTired1.setValue(Integer.valueOf(crewMember1.get(1)));
@@ -170,7 +170,7 @@ public class ShipInventory
 	
 	private void memberTwo(ArrayList<String> crewMember2, IOFile ioFile)
 	{
-		crewMember2 = ioFile.fileRead("StoreGame/CrewSelected/MemberTwo.txt");
+		crewMember2 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberTwo.txt");
 		
 		pBarHealth2.setValue(Integer.valueOf(crewMember2.get(0)));
 		pBarTired2.setValue(Integer.valueOf(crewMember2.get(1)));
@@ -179,7 +179,7 @@ public class ShipInventory
 	
 	private void memberThree(ArrayList<String> crewMember3, IOFile ioFile)
 	{
-		crewMember3 = ioFile.fileRead("StoreGame/CrewSelected/MemberThree.txt");
+		crewMember3 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberThree.txt");
 		
 		pBarHealth3.setValue(Integer.valueOf(crewMember3.get(0)));
 		pBarTired3.setValue(Integer.valueOf(crewMember3.get(1)));
@@ -188,7 +188,7 @@ public class ShipInventory
 	
 	private void memberFour(ArrayList<String> crewMember4, IOFile ioFile)
 	{
-		crewMember4 = ioFile.fileRead("StoreGame/CrewSelected/MemberFour.txt");
+		crewMember4 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberFour.txt");
 		
 		pBarHealth4.setValue(Integer.valueOf(crewMember4.get(0)));
 		pBarTired4.setValue(Integer.valueOf(crewMember4.get(1)));
@@ -226,8 +226,8 @@ public class ShipInventory
 		IOFile ioFile = new IOFile();
 		
 		// Reading files
-		ArrayList<String> crewInfo = ioFile.fileRead("StoreGame/CrewInfo.txt");
-		ArrayList<String> storedItems= ioFile.fileRead("StoreGame/Inventory/Storage.txt");
+		ArrayList<String> crewInfo = ioFile.fileRead("src/StoreGame/CrewInfo.txt");
+		ArrayList<String> storedItems= ioFile.fileRead("src/StoreGame/Inventory/Storage.txt");
 		
 		// unwrap information
 		decodeCrewInfo(crewInfo);
@@ -426,7 +426,7 @@ public class ShipInventory
 	private void crewWrite(String crewSelected)
 	{
 		IOFile ioFile = new IOFile();
-		crew = ioFile.fileRead("StoreGame/CrewSelected/" + crewSelected + ".txt");
+		crew = ioFile.fileRead("src/StoreGame/CrewSelected/" + crewSelected + ".txt");
 		int valueChange;
 		
 		if (rBCookie.isSelected()) {
@@ -479,7 +479,7 @@ public class ShipInventory
 		if (setectedState)
 			btnConfirmChoice.setEnabled(true); // enable button
 		
-		ioFile.fileWrite(crew, "StoreGame/CrewSelected/" + crewSelected + ".txt");
+		ioFile.fileWrite(crew, "src/StoreGame/CrewSelected/" + crewSelected + ".txt");
 	}
 	
 	
@@ -494,7 +494,7 @@ public class ShipInventory
 				IOFile ioFile = new IOFile();
 				ArrayList<String> inventory = new ArrayList<String>();
 				
-				inventory = ioFile.fileRead("StoreGame/Inventory/Storage.txt");
+				inventory = ioFile.fileRead("src/StoreGame/Inventory/Storage.txt");
 				
 		 		if (rdbtnCrew1.isSelected()) {
 		 			crewWrite("MemberOne");
@@ -522,7 +522,7 @@ public class ShipInventory
 				else if (rBBandages.isSelected())
 					inventory.remove("bandage");
 				
-				ioFile.fileWrite(inventory, "StoreGame/Inventory/Storage.txt");
+				ioFile.fileWrite(inventory, "src/StoreGame/Inventory/Storage.txt");
 				
 				ShipInventory ship = new ShipInventory();
 				ship.frame.setVisible(true);    // turn on screen
@@ -550,7 +550,7 @@ public class ShipInventory
 		 	// this part detects if we have enough turns left, if not the radio button is disabled
 			ArrayList<String> member = new ArrayList<String>();
 			String actionLeft;
-			String readFile = "StoreGame/CrewSelected/";
+			String readFile = "src/StoreGame/CrewSelected/";
 			IOFile ioFile = new IOFile();
 			member = ioFile.fileRead(readFile + "MemberOne.txt");
 			actionLeft = member.get(7);
@@ -582,7 +582,7 @@ public class ShipInventory
 //		this part detects if we have enough turns left, if not the radio button is disabled
 		ArrayList<String> member2 = new ArrayList<String>();
 		String actionLeft2;
-		String readFile2 = "StoreGame/CrewSelected/";
+		String readFile2 = "src/StoreGame/CrewSelected/";
 		IOFile ioFile2 = new IOFile();
 		member2 = ioFile2.fileRead(readFile2 + "MemberTwo.txt");
 		actionLeft2 = member2.get(7);
@@ -613,7 +613,7 @@ public class ShipInventory
 		rdbtnCrew3 = new JRadioButton("Choose");
 //		this part detects if we have enough turns left, if not the radio button is disabled
 		ArrayList<String> member3 = new ArrayList<String>();
-		String readFile3 = "StoreGame/CrewSelected/";
+		String readFile3 = "src/StoreGame/CrewSelected/";
 		IOFile ioFile3 = new IOFile();
 		member3 = ioFile3.fileRead(readFile3 + "MemberThree.txt");
 		actionLeft3 = member3.get(7);
@@ -644,7 +644,7 @@ public class ShipInventory
 //		this part detects if we have enough turns left, if not the radio button is disabled
 		ArrayList<String> member4 = new ArrayList<String>();
 //		String actionLeft4;
-		String readFile4 = "StoreGame/CrewSelected/";
+		String readFile4 = "src/StoreGame/CrewSelected/";
 		IOFile ioFile4 = new IOFile();
 		member4 = ioFile4.fileRead(readFile4 + "MemberFour.txt");
 		actionLeft4 = member4.get(7);
