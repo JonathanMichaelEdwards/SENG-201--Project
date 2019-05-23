@@ -51,7 +51,6 @@ public class asteroids {
 				
 				if (dmg > 0)
 				{
-					System.out.println("Check Damage");
 					MainScreen screen = new MainScreen();
 					screen.frame.setVisible(true);    // turn on screen
 					frame.setVisible(false);   

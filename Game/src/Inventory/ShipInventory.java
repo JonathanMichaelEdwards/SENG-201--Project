@@ -125,7 +125,8 @@ public class ShipInventory
 		health[index].setEnabled(false);
 		tiredness[index].setEnabled(false);
 	}
-	
+
+
 	// helper function to disable/(grey out) unused status information areas
 	private void disableStatus(int size)
 	{
@@ -135,13 +136,17 @@ public class ShipInventory
 		for (int index = 0; index < lsSize; index++) {
 			if ((lsSize-size) == 2 && (index >= 2)) {
 				disableInfo(index);
-			} else if ((lsSize-size) == 3 && (index == 3)) {
+				rdbtnCrew3.setEnabled(false);
+				rdbtnCrew4.setEnabled(false);
+				siName4.setEnabled(false);
+			} else if ((lsSize-size) == 1 && (index == 3)) {
 				disableInfo(index);
+				rdbtnCrew4.setEnabled(false);
 			}
-		}
+		}	
 	}
-
-
+	
+	
 	// decode crew information to get correct data
 	private void decodeCrewInfo(ArrayList<String> crewInfo)
 	{
@@ -151,8 +156,6 @@ public class ShipInventory
 		else if (crewInfo.size() == 6) addCrew(crewInfo, 3);
 		else if (crewInfo.size() == 8) addCrew(crewInfo, 4);
 	}
-	
-	
 	
 	
 	// Storing and displaying the characters health
@@ -235,7 +238,6 @@ public class ShipInventory
 			member[index].setText(crewName.get(index));
 		}
 		
-		btnStates(); // check status of buttons
 		
 		// Find out how many of the same items the player has
 		for (int index = 0; index < storedItems.size(); index++) {
@@ -419,11 +421,6 @@ public class ShipInventory
 		});
 		frame.getContentPane().add(btnBack);
 	}
-
-	
-	private void btnAccept()
-	{
-	}
 	
 	
 	private void crewWrite(String crewSelected)
@@ -544,74 +541,22 @@ public class ShipInventory
 		rdbtnCrew3.setSelected(false);
 		rdbtnCrew4.setSelected(false);
 	}
-	
-	
-//	 checks which players should be disabled
-	private void btnStates()
-	{
-		for (int index = 0; index < crewType.size(); index++) {
-			if (index == 1 && (actionLeft3.equals("dead")))  {
-				rdbtnCrew3.setEnabled(false);
-				rdbtnCrew4.setEnabled(false);
-				btn3State = true;
-				btn4State = true;
-				
-			} else if (index == 2 && (actionLeft4.equals("dead"))) {
-				rdbtnCrew4.setEnabled(false);
-				btn4State = true;
-			}
-		}
-	}
 
-//	private void btnStates()
-//	{
-//		for (int index = 0; index < crewType.size(); index++) {
-//			if (index == 1) {
-//				System.out.println("pass1");
-//				rdbtnCrew1.setEnabled(true);
-//				rdbtnCrew2.setEnabled(true);
-//				rdbtnCrew3.setEnabled(false);
-//				rdbtnCrew4.setEnabled(false);
-//				btn3State = true;
-//				btn4State = true;
-//				
-//			} 
-//			if (index == 2) {
-//				System.out.println("pass2");
-//				rdbtnCrew1.setEnabled(true);
-//				rdbtnCrew2.setEnabled(true);
-//				rdbtnCrew3.setEnabled(true);
-//				rdbtnCrew4.setEnabled(false);
-//				btn4State = true;
-//			}
-//			if (index == 3) {
-//				System.out.println("pass3");
-//				rdbtnCrew1.setEnabled(true);
-//				rdbtnCrew2.setEnabled(true);
-//				rdbtnCrew3.setEnabled(true);
-//				rdbtnCrew4.setEnabled(true);
-//				btn4State = true;
-//			}
-//
-//			
-//		}
-//	}
 	
 	private void btnCrew()
 	{
 		 rdbtnCrew1 = new JRadioButton("Choose");
 		 
-//			this part detects if we have enough turns left, if not the radio button is disabled
+		 	// this part detects if we have enough turns left, if not the radio button is disabled
 			ArrayList<String> member = new ArrayList<String>();
 			String actionLeft;
 			String readFile = "StoreGame/CrewSelected/";
 			IOFile ioFile = new IOFile();
 			member = ioFile.fileRead(readFile + "MemberOne.txt");
 			actionLeft = member.get(7);
-			if (actionLeft.equals("dead"))
-					{
+			if (actionLeft.equals("dead")) {
 				rdbtnCrew1.setEnabled(false);
-					}
+			}
 		 
 		 
 		 rdbtnCrew1.addActionListener(new ActionListener() 
@@ -643,7 +588,6 @@ public class ShipInventory
 		actionLeft2 = member2.get(7);
 		if (actionLeft2.equals("dead"))
 				{
-			System.out.println("should be off");
 			rdbtnCrew2.setEnabled(false);
 				}
 		rdbtnCrew2.addActionListener(new ActionListener() 
@@ -669,7 +613,6 @@ public class ShipInventory
 		rdbtnCrew3 = new JRadioButton("Choose");
 //		this part detects if we have enough turns left, if not the radio button is disabled
 		ArrayList<String> member3 = new ArrayList<String>();
-//		String actionLeft3;
 		String readFile3 = "StoreGame/CrewSelected/";
 		IOFile ioFile3 = new IOFile();
 		member3 = ioFile3.fileRead(readFile3 + "MemberThree.txt");
@@ -981,7 +924,6 @@ public class ShipInventory
 		btnCrew();
 		cBoxActions();
 		btnConfirm();
-		btnAccept();;
 		btnBack();
 	}
 	
