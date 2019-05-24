@@ -22,7 +22,8 @@ import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 
 
-public class NameShip {
+public class NameShip extends CrewSelection
+{
 
 	public JFrame frmEliteDangerousBeta;
 	
@@ -41,8 +42,8 @@ public class NameShip {
 	private JLabel lblName1, lblName2, lblName3, lblName4; 
 	
 	// Stored list of crewType members chosen, there names and the number of pieces to collect
-	private ArrayList<String> crewType = new ArrayList<String>();
-	private ArrayList<String> crewNames = new ArrayList<String>();
+	public ArrayList<String> crewType = new ArrayList<String>();
+	public ArrayList<String> crewNames = new ArrayList<String>();
 	private String shipType = "";
 	private String shipName = "";
 	private JLabel lblNewLabel;
@@ -50,7 +51,7 @@ public class NameShip {
 	
 	
 	//	Storing info for next screen
-	private void crewInfo(ArrayList<String> type, ArrayList<String> name, int index)
+	protected void crewInfo(ArrayList<String> type, ArrayList<String> name, int index)
 	{
 		crewType.add(type.get(index));
 		crewNames.add(name.get(index));
@@ -58,7 +59,7 @@ public class NameShip {
 	
 	
 	// Retrieve data from previous screen
-	public void getCrewInfo(ArrayList<String> type, ArrayList<String> name)
+	protected void getCrewInfo(ArrayList<String> type, ArrayList<String> name)
 	{
 		IOFile ioFile = new IOFile();
 		
@@ -86,7 +87,7 @@ public class NameShip {
 				crewInfo(type, name, index);
 			}
 		}
-
+		
 		// Storing number of pieces needed to be collected
 		ArrayList<String> shipInfo = ioFile.fileRead("src/StoreGame/DaysInfo.txt");
 		
@@ -181,7 +182,7 @@ public class NameShip {
 	}
 
 	// The different range of ship choices
-	private void shipChoices()
+	protected void shipChoices()
 	{
 		repairShip();
 		attackShip();
@@ -192,7 +193,7 @@ public class NameShip {
 	
 	
 	// Displays the ship the user selected and stores the output
-	private void setShips()
+	protected void setShips()
 	{
 	    // Set your ship
 	    JButton btnSetYourShips = new JButton("Set your ship's name");
@@ -254,7 +255,7 @@ public class NameShip {
 	}
 	
 	
-	private void storeInfo()
+	protected void storeInfo()
 	{
 		// Store information in files
 		IOFile ioFile = new IOFile();
@@ -335,7 +336,7 @@ public class NameShip {
 	
 	
 	// Go to game screen if all fields are completed
-	private void startGameButton()
+	protected void startGameButton()
 	{
 		// if fields are complete, start game 
 		btnStart = new JButton("Start game");

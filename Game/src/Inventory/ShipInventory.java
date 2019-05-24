@@ -4,18 +4,19 @@ package Inventory;
 // Library imports
 import java.awt.EventQueue;
 import java.awt.Font;
-
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 import javax.swing.JRadioButton;
+<<<<<<< Updated upstream
 import javax.swing.SwingConstants;
 
+=======
+>>>>>>> Stashed changes
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
-
 import IOFile.IOFile;
 import MainScreen.MainScreen;
 import WindowSettings.Display;
@@ -26,7 +27,6 @@ import javax.swing.ImageIcon;
 public class ShipInventory
 {
 	public JFrame frmEliteDangerousBeta;
-	
 	
 	private JLabel pBarType1, pBarType2, pBarType3, pBarType4;
 	private JLabel siName1, siName2, siName3, siName4;
@@ -49,8 +49,7 @@ public class ShipInventory
 
 	private boolean btnRState, btnCrewState  = false;
 
-	String actionLeft3, actionLeft4;
-	
+	private String actionLeft3, actionLeft4;
 	
 	private JLabel type[] = new JLabel[4];
 	private JLabel member[] = new JLabel[4];
@@ -110,7 +109,7 @@ public class ShipInventory
 	
 
 	// helper function to find the correct member and name
-	private void addCrew(ArrayList<String> crewInfo, int size)
+	protected void addCrew(ArrayList<String> crewInfo, int size)
 	{	
 		for (int index = 0; index < size; index ++) {
 			crewType.add(crewInfo.get(index));
@@ -121,7 +120,7 @@ public class ShipInventory
 	
 	
 	// items to be disabled
-	private void disableInfo(int index) 
+	protected void disableInfo(int index) 
 	{
 
 		type[index].setEnabled(false);
@@ -153,7 +152,7 @@ public class ShipInventory
 	
 	
 	// decode crew information to get correct data
-	private void decodeCrewInfo(ArrayList<String> crewInfo)
+	protected void decodeCrewInfo(ArrayList<String> crewInfo)
 	{
 		// store crew member and there names at the correct index in separate lists
 		// size is -1 because an empty value is added on to the end
@@ -201,7 +200,7 @@ public class ShipInventory
 	}
 	
 	
-	private void readCrewRatings(IOFile ioFile)
+	protected void readCrewRatings(IOFile ioFile)
 	{ 
 		ArrayList<String> crewMember1 = new ArrayList<String>();
 		ArrayList<String> crewMember2 = new ArrayList<String>();
@@ -225,7 +224,7 @@ public class ShipInventory
 	
 	
 	// organizing information from files
-	private void organizeGameInfo()
+	protected void organizeGameInfo()
 	{
 		// gather information stored in file
 		IOFile ioFile = new IOFile();
@@ -275,7 +274,7 @@ public class ShipInventory
 	}
 	
 	
-	private void checkcount()
+	protected void checkcount()
 	{
 		// determine whether or no the button should be on
 		if (cookies == 0)
@@ -308,7 +307,7 @@ public class ShipInventory
 	}
 	
 	
-	private void setradioButtons(JRadioButton button)
+	protected void setradioButtons(JRadioButton button)
 	{
 		if (button.isSelected()) {
 			rbEnableFalse(false);
@@ -324,7 +323,7 @@ public class ShipInventory
 	}
 	
 	
-	private void cBoxActions()
+	protected void cBoxActions()
 	{
 		rBCookie = new JRadioButton("");
 		rBCookie.addActionListener(new ActionListener() 
@@ -411,7 +410,7 @@ public class ShipInventory
 	}
 
 	
-	private void btnBack()
+	protected void btnBack()
 	{
 		JButton btnBack = new JButton("Back");
 		btnBack.setBounds(940, 700, 250, 100);
@@ -441,11 +440,16 @@ public class ShipInventory
 		frmEliteDangerousBeta.getContentPane().add(lblDeleteMeAsap);
 	}
 	
+<<<<<<< Updated upstream
 	/**
 	 * 
 	 * @param crewSelected
 	 */
 	private void crewWrite(String crewSelected)
+=======
+	
+	protected void crewWrite(String crewSelected)
+>>>>>>> Stashed changes
 	{
 		IOFile ioFile = new IOFile();
 		crew = ioFile.fileRead("src/StoreGame/CrewSelected/" + crewSelected + ".txt");
@@ -505,7 +509,7 @@ public class ShipInventory
 	}
 	
 	
-	private void btnConfirm()
+	protected void btnConfirm()
 	{
 		btnConfirmChoice = new JButton("Confirm Choice");
 		btnConfirmChoice.setEnabled(false);
@@ -565,7 +569,7 @@ public class ShipInventory
 	}
 
 	
-	private void btnCrew()
+	protected void btnCrew()
 	{
 		 rdbtnCrew1 = new JRadioButton("Choose");
 		 
@@ -579,7 +583,6 @@ public class ShipInventory
 			if (actionLeft.equals("dead")) {
 				rdbtnCrew1.setEnabled(false);
 			}
-		 
 		 
 		 rdbtnCrew1.addActionListener(new ActionListener() 
 		 {
@@ -601,7 +604,6 @@ public class ShipInventory
 		
 		
 		rdbtnCrew2 = new JRadioButton("Choose");
-//		this part detects if we have enough turns left, if not the radio button is disabled
 		ArrayList<String> member2 = new ArrayList<String>();
 		String actionLeft2;
 		String readFile2 = "src/StoreGame/CrewSelected/";
@@ -618,7 +620,6 @@ public class ShipInventory
 			{
 				rBClear();
 				rdbtnCrew2.setSelected(true);
-				System.out.println("should be on");
 		 		if (rdbtnCrew2.isSelected()) {
 		 			btnCrewState = true;
 		 			if (btnRState) btnConfirmChoice.setEnabled(true); // enable button
@@ -633,7 +634,6 @@ public class ShipInventory
 		
 	
 		rdbtnCrew3 = new JRadioButton("Choose");
-//		this part detects if we have enough turns left, if not the radio button is disabled
 		ArrayList<String> member3 = new ArrayList<String>();
 		String readFile3 = "src/StoreGame/CrewSelected/";
 		IOFile ioFile3 = new IOFile();
@@ -663,9 +663,7 @@ public class ShipInventory
 		
 
 		rdbtnCrew4 = new JRadioButton("Choose");
-//		this part detects if we have enough turns left, if not the radio button is disabled
 		ArrayList<String> member4 = new ArrayList<String>();
-//		String actionLeft4;
 		String readFile4 = "src/StoreGame/CrewSelected/";
 		IOFile ioFile4 = new IOFile();
 		member4 = ioFile4.fileRead(readFile4 + "MemberFour.txt");
@@ -702,12 +700,20 @@ public class ShipInventory
 		Display display = new Display();  // Retrieving game window size
 		
 		// Setting frame of window
+<<<<<<< Updated upstream
 		frmEliteDangerousBeta.setBounds(display.x, display.y, display.width, display.height);
 		frmEliteDangerousBeta.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmEliteDangerousBeta.setResizable(false);
 		frmEliteDangerousBeta.getContentPane().setLayout(null);
 //		frame.setUndecorated(true);  // Frame cannot be adjusted during game
 		
+=======
+		frame.setBounds(display.x, display.y, display.width, display.height);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
+		frame.getContentPane().setLayout(null);
+
+>>>>>>> Stashed changes
 		
 		// Initialize displays
 		JLabel lblShipsInventory = new JLabel("Ships inventory");
@@ -737,13 +743,29 @@ public class ShipInventory
 		pBarHunger1 = new JProgressBar();
 		pBarHunger1.setBounds(666, 545, 150, 30);
 		pBarHunger1.setStringPainted(true);
+<<<<<<< Updated upstream
 		frmEliteDangerousBeta.getContentPane().add(pBarHunger1);
+=======
+		frame.getContentPane().add(pBarHunger1);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
 	
+=======
+		
+>>>>>>> Stashed changes
 		pBarHealth2 = new JProgressBar();
 		pBarHealth2.setBounds(853, 466, 150, 30);
 		pBarHealth2.setStringPainted(true);
+<<<<<<< Updated upstream
 		frmEliteDangerousBeta.getContentPane().add(pBarHealth2);
+=======
+		frame.getContentPane().add(pBarHealth2);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
 		
+=======
+	
+>>>>>>> Stashed changes
 		pBarTired2 = new JProgressBar();
 		pBarTired2.setBounds(853, 503, 150, 30);
 		pBarTired2.setStringPainted(true);
@@ -757,8 +779,16 @@ public class ShipInventory
 		pBarHealth3 = new JProgressBar();
 		pBarHealth3.setBounds(1044, 466, 150, 30);
 		pBarHealth3.setStringPainted(true);
+<<<<<<< Updated upstream
 		frmEliteDangerousBeta.getContentPane().add(pBarHealth3);
+=======
+		frame.getContentPane().add(pBarHealth3);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
 		
+=======
+	
+>>>>>>> Stashed changes
 		pBarTired3 = new JProgressBar();
 		pBarTired3.setBounds(1044, 503, 150, 30);
 		pBarTired3.setStringPainted(true);

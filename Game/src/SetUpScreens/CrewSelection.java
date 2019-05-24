@@ -27,21 +27,39 @@ import CrewTypes.Pilot;
 import CrewTypes.Soldier;
 import CrewTypes.Thief;
 import IOFile.IOFile;
+<<<<<<< Updated upstream
 import javax.swing.SwingConstants;
+<<<<<<< Updated upstream
 import javax.swing.ImageIcon;
+=======
+=======
+import Tests.ChooseDaysTest;
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 
 
-public class CrewSelection {
+public class CrewSelection
+{
 
 	public JFrame frmEliteDangerousBeta; // Frame for screen
 	
 	private JTextField txtFdName;
 	private JProgressBar progressBar;
 	private JLabel label;
-	private JComboBox<Object> comBoxCharChosen;
+	public JComboBox<Object> comBoxCharChosen;
 	
 	// Setting up player selection variables
-	private JCheckBox selectSoldier, selectMedic, selectLeader, selectMechanic, selectPilot, selectThief;
+	public JCheckBox selectSoldier;
+
+	private JCheckBox selectMedic;
+
+	private JCheckBox selectLeader;
+
+	private JCheckBox selectMechanic;
+
+	private JCheckBox selectPilot;
+
+	private JCheckBox selectThief;
 	private JComboBox<Object> comboBoxSoldier, comboBoxMedic, comboBoxLeader, comboBoxMechanic, comboBoxPilot, comboBoxThief;
 	
 	// Members chosen  with there name stored
@@ -61,10 +79,10 @@ public class CrewSelection {
 	private JButton soldierInfo, leaderInfo, pilotInfo, medicInfo, mechanicInfo, thiefInfo;
 	
 	// Store crew ratings
-	ArrayList<String> soldier, medic, leader, mechanic, pilot, thief;
+	private ArrayList<String> soldier, medic, leader, mechanic, pilot, thief;
 	
 	// Stored list of crewType members and there names
-	private ArrayList<String> crewType = new ArrayList<String>();
+	public ArrayList<String> crewType = new ArrayList<String>();
 	private ArrayList<String> crewNames = new ArrayList<String>();
 	
 	// stores the selection type
@@ -100,7 +118,7 @@ public class CrewSelection {
 	
 	
 	// Disable player type check boxes
-	private void disableCharBoxes(JCheckBox charSelect, JComboBox<?> charNumber) 
+	public void disableCharBoxes(JCheckBox charSelect, JComboBox<?> charNumber) 
 	{
 		charSelect.setEnabled(false);
 		charNumber.setEnabled(false);
@@ -113,7 +131,7 @@ public class CrewSelection {
 	
 
 	// reseting the screen
-	private void resetScreen()
+	protected void resetScreen()
 	{
 		// Setting a new frame
 		CrewSelection selectCrew = new CrewSelection();
@@ -123,7 +141,7 @@ public class CrewSelection {
 	
 	
 	// Adding characters names to the list and displaying their given names as labels
-	private void addNames(JLabel name)
+	protected void addNames(JLabel name)
 	{
 		for (int index = 0; index < crewType.size(); index++) {
 			if (name.getText().equals("...")) {
@@ -138,8 +156,10 @@ public class CrewSelection {
 	}
 	
 	
+	
+
 	// Adding the character Type to the list and displaying the type chosen as labels
-	private void addMember(JCheckBox selectedChar, JComboBox<?> selectedNumber, String playerType) 
+	protected void addMember(JCheckBox selectedChar, JComboBox<?> selectedNumber, String playerType) 
 	{
 		String removeX = (String) selectedNumber.getSelectedItem();  // get the item
 		
@@ -171,7 +191,7 @@ public class CrewSelection {
 	}
 	
 	
-	private void setMembersChosen()
+	protected void setMembersChosen()
 	{
 		// Update names and types arrays
 		settingChar();
@@ -321,7 +341,7 @@ public class CrewSelection {
 	
 	// number of players that could be selected
 	// characters either are added or removed from lists
-	private void characterChoices()
+	protected void characterChoices()
 	{
 		checkSoldier();
 		checkMedic();
@@ -474,7 +494,7 @@ public class CrewSelection {
 	}
 	
 	// creating combo boxes for each players and determining there states
-	private void characterNumber()
+	protected void characterNumber()
 	{
 		soldierNumber();
 		medicNumber();
@@ -489,7 +509,7 @@ public class CrewSelection {
 	
 	// If the user has selected between 2 to 4 players, allow the user to input names
 	// for that player type
-	private void acceptCharacters()
+	protected void acceptCharacters()
 	{
 		btnAcceptChars = new JButton("Accept Team Composition");
 		btnAcceptChars.addActionListener(new ActionListener() 
@@ -519,7 +539,7 @@ public class CrewSelection {
 
 
 	// If user pushes the Next button, send info and move to next screen
-	private void nextButton()
+	protected void nextButton()
 	{
 		btnNext = new JButton("Next");
 		btnNext.setEnabled(false);
@@ -547,7 +567,7 @@ public class CrewSelection {
 	}
 
 	
-	private void resetButton()
+	protected void resetButton()
 	{
 		// If Reset button is pushed, Reset (Clear) the Screen
 		btnReset = new JButton("Reset");
@@ -565,7 +585,7 @@ public class CrewSelection {
 
 	
 	// Acept the characters name and set it to the character
-	private void acceptName()
+	protected void acceptName()
 	{
 		btnAcceptName = new JButton("Accept Name");
 		btnAcceptName.setEnabled(false);
@@ -718,7 +738,7 @@ public class CrewSelection {
 	}	
 	
 	
-	private void storeCrewRatings()
+	protected void storeCrewRatings()
 	{
 		IOFile ioFile = new IOFile();
 		CrewRatings crew = new CrewRatings();
@@ -1056,7 +1076,7 @@ public class CrewSelection {
 	 * Launch the application.
 	*/
 	public static void main(String[] args) 
-	{
+	{	
 		EventQueue.invokeLater(new Runnable() 
 		{
 			public void run() 

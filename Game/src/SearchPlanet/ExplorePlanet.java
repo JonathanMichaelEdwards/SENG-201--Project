@@ -34,7 +34,7 @@ public class ExplorePlanet
 	private JLabel lblNewLabel;
 	
 	
-	private void btnBack()
+	protected void btnBack()
 	{
 		btnRecallToShip = new JButton("Re-call to ship");
 		btnRecallToShip.setVisible(false);
@@ -57,7 +57,7 @@ public class ExplorePlanet
 		frmEliteDangerousBeta.getContentPane().add(lblCrewMembersLoot);
 	}
 	
-	private void loot()
+	protected void loot()
 	{
 		btnCheckLoot = new JButton("Show Uncovered Loot");
 		btnCheckLoot.setVisible(false);
@@ -69,8 +69,21 @@ public class ExplorePlanet
 				btnCheckLoot.setVisible(false);
 				btnRecallToShip.setVisible(true);
 				IOFile ioFile = new IOFile();
+<<<<<<< Updated upstream
 				IOFile ioFile1 = new IOFile();
+<<<<<<< Updated upstream
 
+=======
+//				ArrayList<String> member = new ArrayList<String>();
+//				ArrayList<String> memberboth = new ArrayList<String>();
+//				ArrayList<String> member2 = new ArrayList<String>();
+//				String name;
+//				String nameboth;
+//				String name2;
+				//ArrayList<String> type = new ArrayList<String>();
+=======
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 				ArrayList<String> shipInfo = new ArrayList<String>();
 				String findPart;
 				ArrayList<String> inventory = new ArrayList<String>();
@@ -80,22 +93,15 @@ public class ExplorePlanet
 				ArrayList<String> updatePart = new ArrayList<String>();
 				String count;
 				
-				
-				// changes the member selected file
-//				if (character1.isSelected()) {
-//					member = ioFile.fileRead(readFile + "MemberOne.txt");
-//					tiredRate(member, ioFile, "MemberOne");
-//				} 
-				
 				shipInfo = ioFile.fileRead(readFile + ".txt");
 				findPart = shipInfo.get(3);
 				if (findPart.equals("false"))
 				{
 					int x = (int)(Math.random()*((100-0)+0))+0;
-					System.out.println(x);
+					
 					if (x >= 25) {
 						shipInfo.set(3, "true");
-						System.out.println("found part");
+						
 						ioFile.fileWrite(shipInfo, readFile + ".txt");
 						lblCrewMembersLoot.setText("You've Found this planets part!");
 						
@@ -106,13 +112,10 @@ public class ExplorePlanet
 						ioFile.fileWrite(updatePart, "src/StoreGame/DaysInfo.txt");
 						if (count.equals("0"))
 						{
-							System.out.println("Congrats! youve found all the parts and ended the game, you WIN!");
 							winGame outpost = new winGame();
 							outpost.frame.setVisible(true);
 							frmEliteDangerousBeta.setVisible(false);
 						}
-						
-						
 					}
 					if(x < 25) {
 						inventory = ioFile.fileRead(readStorage + ".txt");
@@ -124,14 +127,17 @@ public class ExplorePlanet
 						
 						ioFile.fileWrite(inventory, readStorage + ".txt");
 						lblCrewMembersLoot.setText("Youve Found " + y + "x Surgical Packages and Full Meals, these will completely fill up the health/hunger bars respectively");
-						System.out.println("found some loot, the part is still out there");
-					}
+						}
 					
 				}
 				if (findPart.equals("true"))
 				{
 					int x = (int)(Math.random()*((2-0)+0))+0;
+<<<<<<< Updated upstream
 					System.out.println("You already have this planets piece");
+=======
+
+>>>>>>> Stashed changes
 					if (x == 0) {
 
 						inventory = ioFile.fileRead(readStorage + ".txt");
@@ -163,6 +169,7 @@ public class ExplorePlanet
 						ioFile.fileWrite(bank, "src/StoreGame/CashInfo.txt");
 
 						lblCrewMembersLoot.setText("Youve Found " + z + "x Pizza, this will partially restore hunger and $" + rand2);
+<<<<<<< Updated upstream
 						ioFile1.fileWrite(inventory2, readStorage + ".txt");
 					}
 
@@ -170,7 +177,19 @@ public class ExplorePlanet
 			}
 				
 		});
+<<<<<<< Updated upstream
 		frmEliteDangerousBeta.getContentPane().setLayout(null);
+=======
+=======
+						
+						ioFile.fileWrite(inventory, readStorage + ".txt");
+						}
+				}
+			}	
+		}});
+>>>>>>> Stashed changes
+		frame.getContentPane().setLayout(null);
+>>>>>>> Stashed changes
 		btnCheckLoot.setBounds(336, 508, 307, 122);
 		frmEliteDangerousBeta.getContentPane().add(btnCheckLoot);
 		
@@ -185,6 +204,8 @@ public class ExplorePlanet
 
 		
 	}
+
+
 	/*
 	 * Initialize the contents of the frame.
 	*/
@@ -203,6 +224,15 @@ public class ExplorePlanet
 		frmEliteDangerousBeta = new JFrame();
 		frmEliteDangerousBeta.setTitle("Elite Dangerous beta");
 		Display display = new Display();  // Retrieving game window size
+<<<<<<< Updated upstream
+=======
+		
+		// Setting frame of window
+		frame.setBounds(display.x, display.y, display.width, display.height);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
+		frame.getContentPane().setLayout(null);
+>>>>>>> Stashed changes
 
 		// Setting frame of window
 		frmEliteDangerousBeta.setBounds(display.x, display.y, display.width, display.height);
@@ -211,6 +241,10 @@ public class ExplorePlanet
 		frmEliteDangerousBeta.getContentPane().setLayout(null);
 		// Initialize displays
 		int x1 = (int)(Math.random()*((4-0)+0))+0;
+<<<<<<< Updated upstream
+=======
+		
+>>>>>>> Stashed changes
 		if (x1 == 0)
 		{
 			transport = "rider.";
@@ -235,6 +269,10 @@ public class ExplorePlanet
 		lblXLaunchesDown.setBounds(429, 28, 787, 30);
 		frmEliteDangerousBeta.getContentPane().add(lblXLaunchesDown);
 		int x2 = (int)(Math.random()*((4-0)+0))+0;
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 		if (x2 == 0)
 		{
 			terrain = " dusty ";

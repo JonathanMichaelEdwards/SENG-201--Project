@@ -101,7 +101,7 @@ public class CrewPlanet {
 	
 
 	// helper function to find the correct member and name
-	private void addCrew(ArrayList<String> crewInfo, int size)
+	protected void addCrew(ArrayList<String> crewInfo, int size)
 	{	
 		for (int index = 0; index < size; index ++) {
 			crewType.add(crewInfo.get(index));
@@ -139,7 +139,7 @@ public class CrewPlanet {
 
 	
 	// decode crew information to get correct data
-	private void decodeCrewInfo(ArrayList<String> crewInfo)
+	protected void decodeCrewInfo(ArrayList<String> crewInfo)
 	{
 		// store crew member and there names at the correct index in separate lists
 		// size is -1 because an empty value is added on to the end
@@ -188,7 +188,7 @@ public class CrewPlanet {
 	}
 	
 	
-	private void readCrewRatings()
+	protected void readCrewRatings()
 	{ 
 		ArrayList<String> crewMember1 = new ArrayList<String>();
 		ArrayList<String> crewMember2 = new ArrayList<String>();
@@ -213,7 +213,7 @@ public class CrewPlanet {
 	
 	
 	// organizing information from files
-	private void organizeGameInfo()
+	protected void organizeGameInfo()
 	{
 		// gather information stored in file
 		IOFile ioFile = new IOFile();
@@ -231,7 +231,7 @@ public class CrewPlanet {
 		}
 	}
 		
-	private void btnBack()
+	protected void btnBack()
 	{
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() 
@@ -255,7 +255,7 @@ public class CrewPlanet {
 	
 	
 	
-	private void clearSearch()
+	protected void clearSearch()
 	{
 		rBChar1.setSelected(false);
 		rBChar2.setSelected(false);
@@ -264,7 +264,7 @@ public class CrewPlanet {
 	}
 	
 	
-	private void disableMember()
+	protected void disableMember()
 	{
 		IOFile ioFile = new IOFile();
 		
@@ -278,7 +278,7 @@ public class CrewPlanet {
 			rBChar4.setEnabled(false);
 		}
 	}
-	private void tiredRate(ArrayList<String> member, IOFile ioFile, String name)
+	protected void tiredRate(ArrayList<String> member, IOFile ioFile, String name)
 	{
 		member.set(3, ""+(Integer.parseInt(member.get(3)) - 1));
 		int tired = Integer.parseInt(member.get(1));
@@ -305,7 +305,8 @@ public class CrewPlanet {
 		}
 	}	
 	
-	private void btnSearch()
+
+	protected void btnSearch()
 	{
 		btnSearchPlanet = new JButton("Search Planet");
 		btnSearchPlanet.setEnabled(false);
@@ -348,10 +349,9 @@ public class CrewPlanet {
 	
 	
 	// characters that can be chosen
-	private void characterChoice()
+	protected void characterChoice()
 	{
 		rBChar1 = new JRadioButton("character 1");
-//		this part detects if we have enough turns left, if not the radio button is disabled
 		ArrayList<String> member = new ArrayList<String>();
 		String actionLeft;
 		String readFile = "src/StoreGame/CrewSelected/";
@@ -376,7 +376,6 @@ public class CrewPlanet {
 		
 		rBChar2 = new JRadioButton("character 2");
 		
-//		this part detects if we have enough turns left, if not the radio button is disabled
 		ArrayList<String> member2 = new ArrayList<String>();
 		String actionLeft2;
 		String readFile2 = "src/StoreGame/CrewSelected/";
@@ -401,7 +400,6 @@ public class CrewPlanet {
 		
 		rBChar3 = new JRadioButton("character 3");
 		
-//		this part detects if we have enough turns left, if not the radio button is disabled
 		ArrayList<String> member3 = new ArrayList<String>();
 		String actionLeft3;
 		String readFile3 = "src/StoreGame/CrewSelected/";
@@ -425,7 +423,6 @@ public class CrewPlanet {
 		
 		
 		rBChar4 = new JRadioButton("character 4");
-//		this part detects if we have enough turns left, if not the radio button is disabled
 		ArrayList<String> member4 = new ArrayList<String>();
 		String actionLeft4;
 		String readFile4 = "src/StoreGame/CrewSelected/";
@@ -459,10 +456,16 @@ public class CrewPlanet {
 		Display display = new Display();  // Retrieving game window size
 		
 		// Setting frame of window
+<<<<<<< Updated upstream
 		frmEliteDangerousBeta.setBounds(display.x, display.y, display.width, display.height);
 		frmEliteDangerousBeta.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmEliteDangerousBeta.setResizable(false);
 //		frame.setUndecorated(true);  // Frame cannot be adjusted during game
+=======
+		frame.setBounds(display.x, display.y, display.width, display.height);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
+>>>>>>> Stashed changes
 		
 		cBHealth1 = new JProgressBar();
 		cBHealth1.setBounds(661, 326, 150, 30);
@@ -472,18 +475,42 @@ public class CrewPlanet {
 		cBTired1 = new JProgressBar();
 		cBTired1.setBounds(661, 363, 150, 30);
 		cBTired1.setStringPainted(true);
+<<<<<<< Updated upstream
 		frmEliteDangerousBeta.getContentPane().add(cBTired1);
+=======
+		frame.getContentPane().add(cBTired1);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
 	
+=======
+
+>>>>>>> Stashed changes
 		cBHunger1 = new JProgressBar();
 		cBHunger1.setBounds(661, 405, 150, 30);
 		cBHunger1.setStringPainted(true);
+<<<<<<< Updated upstream
 		frmEliteDangerousBeta.getContentPane().add(cBHunger1);
+=======
+		frame.getContentPane().add(cBHunger1);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
 	
+=======
+		
+>>>>>>> Stashed changes
 		cBHealth2 = new JProgressBar();
 		cBHealth2.setBounds(848, 326, 150, 30);
 		cBHealth2.setStringPainted(true);
+<<<<<<< Updated upstream
 		frmEliteDangerousBeta.getContentPane().add(cBHealth2);
+=======
+		frame.getContentPane().add(cBHealth2);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
 		
+=======
+	
+>>>>>>> Stashed changes
 		cBTired2 = new JProgressBar();
 		cBTired2.setBounds(848, 363, 150, 30);
 		cBTired2.setStringPainted(true);
@@ -497,8 +524,16 @@ public class CrewPlanet {
 		cBHealth3 = new JProgressBar();
 		cBHealth3.setBounds(1039, 326, 150, 30);
 		cBHealth3.setStringPainted(true);
+<<<<<<< Updated upstream
 		frmEliteDangerousBeta.getContentPane().add(cBHealth3);
+=======
+		frame.getContentPane().add(cBHealth3);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
 		
+=======
+	
+>>>>>>> Stashed changes
 		cBTired3 = new JProgressBar();
 		cBTired3.setBounds(1039, 363, 150, 30);
 		cBTired3.setStringPainted(true);
@@ -553,8 +588,16 @@ public class CrewPlanet {
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setBounds(909, 238, 150, 30);
 		label.setFont(new Font("Dialog", Font.PLAIN, 16));
+<<<<<<< Updated upstream
 		frmEliteDangerousBeta.getContentPane().add(label);
+=======
+		frame.getContentPane().add(label);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
 	
+=======
+
+>>>>>>> Stashed changes
 		JLabel label0 = new JLabel("Hunger:");
 		label0.setOpaque(true);
 		label0.setBounds(517, 403, 111, 30);
@@ -565,8 +608,16 @@ public class CrewPlanet {
 		label1.setOpaque(true);
 		label1.setBounds(517, 361, 111, 30);
 		label1.setFont(new Font("Dialog", Font.PLAIN, 16));
+<<<<<<< Updated upstream
 		frmEliteDangerousBeta.getContentPane().add(label1);
+=======
+		frame.getContentPane().add(label1);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
 	
+=======
+
+>>>>>>> Stashed changes
 		JLabel label2 = new JLabel("Health:");
 		label2.setOpaque(true);
 		label2.setBounds(517, 324, 111, 30);
@@ -630,7 +681,8 @@ public class CrewPlanet {
 	/*
 	 * Create the application.
 	*/
-	public CrewPlanet() {
+	public CrewPlanet() 
+	{
 		initialize();
 		organizeGameInfo();
 	}
@@ -639,9 +691,12 @@ public class CrewPlanet {
 	/*
 	 * Launch the application.
 	*/
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
+	public static void main(String[] args) 
+	{
+		EventQueue.invokeLater(new Runnable() 
+		{
+			public void run() 
+			{
 				try {
 					CrewPlanet window = new CrewPlanet();
 					window.frmEliteDangerousBeta.setVisible(true);

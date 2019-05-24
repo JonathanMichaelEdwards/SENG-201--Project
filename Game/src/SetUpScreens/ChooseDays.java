@@ -7,9 +7,6 @@ import javax.swing.JLabel;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-
-import IOFile.IOFile;
-
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
@@ -20,30 +17,37 @@ import javax.swing.JProgressBar;
 
 // Self implemented
 import WindowSettings.Display;
+<<<<<<< Updated upstream
 import javax.swing.SwingConstants;
+<<<<<<< Updated upstream
 import javax.swing.ImageIcon;
+=======
+=======
+import IOFile.IOFile;
+import MainScreen.MainScreen;
+import Tests.ChooseDaysTest;
 
-/**
- * description of class
- * @author jmy39
- *
- */
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 
-public class ChooseDays 
+
+public class ChooseDays
 {
 	public JFrame frmEliteDangerousBeta;
+	
+	public ArrayList<String> storeDays = new ArrayList<String>();
 	
 	private JSlider slider;
 	private JLabel lblSliderDays;
 	private int days = 3;
-	private int piecesToCollect = 2;  // Pieces player selected
+	public int piecesToCollect = 2;  // Pieces player selected
 	
 	
 	/**
 	 *  Retrieving the number of days, selected from the slider
 	 *  @param name <-name description
 	 */
-	void getDays()
+	public int getDays()
 	{
 		lblSliderDays = new JLabel("Number of Spaceship parts: " + piecesToCollect);
 		lblSliderDays.setHorizontalAlignment(SwingConstants.CENTER);
@@ -60,13 +64,20 @@ public class ChooseDays
 	        }
 		});
 		
+<<<<<<< Updated upstream
 		lblSliderDays.setBounds(817, 468, 266, 25);
 		frmEliteDangerousBeta.getContentPane().add(lblSliderDays);
+=======
+		lblSliderDays.setBounds(836, 471, 266, 25);
+		frame.getContentPane().add(lblSliderDays);
+		
+		return piecesToCollect;
+>>>>>>> Stashed changes
 	}
 	
 	
 	// goes to next screen
-	void nextButton()
+	protected void nextButton()
 	{
 		// Add a new button listener
 		// Take the pieces information to the next screen
@@ -77,20 +88,31 @@ public class ChooseDays
 			{
 				// Setting a new frame
 				CrewSelection crewSelect = new CrewSelection();
+<<<<<<< Updated upstream
 				
 				// Transferring from ChooseDays class to CrewSelection class  
 				crewSelect.frmEliteDangerousBeta.setVisible(true);  // turn on screen
 				frmEliteDangerousBeta.setVisible(false);   // turn off screen
 				
+=======
+>>>>>>> Stashed changes
 				// Send pieces and days to next screen
-				IOFile ioFile = new IOFile();
-				ArrayList<String> storeDays = new ArrayList<String>();
 				
-				// storing information
+				IOFile ioFile = new IOFile();
+				
+//				// storing information
 				storeDays.add(""+days);
 				storeDays.add(""+piecesToCollect);
 				
 				ioFile.fileWrite(storeDays, "src/StoreGame/DaysInfo.txt");
+				
+//				ChooseDaysTest choose = new ChooseDaysTest();
+//				choose.itemTest();
+//				 ("yes");
+				
+				// Transferring from ChooseDays class to CrewSelection class  
+				crewSelect.frame.setVisible(true);  // turn on screen
+				frame.setVisible(false);   // turn off screen
 			}
 		});
 		btnAccept.setBounds(1200, 700, 250, 100);
@@ -179,7 +201,6 @@ public class ChooseDays
 		// Button Actions
 		getDays();
 		nextButton();
-
 	}
 	
 	

@@ -7,28 +7,44 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
 
 // Self implemented
 import MainScreen.MainScreen;
 import WindowSettings.Display;
+<<<<<<< Updated upstream
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+<<<<<<< Updated upstream
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.UIManager;
 
 import IOFile.IOFile;
+=======
+=======
+
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 
 
 public class TravelPlanet 
 {
+<<<<<<< Updated upstream
 	public JFrame frmEliteDangerousBeta;
+=======
+	public JFrame frame;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
 	private final JLabel lblLookAtThis = new JLabel("Welcome to the next planet on your journey!");
+=======
+	private JLabel lblLookAtThis = new JLabel("look at this nice ass planet lol");
+>>>>>>> Stashed changes
 
 
-	private void btnBack()
+	protected void btnBack()
 	{
 		JButton btnLetsGetGoing = new JButton("Back to Base");
 		btnLetsGetGoing.setBackground(new Color(163, 184, 204));
@@ -79,6 +95,7 @@ public class TravelPlanet
 		Display display = new Display();  // Retrieving game window size
 		
 		// Setting frame of window
+<<<<<<< Updated upstream
 		frmEliteDangerousBeta.setBounds(display.x, display.y, display.width, display.height);
 		frmEliteDangerousBeta.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //		frame.setUndecorated(true);  // Frame cannot be adjusted during game
@@ -88,6 +105,11 @@ public class TravelPlanet
 		int planetCount = Integer.parseInt(updatePlanet.get(4)) + 1; //this is the value in which a repair heals
 		updatePlanet.set(4, "" + planetCount);
 		ioFile.fileWrite(updatePlanet, "src/StoreGame/ShipInfo.txt");
+=======
+		frame.setBounds(display.x, display.y, display.width, display.height);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
+>>>>>>> Stashed changes
 		
 		// Back button
 		btnBack();
@@ -106,9 +128,12 @@ public class TravelPlanet
 	/*
 	 * Launch the application.
 	*/
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
+	public static void main(String[] args) 
+	{
+		EventQueue.invokeLater(new Runnable() 
+		{
+			public void run() 
+			{
 				try {
 					TravelPlanet window = new TravelPlanet();
 					window.frmEliteDangerousBeta.setVisible(true);

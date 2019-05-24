@@ -10,24 +10,35 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
+import javax.swing.JCheckBox;
 
-
+//Self implemented
 import IOFile.IOFile;
 import MainScreen.MainScreen;
 import RandomEvents.asteroids;
 import SearchPlanet.ExplorePlanet;
-//Self implemented
 import WindowSettings.Display;
+<<<<<<< Updated upstream
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+<<<<<<< Updated upstream
 import javax.swing.ImageIcon;
 import java.awt.Dimension;
+=======
+=======
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 
 
-public class CrewTravel {
 
+<<<<<<< Updated upstream
 	public JFrame frmEliteDangerousBeta;
+=======
+public class CrewTravel 
+{
+	public JFrame frame;
+>>>>>>> Stashed changes
 	
 	private JLabel cpType1, cpType2, cpType3, cpType4;
 	private JLabel cpName1, cpName2, cpName3, cpName4;
@@ -136,13 +147,12 @@ public class CrewTravel {
 			} else if ((lsSize-size) == 1 && (index == 3)) {
 				disableInfo(index);
 			}
-			System.out.println((lsSize-size));
 		}
 	}
 
 	
 	// decode crew information to get correct data
-	private void decodeCrewInfo(ArrayList<String> crewInfo)
+	protected void decodeCrewInfo(ArrayList<String> crewInfo)
 	{
 		// store crew member and there names at the correct index in separate lists
 		// size is -1 because an empty value is added on to the end
@@ -153,7 +163,7 @@ public class CrewTravel {
 	
 	
 	// organizing information from files
-	private void organizeGameInfo()
+	protected void organizeGameInfo()
 	{
 		// gather information stored in file
 		IOFile ioFile = new IOFile();
@@ -172,7 +182,7 @@ public class CrewTravel {
 		}
 	}
 		
-	private void btnBack()
+	protected void btnBack()
 	{
 		JButton btnBack = new JButton("Back");
 		btnBack.setBounds(940, 700, 250, 100);
@@ -196,11 +206,14 @@ public class CrewTravel {
 	
 	
 	// Enable button if 2 characters have been chosen
-	private void characterChoice()
+	protected void characterChoice()
 	{
 		character1 = new JCheckBox("Character 1");
+<<<<<<< Updated upstream
 		character1.setBounds(661, 530, 126, 23);
 //		this part detects if we have enough turns left, if not the radio button is disabled
+=======
+>>>>>>> Stashed changes
 		ArrayList<String> member = new ArrayList<String>();
 		String actionLeft;
 		IOFile ioFile = new IOFile();
@@ -232,7 +245,6 @@ public class CrewTravel {
 		character2 = new JCheckBox("Character 2");
 		character2.setBounds(848, 530, 126, 23);
 		
-//		this part detects if we have enough turns left, if not the radio button is disabled
 		ArrayList<String> member2 = new ArrayList<String>();
 		String actionLeft2;
 		String readFile2 = "src/StoreGame/CrewSelected/";
@@ -294,8 +306,11 @@ public class CrewTravel {
 		
 		
 		character4 = new JCheckBox("Character 4");
+<<<<<<< Updated upstream
 		character4.setBounds(1248, 530, 126, 23);
 //		this part detects if we have enough turns left, if not the radio button is disabled
+=======
+>>>>>>> Stashed changes
 		ArrayList<String> member4 = new ArrayList<String>();
 		String actionLeft4;
 		String readFile4 = "src/StoreGame/CrewSelected/";
@@ -340,7 +355,7 @@ public class CrewTravel {
 		}
 	}
 	
-	private void tiredRate(ArrayList<String> member, IOFile ioFile, String name)
+	protected void tiredRate(ArrayList<String> member, IOFile ioFile, String name)
 	{
 		member.set(3, ""+(Integer.parseInt(member.get(3)) - 1));
 		int tired = Integer.parseInt(member.get(1));
@@ -366,7 +381,9 @@ public class CrewTravel {
 			ioFile.fileWrite(member, readFile + name + ".txt");
 		}
 	}	
-	private void btnSearch()
+
+
+	protected void btnSearch()
 	{
 		btnSearchPlanet = new JButton("Search for a new Planet");
 		btnSearchPlanet.setBounds(1200, 700, 250, 100);
@@ -408,7 +425,6 @@ public class CrewTravel {
 				}
 				if (x == 0)
 				{
-					System.out.println("asteroids");
 					asteroids outpost = new asteroids();
 					outpost.frmEliteDangerousBeta.setVisible(true);
 					frmEliteDangerousBeta.setVisible(false);
@@ -458,7 +474,7 @@ public class CrewTravel {
 	}
 	
 	
-	private void readCrewRatings()
+	protected void readCrewRatings()
 	{ 
 		ArrayList<String> crewMember1 = new ArrayList<String>();
 		ArrayList<String> crewMember2 = new ArrayList<String>();
@@ -492,11 +508,21 @@ public class CrewTravel {
 		Display display = new Display();  // Retrieving game window size
 		
 		// Setting frame of window
+<<<<<<< Updated upstream
 		frmEliteDangerousBeta.setBounds(display.x, display.y, display.width, display.height);
 		frmEliteDangerousBeta.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmEliteDangerousBeta.setResizable(false);
 		frmEliteDangerousBeta.getContentPane().setLayout(null);
+=======
+		frame.setBounds(display.x, display.y, display.width, display.height);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
+<<<<<<< Updated upstream
+		frame.getContentPane().setLayout(null);
+>>>>>>> Stashed changes
 //		frame.setUndecorated(true);  // Frame cannot be adjusted during game
+=======
+>>>>>>> Stashed changes
 		
 		
 		cpHealth1 = new JProgressBar();
@@ -664,7 +690,6 @@ public class CrewTravel {
 		cpHunger();
 		
 		// Button actions
-		
 		btnSearch();
 		characterChoice();
 		disableMember();

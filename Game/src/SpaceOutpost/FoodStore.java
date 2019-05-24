@@ -29,14 +29,20 @@ import javax.swing.event.AncestorEvent;
 
 public class FoodStore 
 {
+<<<<<<< Updated upstream
 	public JFrame frmEliteDangerousBeta;
+=======
+	private static final ArrayList<String> NullPointerException = null;
+
+	public JFrame frame;
+>>>>>>> Stashed changes
 	
 	private JLabel lblCurrentCash;
 	private JComboBox<?> cBox1, cBox2, cBox3;
 	private JLabel lbl1, lbl2, lbl3;
 	private JLabel lblAmount;
 	
-	private int cashSpent, totalAmount, cash1, cash2, cash3 = 0;
+	public int cashSpent, totalAmount, cash1, cash2, cash3 = 0;
 	private JLabel cBType1, cBType2, cBType3, cBType4;
 	private JLabel fsName1, fsName2, fsName3, fsName4;
 	private JLabel lblCountcookie, lblCountPizza, lblCountFullMeal;
@@ -55,6 +61,7 @@ public class FoodStore
 	private ArrayList<String> broughtItems1 = new ArrayList<String>();
 	private ArrayList<String> broughtItems2 = new ArrayList<String>();
 	private ArrayList<String> broughtItems3 = new ArrayList<String>();
+	public ArrayList<String> bank = new ArrayList<String>();
 
 
 	private JLabel type[] = new JLabel[4];
@@ -264,7 +271,6 @@ public class FoodStore
 	// get the amount of cash the player has in his bank
 	private void totalCash()
 	{
-		ArrayList<String> bank = new ArrayList<String>();
 		IOFile ioFile = new IOFile();
 		
 		bank = ioFile.fileRead("src/StoreGame/CashInfo.txt");

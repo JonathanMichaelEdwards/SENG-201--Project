@@ -2,6 +2,12 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - loseGame",
+            "request": "launch",
+            "mainClass": "MainScreen.loseGame"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - ShipInventory",
             "request": "launch",
             "mainClass": "Inventory.ShipInventory"

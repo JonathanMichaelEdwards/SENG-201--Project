@@ -23,7 +23,6 @@ import RepairShields.CrewRepair;
 import SearchPlanet.CrewPlanet;
 import Sleep.CrewSleep;
 import MainScreen.loseGame;
-import MainScreen.winGame;
 import RandomEvents.asteroids;
 import RandomEvents.alienPirates;
 import RandomEvents.spacePlague;
@@ -31,16 +30,15 @@ import javax.swing.SwingConstants;
 
 
 
-public class MainScreen
-
+public class MainScreen 
 {
 	public JFrame frmEliteDangerousBeta;
 	
 	// setting output labels
 	private JLabel lblDaysLeft, lblParts;
 	private JLabel lblShipType, lblShipName;
-	private JLabel lblCrewType1, lblCrewType2, lblCrewType3, lblCrewType4;
 	private JLabel lblMember1, lblMember2, lblMember3, lblMember4;
+	private JLabel lblCrewType1, lblCrewType2, lblCrewType3, lblCrewType4;
 
 	// Setting action buttons to be scoped globally
 	private JButton btnSpaceOutpost;
@@ -55,9 +53,19 @@ public class MainScreen
 	private JLabel player1, player2, player3, player4;
 	private JLabel lblCashTotal, setPlanet;
 	
+	private ArrayList<String> memberOne, memberTwo;
 	// Stored information that the user has chosen
 	private ArrayList<String> crewType = new ArrayList<String>();
 	private ArrayList<String> crewName = new ArrayList<String>();
+	private ArrayList<String> changeDays = new ArrayList<String>();
+	private ArrayList<String> memberActions1 = new ArrayList<String>();
+	private ArrayList<String> memberActions2 = new ArrayList<String>();
+	private ArrayList<String> memberActions3 = new ArrayList<String>();
+	private ArrayList<String> memberActions4 = new ArrayList<String>();
+	
+	// Call stored information
+	private ArrayList<String> crewInfo, shipInfo, daysInfo, changeShields, totalCash;
+	
 	private String shipType;
 	private String shipName, dayCount;
 	private int days;
@@ -131,7 +139,7 @@ public class MainScreen
 	
 
 	// helper function to find the correct member and name
-	private void addCrew(ArrayList<String> crewInfo, int size)
+	protected void addCrew(ArrayList<String> crewInfo, int size)
 	{	
 		for (int index = 0; index < size; index ++) {
 			crewType.add(crewInfo.get(index));
@@ -153,7 +161,7 @@ public class MainScreen
 	
 	
 	// helper function to disable/(grey out) unused status information areas
-	private void disableStatus(int size)
+	public void disableStatus(int size)
 	{
 		int lsSize = 4;
 		
@@ -172,7 +180,7 @@ public class MainScreen
 
 	
 	// decode crew information to get correct data
-	private void decodeCrewInfo(ArrayList<String> crewInfo)
+	protected void decodeCrewInfo(ArrayList<String> crewInfo)
 	{
 		// store crew member and there names at the correct index in separate lists
 		// size is -1 because an empty value is added on to the end
@@ -184,10 +192,7 @@ public class MainScreen
 	
 	// Storing and displaying the characters health
 	private void memberOne(ArrayList<String> crewMember1, IOFile ioFile)
-	
-
 	{
-
 		crewMember1 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberOne.txt");
 
 		pBarHealth1.setValue(Integer.valueOf(crewMember1.get(0)));
@@ -199,7 +204,10 @@ public class MainScreen
 	{
 		crewMember2 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberTwo.txt");
 
+<<<<<<< Updated upstream
 //		}
+=======
+>>>>>>> Stashed changes
 		pBarHealth2.setValue(Integer.valueOf(crewMember2.get(0)));
 		pBarTiredness2.setValue(Integer.valueOf(crewMember2.get(1)));
 		pBarHunger2.setValue(Integer.valueOf(crewMember2.get(2)));
@@ -219,21 +227,24 @@ public class MainScreen
 	{
 		crewMember4 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberFour.txt");
 		
+<<<<<<< Updated upstream
 
 		
+=======
+>>>>>>> Stashed changes
 		pBarHealth4.setValue(Integer.valueOf(crewMember4.get(0)));
 		pBarTiredness4.setValue(Integer.valueOf(crewMember4.get(1)));
 		pBarHunger4.setValue(Integer.valueOf(crewMember4.get(2)));
 	}
 	
 	
-	private void readCrewRatings(IOFile ioFile)
-	{ 
+	protected void readCrewRatings(IOFile ioFile)
+	{ 				
 		ArrayList<String> crewMember1 = new ArrayList<String>();
 		ArrayList<String> crewMember2 = new ArrayList<String>();
 		ArrayList<String> crewMember3 = new ArrayList<String>();
 		ArrayList<String> crewMember4 = new ArrayList<String>();
-		
+	
 		// Reading and storing the crew members health rating
 		for (int index = 0; index < crewType.size(); index++) {
 			// Storing the character types health rating
@@ -244,15 +255,14 @@ public class MainScreen
 			} else if (index == 2) {
 				memberThree(crewMember3, ioFile);
 			} else if (index == 3) {
-				memberFour(crewMember4, ioFile);;
+				memberFour(crewMember4, ioFile);
 			}
 		}
 	}
 	
 	
-	private void bankStore()
+	protected void bankStore()
 	{
-		ArrayList<String> totalCash = new ArrayList<String>();
 		IOFile ioFile = new IOFile();
 
 		// read how much cash the player has
@@ -261,19 +271,46 @@ public class MainScreen
 	}
 	
 	
-	// organizing information from files
-	private void organizeGameInfo()
+	/**
+	 * Checking whether one or more people have the plague
+	 */
+	protected boolean checkPlague()
+	{
+		boolean state = false;
+		
+		if (memberOne.get(4).equals("true") && memberTwo.get(4).equals("true")) {
+			lblPlague.setText(memberOne.get(5) + " and " + memberTwo.get(5) + " both have the plague");
+			state = true;
+		} else if (memberOne.get(4).equals("true")) {
+			lblPlague.setText(memberOne.get(5) + " has the plague");
+			state = true;
+		} else if (memberTwo.get(4).equals("true")) {
+			lblPlague.setText(memberTwo.get(5) + " has the plague");
+			state = true;
+		} else {
+			lblPlague.setText("No body has the plague");
+			state = false;
+		}
+		
+		return state;
+	}
+	
+	
+	/**
+	 * Organizing storage lists
+	 */
+	protected void organizeGameInfo()
 	{
 		// gather information stored in file
 		IOFile ioFile = new IOFile();
 		
 		// Reading files
-		ArrayList<String> crewInfo = ioFile.fileRead("src/StoreGame/CrewInfo.txt");
-		ArrayList<String> shipInfo = ioFile.fileRead("src/StoreGame/ShipInfo.txt");
-		ArrayList<String> daysInfo = ioFile.fileRead("src/StoreGame/DaysInfo.txt");
-		ArrayList<String> changeShields = ioFile.fileRead("src/StoreGame/ShipInfo.txt");
-		ArrayList<String> memberOne = ioFile.fileRead("src/StoreGame/CrewSelected/MemberOne.txt");
-		ArrayList<String> memberTwo = ioFile.fileRead("src/StoreGame/CrewSelected/MemberTwo.txt");
+		crewInfo = ioFile.fileRead("src/StoreGame/CrewInfo.txt");
+		shipInfo = ioFile.fileRead("src/StoreGame/ShipInfo.txt");
+		daysInfo = ioFile.fileRead("src/StoreGame/DaysInfo.txt");
+		changeShields = ioFile.fileRead("src/StoreGame/ShipInfo.txt");
+		memberOne = ioFile.fileRead("src/StoreGame/CrewSelected/MemberOne.txt");
+		memberTwo = ioFile.fileRead("src/StoreGame/CrewSelected/MemberTwo.txt");
 
 		// unwrap the crew information
 		decodeCrewInfo(crewInfo);
@@ -299,6 +336,7 @@ public class MainScreen
 		else 
 			lblptr.setText("Parts on this planet: " + 1 );
 		
+<<<<<<< Updated upstream
 		
 		if (memberOne.get(4).equals("true") && memberTwo.get(4).equals("true")) 
 			lblPlague.setText("<html>" + memberOne.get(5) + " and " + memberTwo.get(5) + " both have the plague</html>");
@@ -308,6 +346,9 @@ public class MainScreen
 			lblPlague.setText("<html>" + memberTwo.get(5) + " has the plague</html>");
 		else 
 			lblPlague.setText("No body has the plague");
+=======
+		checkPlague();
+>>>>>>> Stashed changes
 		
 		// Output crew
 		for (int index = 0; index < crewType.size(); index++) {
@@ -318,9 +359,17 @@ public class MainScreen
 		// Read and display the crew ratings
 		readCrewRatings(ioFile);
 		
+		displayCrew(ioFile);
+	}
+
+
+	/** 
+	 * Display the crew's action count
+	 */
+	protected void displayCrew(IOFile ioFile)
+	{
 		ArrayList<String> membersActions = new ArrayList<String>();
-		
-		// Display the crew Members action count
+
 		for (int index = 0; index < crewType.size(); index++) {
 			if (index == 0) {
 				membersActions = ioFile.fileRead("src/StoreGame/CrewSelected/MemberOne.txt");
@@ -340,7 +389,7 @@ public class MainScreen
 	
 	
 	// Go to the space outpost screen
-	private void spaceOutpost()
+	protected void spaceOutpost()
 	{
 		btnSpaceOutpost = new JButton("Space Outpost");
 		btnSpaceOutpost.setBounds(773, 132, 300, 50);
@@ -359,7 +408,7 @@ public class MainScreen
 	
 	
 	// Go to the newPlanet screen
-	private void newPlanet()
+	protected void newPlanet()
 	{
 		btnNewPlanet = new JButton("Travel to a new planet");
 		btnNewPlanet.setFont(new Font("Dialog", Font.PLAIN, 19));
@@ -368,7 +417,6 @@ public class MainScreen
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				
 				CrewTravel screen = new CrewTravel();
 				screen.frmEliteDangerousBeta.setVisible(true);    // turn on screen
 				frmEliteDangerousBeta.setVisible(false);          // turn off screen
@@ -379,7 +427,7 @@ public class MainScreen
 	
 	
 	// Go to the explore planet screen
-	private void explorePlanet()
+	protected void explorePlanet()
 	{
 		JButton btnExplorePlanet = new JButton("Explore current planet");
 		btnExplorePlanet.setFont(new Font("Dialog", Font.PLAIN, 19));
@@ -398,13 +446,13 @@ public class MainScreen
 	
 	
 	// repair shields
-	private void repairShields()
+	protected void repairShields()
 	{
 	}
 	
 	
 	// Go to sleep screen
-	private void btnSleep()
+	protected void btnSleep()
 	{
 		
 		lblptr = new JLabel("Parts on this planet: ...");
@@ -443,6 +491,7 @@ public class MainScreen
 				frmEliteDangerousBeta.setVisible(false);          // turn off screen
 			}
 		});
+<<<<<<< Updated upstream
 		btnSleep.setFont(new Font("Dialog", Font.PLAIN, 19));
 		
 		IOFile ioFile = new IOFile();
@@ -470,9 +519,25 @@ public class MainScreen
 		frmEliteDangerousBeta.getContentPane().add(lblDeleteMe);
 		
 
+=======
+		btnSleep.setFont(new Font("Lucida Grande", Font.PLAIN, 23));
+		btnSleep.setBounds(127, 239, 230, 101);
+		frame.getContentPane().add(btnSleep);
+		
+		lblptr = new JLabel("Parts on this planet: ...");
+		lblptr.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblptr.setBounds(112, 667, 256, 40);
+		frame.getContentPane().add(lblptr);
+		
+		lblPlague = new JLabel("... has the plague");
+		lblPlague.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblPlague.setBounds(81, 404, 488, 62);
+		frame.getContentPane().add(lblPlague);
+>>>>>>> Stashed changes
 	}
 	
-	private void btnInventory()
+
+	protected void btnInventory()
 	{
 		JButton btnInventory = new JButton("Inventory");
 		btnInventory.addActionListener(new ActionListener() 
@@ -490,8 +555,11 @@ public class MainScreen
 	}
 	
 	
+
+
+	////////////////////////////////////
 	// go to the next day
-	private void nextDay()
+	protected void nextDay()
 	{	
 		JButton btnNextDay = new JButton("Next Day");
 		btnNextDay.addActionListener(new ActionListener() 
@@ -500,16 +568,14 @@ public class MainScreen
 			{
 
 				IOFile ioFile = new IOFile();
-				ArrayList<String> changeDays = new ArrayList<String>();
 				
 				// Resetting crew action count
-				ArrayList<String> memberActions1 = new ArrayList<String>();
-				ArrayList<String> memberActions2 = new ArrayList<String>();
-				ArrayList<String> memberActions3 = new ArrayList<String>();
-				ArrayList<String> memberActions4 = new ArrayList<String>();
 				String boolPlague;
 				String check;
+<<<<<<< Updated upstream
 				
+=======
+>>>>>>> Stashed changes
 				
 				changeDays = ioFile.fileRead("src/StoreGame/DaysInfo.txt");
 				days = Integer.parseInt(changeDays.get(0)) - 1;
@@ -517,7 +583,10 @@ public class MainScreen
 				ioFile.fileWrite(changeDays, "src/StoreGame/DaysInfo.txt");  // Writing in new days
 				if (days == -1)
 				{
+<<<<<<< Updated upstream
 					System.out.println("GAME OVER");
+=======
+>>>>>>> Stashed changes
 					loseGame outpost = new loseGame();
 					outpost.frame.setVisible(true);
 					frmEliteDangerousBeta.setVisible(false);
@@ -544,7 +613,6 @@ public class MainScreen
 						ioFile.fileWrite(memberActions1, writeHealth + "MemberOne.txt");
 						memberActions1 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberOne.txt");
 						int tiredHp = Integer.parseInt(memberActions1.get(1));
-						System.out.println(tiredHp);
 						if (tiredHp <= 0)
 						
 						{
@@ -554,7 +622,6 @@ public class MainScreen
 							memberActions1 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberOne.txt");
 							int health = Integer.parseInt(memberActions1.get(0)) - 30;
 							memberActions1.set(0, "" + health);
-							System.out.println(health);
 							if (health <= 0)
 							{
 								memberActions1.set(7, "dead");
@@ -698,10 +765,8 @@ public class MainScreen
 				}
 				
 			int x = (int)(Math.random()*((3-0)+0))+0;
-			System.out.println(x);
 			if (x == 1)
 			{
-				System.out.println("nothing");
 				// reset Screen
 					MainScreen screen = new MainScreen();
 					screen.frmEliteDangerousBeta.setVisible(true);    // turn on screen
@@ -766,6 +831,7 @@ public class MainScreen
 
 				}
 				
+<<<<<<< Updated upstream
 				if (curChar == makeNormal )
 				{//if the number of characters = number of alive characters, plague is possible
 				System.out.println("plague");
@@ -774,13 +840,15 @@ public class MainScreen
 //					outpost.frame.setVisible(true);  // turn on screen
 //					frame.setVisible(false);         // turn off screen
 					
+=======
+				if (curChar == makeNormal ) { //if the number of characters = number of alive characters, plague is possible
+>>>>>>> Stashed changes
 					spacePlague outpost = new spacePlague();
 					outpost.frmEliteDangerousBeta.setVisible(true);  // turn on screen
 					frmEliteDangerousBeta.setVisible(false);         // turn off screen
 				}
 				if (curChar != makeNormal)  //if the number is different, eg. 1 or more is dead. only asteroids hit
 				{
-					System.out.println("asteroids");
 					asteroids outpost2 = new asteroids();
 					outpost2.frmEliteDangerousBeta.setVisible(true);
 					frmEliteDangerousBeta.setVisible(false);
@@ -788,7 +856,6 @@ public class MainScreen
 			}
 			if (x == 2)
 			{
-				System.out.println("aliens");
 				alienPirates outpost = new alienPirates();
 				outpost.frmEliteDangerousBeta.setVisible(true);
 				frmEliteDangerousBeta.setVisible(false);
@@ -816,10 +883,17 @@ public class MainScreen
 		Display display = new Display();  // Retrieving game window size
 		
 		// Setting frame of window
+<<<<<<< Updated upstream
 		frmEliteDangerousBeta.setBounds(display.x, display.y, display.width, display.height);
 		frmEliteDangerousBeta.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmEliteDangerousBeta.setResizable(false);
 		
+=======
+		frame.setBounds(display.x, display.y, display.width, display.height);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
+
+>>>>>>> Stashed changes
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(421, 325, 1012, 494);
@@ -998,30 +1072,12 @@ public class MainScreen
 		lblMember2.setBounds(391, 200, 150, 30);
 		panelCrew.add(lblMember2);
 		lblMember2.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-//		ArrayList<String> crewMember2 = new ArrayList<String>(); // if this fella is dead, hide name :D
-//		IOFile ioFile2 = new IOFile();
-//		crewMember2 = ioFile2.fileRead("src/StoreGame/CrewSelected/MemberTwo.txt");
-//		String deadAlive2;
-//		deadAlive2 = crewMember2.get(7);
-//		if (deadAlive2.equals("dead"))
-//		{
-//			lblMember2.setVisible(false);
-//		}
 		
 		lblMember1 = new JLabel("...");
 		lblMember1.setOpaque(true);
 		lblMember1.setBounds(204, 202, 150, 30);
 		panelCrew.add(lblMember1);
 		lblMember1.setFont(new Font("Lucida Grande", Font.PLAIN, 18)); 
-//		ArrayList<String> crewMember1 = new ArrayList<String>(); // if this fella is dead, hide name :D
-//		IOFile ioFile = new IOFile();
-//		crewMember1 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberOne.txt");
-//		String deadAlive;
-//		deadAlive = crewMember1.get(7);
-//		if (deadAlive.equals("dead"))
-//		{
-//			lblMember1.setVisible(false);
-//		}
 		
 		pBarHealth3 = new JProgressBar();
 		pBarHealth3.setStringPainted(true);
@@ -1159,9 +1215,13 @@ public class MainScreen
 			{
 				try {
 					MainScreen window = new MainScreen();
+<<<<<<< Updated upstream
 					window.frmEliteDangerousBeta.setVisible(true);
 //					asteroids window = new asteroids();
 //					window.frame.setVisible(true);
+=======
+					window.frame.setVisible(true);
+>>>>>>> Stashed changes
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

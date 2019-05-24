@@ -93,7 +93,6 @@ public class spacePlague {
 
 					
 					ioFile.fileWrite(member, readFile + "MemberOne.txt");
-					System.out.println("Member 1 infected");
 					btnCheckInfection.setEnabled(false);
 					name = member.get(5);
 					lblCrewMembersInfected.setText("<html>" + name + " is Infected</html>");
@@ -129,7 +128,6 @@ public class spacePlague {
 					memberboth.set(0, "" + healthboth);
 					ioFile.fileWrite(member, readFile + "MemberOne.txt");
 					ioFile.fileWrite(memberboth, readFile + "MemberTwo.txt");
-					System.out.println("dubble Trubble XDDD");
 					btnCheckInfection.setEnabled(false);
 					name = member.get(5);
 					nameboth = memberboth.get(5);
@@ -152,8 +150,6 @@ public class spacePlague {
 						member.set(2, "" + 0);
 						member2.set(3, "" + 0); //if dead no more turns
 					}
-					ioFile.fileWrite(member2, readFile + "MemberTwo.txt");
-					System.out.println("Member 2 infected");
 					btnCheckInfection.setEnabled(false);
 					name2 = member2.get(5);
 					lblCrewMembersInfected.setText("<html>" + name2 + " is Infected</html>");

@@ -1,41 +1,30 @@
 package MainScreen;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public class loseGame {
 
+
+public class loseGame
+{
 	public JFrame frame;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					loseGame window = new loseGame();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the application.
 	 */
-	public loseGame() {
+	public loseGame() 
+	{
 		initialize();
 	}
+
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize() 
+	{
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -46,4 +35,23 @@ public class loseGame {
 		frame.getContentPane().add(lblGameOver);
 	}
 
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) 
+	{
+		EventQueue.invokeLater(new Runnable()
+		 {
+			public void run() 
+			{
+				try {
+					loseGame window = new loseGame();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 }

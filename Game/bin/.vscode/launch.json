@@ -2,6 +2,15 @@
     "configurations": [
         {
             "type": "java",
+<<<<<<< Updated upstream
+=======
+            "name": "CodeLens (Launch) - loseGame",
+            "request": "launch",
+            "mainClass": "MainScreen.loseGame"
+        },
+        {
+            "type": "java",
+>>>>>>> Stashed changes
             "name": "CodeLens (Launch) - ShipInventory",
             "request": "launch",
             "mainClass": "Inventory.ShipInventory"
