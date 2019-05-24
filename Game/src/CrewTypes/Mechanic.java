@@ -1,5 +1,6 @@
 package CrewTypes;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 
@@ -12,11 +13,12 @@ import WindowSettings.Display;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 public class Mechanic 
 {
 
-	public JFrame frame;
+	public JFrame frmEliteDangerousBeta;
 
 	
 	private void btnBack()
@@ -28,12 +30,18 @@ public class Mechanic
 			{
 				// Setting a new frame
 				CrewSelection select = new CrewSelection();
-				select.frame.setVisible(true);    // turn on screen
-				frame.setVisible(false);          // turn off screen
+				select.frmEliteDangerousBeta.setVisible(true);    // turn on screen
+				frmEliteDangerousBeta.setVisible(false);          // turn off screen
 			}
 		});
-		btnBackToCrew.setBounds(681, 432, 171, 49);
-		frame.getContentPane().add(btnBackToCrew);
+		btnBackToCrew.setBounds(940, 700, 250, 100);
+		frmEliteDangerousBeta.getContentPane().add(btnBackToCrew);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setBackground(Color.BLACK);
+		lblNewLabel.setBounds(0, 0, 1920, 1080);
+		lblNewLabel.setOpaque(true);
+		frmEliteDangerousBeta.getContentPane().add(lblNewLabel);
 	}
 
 
@@ -42,29 +50,27 @@ public class Mechanic
 	*/
 	private void initialize() 
 	{
-		frame = new JFrame();
+		frmEliteDangerousBeta = new JFrame();
+		frmEliteDangerousBeta.setTitle("Elite Dangerous beta");
 		Display display = new Display(); 
-		frame.setBounds(display.x, display.y, display.width, display.height);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(false);
-		frame.getContentPane().setLayout(null);
-		
-		JLabel lblAbility = new JLabel("<html>Mechanic: \r\n" + 
-				"ABILITY: Having a Mechanic on your ship means that asteroids have a 50% less chance of dealing damage to your ship </html>");
-		lblAbility.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblAbility.setBounds(202, 150, 448, 109);
-		frame.getContentPane().add(lblAbility);
+		frmEliteDangerousBeta.setBounds(display.x, display.y, display.width, display.height);
+		frmEliteDangerousBeta.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmEliteDangerousBeta.setResizable(false);
+		frmEliteDangerousBeta.getContentPane().setLayout(null);
 		
 		JLabel lblDesc = new JLabel("<html>Mechanic: \r\n" + 
-				"Flying, driving, riding or controlling anything? The last thing you want is your equipment to let you down. These guys come straight off a huge industrial world Maliwan, with experience fixing and upgrading anything with an engine or a computer! Bringing one of these guys on board will mean you have a less chance of your spaceship and equipment getting damaged in your journey </html>");
-		lblDesc.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblDesc.setBounds(69, 248, 711, 195);
-		frame.getContentPane().add(lblDesc);
+				"Flying, driving, riding or controlling anything? The last thing you want is your equipment to let you down. These guys come straight off a huge industrial world Maliwan, with experience fixing and upgrading anything with an engine or a computer! Bringing one of these guys on board will mean you have a less chance of your spaceship and equipment getting damaged in your journey, thats if they're sober enough </html>");
+		lblDesc.setForeground(Color.LIGHT_GRAY);
+		lblDesc.setFont(new Font("Dialog", Font.PLAIN, 19));
+		lblDesc.setBounds(612, 261, 711, 195);
+		frmEliteDangerousBeta.getContentPane().add(lblDesc);
 
 		JLabel lblMechanic = new JLabel("Mechanic");
-		lblMechanic.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		lblMechanic.setBounds(347, 51, 146, 109);
-		frame.getContentPane().add(lblMechanic);
+		lblMechanic.setForeground(Color.LIGHT_GRAY);
+		lblMechanic.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMechanic.setFont(new Font("Dialog", Font.BOLD, 24));
+		lblMechanic.setBounds(650, 50, 600, 100);
+		frmEliteDangerousBeta.getContentPane().add(lblMechanic);
 		
 		
 		// Go back button
@@ -92,7 +98,7 @@ public class Mechanic
 			{
 				try {
 					Mechanic window = new Mechanic();
-					window.frame.setVisible(true);
+					window.frmEliteDangerousBeta.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

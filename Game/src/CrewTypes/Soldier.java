@@ -1,5 +1,6 @@
 package CrewTypes;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -11,11 +12,12 @@ import javax.swing.JLabel;
 
 import SetUpScreens.CrewSelection;
 import WindowSettings.Display;
+import javax.swing.SwingConstants;
 
 public class Soldier 
 {
 
-	public JFrame frame;
+	public JFrame frmEliteDangerousBeta;
 
 	
 	private void btnBack()
@@ -27,12 +29,17 @@ public class Soldier
 			{
 				// Setting a new frame
 				CrewSelection select = new CrewSelection();
-				select.frame.setVisible(true);    // turn on screen
-				frame.setVisible(false);          // turn off screen
+				select.frmEliteDangerousBeta.setVisible(true);    // turn on screen
+				frmEliteDangerousBeta.setVisible(false);          // turn off screen
 			}
 		});
-		btnBackToCrew.setBounds(681, 432, 171, 49);
-		frame.getContentPane().add(btnBackToCrew);
+		btnBackToCrew.setBounds(940, 700, 250, 100);
+		frmEliteDangerousBeta.getContentPane().add(btnBackToCrew);
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setBackground(Color.BLACK);
+		lblNewLabel.setBounds(0, 0, 1920, 1080);
+		lblNewLabel.setOpaque(true);
+		frmEliteDangerousBeta.getContentPane().add(lblNewLabel);
 	}
 	
 	
@@ -41,32 +48,29 @@ public class Soldier
 	*/
 	private void initialize() 
 	{
-		frame = new JFrame();
+		frmEliteDangerousBeta = new JFrame();
+		frmEliteDangerousBeta.setTitle("Elite Dangerous beta");
 		Display display = new Display();  // Retrieving game window size
 		
 		// Setting frame of window
-		frame.setBounds(display.x, display.y, display.width, display.height);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(false);
-		frame.getContentPane().setLayout(null);
-		
-		
-		JLabel lblAbility = new JLabel("<html>Soldier: \r\n" + 
-				"ABILITY: Picking one or more soldiers in your team means you have 50% less chance of being robbed by space pirates! (does not stack) </html>");
-		lblAbility.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblAbility.setBounds(202, 150, 448, 109);
-		frame.getContentPane().add(lblAbility);
+		frmEliteDangerousBeta.setBounds(display.x, display.y, display.width, display.height);
+		frmEliteDangerousBeta.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmEliteDangerousBeta.setResizable(false);
+		frmEliteDangerousBeta.getContentPane().setLayout(null);
 		
 		JLabel lblDesc = new JLabel("<html>Soldier: \r\n" + 
 				"Who do you call to watch your back? The legendary Tediore Soldier, trained from birth after being handpicked for their aggression and absolute obedience. Each Tediore Soldier comes equipped with state of the art military gear found only on their training world <TOP SECRET>, picking a soldier as one of your crew gives far higher protection from space pirates. They will be headstrong and a machine of efficiency in your crew.</html>");
-		lblDesc.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblDesc.setBounds(69, 248, 711, 195);
-		frame.getContentPane().add(lblDesc);
+		lblDesc.setForeground(Color.LIGHT_GRAY);
+		lblDesc.setFont(new Font("Dialog", Font.PLAIN, 19));
+		lblDesc.setBounds(626, 245, 711, 195);
+		frmEliteDangerousBeta.getContentPane().add(lblDesc);
 		
 		JLabel lblSoldier = new JLabel("Soldier");
-		lblSoldier.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		lblSoldier.setBounds(385, 25, 112, 151);
-		frame.getContentPane().add(lblSoldier);
+		lblSoldier.setForeground(Color.LIGHT_GRAY);
+		lblSoldier.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSoldier.setFont(new Font("Dialog", Font.BOLD, 26));
+		lblSoldier.setBounds(650, 50, 600, 100);
+		frmEliteDangerousBeta.getContentPane().add(lblSoldier);
 		
 		
 		// Back button
@@ -94,7 +98,7 @@ public class Soldier
 			{
 				try {
 					Soldier window = new Soldier();
-					window.frame.setVisible(true);
+					window.frmEliteDangerousBeta.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

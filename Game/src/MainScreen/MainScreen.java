@@ -3,6 +3,7 @@ package MainScreen;
 // Library imports
 import java.awt.EventQueue;
 import javax.swing.JFrame;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ import javax.swing.SwingConstants;
 public class MainScreen
 
 {
-	public JFrame frame;
+	public JFrame frmEliteDangerousBeta;
 	
 	// setting output labels
 	private JLabel lblDaysLeft, lblParts;
@@ -52,13 +53,13 @@ public class MainScreen
 	private JProgressBar pBarHunger1, pBarHunger2, pBarHunger3, pBarHunger4;
 	private JProgressBar pBarShipHealth;
 	private JLabel player1, player2, player3, player4;
-	private JLabel lblCashTotal;
+	private JLabel lblCashTotal, setPlanet;
 	
 	// Stored information that the user has chosen
 	private ArrayList<String> crewType = new ArrayList<String>();
 	private ArrayList<String> crewName = new ArrayList<String>();
 	private String shipType;
-	private String shipName;
+	private String shipName, dayCount;
 	private int days;
 	private int parts;
 	private int repair;
@@ -81,6 +82,7 @@ public class MainScreen
 
 	private String readFile = "StoreGame/CrewSelected/";	
 	private JButton btnAbandonShip;
+	private JLabel lblHello;
 
 	
 	// Store all progress bar so it can be used easily
@@ -187,15 +189,7 @@ public class MainScreen
 	{
 
 		crewMember1 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberOne.txt");
-//		String deadAlive;
-//		deadAlive = crewMember1.get(7);
-//		if (deadAlive.equals("dead"))
-//		{
-//			pBarHealth1.setVisible(false); // IS THIS DUDE HELLA DEAD?? XDDDDDD
-//			pBarTiredness1.setVisible(false);
-//			pBarHunger1.setVisible(false);
-//			System.out.println("this nibba dead");
-//		}
+
 		pBarHealth1.setValue(Integer.valueOf(crewMember1.get(0)));
 		pBarTiredness1.setValue(Integer.valueOf(crewMember1.get(1)));
 		pBarHunger1.setValue(Integer.valueOf(crewMember1.get(2)));
@@ -204,14 +198,7 @@ public class MainScreen
 	private void memberTwo(ArrayList<String> crewMember2, IOFile ioFile)
 	{
 		crewMember2 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberTwo.txt");
-//		String deadAlive;
-//		deadAlive = crewMember2.get(7);
-//		if (deadAlive.equals("dead"))
-//		{
-//			pBarHealth2.setVisible(false); // IS THIS DUDE HELLA DEAD?? XDDDDDD
-//			pBarTiredness2.setVisible(false);
-//			pBarHunger2.setVisible(false);
-//			System.out.println("this nibba dead");
+
 //		}
 		pBarHealth2.setValue(Integer.valueOf(crewMember2.get(0)));
 		pBarTiredness2.setValue(Integer.valueOf(crewMember2.get(1)));
@@ -222,15 +209,7 @@ public class MainScreen
 	private void memberThree(ArrayList<String> crewMember3, IOFile ioFile)
 	{
 		crewMember3 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberThree.txt");
-//		String deadAlive;
-//		deadAlive = crewMember3.get(7);
-//		if (deadAlive.equals("dead"))
-//		{
-//			pBarHealth3.setVisible(false); // IS THIS DUDE HELLA DEAD?? XDDDDDD
-//			pBarTiredness3.setVisible(false);
-//			pBarHunger3.setVisible(false);
-//			System.out.println("this nibba dead");
-//		}
+
 		pBarHealth3.setValue(Integer.valueOf(crewMember3.get(0)));
 		pBarTiredness3.setValue(Integer.valueOf(crewMember3.get(1)));
 		pBarHunger3.setValue(Integer.valueOf(crewMember3.get(2)));
@@ -240,15 +219,7 @@ public class MainScreen
 	{
 		crewMember4 = ioFile.fileRead("src/StoreGame/CrewSelected/MemberFour.txt");
 		
-//		String deadAlive;
-//		deadAlive = crewMember4.get(7);
-//		if (deadAlive.equals("dead"))
-//		{
-//			pBarHealth4.setVisible(false); // IS THIS DUDE HELLA DEAD?? XDDDDDD
-//			pBarTiredness4.setVisible(false);
-//			pBarHunger4.setVisible(false);
-//			System.out.println("this nibba dead");
-//		}
+
 		
 		pBarHealth4.setValue(Integer.valueOf(crewMember4.get(0)));
 		pBarTiredness4.setValue(Integer.valueOf(crewMember4.get(1)));
@@ -330,11 +301,11 @@ public class MainScreen
 		
 		
 		if (memberOne.get(4).equals("true") && memberTwo.get(4).equals("true")) 
-			lblPlague.setText(memberOne.get(5) + " and " + memberTwo.get(5) + " both have the plague");
+			lblPlague.setText("<html>" + memberOne.get(5) + " and " + memberTwo.get(5) + " both have the plague</html>");
 		else if (memberOne.get(4).equals("true"))
-			lblPlague.setText(memberOne.get(5) + " has the plague");
+			lblPlague.setText("<html>" + memberOne.get(5) + " has the plague</html>");
 		else if (memberTwo.get(4).equals("true")) 
-			lblPlague.setText(memberTwo.get(5) + " has the plague");
+			lblPlague.setText("<html>" + memberTwo.get(5) + " has the plague</html>");
 		else 
 			lblPlague.setText("No body has the plague");
 		
@@ -379,11 +350,11 @@ public class MainScreen
 			public void actionPerformed(ActionEvent e) 
 			{
 				SpaceOutpost outpost = new SpaceOutpost();
-				outpost.frame.setVisible(true);  // turn on screen
-				frame.setVisible(false);         // turn off screen
+				outpost.frmEliteDangerousBeta.setVisible(true);  // turn on screen
+				frmEliteDangerousBeta.setVisible(false);         // turn off screen
 			}
 		});
-		frame.getContentPane().add(btnSpaceOutpost);
+		frmEliteDangerousBeta.getContentPane().add(btnSpaceOutpost);
 	}
 	
 	
@@ -392,18 +363,18 @@ public class MainScreen
 	{
 		btnNewPlanet = new JButton("Travel to a new planet");
 		btnNewPlanet.setFont(new Font("Dialog", Font.PLAIN, 19));
-		btnNewPlanet.setBounds(1555, 146, 300, 50);
+		btnNewPlanet.setBounds(1555, 215, 300, 50);
 		btnNewPlanet.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
 				
 				CrewTravel screen = new CrewTravel();
-				screen.frame.setVisible(true);    // turn on screen
-				frame.setVisible(false);          // turn off screen
+				screen.frmEliteDangerousBeta.setVisible(true);    // turn on screen
+				frmEliteDangerousBeta.setVisible(false);          // turn off screen
 			}
 		});
-		frame.getContentPane().add(btnNewPlanet);
+		frmEliteDangerousBeta.getContentPane().add(btnNewPlanet);
 	}
 	
 	
@@ -418,11 +389,11 @@ public class MainScreen
 			public void actionPerformed(ActionEvent e) 
 			{
 				CrewPlanet screen = new CrewPlanet();
-				screen.frame.setVisible(true);    // turn on screen
-				frame.setVisible(false);          // turn off screen
+				screen.frmEliteDangerousBeta.setVisible(true);    // turn on screen
+				frmEliteDangerousBeta.setVisible(false);          // turn off screen
 			}
 		});
-		frame.getContentPane().add(btnExplorePlanet);
+		frmEliteDangerousBeta.getContentPane().add(btnExplorePlanet);
 	}
 	
 	
@@ -437,15 +408,17 @@ public class MainScreen
 	{
 		
 		lblptr = new JLabel("Parts on this planet: ...");
+		lblptr.setOpaque(true);
 		lblptr.setHorizontalAlignment(SwingConstants.CENTER);
 		lblptr.setFont(new Font("Dialog", Font.BOLD, 12));
 		lblptr.setBounds(1555, 387, 300, 40);
-		frame.getContentPane().add(lblptr);
+		frmEliteDangerousBeta.getContentPane().add(lblptr);
 		
 		lblPlague = new JLabel("... has the plague");
+		lblPlague.setOpaque(true);
 		lblPlague.setFont(new Font("Dialog", Font.BOLD, 12));
-		lblPlague.setBounds(76, 487, 488, 62);
-		frame.getContentPane().add(lblPlague);
+		lblPlague.setBounds(76, 487, 300, 62);
+		frmEliteDangerousBeta.getContentPane().add(lblPlague);
 		
 		btnAbandonShip = new JButton("Abandon Ship");
 		btnAbandonShip.addActionListener(new ActionListener() {
@@ -453,24 +426,48 @@ public class MainScreen
 				System.out.println("GAME OVER");
 				loseGame outpost = new loseGame();
 				outpost.frame.setVisible(true);
-				frame.setVisible(false);
+				frmEliteDangerousBeta.setVisible(false);
 			}
 		});
 		btnAbandonShip.setBounds(1314, 959, 208, 62);
-		frame.getContentPane().add(btnAbandonShip);
+		frmEliteDangerousBeta.getContentPane().add(btnAbandonShip);
 		btnSleep = new JButton("Sleep");
 		btnSleep.setBounds(76, 346, 300, 50);
-		frame.getContentPane().add(btnSleep);
+		frmEliteDangerousBeta.getContentPane().add(btnSleep);
 		btnSleep.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				CrewSleep sleep = new CrewSleep();
-				sleep.frame.setVisible(true);     // turn on screen
-				frame.setVisible(false);          // turn off screen
+				sleep.frmEliteDangerousBeta.setVisible(true);     // turn on screen
+				frmEliteDangerousBeta.setVisible(false);          // turn off screen
 			}
 		});
 		btnSleep.setFont(new Font("Dialog", Font.PLAIN, 19));
+		
+		IOFile ioFile = new IOFile();
+		ArrayList<String> checkDays = new ArrayList<String>();
+		checkDays = ioFile.fileRead("src/StoreGame/ShipInfo.txt");
+		System.out.println(checkDays);
+		dayCount = checkDays.get(4);
+		System.out.println(dayCount);
+		lblHello = new JLabel("");
+		lblHello.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHello.setIcon(new ImageIcon(CrewRepair.class.getResource("/gameImages/Planet"+ dayCount +".png")));
+		lblHello.setBounds(1601, 0, 193, 204);
+		frmEliteDangerousBeta.getContentPane().add(lblHello);
+				
+//		frame.setUndecorated(true);  // Frame cannot be adjusted during game
+				
+		JLabel labell = new JLabel("");
+		labell.setIcon(new ImageIcon(CrewRepair.class.getResource("/gameImages/galaxy.jpg")));
+		labell.setHorizontalAlignment(SwingConstants.CENTER);
+		labell.setBounds(0, 0, 1920, 1080);
+		frmEliteDangerousBeta.getContentPane().add(labell);
+		
+		JLabel lblDeleteMe = new JLabel("delete me");
+		lblDeleteMe.setBounds(84, 582, 66, 15);
+		frmEliteDangerousBeta.getContentPane().add(lblDeleteMe);
 		
 
 	}
@@ -483,13 +480,13 @@ public class MainScreen
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				ShipInventory sleep = new ShipInventory();
-				sleep.frame.setVisible(true);    // turn on screen
-				frame.setVisible(false);         // turn off screen
+				sleep.frmEliteDangerousBeta.setVisible(true);    // turn on screen
+				frmEliteDangerousBeta.setVisible(false);         // turn off screen
 			}
 		});
 		btnInventory.setFont(new Font("Dialog", Font.PLAIN, 19));
 		btnInventory.setBounds(76, 417, 300, 50);
-		frame.getContentPane().add(btnInventory);
+		frmEliteDangerousBeta.getContentPane().add(btnInventory);
 	}
 	
 	
@@ -512,7 +509,7 @@ public class MainScreen
 				ArrayList<String> memberActions4 = new ArrayList<String>();
 				String boolPlague;
 				String check;
-
+				
 				
 				changeDays = ioFile.fileRead("src/StoreGame/DaysInfo.txt");
 				days = Integer.parseInt(changeDays.get(0)) - 1;
@@ -520,10 +517,10 @@ public class MainScreen
 				ioFile.fileWrite(changeDays, "src/StoreGame/DaysInfo.txt");  // Writing in new days
 				if (days == -1)
 				{
-					System.out.println("GAME OVER XDDD OUTA DAYS");
+					System.out.println("GAME OVER");
 					loseGame outpost = new loseGame();
 					outpost.frame.setVisible(true);
-					frame.setVisible(false);
+					frmEliteDangerousBeta.setVisible(false);
 				}
 				if (days != -1)
 				{
@@ -707,8 +704,8 @@ public class MainScreen
 				System.out.println("nothing");
 				// reset Screen
 					MainScreen screen = new MainScreen();
-					screen.frame.setVisible(true);    // turn on screen
-					frame.setVisible(false);         // turn off screen
+					screen.frmEliteDangerousBeta.setVisible(true);    // turn on screen
+					frmEliteDangerousBeta.setVisible(false);         // turn off screen
 			}
 			if (x == 0)
 			{ //to make the game a little easier, if anyone is dead, the plague will not happen, asteroids will though
@@ -778,23 +775,23 @@ public class MainScreen
 //					frame.setVisible(false);         // turn off screen
 					
 					spacePlague outpost = new spacePlague();
-					outpost.frame.setVisible(true);  // turn on screen
-					frame.setVisible(false);         // turn off screen
+					outpost.frmEliteDangerousBeta.setVisible(true);  // turn on screen
+					frmEliteDangerousBeta.setVisible(false);         // turn off screen
 				}
 				if (curChar != makeNormal)  //if the number is different, eg. 1 or more is dead. only asteroids hit
 				{
 					System.out.println("asteroids");
 					asteroids outpost2 = new asteroids();
-					outpost2.frame.setVisible(true);
-					frame.setVisible(false);
+					outpost2.frmEliteDangerousBeta.setVisible(true);
+					frmEliteDangerousBeta.setVisible(false);
 				}
 			}
 			if (x == 2)
 			{
 				System.out.println("aliens");
 				alienPirates outpost = new alienPirates();
-				outpost.frame.setVisible(true);
-				frame.setVisible(false);
+				outpost.frmEliteDangerousBeta.setVisible(true);
+				frmEliteDangerousBeta.setVisible(false);
 			}
 			
 			}
@@ -804,7 +801,7 @@ public class MainScreen
 	
 		btnNextDay.setFont(new Font("Dialog", Font.PLAIN, 19));
 		btnNextDay.setBounds(76, 270, 300, 50);
-		frame.getContentPane().add(btnNextDay);
+		frmEliteDangerousBeta.getContentPane().add(btnNextDay);
 	}
 	
 	
@@ -814,68 +811,78 @@ public class MainScreen
 	private void initialize() 
 	{
 		// Setting Layout dimensions
-		frame = new JFrame();
+		frmEliteDangerousBeta = new JFrame();
+		frmEliteDangerousBeta.setTitle("Elite Dangerous beta");
 		Display display = new Display();  // Retrieving game window size
 		
 		// Setting frame of window
-		frame.setBounds(display.x, display.y, display.width, display.height);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(false);
-//		frame.setUndecorated(true);  // Frame cannot be adjusted during game
-
+		frmEliteDangerousBeta.setBounds(display.x, display.y, display.width, display.height);
+		frmEliteDangerousBeta.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmEliteDangerousBeta.setResizable(false);
+		
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(420, 339, 1012, 494);
-		frame.getContentPane().add(panel);
+		panel.setBounds(421, 325, 1012, 494);
+		panel.setOpaque(false);
+		frmEliteDangerousBeta.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JPanel panelShip = new JPanel();
 		panelShip.setBounds(23, 42, 530, 140);
+		panelShip.setOpaque(false);
 		panel.add(panelShip);
 		panelShip.setLayout(null);
 		
 		JLabel label = new JLabel("Name:");
-		label.setBounds(60, 112, 55, 30);
+		label.setOpaque(true);
+		label.setBounds(60, 93, 55, 30);
 		panelShip.add(label);
 		label.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		
 		JLabel label_4 = new JLabel("Type:");
-		label_4.setBounds(60, 70, 55, 30);
+		label_4.setOpaque(true);
+		label_4.setBounds(60, 51, 55, 30);
 		panelShip.add(label_4);
 		label_4.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		
 		lblShipName = new JLabel("...");
-		lblShipName.setBounds(127, 101, 132, 30);
+		lblShipName.setOpaque(true);
+		lblShipName.setBounds(127, 93, 132, 30);
 		panelShip.add(lblShipName);
 		lblShipName.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		
 		lblShipType = new JLabel("...");
-		lblShipType.setBounds(127, 66, 132, 30);
+		lblShipType.setOpaque(true);
+		lblShipType.setBounds(127, 51, 132, 30);
 		panelShip.add(lblShipType);
 		lblShipType.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		
 		lblParts = new JLabel("Parts: ...");
+		lblParts.setOpaque(true);
 		lblParts.setHorizontalAlignment(SwingConstants.CENTER);
 		lblParts.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblParts.setBounds(1555, 427, 300, 33);
-		frame.getContentPane().add(lblParts);
+		lblParts.setBounds(1555, 439, 300, 33);
+		frmEliteDangerousBeta.getContentPane().add(lblParts);
 		
 		JLabel lblHealth = new JLabel("Shield health");
-		lblHealth.setBounds(259, 51, 250, 30);
+		lblHealth.setOpaque(true);
+		lblHealth.setBounds(268, 51, 250, 30);
 		panelShip.add(lblHealth);
 		lblHealth.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		
 		pBarShipHealth = new JProgressBar();
 		pBarShipHealth.setStringPainted(true);
-		pBarShipHealth.setBounds(259, 93, 250, 30);
+		pBarShipHealth.setBounds(268, 95, 250, 30);
 		panelShip.add(pBarShipHealth);
 		
 		JLabel lblSp = new JLabel("Ship Info");
+		lblSp.setOpaque(true);
 		lblSp.setBounds(175, 6, 84, 20);
 		panelShip.add(lblSp);
 		lblSp.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		
 		JLabel lblStatus = new JLabel("Status");
+		lblStatus.setOpaque(true);
 		lblStatus.setHorizontalAlignment(SwingConstants.CENTER);
 		lblStatus.setBounds(450, 12, 112, 33);
 		panel.add(lblStatus);
@@ -883,6 +890,7 @@ public class MainScreen
 		
 		JPanel panelCrew = new JPanel();
 		panelCrew.setBounds(23, 194, 965, 291);
+		panelCrew.setOpaque(false);
 		panel.add(panelCrew);
 		panelCrew.setLayout(null);
 	
@@ -937,47 +945,56 @@ public class MainScreen
 		panelCrew.add(pBarHunger4);
 		
 		lblCashTotal = new JLabel("Current Cash = $ <dynamic>");
+		lblCashTotal.setOpaque(true);
 		lblCashTotal.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblCashTotal.setBounds(76, 170, 326, 33);
-		frame.getContentPane().add(lblCashTotal);
+		frmEliteDangerousBeta.getContentPane().add(lblCashTotal);
 		
 		lblMember4 = new JLabel("...");
+		lblMember4.setOpaque(true);
 		lblMember4.setBounds(780, 200, 150, 30);
 		panelCrew.add(lblMember4);
 		lblMember4.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
 		
 		lblMember3 = new JLabel("...");
+		lblMember3.setOpaque(true);
 		lblMember3.setBounds(582, 200, 150, 30);
 		panelCrew.add(lblMember3);
 		lblMember3.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
 		
 		JLabel lblCrew_1 = new JLabel("Crew Info");
+		lblCrew_1.setOpaque(true);
 		lblCrew_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCrew_1.setBounds(429, 12, 112, 23);
 		panelCrew.add(lblCrew_1);
 		lblCrew_1.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		
 		JLabel lblHunger_2 = new JLabel("Hunger:");
+		lblHunger_2.setOpaque(true);
 		lblHunger_2.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		lblHunger_2.setBounds(60, 158, 150, 30);
+		lblHunger_2.setBounds(60, 158, 119, 30);
 		panelCrew.add(lblHunger_2);
 		
 		JLabel lblHunger_1 = new JLabel("Tiredness:");
-		lblHunger_1.setBounds(60, 116, 150, 30);
+		lblHunger_1.setBounds(60, 116, 119, 30);
+		lblHunger_1.setOpaque(true);
 		panelCrew.add(lblHunger_1);
 		lblHunger_1.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		
 		JLabel lblHunger = new JLabel("Health:");
-		lblHunger.setBounds(60, 79, 150, 30);
+		lblHunger.setOpaque(true);
+		lblHunger.setBounds(60, 79, 119, 30);
 		panelCrew.add(lblHunger);
 		lblHunger.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		
 		JLabel lblNames = new JLabel("Name:");
-		lblNames.setBounds(60, 200, 150, 30);
+		lblNames.setOpaque(true);
+		lblNames.setBounds(60, 200, 119, 30);
 		panelCrew.add(lblNames);
 		lblNames.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		
 		lblMember2 = new JLabel("...");
+		lblMember2.setOpaque(true);
 		lblMember2.setBounds(391, 200, 150, 30);
 		panelCrew.add(lblMember2);
 		lblMember2.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
@@ -992,6 +1009,7 @@ public class MainScreen
 //		}
 		
 		lblMember1 = new JLabel("...");
+		lblMember1.setOpaque(true);
 		lblMember1.setBounds(204, 202, 150, 30);
 		panelCrew.add(lblMember1);
 		lblMember1.setFont(new Font("Lucida Grande", Font.PLAIN, 18)); 
@@ -1016,53 +1034,63 @@ public class MainScreen
 		panelCrew.add(pBarHealth4);
 		
 		JLabel lblType = new JLabel("Type:");
+		lblType.setOpaque(true);
 		lblType.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		lblType.setBounds(60, 39, 150, 30);
+		lblType.setBounds(60, 39, 119, 30);
 		panelCrew.add(lblType);
 		
 		lblCrewType1 = new JLabel("...");
+		lblCrewType1.setOpaque(true);
 		lblCrewType1.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		lblCrewType1.setBounds(214, 39, 150, 30);
+		lblCrewType1.setBounds(204, 39, 150, 30);
 		panelCrew.add(lblCrewType1);
 		
 		lblCrewType2 = new JLabel("...");
+		lblCrewType2.setOpaque(true);
 		lblCrewType2.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		lblCrewType2.setBounds(429, 43, 119, 23);
+		lblCrewType2.setBounds(391, 39, 150, 30);
 		panelCrew.add(lblCrewType2);
 		
 		lblCrewType3 = new JLabel("...");
+		lblCrewType3.setOpaque(true);
 		lblCrewType3.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		lblCrewType3.setBounds(607, 39, 150, 30);
+		lblCrewType3.setBounds(582, 39, 150, 30);
 		panelCrew.add(lblCrewType3);
 		
 		lblCrewType4 = new JLabel("...");
+		lblCrewType4.setOpaque(true);
 		lblCrewType4.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		lblCrewType4.setBounds(791, 39, 150, 30);
+		lblCrewType4.setBounds(780, 39, 150, 30);
 		panelCrew.add(lblCrewType4);
 		
 		player1 = new JLabel("...");
+		player1.setOpaque(true);
 		player1.setFont(new Font("Dialog", Font.PLAIN, 18));
 		player1.setBounds(204, 244, 150, 30);
 		panelCrew.add(player1);
 		
 		player2 = new JLabel("...");
+		player2.setOpaque(true);
 		player2.setFont(new Font("Dialog", Font.PLAIN, 18));
 		player2.setBounds(391, 242, 150, 30);
 		panelCrew.add(player2);
 		
 		player3 = new JLabel("...");
+		player3.setOpaque(true);
 		player3.setFont(new Font("Dialog", Font.PLAIN, 18));
-		player3.setBounds(582, 242, 117, 28);
+		player3.setBounds(582, 242, 150, 28);
 		panelCrew.add(player3);
 		
 		player4 = new JLabel("...");
+		player4.setOpaque(true);
 		player4.setFont(new Font("Dialog", Font.PLAIN, 18));
 		player4.setBounds(780, 242, 150, 30);
 		panelCrew.add(player4);
 		
 		JLabel lblactions = new JLabel("Actions Left:");
+		lblactions.setOpaque(true);
 		lblactions.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblactions.setBounds(60, 242, 150, 30);
+		lblactions.setBounds(60, 242, 119, 30);
 		panelCrew.add(lblactions);
 		btnRepairShields = new JButton("Repair Shields!");
 		btnRepairShields.setBounds(644, 76, 300, 50);
@@ -1073,18 +1101,19 @@ public class MainScreen
 			public void actionPerformed(ActionEvent e) 
 			{	
 				CrewRepair screen = new CrewRepair();
-				screen.frame.setVisible(true);    // turn on screen
-				frame.setVisible(false);          // turn off screen
+				screen.frmEliteDangerousBeta.setVisible(true);    // turn on screen
+				frmEliteDangerousBeta.setVisible(false);          // turn off screen
 			}
 		});
 		
 		
 		lblDaysLeft = new JLabel("Day: ...");
+		lblDaysLeft.setOpaque(true);
 		lblDaysLeft.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblDaysLeft.setBounds(76, 225, 230, 33);
 		
-		frame.getContentPane().setLayout(null);
-		frame.getContentPane().add(lblDaysLeft);
+		frmEliteDangerousBeta.getContentPane().setLayout(null);
+		frmEliteDangerousBeta.getContentPane().add(lblDaysLeft);
 		
 		
 		// Initialize storage arrays
@@ -1130,7 +1159,7 @@ public class MainScreen
 			{
 				try {
 					MainScreen window = new MainScreen();
-					window.frame.setVisible(true);
+					window.frmEliteDangerousBeta.setVisible(true);
 //					asteroids window = new asteroids();
 //					window.frame.setVisible(true);
 				} catch (Exception e) {

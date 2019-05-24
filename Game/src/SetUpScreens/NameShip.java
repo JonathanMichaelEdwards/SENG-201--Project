@@ -19,11 +19,12 @@ import WindowSettings.Display;
 import MainScreen.MainScreen;
 import IOFile.IOFile;
 import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
 
 
 public class NameShip {
 
-	public JFrame frame;
+	public JFrame frmEliteDangerousBeta;
 	
 	private JTextField txtShipsName;
 	private JLabel lblShipChosen;
@@ -44,6 +45,7 @@ public class NameShip {
 	private ArrayList<String> crewNames = new ArrayList<String>();
 	private String shipType = "";
 	private String shipName = "";
+	private JLabel lblNewLabel;
 	
 	
 	
@@ -107,7 +109,7 @@ public class NameShip {
 		});
 		rdbtnRepairShip.setActionCommand("Repair");
 		rdbtnRepairShip.setBounds(716, 250, 144, 23);
-		frame.getContentPane().add(rdbtnRepairShip);
+		frmEliteDangerousBeta.getContentPane().add(rdbtnRepairShip);
 	}
 	
 	private void attackShip()
@@ -124,7 +126,7 @@ public class NameShip {
 		});
 		rdbtnAttackShip.setActionCommand("Attack");
 		rdbtnAttackShip.setBounds(716, 284, 144, 23);
-		frame.getContentPane().add(rdbtnAttackShip);
+		frmEliteDangerousBeta.getContentPane().add(rdbtnAttackShip);
 	}
 
 	private void invisibleShip()
@@ -141,7 +143,7 @@ public class NameShip {
 		});
 		rdbtnInvisibleShip.setActionCommand("Invisible");
 		rdbtnInvisibleShip.setBounds(716, 319, 144, 23);
-		frame.getContentPane().add(rdbtnInvisibleShip);
+		frmEliteDangerousBeta.getContentPane().add(rdbtnInvisibleShip);
 	}
 	
 	private void storageShip()
@@ -158,7 +160,7 @@ public class NameShip {
 		});
 		rdbtnStorageShip.setActionCommand("Storage");
 		rdbtnStorageShip.setBounds(716, 359, 144, 23);
-		frame.getContentPane().add(rdbtnStorageShip);
+		frmEliteDangerousBeta.getContentPane().add(rdbtnStorageShip);
 	}
 	
 	private void medicShip()
@@ -175,7 +177,7 @@ public class NameShip {
 		});
 		rdbtnMedicalShip.setActionCommand("Medical");
 		rdbtnMedicalShip.setBounds(716, 397, 144, 23);
-		frame.getContentPane().add(rdbtnMedicalShip);
+		frmEliteDangerousBeta.getContentPane().add(rdbtnMedicalShip);
 	}
 
 	// The different range of ship choices
@@ -237,7 +239,7 @@ public class NameShip {
 	    	}
 	    });
 	    btnSetYourShips.setBounds(904, 352, 250, 30);
-	    frame.getContentPane().add(btnSetYourShips);
+	    frmEliteDangerousBeta.getContentPane().add(btnSetYourShips);
 	}
 	
 	
@@ -351,13 +353,18 @@ public class NameShip {
 					// move to the main screen
 					// Setting a new frame
 					MainScreen mainScreen = new MainScreen();
-					mainScreen.frame.setVisible(true);  // turn on screen
-					frame.setVisible(false);            // turn off screen
+					mainScreen.frmEliteDangerousBeta.setVisible(true);  // turn on screen
+					frmEliteDangerousBeta.setVisible(false);            // turn off screen
 				}
 			}
 		});
 		btnStart.setBounds(1200, 700, 250, 100);
-		frame.getContentPane().add(btnStart);
+		frmEliteDangerousBeta.getContentPane().add(btnStart);
+		
+		lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(NameShip.class.getResource("/gameImages/startup.jpg")));
+		lblNewLabel.setBounds(0, 0, 1920, 1080);
+		frmEliteDangerousBeta.getContentPane().add(lblNewLabel);
 	}
 	
 	
@@ -367,132 +374,156 @@ public class NameShip {
 	private void initialize() 
 	{	
 		// Setting Layout dimensions
-		frame = new JFrame();
+		frmEliteDangerousBeta = new JFrame();
+		frmEliteDangerousBeta.setTitle("Elite Dangerous beta");
 		Display display = new Display();  // Retrieving game window size
 		
 		// Setting frame of window
-		frame.setBounds(display.x, display.y, display.width, display.height);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		frame.setUndecorated(false);  // Frame cannot be adjusted during game
-		frame.setResizable(false);
+		frmEliteDangerousBeta.setBounds(display.x, display.y, display.width, display.height);
+		frmEliteDangerousBeta.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmEliteDangerousBeta.getContentPane().setLayout(null);
+		frmEliteDangerousBeta.setUndecorated(false);  // Frame cannot be adjusted during game
+		frmEliteDangerousBeta.setResizable(false);
 		
 		
 		// Initializing displays
 		JLabel lblNameYourShip = new JLabel("Choose & Name Your ship");
+		lblNameYourShip.setOpaque(true);
 		lblNameYourShip.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNameYourShip.setFont(new Font("Dialog", Font.BOLD, 24));
-		lblNameYourShip.setBounds(650, 50, 600, 100);
-		frame.getContentPane().add(lblNameYourShip);
+		lblNameYourShip.setBounds(650, 50, 600, 50);
+		frmEliteDangerousBeta.getContentPane().add(lblNameYourShip);
 		
 		txtShipsName = new JTextField();
 		txtShipsName.setBounds(904, 298, 250, 30);
-		frame.getContentPane().add(txtShipsName);
+		frmEliteDangerousBeta.getContentPane().add(txtShipsName);
 		txtShipsName.setColumns(10);
 		
 		JLabel lblShipType = new JLabel("Ship Type");
+		lblShipType.setOpaque(true);
 		lblShipType.setFont(new Font("Dialog", Font.BOLD, 19));
-		lblShipType.setBounds(722, 158, 125, 94);
-		frame.getContentPane().add(lblShipType);
+		lblShipType.setBounds(716, 179, 125, 50);
+		frmEliteDangerousBeta.getContentPane().add(lblShipType);
 		
 		JLabel lblNameShip = new JLabel("Name Ship");
+		lblNameShip.setOpaque(true);
 		lblNameShip.setFont(new Font("Dialog", Font.BOLD, 19));
 		lblNameShip.setBounds(961, 213, 134, 30);
-		frame.getContentPane().add(lblNameShip);
+		frmEliteDangerousBeta.getContentPane().add(lblNameShip);
 		
 	    lblShipChosen = new JLabel("...");
+	    lblShipChosen.setOpaque(true);
 	    lblShipChosen.setBounds(970, 505, 212, 15);
-	    frame.getContentPane().add(lblShipChosen);
+	    frmEliteDangerousBeta.getContentPane().add(lblShipChosen);
 	    
 	    lblNameOfShip = new JLabel("...");
+	    lblNameOfShip.setOpaque(true);
 	    lblNameOfShip.setBounds(970, 548, 212, 15);
-	    frame.getContentPane().add(lblNameOfShip);
+	    frmEliteDangerousBeta.getContentPane().add(lblNameOfShip);
 	    
 	    JLabel lblShipType_1 = new JLabel("Type:");
+	    lblShipType_1.setOpaque(true);
 	    lblShipType_1.setBounds(904, 505, 54, 15);
-	    frame.getContentPane().add(lblShipType_1);
+	    frmEliteDangerousBeta.getContentPane().add(lblShipType_1);
 	    
 	    JLabel lblShipsName = new JLabel("Name:");
+	    lblShipsName.setOpaque(true);
 	    lblShipsName.setBounds(904, 548, 47, 15);
-	    frame.getContentPane().add(lblShipsName);
+	    frmEliteDangerousBeta.getContentPane().add(lblShipsName);
 	    
 	    JLabel lblShipStatus = new JLabel("Ship Status");
+	    lblShipStatus.setOpaque(true);
 	    lblShipStatus.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 	    lblShipStatus.setBounds(923, 455, 112, 23);
-	    frame.getContentPane().add(lblShipStatus);
+	    frmEliteDangerousBeta.getContentPane().add(lblShipStatus);
 	    
 	    JLabel label = new JLabel("Setup progress");
+	    label.setOpaque(true);
 	    label.setHorizontalAlignment(SwingConstants.CENTER);
 	    label.setBounds(230, 125, 150, 30);
-	    frame.getContentPane().add(label);
+	    frmEliteDangerousBeta.getContentPane().add(label);
 	    
 	    JProgressBar progressBar = new JProgressBar();
 	    progressBar.setValue(2);
 	    progressBar.setStringPainted(true);
 	    progressBar.setMaximum(3);
 	    progressBar.setBounds(230, 170, 150, 30);
-	    frame.getContentPane().add(progressBar);
+	    frmEliteDangerousBeta.getContentPane().add(progressBar);
 	   
 	    lblMember1 = new JLabel("1. ...");
-	    lblMember1.setBounds(230, 386, 109, 15);
-	    frame.getContentPane().add(lblMember1);
+	    lblMember1.setOpaque(true);
+	    lblMember1.setBounds(230, 386, 117, 15);
+	    frmEliteDangerousBeta.getContentPane().add(lblMember1);
 	    
 	    lblMember2 = new JLabel("2. ...");
+	    
+	    lblMember2.setOpaque(true);
 	    lblMember2.setBounds(230, 413, 117, 15);
-	    frame.getContentPane().add(lblMember2);
+	    frmEliteDangerousBeta.getContentPane().add(lblMember2);
 	    
 	    lblMember3 = new JLabel("3. ...");
+	    lblMember3.setOpaque(true);
 	    lblMember3.setBounds(230, 440, 117, 15);
-	    frame.getContentPane().add(lblMember3);
+	    frmEliteDangerousBeta.getContentPane().add(lblMember3);
 	    
 	    lblMember4 = new JLabel("4. ...");
+	    lblMember4.setOpaque(true);
 	    lblMember4.setBounds(230, 467, 117, 15);
-	    frame.getContentPane().add(lblMember4);
+	    frmEliteDangerousBeta.getContentPane().add(lblMember4);
 	    
 	    lblName1 = new JLabel("...");
+	    lblName1.setOpaque(true);
 	    lblName1.setBounds(352, 385, 109, 15);
-	    frame.getContentPane().add(lblName1);
+	    frmEliteDangerousBeta.getContentPane().add(lblName1);
 	    
 	    lblName2 = new JLabel("...");
+	    lblName2.setOpaque(true);
 	    lblName2.setBounds(352, 413, 109, 15);
-	    frame.getContentPane().add(lblName2);
+	    frmEliteDangerousBeta.getContentPane().add(lblName2);
 	    
 	    lblName3 = new JLabel("...");
+	    lblName3.setOpaque(true);
 	    lblName3.setBounds(352, 439, 109, 15);
-	    frame.getContentPane().add(lblName3);
+	    frmEliteDangerousBeta.getContentPane().add(lblName3);
 	    
 	    lblName4 = new JLabel("...");
+	    lblName4.setOpaque(true);
 	    lblName4.setBounds(352, 466, 109, 15);
-	    frame.getContentPane().add(lblName4);
+	    frmEliteDangerousBeta.getContentPane().add(lblName4);
 	    
 	    JLabel lblCrewStatus = new JLabel("Crew");
+	    lblCrewStatus.setOpaque(true);
 	    lblCrewStatus.setHorizontalAlignment(SwingConstants.CENTER);
 	    lblCrewStatus.setFont(new Font("Dialog", Font.PLAIN, 16));
 	    lblCrewStatus.setBounds(230, 324, 150, 23);
-	    frame.getContentPane().add(lblCrewStatus);
+	    frmEliteDangerousBeta.getContentPane().add(lblCrewStatus);
 	    
 	    JLabel lblPiecesToCollect = new JLabel("Pieces to Collect");
+	    lblPiecesToCollect.setOpaque(true);
 	    lblPiecesToCollect.setHorizontalAlignment(SwingConstants.CENTER);
 	    lblPiecesToCollect.setFont(new Font("Dialog", Font.PLAIN, 16));
 	    lblPiecesToCollect.setBounds(230, 247, 150, 23);
-	    frame.getContentPane().add(lblPiecesToCollect);
+	    frmEliteDangerousBeta.getContentPane().add(lblPiecesToCollect);
 	    
 	    lblPieces = new JLabel("...");
 	    lblPieces.setHorizontalAlignment(SwingConstants.CENTER);
 	    lblPieces.setBounds(230, 279, 150, 15);
-	    frame.getContentPane().add(lblPieces);
+	    frmEliteDangerousBeta.getContentPane().add(lblPieces);
 	    
 	    JLabel label_9 = new JLabel("Current Team");
+	    label_9.setOpaque(true);
 	    label_9.setBounds(230, 359, 109, 15);
-	    frame.getContentPane().add(label_9);
+	    frmEliteDangerousBeta.getContentPane().add(label_9);
 	    
 	    JLabel label_10 = new JLabel("Names");
-	    label_10.setBounds(362, 359, 66, 15);
-	    frame.getContentPane().add(label_10);
+	    label_10.setOpaque(true);
+	    label_10.setBounds(352, 358, 66, 15);
+	    frmEliteDangerousBeta.getContentPane().add(label_10);
 		
 		JLabel lblName = new JLabel("Please enter the name of your ship:");
+		lblName.setOpaque(true);
 		lblName.setBounds(904, 256, 250, 30);
-		frame.getContentPane().add(lblName);
+		frmEliteDangerousBeta.getContentPane().add(lblName);
 		
 	
 		// Button Actions
@@ -522,7 +553,7 @@ public class NameShip {
 			{
 				try {
 					NameShip window = new NameShip();
-					window.frame.setVisible(true);
+					window.frmEliteDangerousBeta.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

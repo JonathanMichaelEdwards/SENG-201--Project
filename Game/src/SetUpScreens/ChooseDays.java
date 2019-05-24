@@ -21,6 +21,7 @@ import javax.swing.JProgressBar;
 // Self implemented
 import WindowSettings.Display;
 import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
 
 /**
  * description of class
@@ -30,7 +31,7 @@ import javax.swing.SwingConstants;
 
 public class ChooseDays 
 {
-	public JFrame frame;
+	public JFrame frmEliteDangerousBeta;
 	
 	private JSlider slider;
 	private JLabel lblSliderDays;
@@ -45,6 +46,8 @@ public class ChooseDays
 	void getDays()
 	{
 		lblSliderDays = new JLabel("Number of Spaceship parts: " + piecesToCollect);
+		lblSliderDays.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSliderDays.setOpaque(true);
 		// Add a new slider listener
 		// Get the value the user selected and times it by 2/3 (0.667) to find the pieces
 		slider.addChangeListener(new ChangeListener() 
@@ -57,8 +60,8 @@ public class ChooseDays
 	        }
 		});
 		
-		lblSliderDays.setBounds(836, 471, 266, 25);
-		frame.getContentPane().add(lblSliderDays);
+		lblSliderDays.setBounds(817, 468, 266, 25);
+		frmEliteDangerousBeta.getContentPane().add(lblSliderDays);
 	}
 	
 	
@@ -76,8 +79,8 @@ public class ChooseDays
 				CrewSelection crewSelect = new CrewSelection();
 				
 				// Transferring from ChooseDays class to CrewSelection class  
-				crewSelect.frame.setVisible(true);  // turn on screen
-				frame.setVisible(false);   // turn off screen
+				crewSelect.frmEliteDangerousBeta.setVisible(true);  // turn on screen
+				frmEliteDangerousBeta.setVisible(false);   // turn off screen
 				
 				// Send pieces and days to next screen
 				IOFile ioFile = new IOFile();
@@ -91,7 +94,19 @@ public class ChooseDays
 			}
 		});
 		btnAccept.setBounds(1200, 700, 250, 100);
-		frame.getContentPane().add(btnAccept);
+		frmEliteDangerousBeta.getContentPane().add(btnAccept);
+		
+		JLabel lblPleaseSelectThe = new JLabel("Please select the amount of days");
+		lblPleaseSelectThe.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPleaseSelectThe.setFont(new Font("Dialog", Font.BOLD, 24));
+		lblPleaseSelectThe.setBounds(650, 195, 600, 50);
+		lblPleaseSelectThe.setOpaque(true);
+		frmEliteDangerousBeta.getContentPane().add(lblPleaseSelectThe);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(ChooseDays.class.getResource("/gameImages/startup.jpg")));
+		lblNewLabel.setBounds(0, 0, 1920, 1080);
+		frmEliteDangerousBeta.getContentPane().add(lblNewLabel);
 	}
 	
 	
@@ -101,14 +116,15 @@ public class ChooseDays
 	private void initialize() 
 	{	
 		// Setting Layout dimensions
-		frame = new JFrame();
+		frmEliteDangerousBeta = new JFrame();
+		frmEliteDangerousBeta.setTitle("Elite Dangerous beta");
 		Display display = new Display();  // Retrieving game window size
 		
 		// Setting frame of window
-		frame.setBounds(display.x, display.y, display.width, display.height);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		frame.setResizable(false);
+		frmEliteDangerousBeta.setBounds(display.x, display.y, display.width, display.height);
+		frmEliteDangerousBeta.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmEliteDangerousBeta.getContentPane().setLayout(null);
+		frmEliteDangerousBeta.setResizable(false);
 //		frame.setUndecorated(false);  // Frame cannot be adjusted during game
 
 		
@@ -117,19 +133,21 @@ public class ChooseDays
 		JLabel lblWelcomeToThe = new JLabel("Welcome to the game");
 		lblWelcomeToThe.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWelcomeToThe.setFont(new Font("Dialog", Font.BOLD, 24));
-		lblWelcomeToThe.setBounds(650, 50, 600, 100);
-		frame.getContentPane().add(lblWelcomeToThe);
+		lblWelcomeToThe.setOpaque(true);
+		lblWelcomeToThe.setBounds(650, 50, 600, 50);
+		frmEliteDangerousBeta.getContentPane().add(lblWelcomeToThe);
 		
 		JProgressBar progressBar = new JProgressBar();
 		progressBar.setMaximum(3);
 		progressBar.setStringPainted(true);
 		progressBar.setBounds(230, 170, 150, 30);
-		frame.getContentPane().add(progressBar);
+		frmEliteDangerousBeta.getContentPane().add(progressBar);
 		
 		JLabel lblSetupProgress = new JLabel("Setup progress");
 		lblSetupProgress.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSetupProgress.setBounds(230, 125, 150, 30);
-		frame.getContentPane().add(lblSetupProgress);
+		lblSetupProgress.setOpaque(true);
+		frmEliteDangerousBeta.getContentPane().add(lblSetupProgress);
 		
 		// Initializing a new slider to choose days
 		slider = new JSlider();
@@ -155,7 +173,7 @@ public class ChooseDays
 		
 		// Set the label to be drawn
 		slider.setLabelTable(position); 
-		frame.getContentPane().add(slider);
+		frmEliteDangerousBeta.getContentPane().add(slider);
 		
 	
 		// Button Actions
@@ -185,7 +203,7 @@ public class ChooseDays
 			{
 				try {	
 					ChooseDays window = new ChooseDays();
-					window.frame.setVisible(true);
+					window.frmEliteDangerousBeta.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

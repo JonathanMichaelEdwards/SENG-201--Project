@@ -14,11 +14,12 @@ import IOFile.IOFile;
 import MainScreen.MainScreen;
 import WindowSettings.Display;
 import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
 
 public class alienPirates 
 {
 
-	public JFrame frame;
+	public JFrame frmEliteDangerousBeta;
 	
 	
 	private void btnBack()
@@ -29,13 +30,19 @@ public class alienPirates
 			public void actionPerformed(ActionEvent e) 
 			{
 				MainScreen screen = new MainScreen();
-				screen.frame.setVisible(true);    // turn on screen
-				frame.setVisible(false);          // turn off screen
+				screen.frmEliteDangerousBeta.setVisible(true);    // turn on screen
+				frmEliteDangerousBeta.setVisible(false);          // turn off screen
 			}
 		});
-		frame.getContentPane().setLayout(null);
+		frmEliteDangerousBeta.getContentPane().setLayout(null);
 		btnLetsGetGoing.setBounds(940, 700, 250, 100);
-		frame.getContentPane().add(btnLetsGetGoing);
+		frmEliteDangerousBeta.getContentPane().add(btnLetsGetGoing);
+		{
+			JLabel lblNewLabel = new JLabel("");
+			lblNewLabel.setIcon(new ImageIcon(alienPirates.class.getResource("/gameImages/pirates.jpg")));
+			lblNewLabel.setBounds(0, 0, 1920, 1080);
+			frmEliteDangerousBeta.getContentPane().add(lblNewLabel);
+		}
 	}
 
 	
@@ -54,9 +61,10 @@ public class alienPirates
 		JLabel lblFdf = new JLabel("<html>Your team has awoken to the screeching sound of boarding Alien Pirates, "
 				+ "raiding your ship for the supplies you carry, your team puts up a strong fight, and were lucky to have lost only &emsp;" + taken 
 				+ "  &emsp; from the inventory</html>");
+		lblFdf.setOpaque(true);
 		lblFdf.setFont(new Font("Dialog", Font.BOLD, 19));
-		lblFdf.setBounds(521, 190, 905, 297);
-		frame.getContentPane().add(lblFdf);
+		lblFdf.setBounds(525, 259, 905, 170);
+		frmEliteDangerousBeta.getContentPane().add(lblFdf);
 		
 		ioFile.fileWrite(inventory, "src/StoreGame/Inventory/Storage.txt");
 	}
@@ -66,20 +74,22 @@ public class alienPirates
 	 * Initialize the contents of the frame.
 	*/
 	private void initialize() {
-		frame = new JFrame();
+		frmEliteDangerousBeta = new JFrame();
+		frmEliteDangerousBeta.setTitle("Elite Dangerous beta");
 		Display display = new Display();
-		frame.setBounds(display.x, display.y, display.width, display.height);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(false);
-		frame.getContentPane().setLayout(null);
+		frmEliteDangerousBeta.setBounds(display.x, display.y, display.width, display.height);
+		frmEliteDangerousBeta.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmEliteDangerousBeta.setResizable(false);
+		frmEliteDangerousBeta.getContentPane().setLayout(null);
 		
 		randSelect();
 
 		JLabel lblPirates = new JLabel("PIRATES!");
+		lblPirates.setOpaque(true);
 		lblPirates.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPirates.setFont(new Font("Dialog", Font.BOLD, 24));
-		lblPirates.setBounds(650, 50, 600, 100);
-		frame.getContentPane().add(lblPirates);
+		lblPirates.setBounds(650, 50, 600, 50);
+		frmEliteDangerousBeta.getContentPane().add(lblPirates);
 		btnBack();
 	}
 	
@@ -103,7 +113,7 @@ public class alienPirates
 			{
 				try {
 					alienPirates window = new alienPirates();
-					window.frame.setVisible(true);
+					window.frmEliteDangerousBeta.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

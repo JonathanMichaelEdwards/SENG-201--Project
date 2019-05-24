@@ -21,11 +21,13 @@ import WindowSettings.Display;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
+import java.awt.Dimension;
 
 
 public class CrewTravel {
 
-	public JFrame frame;
+	public JFrame frmEliteDangerousBeta;
 	
 	private JLabel cpType1, cpType2, cpType3, cpType4;
 	private JLabel cpName1, cpName2, cpName3, cpName4;
@@ -51,6 +53,7 @@ public class CrewTravel {
 	private JProgressBar hunger[] = new JProgressBar [4];
 	private JCheckBox character1, character2, character3, character4;
 	private int countCrew = 0;
+	private JLabel lblNewLabel;
 	
 
 	// Store all progress bar so it can be used easily
@@ -178,11 +181,17 @@ public class CrewTravel {
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				MainScreen screen = new MainScreen();
-				screen.frame.setVisible(true);    // turn on screen
-				frame.setVisible(false);          // turn off screen
+				screen.frmEliteDangerousBeta.setVisible(true);    // turn on screen
+				frmEliteDangerousBeta.setVisible(false);          // turn off screen
 			}
 		});
-		frame.getContentPane().add(btnBack);
+		frmEliteDangerousBeta.getContentPane().add(btnBack);
+		
+		lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(CrewTravel.class.getResource("/gameImages/pilot.PNG")));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(0, 0, 1920, 1080);
+		frmEliteDangerousBeta.getContentPane().add(lblNewLabel);
 	}
 	
 	
@@ -217,7 +226,7 @@ public class CrewTravel {
 				}
 			}
 		});
-		frame.getContentPane().add(character1);
+		frmEliteDangerousBeta.getContentPane().add(character1);
 		
 		
 		character2 = new JCheckBox("Character 2");
@@ -249,7 +258,7 @@ public class CrewTravel {
 				}
 			}
 		});
-		frame.getContentPane().add(character2);
+		frmEliteDangerousBeta.getContentPane().add(character2);
 		
 		
 		character3 = new JCheckBox("Character 3");
@@ -281,7 +290,7 @@ public class CrewTravel {
 				}
 			}
 		});
-		frame.getContentPane().add(character3);
+		frmEliteDangerousBeta.getContentPane().add(character3);
 		
 		
 		character4 = new JCheckBox("Character 4");
@@ -312,7 +321,7 @@ public class CrewTravel {
 				}
 			}
 		});
-		frame.getContentPane().add(character4);
+		frmEliteDangerousBeta.getContentPane().add(character4);
 	}
 		
 		
@@ -394,20 +403,20 @@ public class CrewTravel {
 				if (x == 1)
 				{
 					TravelPlanet screen = new TravelPlanet();
-					screen.frame.setVisible(true);    // turn on screen
-					frame.setVisible(false);          // turn off screen
+					screen.frmEliteDangerousBeta.setVisible(true);    // turn on screen
+					frmEliteDangerousBeta.setVisible(false);          // turn off screen
 				}
 				if (x == 0)
 				{
 					System.out.println("asteroids");
 					asteroids outpost = new asteroids();
-					outpost.frame.setVisible(true);
-					frame.setVisible(false);
+					outpost.frmEliteDangerousBeta.setVisible(true);
+					frmEliteDangerousBeta.setVisible(false);
 				}
 			}
 		});
-		frame.getContentPane().setLayout(null);
-		frame.getContentPane().add(btnSearchPlanet);
+		frmEliteDangerousBeta.getContentPane().setLayout(null);
+		frmEliteDangerousBeta.getContentPane().add(btnSearchPlanet);
 	}
 	
 	
@@ -478,147 +487,167 @@ public class CrewTravel {
 	*/
 	private void initialize() {
 		// Setting Layout dimensions
-		frame = new JFrame();
+		frmEliteDangerousBeta = new JFrame();
+		frmEliteDangerousBeta.setTitle("Elite Dangerous beta");
 		Display display = new Display();  // Retrieving game window size
 		
 		// Setting frame of window
-		frame.setBounds(display.x, display.y, display.width, display.height);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(false);
-		frame.getContentPane().setLayout(null);
+		frmEliteDangerousBeta.setBounds(display.x, display.y, display.width, display.height);
+		frmEliteDangerousBeta.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmEliteDangerousBeta.setResizable(false);
+		frmEliteDangerousBeta.getContentPane().setLayout(null);
 //		frame.setUndecorated(true);  // Frame cannot be adjusted during game
 		
 		
 		cpHealth1 = new JProgressBar();
 		cpHealth1.setBounds(661, 326, 150, 30);
 		cpHealth1.setStringPainted(true);
-		frame.getContentPane().add(cpHealth1);
+		frmEliteDangerousBeta.getContentPane().add(cpHealth1);
 
 		cpTired1 = new JProgressBar();
 		cpTired1.setBounds(661, 363, 150, 30);
 		cpTired1.setStringPainted(true);
-		frame.getContentPane().add(cpTired1);
+		frmEliteDangerousBeta.getContentPane().add(cpTired1);
 	
 		cpHunger1 = new JProgressBar();
 		cpHunger1.setBounds(661, 405, 150, 30);
 		cpHunger1.setStringPainted(true);
-		frame.getContentPane().add(cpHunger1);
+		frmEliteDangerousBeta.getContentPane().add(cpHunger1);
 	
 		cpHealth2 = new JProgressBar();
 		cpHealth2.setBounds(848, 326, 150, 30);
 		cpHealth2.setStringPainted(true);
-		frame.getContentPane().add(cpHealth2);
+		frmEliteDangerousBeta.getContentPane().add(cpHealth2);
 		
 		cpTired2 = new JProgressBar();
 		cpTired2.setBounds(848, 363, 150, 30);
 		cpTired2.setStringPainted(true);
-		frame.getContentPane().add(cpTired2);
+		frmEliteDangerousBeta.getContentPane().add(cpTired2);
 		
 		cpHunger2 = new JProgressBar();
 		cpHunger2.setBounds(848, 403, 150, 30);
 		cpHunger2.setStringPainted(true);
-		frame.getContentPane().add(cpHunger2);
+		frmEliteDangerousBeta.getContentPane().add(cpHunger2);
 
 		cpHealth3 = new JProgressBar();
 		cpHealth3.setBounds(1039, 326, 150, 30);
 		cpHealth3.setStringPainted(true);
-		frame.getContentPane().add(cpHealth3);
+		frmEliteDangerousBeta.getContentPane().add(cpHealth3);
 		
 		cpTired3 = new JProgressBar();
 		cpTired3.setBounds(1039, 363, 150, 30);
 		cpTired3.setStringPainted(true);
-		frame.getContentPane().add(cpTired3);
+		frmEliteDangerousBeta.getContentPane().add(cpTired3);
 
 		cpHunger3 = new JProgressBar();
 		cpHunger3.setBounds(1039, 403, 150, 30);
 		cpHunger3.setStringPainted(true);
-		frame.getContentPane().add(cpHunger3);
+		frmEliteDangerousBeta.getContentPane().add(cpHunger3);
 
 		cpHealth4 = new JProgressBar();
 		cpHealth4.setBounds(1237, 326, 150, 30);
 		cpHealth4.setStringPainted(true);
-		frame.getContentPane().add(cpHealth4);
+		frmEliteDangerousBeta.getContentPane().add(cpHealth4);
 		
 		cpTired4 = new JProgressBar();
 		cpTired4.setBounds(1237, 363, 150, 30);
 		cpTired4.setStringPainted(true);
-		frame.getContentPane().add(cpTired4);
+		frmEliteDangerousBeta.getContentPane().add(cpTired4);
 		
 		cpHunger4 = new JProgressBar();
 		cpHunger4.setBounds(1237, 403, 150, 30);
 		cpHunger4.setStringPainted(true);
-		frame.getContentPane().add(cpHunger4);
+		frmEliteDangerousBeta.getContentPane().add(cpHunger4);
 
 		cpName4 = new JLabel("...");
+		cpName4.setOpaque(true);
 		cpName4.setBounds(1237, 445, 150, 30);
 		cpName4.setFont(new Font("Dialog", Font.PLAIN, 18));
-		frame.getContentPane().add(cpName4);
+		frmEliteDangerousBeta.getContentPane().add(cpName4);
 
 		cpName3 = new JLabel("...");
+		cpName3.setOpaque(true);
 		cpName3.setBounds(1039, 445, 150, 30);
 		cpName3.setFont(new Font("Dialog", Font.PLAIN, 18));
-		frame.getContentPane().add(cpName3);
+		frmEliteDangerousBeta.getContentPane().add(cpName3);
 
 		cpName2 = new JLabel("...");
+		cpName2.setOpaque(true);
 		cpName2.setBounds(848, 445, 150, 30);
 		cpName2.setFont(new Font("Dialog", Font.PLAIN, 18));
-		frame.getContentPane().add(cpName2);
+		frmEliteDangerousBeta.getContentPane().add(cpName2);
 		
 		cpName1 = new JLabel("...");
+		cpName1.setOpaque(true);
 		cpName1.setBounds(661, 447, 150, 30);
 		cpName1.setFont(new Font("Dialog", Font.PLAIN, 18));
-		frame.getContentPane().add(cpName1);
+		frmEliteDangerousBeta.getContentPane().add(cpName1);
 		
 		JLabel label = new JLabel("Crew Info");
+		label.setOpaque(true);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setBounds(909, 238, 150, 30);
 		label.setFont(new Font("Dialog", Font.PLAIN, 16));
-		frame.getContentPane().add(label);
+		frmEliteDangerousBeta.getContentPane().add(label);
 	
 		JLabel label0 = new JLabel("Hunger:");
-		label0.setBounds(517, 403, 150, 30);
+		label0.setSize(new Dimension(60, 0));
+		label0.setOpaque(true);
+		label0.setBounds(517, 403, 119, 30);
 		label0.setFont(new Font("Dialog", Font.PLAIN, 16));
-		frame.getContentPane().add(label0);
+		frmEliteDangerousBeta.getContentPane().add(label0);
 
 		JLabel label1 = new JLabel("Tiredness:");
-		label1.setBounds(517, 361, 150, 30);
+		label1.setSize(new Dimension(60, 0));
+		label1.setOpaque(true);
+		label1.setBounds(517, 361, 119, 30);
 		label1.setFont(new Font("Dialog", Font.PLAIN, 16));
-		frame.getContentPane().add(label1);
+		frmEliteDangerousBeta.getContentPane().add(label1);
 	
 		JLabel label2 = new JLabel("Health:");
-		label2.setBounds(517, 324, 150, 30);
+		label2.setSize(new Dimension(60, 0));
+		label2.setOpaque(true);
+		label2.setBounds(517, 324, 119, 30);
 		label2.setFont(new Font("Dialog", Font.PLAIN, 16));
-		frame.getContentPane().add(label2);
+		frmEliteDangerousBeta.getContentPane().add(label2);
 		
 		JLabel label3 = new JLabel("Name:");
-		label3.setBounds(517, 445, 150, 30);
+		label3.setSize(new Dimension(60, 0));
+		label3.setOpaque(true);
+		label3.setBounds(517, 445, 119, 30);
 		label3.setFont(new Font("Dialog", Font.PLAIN, 16));
-		frame.getContentPane().add(label3);
+		frmEliteDangerousBeta.getContentPane().add(label3);
 
 		JLabel label4 = new JLabel("Type:");
-		label4.setBounds(517, 284, 150, 30);
+		label4.setSize(new Dimension(60, 0));
+		label4.setOpaque(true);
+		label4.setBounds(517, 284, 119, 30);
 		label4.setFont(new Font("Dialog", Font.PLAIN, 16));
-		frame.getContentPane().add(label4);
+		frmEliteDangerousBeta.getContentPane().add(label4);
 
 		cpType1 = new JLabel("...");
-		cpType1.setBounds(671, 284, 150, 30);
+		cpType1.setOpaque(true);
+		cpType1.setBounds(661, 284, 150, 30);
 		cpType1.setFont(new Font("Dialog", Font.PLAIN, 18));
-		frame.getContentPane().add(cpType1);
+		frmEliteDangerousBeta.getContentPane().add(cpType1);
 
 		cpType2 = new JLabel("...");
-		cpType2.setBounds(886, 288, 119, 23);
+		cpType2.setOpaque(true);
+		cpType2.setBounds(848, 284, 150, 30);
 		cpType2.setFont(new Font("Dialog", Font.PLAIN, 18));
-		frame.getContentPane().add(cpType2);
+		frmEliteDangerousBeta.getContentPane().add(cpType2);
 
 		cpType3 = new JLabel("...");
-		cpType3.setBounds(1064, 284, 150, 30);
+		cpType3.setOpaque(true);
+		cpType3.setBounds(1039, 284, 150, 30);
 		cpType3.setFont(new Font("Dialog", Font.PLAIN, 18));
-		frame.getContentPane().add(cpType3);
+		frmEliteDangerousBeta.getContentPane().add(cpType3);
 
 		cpType4 = new JLabel("...");
-		cpType4.setBounds(1248, 284, 150, 30);
+		cpType4.setOpaque(true);
+		cpType4.setBounds(1237, 284, 150, 30);
 		cpType4.setFont(new Font("Dialog", Font.PLAIN, 18));
-		frame.getContentPane().add(cpType4);
+		frmEliteDangerousBeta.getContentPane().add(cpType4);
 			
 
 		
@@ -663,7 +692,7 @@ public class CrewTravel {
 			{
 				try {
 					CrewTravel window = new CrewTravel();
-					window.frame.setVisible(true);
+					window.frmEliteDangerousBeta.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

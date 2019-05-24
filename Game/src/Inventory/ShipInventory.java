@@ -1,5 +1,6 @@
 package Inventory;
 
+
 // Library imports
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -18,12 +19,13 @@ import java.awt.event.ActionEvent;
 import IOFile.IOFile;
 import MainScreen.MainScreen;
 import WindowSettings.Display;
+import javax.swing.ImageIcon;
 
 
 
 public class ShipInventory
 {
-	public JFrame frame;
+	public JFrame frmEliteDangerousBeta;
 	
 	
 	private JLabel pBarType1, pBarType2, pBarType3, pBarType4;
@@ -58,6 +60,8 @@ public class ShipInventory
 	private JProgressBar hunger[] = new JProgressBar [4];
 	
 	private int cookies, pizzas, fullMeal, bandage, medkit, surgical, potion;
+	private JLabel lblNewLabel;
+	private JLabel lblDeleteMeNow;
 	
 
 	// Store all progress bar so it can be used easily
@@ -330,8 +334,8 @@ public class ShipInventory
 				setradioButtons(rBCookie);
 			}
 		});
-		rBCookie.setBounds(848, 208, 38, 23);
-		frame.getContentPane().add(rBCookie);
+		rBCookie.setBounds(853, 199, 38, 28);
+		frmEliteDangerousBeta.getContentPane().add(rBCookie);
 		
 		
 		rBPizza = new JRadioButton("");
@@ -342,8 +346,8 @@ public class ShipInventory
 				setradioButtons(rBPizza);
 			}
 		});
-		rBPizza.setBounds(842, 248, 38, 23);
-		frame.getContentPane().add(rBPizza);
+		rBPizza.setBounds(853, 239, 38, 28);
+		frmEliteDangerousBeta.getContentPane().add(rBPizza);
 		
 		
 		rBFullMeal = new JRadioButton("");
@@ -354,8 +358,8 @@ public class ShipInventory
 				setradioButtons(rBFullMeal);
 			}
 		});
-		rBFullMeal.setBounds(842, 287, 38, 23);
-		frame.getContentPane().add(rBFullMeal);
+		rBFullMeal.setBounds(853, 279, 38, 27);
+		frmEliteDangerousBeta.getContentPane().add(rBFullMeal);
 		
 		
 		rBPlague = new JRadioButton("");
@@ -366,8 +370,8 @@ public class ShipInventory
 				setradioButtons(rBPlague);
 			}
 		});
-		rBPlague.setBounds(1350, 313, 38, 23);
-		frame.getContentPane().add(rBPlague);
+		rBPlague.setBounds(1354, 316, 38, 29);
+		frmEliteDangerousBeta.getContentPane().add(rBPlague);
 		
 		
 		rBSurgical = new JRadioButton("");
@@ -378,8 +382,8 @@ public class ShipInventory
 				setradioButtons(rBSurgical);
 			}
 		});
-		rBSurgical.setBounds(1350, 275, 38, 23);
-		frame.getContentPane().add(rBSurgical);
+		rBSurgical.setBounds(1350, 275, 38, 31);
+		frmEliteDangerousBeta.getContentPane().add(rBSurgical);
 		
 		
 		rBMedkit = new JRadioButton("");
@@ -390,8 +394,8 @@ public class ShipInventory
 				setradioButtons(rBMedkit);
 			}
 		});
-		rBMedkit.setBounds(1350, 236, 38, 23);
-		frame.getContentPane().add(rBMedkit);
+		rBMedkit.setBounds(1350, 236, 38, 32);
+		frmEliteDangerousBeta.getContentPane().add(rBMedkit);
 		
 		
 		rBBandages = new JRadioButton("");
@@ -402,8 +406,8 @@ public class ShipInventory
 				setradioButtons(rBBandages);
 			}
 		});
-		rBBandages.setBounds(1350, 196, 38, 23);
-		frame.getContentPane().add(rBBandages);
+		rBBandages.setBounds(1350, 196, 38, 32);
+		frmEliteDangerousBeta.getContentPane().add(rBBandages);
 	}
 
 	
@@ -416,11 +420,25 @@ public class ShipInventory
 			public void actionPerformed(ActionEvent arg0)
 			{
 				MainScreen screen = new MainScreen();
-				screen.frame.setVisible(true);    // turn on screen
-				frame.setVisible(false);          // turn off screen
+				screen.frmEliteDangerousBeta.setVisible(true);    // turn on screen
+				frmEliteDangerousBeta.setVisible(false);          // turn off screen
 			}
 		});
-		frame.getContentPane().add(btnBack);
+		frmEliteDangerousBeta.getContentPane().add(btnBack);
+		
+		lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(ShipInventory.class.getResource("/gameImages/inventory.PNG")));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(0, 0, 1920, 1080);
+		frmEliteDangerousBeta.getContentPane().add(lblNewLabel);
+		
+		lblDeleteMeNow = new JLabel("delete me now");
+		lblDeleteMeNow.setBounds(159, 418, 66, 15);
+		frmEliteDangerousBeta.getContentPane().add(lblDeleteMeNow);
+		
+		JLabel lblDeleteMeAsap = new JLabel("delete me asap");
+		lblDeleteMeAsap.setBounds(268, 528, 66, 15);
+		frmEliteDangerousBeta.getContentPane().add(lblDeleteMeAsap);
 	}
 	
 	/**
@@ -529,12 +547,12 @@ public class ShipInventory
 				ioFile.fileWrite(inventory, "src/StoreGame/Inventory/Storage.txt");
 				
 				ShipInventory ship = new ShipInventory();
-				ship.frame.setVisible(true);    // turn on screen
-				frame.setVisible(false);        // turn off screen
+				ship.frmEliteDangerousBeta.setVisible(true);    // turn on screen
+				frmEliteDangerousBeta.setVisible(false);        // turn off screen
 			}
 		});
 		btnConfirmChoice.setBounds(1200, 700, 250, 100);
-		frame.getContentPane().add(btnConfirmChoice);
+		frmEliteDangerousBeta.getContentPane().add(btnConfirmChoice);
 	}
 	
 	
@@ -579,7 +597,7 @@ public class ShipInventory
 		 	}
 		 });
 		rdbtnCrew1.setBounds(666, 641, 150, 23);
-		frame.getContentPane().add(rdbtnCrew1);
+		frmEliteDangerousBeta.getContentPane().add(rdbtnCrew1);
 		
 		
 		rdbtnCrew2 = new JRadioButton("Choose");
@@ -611,7 +629,7 @@ public class ShipInventory
 			}
 		});
 		rdbtnCrew2.setBounds(853, 641, 150, 23);
-		frame.getContentPane().add(rdbtnCrew2);
+		frmEliteDangerousBeta.getContentPane().add(rdbtnCrew2);
 		
 	
 		rdbtnCrew3 = new JRadioButton("Choose");
@@ -641,7 +659,7 @@ public class ShipInventory
 			}
 		});
 		rdbtnCrew3.setBounds(1044, 641, 150, 23);
-		frame.getContentPane().add(rdbtnCrew3);
+		frmEliteDangerousBeta.getContentPane().add(rdbtnCrew3);
 		
 
 		rdbtnCrew4 = new JRadioButton("Choose");
@@ -669,7 +687,7 @@ public class ShipInventory
 			}
 		});
 		rdbtnCrew4.setBounds(1242, 641, 150, 23);
-		frame.getContentPane().add(rdbtnCrew4);
+		frmEliteDangerousBeta.getContentPane().add(rdbtnCrew4);
 	}
 	
 	
@@ -679,379 +697,269 @@ public class ShipInventory
 	private void initialize() 
 	{
 		// Setting Layout dimensions
-		frame = new JFrame();
+		frmEliteDangerousBeta = new JFrame();
+		frmEliteDangerousBeta.setTitle("Elite Dangerous beta");
 		Display display = new Display();  // Retrieving game window size
 		
 		// Setting frame of window
-		frame.setBounds(display.x, display.y, display.width, display.height);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(false);
-		frame.getContentPane().setLayout(null);
+		frmEliteDangerousBeta.setBounds(display.x, display.y, display.width, display.height);
+		frmEliteDangerousBeta.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmEliteDangerousBeta.setResizable(false);
+		frmEliteDangerousBeta.getContentPane().setLayout(null);
 //		frame.setUndecorated(true);  // Frame cannot be adjusted during game
 		
 		
 		// Initialize displays
 		JLabel lblShipsInventory = new JLabel("Ships inventory");
+		lblShipsInventory.setOpaque(true);
 		lblShipsInventory.setHorizontalAlignment(SwingConstants.CENTER);
 		lblShipsInventory.setFont(new Font("Dialog", Font.BOLD, 24));
-		lblShipsInventory.setBounds(650, 50, 600, 100);
-		frame.getContentPane().add(lblShipsInventory);
-		
-		JLabel lblSelectAnItem = new JLabel("Select an Item to use");
-		lblSelectAnItem.setBounds(133, 37, 177, 38);
-		frame.getContentPane().add(lblSelectAnItem);
+		lblShipsInventory.setBounds(650, 50, 600, 50);
+		frmEliteDangerousBeta.getContentPane().add(lblShipsInventory);
 		
 		JLabel lblSelectOneOf = new JLabel("Select an item and a crew member to apply");
+		lblSelectOneOf.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSelectOneOf.setOpaque(true);
 		lblSelectOneOf.setBounds(797, 118, 356, 32);
-		frame.getContentPane().add(lblSelectOneOf);
-		
-//		pBarHealth1 = new JProgressBar();
-//		pBarHealth1.setStringPainted(true);
-//		pBarHealth1.setBounds(514, 460, 146, 30);
-//		frame.getContentPane().add(pBarHealth1);
-//
-//		pBarTired1 = new JProgressBar();
-//		pBarTired1.setStringPainted(true);
-//		pBarTired1.setBounds(514, 524, 146, 30);
-//		frame.getContentPane().add(pBarTired1);
-//	
-//
-//		pBarHunger1 = new JProgressBar();
-//		pBarHunger1.setStringPainted(true);
-//		pBarHunger1.setBounds(514, 594, 146, 30);
-//		frame.getContentPane().add(pBarHunger1);
-//		
-//	
-//		pBarHealth2 = new JProgressBar();
-//		pBarHealth2.setStringPainted(true);
-//		pBarHealth2.setBounds(719, 460, 146, 36);
-//		frame.getContentPane().add(pBarHealth2);
-//		
-//
-//		pBarTired2 = new JProgressBar();
-//		pBarTired2.setStringPainted(true);
-//		pBarTired2.setBounds(731, 524, 134, 30);
-//		frame.getContentPane().add(pBarTired2);
-//		
-//	
-//		pBarHunger2 = new JProgressBar();
-//		pBarHunger2.setStringPainted(true);
-//		pBarHunger2.setBounds(739, 594, 126, 30);
-//		frame.getContentPane().add(pBarHunger2);
-//	
-//
-//		pBarHealth3 = new JProgressBar();
-//		pBarHealth3.setStringPainted(true);
-//		pBarHealth3.setBounds(917, 454, 146, 52);
-//		frame.getContentPane().add(pBarHealth3);
-//		
-//	
-//		pBarTired3 = new JProgressBar();
-//		pBarTired3.setStringPainted(true);
-//		pBarTired3.setBounds(917, 518, 146, 52);
-//		frame.getContentPane().add(pBarTired3);
-//
-//		pBarHunger3 = new JProgressBar();
-//		pBarHunger3.setStringPainted(true);
-//		pBarHunger3.setBounds(917, 582, 146, 52);
-//		frame.getContentPane().add(pBarHunger3);
-//
-//		pBarHealth4 = new JProgressBar();
-//		pBarHealth4.setStringPainted(true);
-//		pBarHealth4.setBounds(1101, 460, 146, 52);
-//		frame.getContentPane().add(pBarHealth4);
-//		
-//		pBarTired4 = new JProgressBar();
-//		pBarTired4.setStringPainted(true);
-//		pBarTired4.setBounds(1101, 524, 146, 52);
-//		frame.getContentPane().add(pBarTired4);
-//		
-//	
-//		pBarHunger4 = new JProgressBar();
-//		pBarHunger4.setStringPainted(true);
-//		pBarHunger4.setBounds(1098, 582, 146, 52);
-//		frame.getContentPane().add(pBarHunger4);
-//
-//		siName4 = new JLabel("...");
-//		siName4.setBounds(1101, 628, 127, 23);
-//		siName4.setFont(new Font("Dialog", Font.PLAIN, 18));
-//		frame.getContentPane().add(siName4);
-//
-//		siName3 = new JLabel("...");
-//		siName3.setBounds(917, 628, 126, 23);
-//		siName3.setFont(new Font("Dialog", Font.PLAIN, 18));
-//		frame.getContentPane().add(siName3);
-//
-//		siName2 = new JLabel("...");
-//		siName2.setBounds(729, 632, 119, 22);
-//		siName2.setFont(new Font("Dialog", Font.PLAIN, 18));
-//		frame.getContentPane().add(siName2);
-//		
-//		siName1 = new JLabel("...");
-//		siName1.setBounds(524, 626, 117, 28);
-//		siName1.setFont(new Font("Dialog", Font.PLAIN, 18));
-//		frame.getContentPane().add(siName1);
-//		
-//		JLabel label = new JLabel("Crew Info");
-//		label.setBounds(370, 389, 81, 15);
-//		label.setFont(new Font("Dialog", Font.PLAIN, 16));
-//		frame.getContentPane().add(label);
-//
-//		JLabel label0 = new JLabel("Hunger:");
-//		label0.setBounds(370, 598, 81, 15);
-//		label0.setFont(new Font("Dialog", Font.PLAIN, 16));
-//		frame.getContentPane().add(label0);
-//
-//		JLabel label1 = new JLabel("Tiredness:");
-//		label1.setBounds(370, 541, 81, 15);
-//		label1.setFont(new Font("Dialog", Font.PLAIN, 16));
-//		frame.getContentPane().add(label1);
-//
-//		JLabel label2 = new JLabel("Health:");
-//		label2.setBounds(310, 353, 0, 0);
-//		label2.setFont(new Font("Dialog", Font.PLAIN, 16));
-//		frame.getContentPane().add(label2);
-//		
-//		
-//		JLabel label3 = new JLabel("Name:");
-//		label3.setBounds(372, 631, 81, 15);
-//		label3.setFont(new Font("Dialog", Font.PLAIN, 16));
-//		frame.getContentPane().add(label3);
-//		
-//		JLabel label4 = new JLabel("Type:");
-//		label4.setBounds(370, 438, 81, 15);
-//		label4.setFont(new Font("Dialog", Font.PLAIN, 16));
-//		frame.getContentPane().add(label4);
-//
-//		pBarType1 = new JLabel("...");
-//		pBarType1.setBounds(531, 422, 129, 30);
-//		pBarType1.setFont(new Font("Dialog", Font.PLAIN, 18));
-//		frame.getContentPane().add(pBarType1);
-//
-//		pBarType2 = new JLabel("...");
-//		pBarType2.setBounds(742, 429, 119, 23);
-//		pBarType2.setFont(new Font("Dialog", Font.PLAIN, 18));
-//		frame.getContentPane().add(pBarType2);
-//
-//		pBarType3 = new JLabel("...");
-//		pBarType3.setBounds(934, 432, 129, 21);
-//		pBarType3.setFont(new Font("Dialog", Font.PLAIN, 18));
-//		frame.getContentPane().add(pBarType3);
-//		
-//		pBarType4 = new JLabel("...");
-//		pBarType4.setBounds(1113, 432, 134, 22);
-//		pBarType4.setFont(new Font("Dialog", Font.PLAIN, 18));
-//		frame.getContentPane().add(pBarType4);
-		
+		frmEliteDangerousBeta.getContentPane().add(lblSelectOneOf);
+	
 		
 		pBarHealth1 = new JProgressBar();
 		pBarHealth1.setBounds(666, 466, 150, 30);
 		pBarHealth1.setStringPainted(true);
-		frame.getContentPane().add(pBarHealth1);
+		frmEliteDangerousBeta.getContentPane().add(pBarHealth1);
 
 		pBarTired1 = new JProgressBar();
 		pBarTired1.setBounds(666, 503, 150, 30);
 		pBarTired1.setStringPainted(true);
-		frame.getContentPane().add(pBarTired1);
+		frmEliteDangerousBeta.getContentPane().add(pBarTired1);
 	
 		pBarHunger1 = new JProgressBar();
 		pBarHunger1.setBounds(666, 545, 150, 30);
 		pBarHunger1.setStringPainted(true);
-		frame.getContentPane().add(pBarHunger1);
+		frmEliteDangerousBeta.getContentPane().add(pBarHunger1);
 	
 		pBarHealth2 = new JProgressBar();
 		pBarHealth2.setBounds(853, 466, 150, 30);
 		pBarHealth2.setStringPainted(true);
-		frame.getContentPane().add(pBarHealth2);
+		frmEliteDangerousBeta.getContentPane().add(pBarHealth2);
 		
 		pBarTired2 = new JProgressBar();
 		pBarTired2.setBounds(853, 503, 150, 30);
 		pBarTired2.setStringPainted(true);
-		frame.getContentPane().add(pBarTired2);
+		frmEliteDangerousBeta.getContentPane().add(pBarTired2);
 		
 		pBarHunger2 = new JProgressBar();
 		pBarHunger2.setBounds(853, 543, 150, 30);
 		pBarHunger2.setStringPainted(true);
-		frame.getContentPane().add(pBarHunger2);
+		frmEliteDangerousBeta.getContentPane().add(pBarHunger2);
 
 		pBarHealth3 = new JProgressBar();
 		pBarHealth3.setBounds(1044, 466, 150, 30);
 		pBarHealth3.setStringPainted(true);
-		frame.getContentPane().add(pBarHealth3);
+		frmEliteDangerousBeta.getContentPane().add(pBarHealth3);
 		
 		pBarTired3 = new JProgressBar();
 		pBarTired3.setBounds(1044, 503, 150, 30);
 		pBarTired3.setStringPainted(true);
-		frame.getContentPane().add(pBarTired3);
+		frmEliteDangerousBeta.getContentPane().add(pBarTired3);
 
 		pBarHunger3 = new JProgressBar();
 		pBarHunger3.setBounds(1044, 543, 150, 30);
 		pBarHunger3.setStringPainted(true);
-		frame.getContentPane().add(pBarHunger3);
+		frmEliteDangerousBeta.getContentPane().add(pBarHunger3);
 
 		pBarHealth4 = new JProgressBar();
 		pBarHealth4.setBounds(1242, 466, 150, 30);
 		pBarHealth4.setStringPainted(true);
-		frame.getContentPane().add(pBarHealth4);
+		frmEliteDangerousBeta.getContentPane().add(pBarHealth4);
 		
 		pBarTired4 = new JProgressBar();
 		pBarTired4.setBounds(1242, 503, 150, 30);
 		pBarTired4.setStringPainted(true);
-		frame.getContentPane().add(pBarTired4);
+		frmEliteDangerousBeta.getContentPane().add(pBarTired4);
 		
 		pBarHunger4 = new JProgressBar();
 		pBarHunger4.setBounds(1242, 543, 150, 30);
 		pBarHunger4.setStringPainted(true);
-		frame.getContentPane().add(pBarHunger4);
+		frmEliteDangerousBeta.getContentPane().add(pBarHunger4);
 
 		siName4 = new JLabel("...");
+		siName4.setOpaque(true);
 		siName4.setFont(new Font("Dialog", Font.PLAIN, 18));
 		siName4.setBounds(1242, 585, 150, 30);
-		frame.getContentPane().add(siName4);
+		frmEliteDangerousBeta.getContentPane().add(siName4);
 
 		siName3 = new JLabel("...");
+		siName3.setOpaque(true);
 		siName3.setFont(new Font("Dialog", Font.PLAIN, 18));
 		siName3.setBounds(1044, 585, 150, 30);
-		frame.getContentPane().add(siName3);
+		frmEliteDangerousBeta.getContentPane().add(siName3);
 
 		siName2 = new JLabel("...");
+		siName2.setOpaque(true);
 		siName2.setFont(new Font("Dialog", Font.PLAIN, 18));
 		siName2.setBounds(853, 585, 150, 30);
-		frame.getContentPane().add(siName2);
+		frmEliteDangerousBeta.getContentPane().add(siName2);
 		
 		siName1 = new JLabel("...");
+		siName1.setOpaque(true);
 		siName1.setFont(new Font("Dialog", Font.PLAIN, 18));
 		siName1.setBounds(666, 587, 150, 30);
-		frame.getContentPane().add(siName1);
+		frmEliteDangerousBeta.getContentPane().add(siName1);
 		
 		JLabel label = new JLabel("Crew Info");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setBounds(914, 378, 150, 30);
 		label.setFont(new Font("Dialog", Font.PLAIN, 16));
-		frame.getContentPane().add(label);
+		frmEliteDangerousBeta.getContentPane().add(label);
 	
 		JLabel label0 = new JLabel("Hunger:");
-		label0.setBounds(522, 543, 150, 30);
+		label0.setOpaque(true);
+		label0.setBounds(522, 543, 126, 30);
 		label0.setFont(new Font("Dialog", Font.PLAIN, 16));
-		frame.getContentPane().add(label0);
+		frmEliteDangerousBeta.getContentPane().add(label0);
 
 		JLabel label1 = new JLabel("Tiredness:");
-		label1.setBounds(522, 501, 150, 30);
+		label1.setOpaque(true);
+		label1.setBounds(522, 501, 126, 30);
 		label1.setFont(new Font("Dialog", Font.PLAIN, 16));
-		frame.getContentPane().add(label1);
+		frmEliteDangerousBeta.getContentPane().add(label1);
 	
 		JLabel label2 = new JLabel("Health:");
-		label2.setBounds(522, 464, 150, 30);
+		label2.setOpaque(true);
+		label2.setBounds(522, 464, 126, 30);
 		label2.setFont(new Font("Dialog", Font.PLAIN, 16));
-		frame.getContentPane().add(label2);
+		frmEliteDangerousBeta.getContentPane().add(label2);
 		
 		JLabel label3 = new JLabel("Name:");
-		label3.setBounds(522, 585, 150, 30);
+		label3.setOpaque(true);
+		label3.setBounds(522, 585, 126, 30);
 		label3.setFont(new Font("Dialog", Font.PLAIN, 16));
-		frame.getContentPane().add(label3);
+		frmEliteDangerousBeta.getContentPane().add(label3);
 
 		JLabel label4 = new JLabel("Type:");
 		label4.setBounds(522, 424, 150, 30);
 		label4.setFont(new Font("Dialog", Font.PLAIN, 16));
-		frame.getContentPane().add(label4);
+		frmEliteDangerousBeta.getContentPane().add(label4);
 
 		pBarType1 = new JLabel("...");
+		pBarType1.setOpaque(true);
 		pBarType1.setBounds(666, 424, 150, 30);
 		pBarType1.setFont(new Font("Dialog", Font.PLAIN, 18));
-		frame.getContentPane().add(pBarType1);
+		frmEliteDangerousBeta.getContentPane().add(pBarType1);
 
 		pBarType2 = new JLabel("...");
+		pBarType2.setOpaque(true);
 		pBarType2.setBounds(853, 424, 150, 30);
 		pBarType2.setFont(new Font("Dialog", Font.PLAIN, 18));
-		frame.getContentPane().add(pBarType2);
+		frmEliteDangerousBeta.getContentPane().add(pBarType2);
 
 		pBarType3 = new JLabel("...");
+		pBarType3.setOpaque(true);
 		pBarType3.setBounds(1044, 424, 150, 30);
 		pBarType3.setFont(new Font("Dialog", Font.PLAIN, 18));
-		frame.getContentPane().add(pBarType3);
+		frmEliteDangerousBeta.getContentPane().add(pBarType3);
 
 		pBarType4 = new JLabel("...");
+		pBarType4.setOpaque(true);
 		pBarType4.setBounds(1242, 424, 150, 30);
 		pBarType4.setFont(new Font("Dialog", Font.PLAIN, 18));
-		frame.getContentPane().add(pBarType4);
-		frame.getContentPane().setLayout(null);
+		frmEliteDangerousBeta.getContentPane().add(pBarType4);
+		frmEliteDangerousBeta.getContentPane().setLayout(null);
 		
-		frame.getContentPane().setLayout(null);
+		frmEliteDangerousBeta.getContentPane().setLayout(null);
 		lblCountcookie = new JLabel("<dynamic>");
-		lblCountcookie.setBounds(755, 212, 84, 15);
-		frame.getContentPane().add(lblCountcookie);
+		lblCountcookie.setOpaque(true);
+		lblCountcookie.setBounds(755, 199, 84, 28);
+		frmEliteDangerousBeta.getContentPane().add(lblCountcookie);
 		lblCountcookie.setText(Integer.toString(cookies));
 			
 		lblCountPizza = new JLabel("New label");
-		lblCountPizza.setBounds(755, 252, 84, 15);
-		frame.getContentPane().add(lblCountPizza);
+		lblCountPizza.setOpaque(true);
+		lblCountPizza.setBounds(755, 239, 84, 28);
+		frmEliteDangerousBeta.getContentPane().add(lblCountPizza);
 		lblCountPizza.setText(Integer.toString(pizzas));
 		
 		lblCountFullMeal = new JLabel("New label");
-		lblCountFullMeal.setBounds(755, 291, 84, 15);
-		frame.getContentPane().add(lblCountFullMeal);
+		lblCountFullMeal.setOpaque(true);
+		lblCountFullMeal.setBounds(755, 279, 84, 27);
+		frmEliteDangerousBeta.getContentPane().add(lblCountFullMeal);
 		lblCountFullMeal.setText(Integer.toString(fullMeal));
 		
 		lblCountBandages = new JLabel("New label");
-		lblCountBandages.setBounds(1270, 199, 66, 15);
-		frame.getContentPane().add(lblCountBandages);
+		lblCountBandages.setOpaque(true);
+		lblCountBandages.setBounds(1270, 199, 66, 28);
+		frmEliteDangerousBeta.getContentPane().add(lblCountBandages);
 		lblCountBandages.setText(Integer.toString(bandage));
 		
 		lblCountMedkit = new JLabel("New label");
-		lblCountMedkit.setBounds(1270, 239, 66, 15);
-		frame.getContentPane().add(lblCountMedkit);
+		lblCountMedkit.setOpaque(true);
+		lblCountMedkit.setBounds(1270, 239, 66, 28);
+		frmEliteDangerousBeta.getContentPane().add(lblCountMedkit);
 		lblCountMedkit.setText(Integer.toString(medkit));
 		
 		lblCountSurgical = new JLabel("New label");
-		lblCountSurgical.setBounds(1270, 278, 66, 15);
-		frame.getContentPane().add(lblCountSurgical);
+		lblCountSurgical.setOpaque(true);
+		lblCountSurgical.setBounds(1270, 278, 66, 28);
+		frmEliteDangerousBeta.getContentPane().add(lblCountSurgical);
 		lblCountSurgical.setText(Integer.toString(surgical));
 		
 		lblCountPotion = new JLabel("New label");
-		lblCountPotion.setBounds(1270, 316, 66, 15);
-		frame.getContentPane().add(lblCountPotion);
+		lblCountPotion.setOpaque(true);
+		lblCountPotion.setBounds(1270, 316, 66, 29);
+		frmEliteDangerousBeta.getContentPane().add(lblCountPotion);
 		lblCountPotion.setText(Integer.toString(potion));
 
 
 		
 		
 		JLabel lblFood = new JLabel("Food");
-		lblFood.setBounds(696, 171, 66, 15);
+		lblFood.setOpaque(true);
+		lblFood.setBounds(666, 158, 66, 27);
 		lblFood.setFont(new Font("Dialog", Font.BOLD, 16));
-		frame.getContentPane().add(lblFood);
+		frmEliteDangerousBeta.getContentPane().add(lblFood);
 		
 		JLabel lblMedical = new JLabel("Medical");
-		lblMedical.setBounds(1094, 158, 110, 15);
+		lblMedical.setOpaque(true);
+		lblMedical.setBounds(1084, 162, 110, 23);
 		lblMedical.setFont(new Font("Dialog", Font.BOLD, 16));
-		frame.getContentPane().add(lblMedical);
+		frmEliteDangerousBeta.getContentPane().add(lblMedical);
 		
 		JLabel lblCookieX = new JLabel("Cookie");
-		lblCookieX.setBounds(666, 212, 66, 15);
-		frame.getContentPane().add(lblCookieX);
+		lblCookieX.setOpaque(true);
+		lblCookieX.setBounds(666, 199, 77, 28);
+		frmEliteDangerousBeta.getContentPane().add(lblCookieX);
 		
 		JLabel lblPizzaX = new JLabel("Pizza");
-		lblPizzaX.setBounds(666, 252, 66, 15);
-		frame.getContentPane().add(lblPizzaX);
+		lblPizzaX.setOpaque(true);
+		lblPizzaX.setBounds(666, 239, 77, 28);
+		frmEliteDangerousBeta.getContentPane().add(lblPizzaX);
 		
 		JLabel lblFullMealX = new JLabel("Full meal");
-		lblFullMealX.setBounds(666, 291, 91, 15);
-		frame.getContentPane().add(lblFullMealX);
+		lblFullMealX.setOpaque(true);
+		lblFullMealX.setBounds(666, 279, 78, 27);
+		frmEliteDangerousBeta.getContentPane().add(lblFullMealX);
 		
 		JLabel lblBandages = new JLabel("Bandages");
-		lblBandages.setBounds(1094, 199, 126, 15);
-		frame.getContentPane().add(lblBandages);
+		lblBandages.setOpaque(true);
+		lblBandages.setBounds(1084, 199, 126, 28);
+		frmEliteDangerousBeta.getContentPane().add(lblBandages);
 		
 		JLabel lblMedKit = new JLabel("Med Kit");
-		lblMedKit.setBounds(1094, 239, 66, 15);
-		frame.getContentPane().add(lblMedKit);
+		lblMedKit.setOpaque(true);
+		lblMedKit.setBounds(1084, 241, 126, 25);
+		frmEliteDangerousBeta.getContentPane().add(lblMedKit);
 		
 		JLabel lblSurgialSuite = new JLabel("Surgial Package");
-		lblSurgialSuite.setBounds(1094, 278, 126, 15);
-		frame.getContentPane().add(lblSurgialSuite);
+		lblSurgialSuite.setOpaque(true);
+		lblSurgialSuite.setBounds(1084, 279, 126, 27);
+		frmEliteDangerousBeta.getContentPane().add(lblSurgialSuite);
 		
 		JLabel lblSpacePlaguePotion = new JLabel("Space Plague Potion");
-		lblSpacePlaguePotion.setBounds(1094, 316, 177, 15);
-		frame.getContentPane().add(lblSpacePlaguePotion);
+		lblSpacePlaguePotion.setOpaque(true);
+		lblSpacePlaguePotion.setBounds(1084, 316, 176, 29);
+		frmEliteDangerousBeta.getContentPane().add(lblSpacePlaguePotion);
 	
 		
 
@@ -1091,7 +999,7 @@ public class ShipInventory
 			{
 				try {
 					ShipInventory window = new ShipInventory();
-					window.frame.setVisible(true);
+					window.frmEliteDangerousBeta.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

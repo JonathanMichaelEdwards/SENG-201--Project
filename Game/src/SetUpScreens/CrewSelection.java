@@ -28,11 +28,12 @@ import CrewTypes.Soldier;
 import CrewTypes.Thief;
 import IOFile.IOFile;
 import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
 
 
 public class CrewSelection {
 
-	public JFrame frame; // Frame for screen
+	public JFrame frmEliteDangerousBeta; // Frame for screen
 	
 	private JTextField txtFdName;
 	private JProgressBar progressBar;
@@ -69,6 +70,7 @@ public class CrewSelection {
 	// stores the selection type
 	private JCheckBox charSelect[] = new JCheckBox[6];
 	private JComboBox<?> charNumber[] = new JComboBox<?>[6];
+	private JLabel lblNewLabel_1;
 	
 	
 	
@@ -115,8 +117,8 @@ public class CrewSelection {
 	{
 		// Setting a new frame
 		CrewSelection selectCrew = new CrewSelection();
-		selectCrew.frame.setVisible(true);  // turn on screen
-		frame.setVisible(false);   // turn off screen
+		selectCrew.frmEliteDangerousBeta.setVisible(true);  // turn on screen
+		frmEliteDangerousBeta.setVisible(false);   // turn off screen
 	}
 	
 	
@@ -218,7 +220,7 @@ public class CrewSelection {
 			}
 		});
 		selectSoldier.setBounds(276, 474, 150, 23);
-		frame.getContentPane().add(selectSoldier);
+		frmEliteDangerousBeta.getContentPane().add(selectSoldier);
 	}
 	
 	private void checkMedic() 
@@ -237,7 +239,7 @@ public class CrewSelection {
 			}
 		});
 		selectMedic.setBounds(506, 474, 150, 23);
-		frame.getContentPane().add(selectMedic);
+		frmEliteDangerousBeta.getContentPane().add(selectMedic);
 	}
 	
 	private void checkLeader() 
@@ -257,7 +259,7 @@ public class CrewSelection {
 			}
 		});
 		selectLeader.setBounds(771, 474, 150, 23);
-		frame.getContentPane().add(selectLeader);
+		frmEliteDangerousBeta.getContentPane().add(selectLeader);
 	}
 	
 	private void checkMechanic() 
@@ -275,8 +277,8 @@ public class CrewSelection {
 				addMember(charSelect[3], charNumber[3], "Mechanic");
 			}
 		});
-		selectMechanic.setBounds(1044, 474, 150, 23);
-		frame.getContentPane().add(selectMechanic);
+		selectMechanic.setBounds(1034, 474, 150, 23);
+		frmEliteDangerousBeta.getContentPane().add(selectMechanic);
 	}
 	
 	private void checkPilot() 
@@ -295,7 +297,7 @@ public class CrewSelection {
 			}
 		});
 		selectPilot.setBounds(1279, 474, 150, 23);
-		frame.getContentPane().add(selectPilot);
+		frmEliteDangerousBeta.getContentPane().add(selectPilot);
 	}
 	
 	private void checkThief() 
@@ -313,8 +315,8 @@ public class CrewSelection {
 				addMember(charSelect[5], charNumber[5], "Thief");
 			}
 		});
-		selectThief.setBounds(1520, 474, 150, 23);
-		frame.getContentPane().add(selectThief);
+		selectThief.setBounds(1510, 474, 150, 23);
+		frmEliteDangerousBeta.getContentPane().add(selectThief);
 	}
 	
 	// number of players that could be selected
@@ -355,7 +357,7 @@ public class CrewSelection {
 		comboBoxSoldier.setModel(new DefaultComboBoxModel<Object>(new String[] {"x1", "x2", "x3", "x4"}));
 		comboBoxSoldier.setMaximumRowCount(4);
 		comboBoxSoldier.setBounds(276, 509, 150, 36);
-		frame.getContentPane().add(comboBoxSoldier);
+		frmEliteDangerousBeta.getContentPane().add(comboBoxSoldier);
 	}
 	
 	private void medicNumber()
@@ -376,7 +378,7 @@ public class CrewSelection {
 		comboBoxMedic.setModel(new DefaultComboBoxModel<Object>(new String[] {"x1", "x2", "x3", "x4"}));
 		comboBoxMedic.setMaximumRowCount(4);
 		comboBoxMedic.setBounds(506, 509, 150, 36);
-		frame.getContentPane().add(comboBoxMedic);
+		frmEliteDangerousBeta.getContentPane().add(comboBoxMedic);
 	}
 	
 	private void leaderNumber()
@@ -398,7 +400,7 @@ public class CrewSelection {
 		comboBoxLeader.setModel(new DefaultComboBoxModel<Object>(new String[] {"x1", "x2", "x3", "x4"}));
 		comboBoxLeader.setMaximumRowCount(4);
 		comboBoxLeader.setBounds(771, 509, 150, 36);
-		frame.getContentPane().add(comboBoxLeader);
+		frmEliteDangerousBeta.getContentPane().add(comboBoxLeader);
 	}
 	
 	private void mechanicNumber()
@@ -421,7 +423,7 @@ public class CrewSelection {
 		comboBoxMechanic.setModel(new DefaultComboBoxModel<Object>(new String[] {"x1", "x2", "x3", "x4"}));
 		comboBoxMechanic.setMaximumRowCount(4);
 		comboBoxMechanic.setBounds(1034, 509, 150, 36);
-		frame.getContentPane().add(comboBoxMechanic);
+		frmEliteDangerousBeta.getContentPane().add(comboBoxMechanic);
 	}
 	
 	private void pilotNumber()
@@ -444,7 +446,7 @@ public class CrewSelection {
 		comboBoxPilot.setModel(new DefaultComboBoxModel<Object>(new String[] {"x1", "x2", "x3", "x4"}));
 		comboBoxPilot.setMaximumRowCount(4);
 		comboBoxPilot.setBounds(1279, 509, 150, 36);
-		frame.getContentPane().add(comboBoxPilot);
+		frmEliteDangerousBeta.getContentPane().add(comboBoxPilot);
 	}
 	
 	private void thiefNumber()
@@ -468,7 +470,7 @@ public class CrewSelection {
 		comboBoxThief.setSelectedIndex(0);
 		comboBoxThief.setMaximumRowCount(4);
 		comboBoxThief.setBounds(1510, 509, 150, 36);
-		frame.getContentPane().add(comboBoxThief);
+		frmEliteDangerousBeta.getContentPane().add(comboBoxThief);
 	}
 	
 	// creating combo boxes for each players and determining there states
@@ -512,7 +514,7 @@ public class CrewSelection {
 			}
 		});
 		btnAcceptChars.setBounds(799, 569, 250, 100);
-		frame.getContentPane().add(btnAcceptChars);
+		frmEliteDangerousBeta.getContentPane().add(btnAcceptChars);
 	}
 
 
@@ -531,8 +533,8 @@ public class CrewSelection {
 				else if (crewNames.size() == crewType.size()) {
 					// Setting a new frame
 					NameShip nameShip = new NameShip();
-					nameShip.frame.setVisible(true);  // turn on screen
-					frame.setVisible(false);          // turn off screen
+					nameShip.frmEliteDangerousBeta.setVisible(true);  // turn on screen
+					frmEliteDangerousBeta.setVisible(false);          // turn off screen
 					
 					// Send info to next screen
 					nameShip.getCrewInfo(crewType, crewNames);
@@ -541,7 +543,7 @@ public class CrewSelection {
 			}
 		});
 		btnNext.setBounds(1200, 700, 250, 100);
-		frame.getContentPane().add(btnNext);
+		frmEliteDangerousBeta.getContentPane().add(btnNext);
 	}
 
 	
@@ -558,7 +560,7 @@ public class CrewSelection {
 			}
 		});
 		btnReset.setBounds(940, 700, 250, 100);
-		frame.getContentPane().add(btnReset);
+		frmEliteDangerousBeta.getContentPane().add(btnReset);
 	}
 
 	
@@ -592,7 +594,7 @@ public class CrewSelection {
 			}
 		});
 		btnAcceptName.setBounds(482, 700, 250, 100);
-		frame.getContentPane().add(btnAcceptName);
+		frmEliteDangerousBeta.getContentPane().add(btnAcceptName);
 	}
 	
 	
@@ -605,18 +607,24 @@ public class CrewSelection {
 			{
 				// Setting a new frame
 				Thief thief = new Thief();
-				thief.frame.setVisible(true);  // turn on screen
-				frame.setVisible(false);          // turn off screen
+				thief.frmEliteDangerousBeta.setVisible(true);  // turn on screen
+				frmEliteDangerousBeta.setVisible(false);          // turn off screen
 			}
 		});
 		thiefInfo.setBounds(1510, 385, 150, 21);
-		frame.getContentPane().add(thiefInfo);
+		frmEliteDangerousBeta.getContentPane().add(thiefInfo);
 		
 		JLabel lblCharacterSelection = new JLabel("Character Selection");
 		lblCharacterSelection.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCharacterSelection.setFont(new Font("Dialog", Font.BOLD, 24));
-		lblCharacterSelection.setBounds(650, 50, 600, 100);
-		frame.getContentPane().add(lblCharacterSelection);
+		lblCharacterSelection.setBounds(650, 50, 600, 50);
+		lblCharacterSelection.setOpaque(true);
+		frmEliteDangerousBeta.getContentPane().add(lblCharacterSelection);
+		
+		lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(CrewSelection.class.getResource("/gameImages/startup.jpg")));
+		lblNewLabel_1.setBounds(0, 0, 1920, 1080);
+		frmEliteDangerousBeta.getContentPane().add(lblNewLabel_1);
 	}
 	
 	
@@ -629,12 +637,12 @@ public class CrewSelection {
 			{
 				// Setting a new frame
 				Pilot pilot = new Pilot();
-				pilot.frame.setVisible(true);  // turn on screen
-				frame.setVisible(false);          // turn off screen
+				pilot.frmEliteDangerousBeta.setVisible(true);  // turn on screen
+				frmEliteDangerousBeta.setVisible(false);          // turn off screen
 			}
 		});
 		pilotInfo.setBounds(1279, 385, 150, 21);
-		frame.getContentPane().add(pilotInfo);
+		frmEliteDangerousBeta.getContentPane().add(pilotInfo);
 	}
 	
 	
@@ -647,12 +655,12 @@ public class CrewSelection {
 			{
 				// Setting a new frame
 				Mechanic mechanic = new Mechanic();
-				mechanic.frame.setVisible(true);  // turn on screen
-				frame.setVisible(false);          // turn off screen
+				mechanic.frmEliteDangerousBeta.setVisible(true);  // turn on screen
+				frmEliteDangerousBeta.setVisible(false);          // turn off screen
 			}
 		});
 		mechanicInfo.setBounds(1034, 385, 150, 21);
-		frame.getContentPane().add(mechanicInfo);
+		frmEliteDangerousBeta.getContentPane().add(mechanicInfo);
 	}
 	
 	
@@ -665,12 +673,12 @@ public class CrewSelection {
 			{
 				// Setting a new frame
 				Leader medic = new Leader();
-				medic.frame.setVisible(true);  // turn on screen
-				frame.setVisible(false);          // turn off screen
+				medic.frmEliteDangerousBeta.setVisible(true);  // turn on screen
+				frmEliteDangerousBeta.setVisible(false);          // turn off screen
 			}
 		});
 		leaderInfo.setBounds(771, 385, 150, 21);
-		frame.getContentPane().add(leaderInfo);
+		frmEliteDangerousBeta.getContentPane().add(leaderInfo);
 	}
 	
 	
@@ -683,12 +691,12 @@ public class CrewSelection {
 			{
 				// Setting a new frame
 				Soldier soldier = new Soldier();
-				soldier.frame.setVisible(true);  // turn on screen
-				frame.setVisible(false); 
+				soldier.frmEliteDangerousBeta.setVisible(true);  // turn on screen
+				frmEliteDangerousBeta.setVisible(false); 
 			}
 		});
 		soldierInfo.setBounds(276, 385, 150, 21);
-		frame.getContentPane().add(soldierInfo);
+		frmEliteDangerousBeta.getContentPane().add(soldierInfo);
 	}
 	
 	
@@ -701,12 +709,12 @@ public class CrewSelection {
 			{
 				// Setting a new frame
 				Medic medic = new Medic();
-				medic.frame.setVisible(true);  // turn on screen
-				frame.setVisible(false);          // turn off screen
+				medic.frmEliteDangerousBeta.setVisible(true);  // turn on screen
+				frmEliteDangerousBeta.setVisible(false);          // turn off screen
 			}
 		});
 		medicInfo.setBounds(510, 385, 146, 21);
-		frame.getContentPane().add(medicInfo);
+		frmEliteDangerousBeta.getContentPane().add(medicInfo);
 	}	
 	
 	
@@ -732,263 +740,288 @@ public class CrewSelection {
 	private void initialize() 
 	{
 		// Setting Layout dimensions
-		frame = new JFrame();
+		frmEliteDangerousBeta = new JFrame();
+		frmEliteDangerousBeta.setTitle("Elite Dangerous beta");
 		Display display = new Display();  // Retrieving game window size
 		
 		// Setting frame of window
-		frame.setBounds(display.x, display.y, display.width, display.height);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		frame.setUndecorated(false);  // Frame cannot be adjusted during game
-		frame.setResizable(false);
+		frmEliteDangerousBeta.setBounds(display.x, display.y, display.width, display.height);
+		frmEliteDangerousBeta.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmEliteDangerousBeta.getContentPane().setLayout(null);
+		frmEliteDangerousBeta.setUndecorated(false);  // Frame cannot be adjusted during game
+		frmEliteDangerousBeta.setResizable(false);
 		
 		
 		// Initializing displays
 		JLabel lblCurrentTeam = new JLabel("Current Team");
 		lblCurrentTeam.setBounds(38, 664, 109, 30);
-		frame.getContentPane().add(lblCurrentTeam);
+		lblCurrentTeam.setOpaque(true);
+		frmEliteDangerousBeta.getContentPane().add(lblCurrentTeam);
 		
 		txtFdName = new JTextField();
 		txtFdName.setEnabled(false);
 		txtFdName.setBounds(276, 760, 183, 30);
-		frame.getContentPane().add(txtFdName);
+		frmEliteDangerousBeta.getContentPane().add(txtFdName);
 		txtFdName.setColumns(10);
 		
 		JLabel lblEntername = new JLabel("Names");
+		lblEntername.setOpaque(true);
 		lblEntername.setBounds(159, 664, 81, 30);
-		frame.getContentPane().add(lblEntername);
+		frmEliteDangerousBeta.getContentPane().add(lblEntername);
 	
 		lblMember1 = new JLabel("1. ...");
-
+		lblMember1.setOpaque(true);
 		lblMember1.setBounds(30, 713, 109, 15);
-		frame.getContentPane().add(lblMember1);
+		frmEliteDangerousBeta.getContentPane().add(lblMember1);
 		
 		lblMember2 = new JLabel("2. ...");
+		lblMember2.setOpaque(true);
 		lblMember2.setBounds(30, 740, 117, 15);
-		frame.getContentPane().add(lblMember2);
+		frmEliteDangerousBeta.getContentPane().add(lblMember2);
 		
 		lblMember3 = new JLabel("3. ...");
+		lblMember3.setOpaque(true);
 		lblMember3.setBounds(30, 767, 117, 15);
-		frame.getContentPane().add(lblMember3);
+		frmEliteDangerousBeta.getContentPane().add(lblMember3);
 		
 		lblMember4 = new JLabel("4. ...");
+		lblMember4.setOpaque(true);
 		lblMember4.setBounds(30, 794, 117, 15);
-		frame.getContentPane().add(lblMember4);
+		frmEliteDangerousBeta.getContentPane().add(lblMember4);
 		
 		name1 = new JLabel("...");
+		name1.setOpaque(true);
 		name1.setBounds(152, 712, 109, 15);
-		frame.getContentPane().add(name1);
+		frmEliteDangerousBeta.getContentPane().add(name1);
 		
 		name2 = new JLabel("...");
+		name2.setOpaque(true);
 		name2.setBounds(152, 740, 109, 15);
-		frame.getContentPane().add(name2);
+		frmEliteDangerousBeta.getContentPane().add(name2);
 		
 		name3 = new JLabel("...");
+		name3.setOpaque(true);
 		name3.setBounds(152, 766, 109, 15);
-		frame.getContentPane().add(name3);
+		frmEliteDangerousBeta.getContentPane().add(name3);
 		
 		name4 = new JLabel("...");
+		name4.setOpaque(true);
 		name4.setBounds(152, 793, 109, 15);
-		frame.getContentPane().add(name4);
+		frmEliteDangerousBeta.getContentPane().add(name4);
 		
 		progressBar = new JProgressBar();
 		progressBar.setValue(1);
 		progressBar.setStringPainted(true);
 		progressBar.setMaximum(3);
 		progressBar.setBounds(230, 170, 150, 30);
-		frame.getContentPane().add(progressBar);
+		frmEliteDangerousBeta.getContentPane().add(progressBar);
 		
 		label = new JLabel("Setup progress");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setBounds(230, 126, 150, 30);
-		frame.getContentPane().add(label);
+		label.setOpaque(true);
+		frmEliteDangerousBeta.getContentPane().add(label);
 		
 		JLabel lblNewLabel = new JLabel("Character selection, you can choose 2-4 characters in any combination to form your astronaut team");
 		lblNewLabel.setBounds(602, 138, 820, 27);
-		frame.getContentPane().add(lblNewLabel);
+		lblNewLabel.setOpaque(true);
+		frmEliteDangerousBeta.getContentPane().add(lblNewLabel);
 		
 		JLabel lblSoldier = new JLabel("Soldier");
 		lblSoldier.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSoldier.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblSoldier.setBounds(276, 423, 150, 54);
-		frame.getContentPane().add(lblSoldier);
+		lblSoldier.setOpaque(true);
+		frmEliteDangerousBeta.getContentPane().add(lblSoldier);
 		
 		JLabel lblMedic = new JLabel("Medic");
 		lblMedic.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMedic.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblMedic.setBounds(506, 423, 150, 54);
-		frame.getContentPane().add(lblMedic);
+		lblMedic.setOpaque(true);
+		frmEliteDangerousBeta.getContentPane().add(lblMedic);
 		
 		JLabel lblLeader = new JLabel("Leader");
 		lblLeader.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLeader.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblLeader.setBounds(771, 423, 150, 54);
-		frame.getContentPane().add(lblLeader);
+		lblLeader.setOpaque(true);
+		frmEliteDangerousBeta.getContentPane().add(lblLeader);
 		
 		JLabel lblMechanic = new JLabel("Mechanic");
 		lblMechanic.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMechanic.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblMechanic.setBounds(1034, 423, 150, 54);
-		frame.getContentPane().add(lblMechanic);
+		lblMechanic.setOpaque(true);
+		frmEliteDangerousBeta.getContentPane().add(lblMechanic);
 		
 		JLabel lblPilot = new JLabel("Pilot");
 		lblPilot.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPilot.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblPilot.setBounds(1279, 427, 150, 47);
-		frame.getContentPane().add(lblPilot);
+		lblPilot.setOpaque(true);
+		frmEliteDangerousBeta.getContentPane().add(lblPilot);
 		
 		JLabel lblThief = new JLabel("Thief");
 		lblThief.setHorizontalAlignment(SwingConstants.CENTER);
 		lblThief.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblThief.setBounds(1510, 427, 150, 47);
-		frame.getContentPane().add(lblThief);
+		lblThief.setOpaque(true);
+		frmEliteDangerousBeta.getContentPane().add(lblThief);
 		
 		JLabel lblPleaseInputA = new JLabel("Please input a name for:");
+		lblPleaseInputA.setOpaque(true);
 		lblPleaseInputA.setBounds(276, 664, 244, 30);
-		frame.getContentPane().add(lblPleaseInputA);
+		frmEliteDangerousBeta.getContentPane().add(lblPleaseInputA);
 		
 		comBoxCharChosen = new JComboBox<Object>();
 		comBoxCharChosen.setEnabled(false);
 		comBoxCharChosen.setBounds(276, 715, 183, 30);
-		frame.getContentPane().add(comBoxCharChosen);
+		frmEliteDangerousBeta.getContentPane().add(comBoxCharChosen);
 		
 		JProgressBar soldierHealth = new JProgressBar();
 		soldierHealth.setStringPainted(true);
 		soldierHealth.setForeground(Color.black);
 		soldierHealth.setValue(80);
 		soldierHealth.setBounds(276, 259, 150, 30);
-		frame.getContentPane().add(soldierHealth);
+		frmEliteDangerousBeta.getContentPane().add(soldierHealth);
 		
 		JProgressBar soldierTired = new JProgressBar();
 		soldierTired.setStringPainted(true);
 		soldierTired.setForeground(Color.black);
 		soldierTired.setValue(50);
 		soldierTired.setBounds(276, 301, 150, 30);
-		frame.getContentPane().add(soldierTired);
+		frmEliteDangerousBeta.getContentPane().add(soldierTired);
 		
 		JProgressBar soldierHunger = new JProgressBar();
 		soldierHunger.setStringPainted(true);
 		soldierHunger.setForeground(Color.black);
 		soldierHunger.setValue(70);
 		soldierHunger.setBounds(276, 343, 150, 30);
-		frame.getContentPane().add(soldierHunger);
+		frmEliteDangerousBeta.getContentPane().add(soldierHunger);
 		
 		JProgressBar medicHealth = new JProgressBar();
 		medicHealth.setStringPainted(true);
 		medicHealth.setForeground(Color.black);
 		medicHealth.setValue(100);
 		medicHealth.setBounds(506, 259, 150, 30);
-		frame.getContentPane().add(medicHealth);
+		frmEliteDangerousBeta.getContentPane().add(medicHealth);
 		
 		JProgressBar medicTired = new JProgressBar();
 		medicTired.setStringPainted(true);
 		medicTired.setForeground(Color.black);
 		medicTired.setValue(50);
 		medicTired.setBounds(506, 301, 150, 30);
-		frame.getContentPane().add(medicTired);
+		frmEliteDangerousBeta.getContentPane().add(medicTired);
 		
 		JProgressBar medicHunger = new JProgressBar();
 		medicHunger.setStringPainted(true);
 		medicHunger.setForeground(Color.black);
 		medicHunger.setValue(50);
 		medicHunger.setBounds(506, 343, 150, 30);
-		frame.getContentPane().add(medicHunger);
+		frmEliteDangerousBeta.getContentPane().add(medicHunger);
 		
 		JLabel lblHealth = new JLabel("Health");
+		lblHealth.setHorizontalAlignment(SwingConstants.CENTER);
 		lblHealth.setBounds(122, 259, 100, 30);
-		frame.getContentPane().add(lblHealth);
+		lblHealth.setOpaque(true);
+		frmEliteDangerousBeta.getContentPane().add(lblHealth);
 		
 		JLabel lblTiredness = new JLabel("Tiredness");
+		lblTiredness.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTiredness.setBounds(122, 301, 100, 30);
-		frame.getContentPane().add(lblTiredness);
+		lblTiredness.setOpaque(true);
+		frmEliteDangerousBeta.getContentPane().add(lblTiredness);
 		
 		JLabel lblHunger = new JLabel("Hunger");
+		lblHunger.setHorizontalAlignment(SwingConstants.CENTER);
 		lblHunger.setBounds(122, 344, 100, 30);
-		frame.getContentPane().add(lblHunger);
+		lblHunger.setOpaque(true);
+		frmEliteDangerousBeta.getContentPane().add(lblHunger);
 		
 		JProgressBar leaderHealth = new JProgressBar();
 		leaderHealth.setStringPainted(true);
 		leaderHealth.setForeground(Color.black);
 		leaderHealth.setValue(40);
 		leaderHealth.setBounds(771, 259, 150, 30);
-		frame.getContentPane().add(leaderHealth);
+		frmEliteDangerousBeta.getContentPane().add(leaderHealth);
 		
 		JProgressBar leaderTired = new JProgressBar();
 		leaderTired.setStringPainted(true);
 		leaderTired.setForeground(Color.black);
 		leaderTired.setValue(60);
 		leaderTired.setBounds(771, 301, 150, 30);
-		frame.getContentPane().add(leaderTired);
+		frmEliteDangerousBeta.getContentPane().add(leaderTired);
 		
 		JProgressBar leaderHunger = new JProgressBar();
 		leaderHunger.setStringPainted(true);
 		leaderHunger.setForeground(Color.black);
 		leaderHunger.setValue(100);
 		leaderHunger.setBounds(771, 343, 150, 30);
-		frame.getContentPane().add(leaderHunger);
+		frmEliteDangerousBeta.getContentPane().add(leaderHunger);
 		
 		JProgressBar mechanicHealth = new JProgressBar();
 		mechanicHealth.setStringPainted(true);
 		mechanicHealth.setForeground(Color.black);
 		mechanicHealth.setValue(80);
 		mechanicHealth.setBounds(1034, 259, 150, 30);
-		frame.getContentPane().add(mechanicHealth);
+		frmEliteDangerousBeta.getContentPane().add(mechanicHealth);
 		
 		JProgressBar mechanicTired = new JProgressBar();
 		mechanicTired.setStringPainted(true);
 		mechanicTired.setForeground(Color.black);
 		mechanicTired.setValue(50);
 		mechanicTired.setBounds(1034, 301, 150, 30);
-		frame.getContentPane().add(mechanicTired);
+		frmEliteDangerousBeta.getContentPane().add(mechanicTired);
 		
 		JProgressBar mechanicHunger = new JProgressBar();
 		mechanicHunger.setStringPainted(true);
 		mechanicHunger.setForeground(Color.black);
 		mechanicHunger.setValue(70);
 		mechanicHunger.setBounds(1034, 343, 150, 30);
-		frame.getContentPane().add(mechanicHunger);
+		frmEliteDangerousBeta.getContentPane().add(mechanicHunger);
 		
 		JProgressBar pilotHealth = new JProgressBar();
 		pilotHealth.setStringPainted(true);
 		pilotHealth.setForeground(Color.black);
 		pilotHealth.setValue(50);
 		pilotHealth.setBounds(1279, 259, 150, 30);
-		frame.getContentPane().add(pilotHealth);
+		frmEliteDangerousBeta.getContentPane().add(pilotHealth);
 		
 		JProgressBar pilotTired = new JProgressBar();
 		pilotTired.setStringPainted(true);
 		pilotTired.setForeground(Color.black);
 		pilotTired.setValue(100);
 		pilotTired.setBounds(1279, 301, 150, 30);
-		frame.getContentPane().add(pilotTired);
+		frmEliteDangerousBeta.getContentPane().add(pilotTired);
 		
 		JProgressBar pilotHunger = new JProgressBar();
 		pilotHunger.setStringPainted(true);
 		pilotHunger.setForeground(Color.black);
 		pilotHunger.setValue(50);
 		pilotHunger.setBounds(1279, 343, 150, 30);
-		frame.getContentPane().add(pilotHunger);
+		frmEliteDangerousBeta.getContentPane().add(pilotHunger);
 		
 		JProgressBar thiefHealth = new JProgressBar();
 		thiefHealth.setStringPainted(true);
 		thiefHealth.setForeground(Color.black);
 		thiefHealth.setValue(70);
 		thiefHealth.setBounds(1510, 259, 150, 30);
-		frame.getContentPane().add(thiefHealth);
+		frmEliteDangerousBeta.getContentPane().add(thiefHealth);
 		
 		JProgressBar thiefTired = new JProgressBar();
 		thiefTired.setStringPainted(true);
 		thiefTired.setForeground(Color.black);
 		thiefTired.setValue(60);
 		thiefTired.setBounds(1510, 301, 150, 30);
-		frame.getContentPane().add(thiefTired);
+		frmEliteDangerousBeta.getContentPane().add(thiefTired);
 		
 		JProgressBar thiefHunger = new JProgressBar();
 		thiefHunger.setStringPainted(true);
 		thiefHunger.setForeground(Color.black);
 		thiefHunger.setValue(70);
 		thiefHunger.setBounds(1510, 343, 150, 30);
-		frame.getContentPane().add(thiefHunger);
+		frmEliteDangerousBeta.getContentPane().add(thiefHunger);
 		
 		
 
@@ -1030,7 +1063,7 @@ public class CrewSelection {
 			{
 				try {
 					CrewSelection window = new CrewSelection();
-					window.frame.setVisible(true);
+					window.frmEliteDangerousBeta.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

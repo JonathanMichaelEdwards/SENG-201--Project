@@ -15,10 +15,11 @@ import MainScreen.MainScreen;
 import NewPlanet.TravelPlanet;
 import WindowSettings.Display;
 import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
 
 public class spacePlague {
 
-	public JFrame frame;
+	public JFrame frmEliteDangerousBeta;
 
 	private JButton btnCheckInfection, btnLetsGetGoing;
 	private String readFile = "src/StoreGame/CrewSelected/";	
@@ -34,18 +35,24 @@ public class spacePlague {
 			public void actionPerformed(ActionEvent e) 
 			{
 				MainScreen screen = new MainScreen();
-				screen.frame.setVisible(true);    // turn on screen
-				frame.setVisible(false);          // turn off screen
+				screen.frmEliteDangerousBeta.setVisible(true);    // turn on screen
+				frmEliteDangerousBeta.setVisible(false);          // turn off screen
 			}
 		});
-		frame.getContentPane().setLayout(null);
+		frmEliteDangerousBeta.getContentPane().setLayout(null);
 		btnLetsGetGoing.setBounds(940, 700, 250, 100);
-		frame.getContentPane().add(btnLetsGetGoing);
+		frmEliteDangerousBeta.getContentPane().add(btnLetsGetGoing);
 		
 		lblCrewMembersInfected = new JLabel("Crew Members infected :");
+		lblCrewMembersInfected.setOpaque(true);
 		lblCrewMembersInfected.setFont(new Font("Dialog", Font.BOLD, 19));
-		lblCrewMembersInfected.setBounds(940, 615, 855, 61);
-		frame.getContentPane().add(lblCrewMembersInfected);
+		lblCrewMembersInfected.setBounds(940, 615, 510, 61);
+		frmEliteDangerousBeta.getContentPane().add(lblCrewMembersInfected);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(spacePlague.class.getResource("/gameImages/plague.png")));
+		lblNewLabel.setBounds(0, 0, 1920, 1080);
+		frmEliteDangerousBeta.getContentPane().add(lblNewLabel);
 	}
 
 	private void infection()
@@ -89,7 +96,7 @@ public class spacePlague {
 					System.out.println("Member 1 infected");
 					btnCheckInfection.setEnabled(false);
 					name = member.get(5);
-					lblCrewMembersInfected.setText(name + " is Infected");
+					lblCrewMembersInfected.setText("<html>" + name + " is Infected</html>");
 					btnLetsGetGoing.setVisible(true);
 				}
 				if (x == 0) {
@@ -126,7 +133,7 @@ public class spacePlague {
 					btnCheckInfection.setEnabled(false);
 					name = member.get(5);
 					nameboth = memberboth.get(5);
-					lblCrewMembersInfected.setText("Both " + name + " and " + nameboth + " are infected");
+					lblCrewMembersInfected.setText("<html>Both " + name + " and " + nameboth + " are infected/<html>");
 					btnLetsGetGoing.setVisible(true);
 					
 				}
@@ -149,14 +156,14 @@ public class spacePlague {
 					System.out.println("Member 2 infected");
 					btnCheckInfection.setEnabled(false);
 					name2 = member2.get(5);
-					lblCrewMembersInfected.setText(name2 + " is Infected");
+					lblCrewMembersInfected.setText("<html>" + name2 + " is Infected</html>");
 					btnLetsGetGoing.setVisible(true);
 				}
 			}
 		});
-		frame.getContentPane().setLayout(null);
+		frmEliteDangerousBeta.getContentPane().setLayout(null);
 		btnCheckInfection.setBounds(1200, 700, 250, 100);
-		frame.getContentPane().add(btnCheckInfection);
+		frmEliteDangerousBeta.getContentPane().add(btnCheckInfection);
 	}
 	
 	
@@ -168,7 +175,7 @@ public class spacePlague {
 			public void run() {
 				try {
 					spacePlague window = new spacePlague();
-					window.frame.setVisible(true);
+					window.frmEliteDangerousBeta.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -187,23 +194,26 @@ public class spacePlague {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
+		frmEliteDangerousBeta = new JFrame();
+		frmEliteDangerousBeta.setTitle("Elite Dangerous beta");
 		Display display = new Display();
-		frame.setBounds(display.x, display.y, display.width, display.height);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(false);
-		frame.getContentPane().setLayout(null);
+		frmEliteDangerousBeta.setBounds(display.x, display.y, display.width, display.height);
+		frmEliteDangerousBeta.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmEliteDangerousBeta.setResizable(false);
+		frmEliteDangerousBeta.getContentPane().setLayout(null);
 		
 		JLabel lblFdf = new JLabel("<html>The re-emergence of the Space Plague took the craft while we were sleeping! I'll scan the crew members quickly, one or more of your crew has been infected and must be treated immediately! Use Plague Potion in your inventory or if you don't have it,  purchase Plague Potion from the Outpost. We must contain the spread before it gets worse, each crew member will lose 30hp every new day they are infected.</html>");
+		lblFdf.setOpaque(true);
 		lblFdf.setFont(new Font("Dialog", Font.BOLD, 19));
-		lblFdf.setBounds(526, 136, 905, 400);
-		frame.getContentPane().add(lblFdf);
+		lblFdf.setBounds(526, 332, 905, 204);
+		frmEliteDangerousBeta.getContentPane().add(lblFdf);
 		
 		JLabel lblSpacePlague = new JLabel("Space Plague");
+		lblSpacePlague.setOpaque(true);
 		lblSpacePlague.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSpacePlague.setFont(new Font("Dialog", Font.BOLD, 24));
-		lblSpacePlague.setBounds(650, 50, 600, 100);
-		frame.getContentPane().add(lblSpacePlague);
+		lblSpacePlague.setBounds(650, 50, 600, 50);
+		frmEliteDangerousBeta.getContentPane().add(lblSpacePlague);
 		
 		
 		infection();

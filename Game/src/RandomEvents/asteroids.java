@@ -18,10 +18,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
 
 public class asteroids {
 
-	public JFrame frame;
+	public JFrame frmEliteDangerousBeta;
 	private void btnBack()
 	{
 		JButton btnSearchPlanet = new JButton("View Damage");
@@ -38,6 +39,8 @@ public class asteroids {
 				
 				int dmg = Integer.parseInt(changeShields.get(2)) - 30; //this is the value in which a repair heals
 				changeShields.set(2, "" + dmg);
+				int planetCount = Integer.parseInt(changeShields.get(4)) + 1; //this is the value in which a repair heals
+				changeShields.set(4, "" + planetCount);
 				ioFile.fileWrite(changeShields, "src/StoreGame/ShipInfo.txt");
 				ArrayList<String> checkShields = ioFile.fileRead("src/StoreGame/ShipInfo.txt");				
 //				explosion = Integer.parseInt(checkShields.get(2));
@@ -47,24 +50,29 @@ public class asteroids {
 
 					loseGame outpost = new loseGame();
 					outpost.frame.setVisible(true);
-					frame.setVisible(false);
+					frmEliteDangerousBeta.setVisible(false);
 				}
 				
 				if (dmg > 0)
 				{
 					MainScreen screen = new MainScreen();
-					screen.frame.setVisible(true);    // turn on screen
-					frame.setVisible(false);   
+					screen.frmEliteDangerousBeta.setVisible(true);    // turn on screen
+					frmEliteDangerousBeta.setVisible(false);   
 				}// turn off screen
 			}
 		});
-		frame.getContentPane().setLayout(null);
+		frmEliteDangerousBeta.getContentPane().setLayout(null);
 		
 		
 		
 	
 		btnSearchPlanet.setBounds(940, 700, 250, 100);
-		frame.getContentPane().add(btnSearchPlanet);
+		frmEliteDangerousBeta.getContentPane().add(btnSearchPlanet);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(asteroids.class.getResource("/gameImages/asteroids.png")));
+		lblNewLabel.setBounds(0, 0, 1920, 1080);
+		frmEliteDangerousBeta.getContentPane().add(lblNewLabel);
 	}
 
 	
@@ -76,7 +84,7 @@ public class asteroids {
 			public void run() {
 				try {
 					asteroids window = new asteroids();
-					window.frame.setVisible(true);
+					window.frmEliteDangerousBeta.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -97,24 +105,27 @@ public class asteroids {
 	private void initialize() {
 
 		
-		frame = new JFrame();
+		frmEliteDangerousBeta = new JFrame();
+		frmEliteDangerousBeta.setTitle("Elite Dangerous beta");
 		Display display = new Display();
-		frame.setBounds(display.x, display.y, display.width, display.height);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(false);
-		frame.getContentPane().setLayout(null);
+		frmEliteDangerousBeta.setBounds(display.x, display.y, display.width, display.height);
+		frmEliteDangerousBeta.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmEliteDangerousBeta.setResizable(false);
+		frmEliteDangerousBeta.getContentPane().setLayout(null);
 		
 		JLabel lblFdf = new JLabel("<html>The shields have taken a hit from high speed asteroids we had no chance of detecting, let alone avoiding. See to it that the shields be repaired quickly, as too much damage will result in the ship exploding, killing our crew inside and ending the game!</html>");
+		lblFdf.setOpaque(true);
 		lblFdf.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFdf.setFont(new Font("Dialog", Font.BOLD, 19));
-		lblFdf.setBounds(500, 297, 905, 294);
-		frame.getContentPane().add(lblFdf);
+		lblFdf.setBounds(493, 256, 905, 137);
+		frmEliteDangerousBeta.getContentPane().add(lblFdf);
 		
 		JLabel lblAsteroids = new JLabel("ASTEROIDS!");
+		lblAsteroids.setOpaque(true);
 		lblAsteroids.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAsteroids.setFont(new Font("Dialog", Font.BOLD, 24));
-		lblAsteroids.setBounds(650, 50, 600, 100);
-		frame.getContentPane().add(lblAsteroids);
+		lblAsteroids.setBounds(650, 50, 600, 50);
+		frmEliteDangerousBeta.getContentPane().add(lblAsteroids);
 		btnBack();
 	}
 }
